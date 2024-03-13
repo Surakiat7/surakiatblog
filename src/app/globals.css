@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.anuphan {
+  font-family: var(--font-anuphan_init);
+}
+
+.poppins {
+  font-family: var(--font-poppins_init);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.dashed-border-bg {
+  border: 2px dashed rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Custom Scroll Bar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Date picker antd stlye */
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker-outlined {
+  background: #27272A;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #27272A;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker-outlined:hover {
+  background: #27272A;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #27272A;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker .ant-picker-input > input {
+  width: 100%;
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker .ant-picker-input > input::placeholder {
+  color: white;
+  text-overflow: ellipsis;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker .ant-picker-suffix {
+  color: white;
+}
+
+.anticon {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker .ant-picker-input > input {
+  background: #27272A !important;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker {
+  color: rgba(0, 0, 0, 0.88);
+  background: #27272A !important;
+}
+
+:where(.css-dev-only-do-not-override-1ae8k9u).ant-picker .ant-picker-input >input {
+  background: #27272A !important;
+}
+
+
+
+
