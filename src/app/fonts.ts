@@ -1,11 +1,12 @@
-import { Inter, Roboto_Mono } from 'next/font/google'
- 
-export const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-})
- 
-export const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-})
+import { Anuphan, Poppins } from "next/font/google";
+
+export const anuphan = Anuphan({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["100", "500"],
+});
