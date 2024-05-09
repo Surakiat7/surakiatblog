@@ -1,66 +1,81 @@
-import React, { useState } from "react";
-import {
-  Navbar,
-  NavbarContent,
-  NavbarMenuToggle,
-  Dropdown,
-  DropdownTrigger,
-  Avatar,
-  DropdownMenu,
-  DropdownItem,
-} from "@nextui-org/react";
+"use client";
 
-export default function NavbarElement({
-  setIsSidebarOpen,
-  isMenuOpen,
-  setIsMenuOpen,
-}: {
-  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  isMenuOpen: boolean;
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
-  const handleMenuToggle = () => {
-    setIsMenuOpen((prev) => !prev);
-    setIsSidebarOpen((prev) => !prev);
-  };
+import React from "react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link, Button } from "@nextui-org/react";
+import { AcmeLogo } from "./AcmeLogo";
 
-  console.log(isMenuOpen, "isMenuOpen log");
+export default function NavbarElement() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
 
   return (
-    <Navbar
-      isBordered={isMenuOpen}
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
-    >
-      <NavbarContent className="flex" justify="start">
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          onClick={handleMenuToggle}
+          className="sm:hidden"
         />
-        <p className="font-bold text-inherit hidden sm:block">
-          ระบบบริหารจัดการงาน บช.ปส. Narcotics Suppression Bureau
-        </p>
+        <NavbarBrand>
+          <AcmeLogo />
+          <p className="font-bold text-inherit">ACME</p>
+        </NavbarBrand>
       </NavbarContent>
-      <NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end">
-          <DropdownTrigger>
-            <Avatar
-              isBordered
-              as="button"
-              className="transition-transform"
-              color="secondary"
-              name="Jason Hughes"
-              size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-            />
-          </DropdownTrigger>
-          <DropdownMenu className="text-center">
-            <DropdownItem color="secondary">ข้อมูลส่วนตัว</DropdownItem>
-            <DropdownItem color="secondary">เปลี่ยนรหัสผ่าน</DropdownItem>
-            <DropdownItem color="danger">ออกจากระบบ</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Features
+          </Link>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page" color="success">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
       </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#" color="success">Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button as={Link} color="success" href="#" variant="flat">
+            Sign Up
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
     </Navbar>
   );
 }

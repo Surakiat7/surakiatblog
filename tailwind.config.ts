@@ -30,12 +30,12 @@ const config: Config = {
       themes: {
         light: {
           colors: {
-            primary: "#FFFFFF",
+            // primary: "#FFFFFF",
           }
         },
         dark: {
           colors: {
-            primary: "#000000",
+            // primary: "#000000",
           }
         },
       },
