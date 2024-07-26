@@ -2,43 +2,41 @@
 
 import { motion } from "framer-motion";
 import {
-  SiNike,
-  Si3M,
-  SiAbstract,
+  SiReact,
+  SiJavascript,
+  SiTypescript,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiMui,
+  SiBootstrap,
+  SiMysql,
+  SiAntdesign,
+  SiPostman,
+  SiSwagger,
+  SiFigma,
+  SiJira,
   SiAdobe,
-  SiAirtable,
-  SiAmazon,
-  SiBox,
-  SiBytedance,
-  SiChase,
-  SiCloudbees,
-  SiBurton,
-  SiBmw,
-  SiHeroku,
-  SiBuildkite,
-  SiCouchbase,
-  SiDailymotion,
-  SiDeliveroo,
-  SiEpicgames,
-  SiGenius,
-  SiGodaddy,
+  SiGit,
+  SiDocker,
+  SiMicrosoftazure,
 } from "react-icons/si";
 import { IconType } from "react-icons";
+import { RiNextjsFill } from "react-icons/ri";
+import { FaCloudflare } from "react-icons/fa6";
 
 const LogoHero = () => {
   return (
     <section className="bg-black pb-12">
-      <div className="w-full px-8 py-12 md:py-20 flex flex-col items-center">
+      <div className="w-full px-6 py-6 flex flex-col items-center">
         <h1 className="text-center text-4xl md:text-6xl max-w-xl font-semibold">
-          The easiest way to scale your analytics
+          My TechStack
         </h1>
-        <p className="text-center max-w-xl my-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          dolore vitae minus dolorum.
+        <p className="text-center max-w-xl">
+          As a frontend developer, my tech stack is designed to deliver
+          high-quality, interactive, and responsive web applications. Here’s a
+          look at the key technologies and tools I use.
         </p>
-        <button className="bg-indigo-600 text-white text-base md:text-lg font-medium px-8 py-2 shadow-[3px_3px_0_black] hover:shadow-[1px_1px_0_black] hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
-          Try it free
-        </button>
       </div>
 
       <div className="flex  overflow-hidden">
@@ -101,31 +99,31 @@ const LogoItem = ({ Icon }: { Icon: IconType }) => {
 
 const LogoItemsTop = () => (
   <>
-    <LogoItem Icon={SiNike} />
-    <LogoItem Icon={Si3M} />
-    <LogoItem Icon={SiAbstract} />
-    <LogoItem Icon={SiAdobe} />
-    <LogoItem Icon={SiAirtable} />
-    <LogoItem Icon={SiAmazon} />
-    <LogoItem Icon={SiBox} />
-    <LogoItem Icon={SiBytedance} />
-    <LogoItem Icon={SiChase} />
-    <LogoItem Icon={SiCloudbees} />
+    <LogoItem Icon={SiReact} />
+    <LogoItem Icon={RiNextjsFill} />
+    <LogoItem Icon={SiJavascript} />
+    <LogoItem Icon={SiTypescript} />
+    <LogoItem Icon={SiHtml5} />
+    <LogoItem Icon={SiCss3} />
+    <LogoItem Icon={SiTailwindcss} />
+    <LogoItem Icon={SiAntdesign} />
+    <LogoItem Icon={SiMui} />
+    <LogoItem Icon={SiBootstrap} />
   </>
 );
 
 const LogoItemsBottom = () => (
   <>
-    <LogoItem Icon={SiBmw} />
-    <LogoItem Icon={SiBurton} />
-    <LogoItem Icon={SiBuildkite} />
-    <LogoItem Icon={SiCouchbase} />
-    <LogoItem Icon={SiDailymotion} />
-    <LogoItem Icon={SiDeliveroo} />
-    <LogoItem Icon={SiEpicgames} />
-    <LogoItem Icon={SiGenius} />
-    <LogoItem Icon={SiGodaddy} />
-    <LogoItem Icon={SiHeroku} />
+    <LogoItem Icon={SiFigma} />
+    <LogoItem Icon={SiAdobe} />
+    <LogoItem Icon={SiGit} />
+    <LogoItem Icon={SiDocker} />
+    <LogoItem Icon={SiMicrosoftazure} />
+    <LogoItem Icon={SiMysql} />
+    <LogoItem Icon={SiSwagger} />
+    <LogoItem Icon={SiPostman} />
+    <LogoItem Icon={FaCloudflare} />
+    <LogoItem Icon={SiJira} />
   </>
 );
 
