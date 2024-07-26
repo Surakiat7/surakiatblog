@@ -71,7 +71,7 @@ export default function NavbarElement() {
         <NavbarItem>
           <ToggleSwitchTheme />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
+        {/* <NavbarItem className="hidden lg:flex">
           <Link href="#" color="success">
             Login
           </Link>
@@ -80,7 +80,7 @@ export default function NavbarElement() {
           <Button as={Link} color="success" href="#" variant="flat">
             Sign Up
           </Button>
-        </NavbarItem>
+        </NavbarItem> */}
       </NavbarContent>
       <NavbarMenu
         className={`left-0 w-full ${
