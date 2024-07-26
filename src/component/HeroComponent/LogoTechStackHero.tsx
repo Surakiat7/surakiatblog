@@ -32,8 +32,8 @@ const LogoHero = () => {
         <h1 className="text-center text-4xl md:text-6xl max-w-xl font-semibold">
           My TechStack
         </h1>
-        <p className="text-center max-w-xl">
-          As a frontend developer, my tech stack is designed to deliver
+        <p className="text-center max-w-2xl pt-4">
+          As a Frontend Developer, my tech stack is designed to deliver
           high-quality, interactive, and responsive web applications. Here’s a
           look at the key technologies and tools I use.
         </p>

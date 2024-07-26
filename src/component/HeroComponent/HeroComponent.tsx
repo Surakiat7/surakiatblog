@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { AnimationProps, motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";
+import { IoIosArrowDown } from "react-icons/io";
 
 export const DarkGridHero = () => {
   return (
@@ -17,7 +18,7 @@ export const DarkGridHero = () => {
 
 const Content = () => {
   return (
-    <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 py-24 md:px-8 md:py-36">
+    <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 py-24 md:py-36">
       <motion.div
         initial={{
           y: 25,
@@ -33,7 +34,7 @@ const Content = () => {
         }}
         className="relative"
       >
-        <GlowingChip>Exciting announcement 🎉</GlowingChip>
+        <GlowingChip>Welcome, I'm JJ 😊</GlowingChip>
       </motion.div>
       <motion.h1
         initial={{
@@ -51,7 +52,7 @@ const Content = () => {
         }}
         className="mb-3 text-center text-3xl font-bold leading-tight text-zinc-50 sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight lg:text-7xl lg:leading-tight"
       >
-        A landing page template that works for you
+        Surakiat Tablakorn
       </motion.h1>
       <motion.p
         initial={{
@@ -67,10 +68,17 @@ const Content = () => {
           delay: 0.5,
           ease: "easeInOut",
         }}
-        className="mb-9 max-w-2xl text-center text-base leading-relaxed text-zinc-400 sm:text-lg md:text-lg md:leading-relaxed"
+        className="mb-9 text-center text-base leading-relaxed text-zinc-400 sm:text-lg md:text-lg md:leading-relaxed"
       >
-        Build beautiful landing pages for your startups, clients, and side
-        projects, without having to think about design.
+        I’m a Frontend Developer based in Bangkok, Thailand, specializing in
+        crafting exceptional web applications and everything in between. With
+        hands-on experience in Next.js, React, and JavaScript/TypeScript, I
+        excel in creating responsive web applications and translating UI/UX
+        designs into functional, user-friendly interfaces. My expertise includes
+        collaborative problem-solving and finding effective solutions while
+        working directly with clients and system users. I’m passionate about
+        delivering high-quality, scalable solutions and continuously improving
+        through direct communication and feedback.
       </motion.p>
       <motion.div
         initial={{
@@ -88,13 +96,10 @@ const Content = () => {
         }}
         className="flex flex-col items-center gap-6 sm:flex-row"
       >
-        <SplashButton className="flex items-center gap-2">
-          Try it free
-          <FiArrowRight />
+        <SplashButton className="flex flex-col px-12 items-center">
+          Scroll Down
+          <IoIosArrowDown />
         </SplashButton>
-        <GhostButton className="rounded-md px-4 py-2 text-zinc-100">
-          Learn more
-        </GhostButton>
       </motion.div>
     </div>
   );
@@ -113,21 +118,7 @@ const SplashButton = ({ children, className, ...rest }: ButtonProps) => {
   return (
     <button
       className={twMerge(
-        "rounded-md bg-gradient-to-br from-blue-400 to-blue-700 px-4 py-2 text-zinc-50 ring-2 ring-blue-500/50 ring-offset-2 ring-offset-zinc-950 transition-all hover:scale-[1.02] hover:ring-transparent active:scale-[0.98] active:ring-blue-500/70",
-        className
-      )}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
-};
-
-const GhostButton = ({ children, className, ...rest }: ButtonProps) => {
-  return (
-    <button
-      className={twMerge(
-        "rounded-md px-4 py-2 text-zinc-100 transition-all hover:scale-[1.02] hover:bg-zinc-800 hover:text-zinc-50 active:scale-[0.98]",
+        "rounded-full bg-gradient-to-br from-blue-400 to-blue-700 py-2 text-zinc-50 ring-2 ring-blue-500/50 ring-offset-2 ring-offset-zinc-950 transition-all hover:scale-[1.02] hover:ring-transparent active:scale-[0.98] active:ring-blue-500/70",
         className
       )}
       {...rest}

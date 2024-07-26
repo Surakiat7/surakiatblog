@@ -21,6 +21,8 @@ export default function NavbarElement() {
   const menuItems = [
     "About",
     "Blog",
+    "Education",
+    "Work Experience",
     "Contact",
     "Login",
   ];
@@ -34,19 +36,29 @@ export default function NavbarElement() {
         />
         <NavbarBrand>
           <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">SURAKIAT</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
+        <NavbarItem isActive>
+          <Link color="success" href="#">
             About
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page" color="success">
+        <NavbarItem>
+          <Link color="foreground" href="#" aria-current="page">
             Blog
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#" aria-current="page">
+            Education
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#" aria-current="page">
+            Work Experience
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -70,7 +82,11 @@ export default function NavbarElement() {
           </Button>
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className={`left-0 w-full ${isMenuOpen ? 'h-screen' : 'h-0'} transition-all duration-300 overflow-auto`}>
+      <NavbarMenu
+        className={`left-0 w-full ${
+          isMenuOpen ? "h-screen" : "h-0"
+        } transition-all duration-300 overflow-auto`}
+      >
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
