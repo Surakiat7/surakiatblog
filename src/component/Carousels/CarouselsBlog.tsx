@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
+import SearchButton from "../Button/SearchButton";
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -44,7 +45,8 @@ const BlogPostCarousel = () => {
     <section className="bg-slate-800 py-8" ref={ref}>
       <div className="relative overflow-hidden p-4">
         <div className="mx-auto max-w-6xl">
-          <div className="flex items-center justify-between">
+        <SearchButton />
+          <div className="flex pt-4 items-center justify-between">
             <h2 className="mb-4 text-4xl">Blog</h2>
 
             <div className="flex items-center gap-2">

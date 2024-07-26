@@ -8,15 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // screens: {
-      //   md: { max: "768px" },
-      //   sm: { max: "640px" },
-      // },
-      // backgroundImage: {
-      //   "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      //   "gradient-conic":
-      //     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      // },
+      screens: {
+        sm: { min: "220px", max: "767px" },
+        md: { min: "768px", max: "1023px" },
+        lg: { min: "1024px", max: "1279px" },
+        xl: { min: "1280px", max: "1660px" },
+        xxl: { min: "1661px", max: "2560px" },
+        xxxl: { min: "2561px" },
+      },
     },
   },
   darkMode: "class",
@@ -31,12 +30,12 @@ const config: Config = {
         light: {
           colors: {
             // primary: "#FFFFFF",
-          }
+          },
         },
         dark: {
           colors: {
             // primary: "#000000",
-          }
+          },
         },
       },
     }),

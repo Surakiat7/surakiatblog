@@ -12,11 +12,13 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
-import { AcmeLogo } from "./AcmeLogo";
+import { useTheme } from "@/contexts/ThemeContext";
 import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
+import Image from "next/image";
 
 export default function NavbarElement() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { theme } = useTheme();
 
   const menuItems = [
     "About",
@@ -27,42 +29,60 @@ export default function NavbarElement() {
     "Login",
   ];
 
+  const logoSrc =
+    theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
+
+  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
+
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className={`transition-colors ${
+        theme === "light" ? "bg-white text-slate-800" : "bg-zinc-950 text-white"
+      }`}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="hidden sm:flex"
         />
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">SURAKIAT</p>
+        <NavbarBrand className="flex items-center gap-2">
+          <Image
+            src={logoSrc}
+            alt="Surakiat-Logo"
+            width="0"
+            height="0"
+            sizes="100vw"
+            loading="lazy"
+            className="object-cover w-[40px] h-[40px]"
+          />
+          <p className={`font-bold sm:hidden ${textColorClass}`}>SURAKIAT</p>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="sm:hidden flex gap-4" justify="center">
         <NavbarItem isActive>
           <Link color="success" href="#">
             About
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#" aria-current="page">
+          <Link className={`${textColorClass}`} href="#" aria-current="page">
             Blog
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#" aria-current="page">
+          <Link className={`${textColorClass}`} href="#" aria-current="page">
             Education
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#" aria-current="page">
+          <Link className={`${textColorClass}`} href="#" aria-current="page">
             Work Experience
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link className={`${textColorClass}`} href="#">
             Contact
           </Link>
         </NavbarItem>
