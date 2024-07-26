@@ -4,8 +4,8 @@ import { Providers } from "./provider";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JJBLOG.",
-  description: "Des-test",
+  title: "Surakiat",
+  description: "Surakiat blog",
 };
 
 export default function RootLayout({
