@@ -45,7 +45,7 @@ const BlogPostCarousel = () => {
     <section className="bg-slate-800 py-8" ref={ref}>
       <div className="relative overflow-hidden p-4">
         <div className="mx-auto max-w-6xl">
-        <SearchButton />
+          <SearchButton />
           <div className="flex pt-4 items-center justify-between">
             <h2 className="mb-4 text-4xl">Blog</h2>
 
@@ -66,7 +66,7 @@ const BlogPostCarousel = () => {
                 disabled={!CAN_SHIFT_RIGHT}
                 onClick={shiftRight}
               >
-                <FiArrowRight color="#000000"/>
+                <FiArrowRight color="#000000" />
               </button>
             </div>
           </div>
@@ -123,68 +123,67 @@ type PostType = {
 };
 
 const posts: PostType[] = [
-    {
-      id: 1,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=Exploring+Modern+JavaScript+Frameworks",
-      author: "Surakiat",
-      title: "Exploring Modern JavaScript Frameworks",
-      description:
-        "An in-depth look at popular JavaScript frameworks like React, Angular, and Vue.js. Learn which framework might be best for your next project.",
-    },
-    {
-      id: 2,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=CSS+Grid+vs+Flexbox",
-      author: "Surakiat",
-      title: "CSS Grid vs Flexbox: Which One to Use?",
-      description:
-        "A comprehensive comparison of CSS Grid and Flexbox. Understand the strengths and weaknesses of each layout system and when to use them.",
-    },
-    {
-      id: 3,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=Mastering+Responsive+Design",
-      author: "Surakiat",
-      title: "Mastering Responsive Design for Web",
-      description:
-        "Tips and techniques for creating responsive web designs that look great on any device. Explore media queries, flexible grids, and more.",
-    },
-    {
-      id: 4,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=Understanding+Web+Performance+Optimization",
-      author: "Surakiat",
-      title: "Understanding Web Performance Optimization",
-      description:
-        "Learn about techniques to improve web performance, including optimizing images, minifying CSS and JavaScript, and leveraging browser caching.",
-    },
-    {
-      id: 5,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=Introduction+to+Progressive+Web+Apps",
-      author: "Surakiat",
-      title: "Introduction to Progressive Web Apps",
-      description:
-        "Discover the benefits of Progressive Web Apps (PWAs) and how they provide a native app-like experience on the web.",
-    },
-    {
-      id: 6,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=Getting+Started+with+TypeScript",
-      author: "Surakiat",
-      title: "Getting Started with TypeScript",
-      description:
-        "A beginner's guide to TypeScript, including installation, basic syntax, and how it enhances JavaScript with static types.",
-    },
-    {
-      id: 7,
-      imgUrl:
-        "https://via.placeholder.com/800x400.png?text=The+Future+of+Frontend+Development",
-      author: "Surakiat",
-      title: "The Future of Frontend Development",
-      description:
-        "Explore emerging trends and technologies in frontend development, including the rise of JAMstack, serverless architecture, and more.",
-    },
-  ];
-  
+  {
+    id: 1,
+    imgUrl:
+      "https://lh3.googleusercontent.com/proxy/MC8TmdpFTCJst901bvnIFQ-vibfGpoFvpXiH0FlPEK3NtFysARVKpFSBsUwGIlwz6qmb8KflDXWKjnriNFKXzipXheBtZDA9",
+    author: "Surakiat",
+    title: "Exploring Modern JavaScript Frameworks",
+    description:
+      "An in-depth look at popular JavaScript frameworks like React, Angular, and Vue.js. Learn which framework might be best for your next project.",
+  },
+  {
+    id: 2,
+    imgUrl:
+      "https://pbs.twimg.com/media/Fqwt91aWYAAbOah?format=jpg&name=4096x4096",
+    author: "Surakiat",
+    title: "CSS Grid vs Flexbox: Which One to Use?",
+    description:
+      "A comprehensive comparison of CSS Grid and Flexbox. Understand the strengths and weaknesses of each layout system and when to use them.",
+  },
+  {
+    id: 3,
+    imgUrl:
+      "https://arnapana.com/assets/images/blog/article_1597821616.jpg",
+    author: "Surakiat",
+    title: "Mastering Responsive Design for Web",
+    description:
+      "Tips and techniques for creating responsive web designs that look great on any device. Explore media queries, flexible grids, and more.",
+  },
+  {
+    id: 4,
+    imgUrl:
+      "https://www.xenonstack.com/hubfs/web-performance-optimization.png",
+    author: "Surakiat",
+    title: "Understanding Web Performance Optimization",
+    description:
+      "Learn about techniques to improve web performance, including optimizing images, minifying CSS and JavaScript, and leveraging browser caching.",
+  },
+  {
+    id: 5,
+    imgUrl:
+      "https://cdn.presslabs.com/wp-content/uploads/2019/03/pwas.png",
+    author: "Surakiat",
+    title: "Introduction to Progressive Web Apps",
+    description:
+      "Discover the benefits of Progressive Web Apps (PWAs) and how they provide a native app-like experience on the web.",
+  },
+  {
+    id: 6,
+    imgUrl:
+      "https://media.licdn.com/dms/image/D5612AQF1X3R7A10-GA/article-cover_image-shrink_720_1280/0/1696269587807?e=2147483647&v=beta&t=RezCmM0hMmBFdllWBKTmYA7hpmvTbBKjP8DSmV8cnUQ",
+    author: "Surakiat",
+    title: "Getting Started with TypeScript",
+    description:
+      "A beginner's guide to TypeScript, including installation, basic syntax, and how it enhances JavaScript with static types.",
+  },
+  {
+    id: 7,
+    imgUrl:
+      "https://programmerblog.net/wp-content/uploads/2021/02/what-is-front-end-development-3.png",
+    author: "Surakiat",
+    title: "The Future of Frontend Development",
+    description:
+      "Explore emerging trends and technologies in frontend development, including the rise of JAMstack, serverless architecture, and more.",
+  },
+];
