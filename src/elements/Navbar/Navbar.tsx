@@ -104,20 +104,15 @@ export default function NavbarElement() {
       </NavbarContent>
       <NavbarMenu
         className={`left-0 w-full ${
+          theme === "light" ? "bg-white text-slate-800" : "bg-zinc-950 text-white"
+        } ${
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto`}
       >
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              className="w-full"
+              className={`w-full ${textColorClass}`}
               href="#"
               size="lg"
             >

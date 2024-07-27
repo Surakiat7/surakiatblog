@@ -1,7 +1,6 @@
-// contexts/ThemeContext.tsx
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Theme = "light" | "dark";
 
@@ -13,7 +12,19 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setThemeState] = useState<Theme>("light");
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") as Theme;
+    if (storedTheme) {
+      setThemeState(storedTheme);
+    }
+  }, []);
+
+  const setTheme = (newTheme: Theme) => {
+    localStorage.setItem("theme", newTheme);
+    setThemeState(newTheme);
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
