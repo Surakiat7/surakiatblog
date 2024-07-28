@@ -47,7 +47,7 @@ const Footer = () => {
             className={`flex gap-2 border-l ${borderColorClass} items-center`}
           >
             <p
-              className={`pl-4 font-normal whitespace-nowrap ${textColorClass}`}
+              className={`pl-6 font-normal whitespace-nowrap ${textColorClass}`}
             >
               Made with.
             </p>
