@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 
 export const metadata: Metadata = {
   title: "Surakiat",
-  description: "Surakiat blog",
+  description: "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
 };
 
 export default function RootLayout({
