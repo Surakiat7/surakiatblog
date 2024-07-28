@@ -203,6 +203,7 @@ const Blog = () => {
             isZoomed
             width="100%"
             height="auto"
+            loading="lazy"
             className="mb-2 h-14 w-full object-cover"
             alt="Mastering Responsive Design for Web Image with Zoom"
             src="https://arnapana.com/assets/images/blog/article_1597821616.jpg"

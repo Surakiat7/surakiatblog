@@ -6,6 +6,7 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
 import SearchButton from "../Button/SearchButton";
 import { useTheme } from "@/contexts/ThemeContext";
+import { Image } from "@nextui-org/react";
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -21,7 +22,9 @@ const BlogPostCarousel = () => {
   const [offset, setOffset] = useState(0);
   const { theme } = useTheme();
   const bgColorClass =
-    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
+    theme === "light"
+      ? "bg-zinc-200 text-zinc-950"
+      : "bg-zinc-900 text-zinc-50";
 
   const CARD_BUFFER =
     width > BREAKPOINTS.lg ? 3 : width > BREAKPOINTS.sm ? 2 : 1;
@@ -46,11 +49,11 @@ const BlogPostCarousel = () => {
   };
 
   return (
-    <section className={`${bgColorClass} p-12 sm:p-6`} ref={ref}>
+    <section className={`${bgColorClass}`} ref={ref}>
       <div className="relative overflow-hidden">
         <div className="w-full">
           <div className="flex pt-4 items-center justify-between">
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex flex-col gap-4 w-full px-12 sm:px-12 pt-12 sm:pt-6">
               <div className="flex sm:gap-4 w-full items-center justify-between">
                 <h2 className="text-4xl font-bold">Blog</h2>
                 <SearchButton />
@@ -98,7 +101,7 @@ const BlogPostCarousel = () => {
             transition={{
               ease: "easeInOut",
             }}
-            className="flex"
+            className="flex pt-2 px-12 pb-12"
           >
             {posts.map((post) => {
               return <Post key={post.id} {...post} />;
@@ -111,24 +114,32 @@ const BlogPostCarousel = () => {
 };
 
 const Post = ({ imgUrl, author, title, description }: PostType) => {
+  const { theme } = useTheme();
+  const borderColorClass =
+    theme === "light" ? "border-zinc-300" : "border-zinc-600";
+  const authorColorClass = theme === "light" ? "border-zinc-300 text-zinc-950" : "border-zinc-600 text-zinc-50";
+
   return (
     <div
-      className="relative shrink-0 cursor-pointer transition-transform hover:-translate-y-1"
+      className={`relative rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(0,0,0,0.1)]`}
       style={{
         width: CARD_WIDTH,
         marginRight: MARGIN,
       }}
     >
-      <img
-        src={imgUrl}
+      <Image
+        width="100%"
+        height="auto"
+        loading="lazy"
         className="mb-3 h-[200px] w-full rounded-lg object-cover"
         alt={`An image for a fake blog post titled ${title}`}
+        src={imgUrl}
       />
-      <span className="rounded-md border-[1px] border-neutral-500 px-1.5 py-1 text-xs uppercase text-neutral-500">
+      <span className={`rounded-xl border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}>
         {author}
       </span>
       <p className="mt-1.5 text-lg font-medium">{title}</p>
-      <p className="text-sm text-neutral-500">{description}</p>
+      <p className="text-sm">{description}</p>
     </div>
   );
 };
@@ -148,7 +159,7 @@ const posts: PostType[] = [
     id: 1,
     imgUrl:
       "https://inexture.com/wp-content/uploads/2023/04/Top-7-JavaScript-Frameworks-for-Web-App-Development-1100-x-600.png",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "Exploring Modern JavaScript Frameworks",
     description:
       "An in-depth look at popular JavaScript frameworks like React, Angular, and Vue.js. Learn which framework might be best for your next project.",
@@ -157,7 +168,7 @@ const posts: PostType[] = [
     id: 2,
     imgUrl:
       "https://pbs.twimg.com/media/Fqwt91aWYAAbOah?format=jpg&name=4096x4096",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "CSS Grid vs Flexbox: Which One to Use?",
     description:
       "A comprehensive comparison of CSS Grid and Flexbox. Understand the strengths and weaknesses of each layout system and when to use them.",
@@ -165,7 +176,7 @@ const posts: PostType[] = [
   {
     id: 3,
     imgUrl: "https://arnapana.com/assets/images/blog/article_1597821616.jpg",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "Mastering Responsive Design for Web",
     description:
       "Tips and techniques for creating responsive web designs that look great on any device. Explore media queries, flexible grids, and more.",
@@ -173,7 +184,7 @@ const posts: PostType[] = [
   {
     id: 4,
     imgUrl: "https://www.xenonstack.com/hubfs/web-performance-optimization.png",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "Understanding Web Performance Optimization",
     description:
       "Learn about techniques to improve web performance, including optimizing images, minifying CSS and JavaScript, and leveraging browser caching.",
@@ -181,7 +192,7 @@ const posts: PostType[] = [
   {
     id: 5,
     imgUrl: "https://cdn.presslabs.com/wp-content/uploads/2019/03/pwas.png",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "Introduction to Progressive Web Apps",
     description:
       "Discover the benefits of Progressive Web Apps (PWAs) and how they provide a native app-like experience on the web.",
@@ -190,7 +201,7 @@ const posts: PostType[] = [
     id: 6,
     imgUrl:
       "https://media.licdn.com/dms/image/D5612AQF1X3R7A10-GA/article-cover_image-shrink_720_1280/0/1696269587807?e=2147483647&v=beta&t=RezCmM0hMmBFdllWBKTmYA7hpmvTbBKjP8DSmV8cnUQ",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "Getting Started with TypeScript",
     description:
       "A beginner's guide to TypeScript, including installation, basic syntax, and how it enhances JavaScript with static types.",
@@ -199,7 +210,7 @@ const posts: PostType[] = [
     id: 7,
     imgUrl:
       "https://programmerblog.net/wp-content/uploads/2021/02/what-is-front-end-development-3.png",
-    author: "Surakiat",
+    author: "Author: Surakiat",
     title: "The Future of Frontend Development",
     description:
       "Explore emerging trends and technologies in frontend development, including the rise of JAMstack, serverless architecture, and more.",
