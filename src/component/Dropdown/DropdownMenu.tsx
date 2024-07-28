@@ -71,7 +71,7 @@ const Tab = ({
   const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
   const bgColorClass =
     theme === "light"
-      ? "bg-zinc-100 text-zinc-950"
+      ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-800 text-zinc-50";
 
   return (
@@ -203,7 +203,6 @@ const Blog = () => {
             isZoomed
             width="100%"
             height="auto"
-            loading="lazy"
             className="mb-2 h-14 w-full object-cover"
             alt="Mastering Responsive Design for Web Image with Zoom"
             src="https://arnapana.com/assets/images/blog/article_1597821616.jpg"

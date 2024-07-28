@@ -17,14 +17,14 @@ export const AboutHero = () => {
       : "bg-zinc-900 text-zinc-50";
 
   return (
-    <div className={`p-12 sm:p-6 ${bgColorClass}`}>
+    <div className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass}`}>
       <motion.div
         initial="initial"
         animate="animate"
         transition={{
           staggerChildren: 0.05,
         }}
-        className="grid grid-flow-dense grid-cols-12 gap-4"
+        className="flex flex-col w-full gap-4"
       >
         <HeaderBlock />
         <AboutBlock />
@@ -59,7 +59,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
         damping: 50,
       }}
       className={twMerge(
-        "col-span-4 rounded-lg border border-zinc-700 bg-zinc-800 p-6",
+        "col-span-12 rounded-lg border border-zinc-700 bg-zinc-800 p-6",
         className
       )}
       {...rest}
@@ -81,9 +81,9 @@ const HeaderBlock = () => {
 
   return (
     <Block
-      className={`col-span-12 row-span-2 md:col-span-6 ${bgColorClass} ${borderColorClass}`}
+      className={`flex w-full ${bgColorClass} ${borderColorClass}`}
     >
-      <div className="flex sm:flex-col items-center sm:items-start gap-4">
+      <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
           isZoomed
           width="100%"

@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -22,12 +20,9 @@ export default function NavbarElement() {
   const { theme } = useTheme();
 
   const menuItems = [
-    "About",
-    "Blog",
-    "Education",
-    "Work Experience",
-    "Contact",
-    "Login",
+    { name: "Home", section: "home" },
+    { name: "About", section: "about" },
+    { name: "Blog", section: "blog" },
   ];
 
   const logoSrc =
@@ -76,7 +71,7 @@ export default function NavbarElement() {
             height="0"
             sizes="100vw"
             loading="lazy"
-            className="object-cover w-[40px] h-[40px]"
+            className="object-cover w-[40px] h-[40px] cursor-pointer"
           />
           <p className={`font-bold sm:hidden ${textColorClass}`}>SURAKIAT</p>
         </NavbarBrand>
@@ -99,9 +94,9 @@ export default function NavbarElement() {
         } transition-all duration-300 overflow-auto`}
       >
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+          <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link className={`w-full ${textColorClass}`} href="#" size="lg">
-              {item}
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
