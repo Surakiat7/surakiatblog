@@ -46,7 +46,7 @@ const Content = () => {
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
       >
-        <GlowingChip>Welcome, I'm JJ 😊</GlowingChip>
+        <GlowingChip>Welcome, I&apos;m JJ 😊</GlowingChip>
       </motion.div>
       <motion.h1
         initial={{
@@ -86,15 +86,15 @@ const Content = () => {
           theme === "dark" ? "text-white" : "text-slate-600"
         }`}
       >
-        I’m a Frontend Developer based in Bangkok, Thailand, specializing in
-        crafting exceptional web applications and everything in between. With
+        I&rsquo;m a Frontend Developer based in Bangkok, Thailand, specializing
+        in crafting exceptional web applications and everything in between. With
         hands-on experience in Next.js, React, and JavaScript/TypeScript, I
         excel in creating responsive web applications and translating UI/UX
         designs into functional, user-friendly interfaces. My expertise includes
         collaborative problem-solving and finding effective solutions while
-        working directly with clients and system users. I’m passionate about
-        delivering high-quality, scalable solutions and continuously improving
-        through direct communication and feedback.
+        working directly with clients and system users. I&rsquo;m passionate
+        about delivering high-quality, scalable solutions and continuously
+        improving through direct communication and feedback.
       </motion.p>
       <motion.div
         initial={{

@@ -64,10 +64,10 @@ const BlogPostCarousel = () => {
               <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4">
                 <p className="font-normal text-md sm:hidden">
                   Visit my blog to discover tips, techniques, and various
-                  methods for frontend development! Whether you're looking to
+                  methods for frontend development! Whether you&apos;re looking to
                   enhance your skills or stay updated with the latest in
-                  frontend technology and design, I'll be sharing articles and
-                  tutorials that might help you in one way or another. Let's
+                  frontend technology and design, I&apos;ll be sharing articles and
+                  tutorials that might help you in one way or another. Let&apos;s
                   develop your frontend skills together with shared knowledge
                   and experience.
                 </p>
@@ -212,15 +212,15 @@ const posts: PostType[] = [
     author: "Author: Surakiat",
     title: "Getting Started with TypeScript",
     description:
-      "A beginner's guide to TypeScript, including installation, basic syntax, and how it enhances JavaScript with static types.",
+      "A beginner&apos;s guide to TypeScript, including installation, basic syntax, and how it enhances JavaScript with static types.",
   },
   {
     id: 7,
     imgUrl:
-      "https://programmerblog.net/wp-content/uploads/2021/02/what-is-front-end-development-3.png",
+      "https://programmerblog.net/wp-content/uploads/2021/06/Top-5-JavaScript-Libraries-2021.png",
     author: "Author: Surakiat",
-    title: "The Future of Frontend Development",
+    title: "Top JavaScript Libraries to Watch in 2021",
     description:
-      "Explore emerging trends and technologies in frontend development, including the rise of JAMstack, serverless architecture, and more.",
+      "Explore the top JavaScript libraries that are making waves in the developer community this year. Find out what makes them stand out.",
   },
 ];

@@ -80,9 +80,7 @@ const HeaderBlock = () => {
     theme === "light" ? "border-zinc-300" : "border-zinc-600";
 
   return (
-    <Block
-      className={`flex w-full ${bgColorClass} ${borderColorClass}`}
-    >
+    <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
           isZoomed
@@ -96,7 +94,7 @@ const HeaderBlock = () => {
           <h1
             className={`text-4xl sm:text-xl font-medium leading-tight ${textColorClass}`}
           >
-            Hi, I'm JJ. Surakiat Tablakorn{" "}
+            Hi, I&apos;m JJ. Surakiat Tablakorn{" "}
             <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
               Frontend Developer.
             </span>
