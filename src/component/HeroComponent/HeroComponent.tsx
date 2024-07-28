@@ -28,7 +28,7 @@ export const DarkGridHero = () => {
 const Content = () => {
   const { theme, setTheme } = useTheme();
   return (
-    <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 sm:py-8 py-36">
+    <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 sm:py-6 py-32">
       <motion.div
         initial={{
           y: 25,
@@ -62,7 +62,7 @@ const Content = () => {
           delay: 0.25,
           ease: "easeInOut",
         }}
-        className={`mb-3 text-center font-bold leading-tight sm:text-3xl text-5xl md:text-7xl lg:leading-tight ${
+        className={`pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
       >
@@ -82,7 +82,7 @@ const Content = () => {
           delay: 0.5,
           ease: "easeInOut",
         }}
-        className={`mb-9 text-center leading-relaxed sm:text-md text-lg md:leading-relaxed ${
+        className={`pb-8 sm:pb-4 text-center leading-relaxed sm:text-base text-lg md:leading-relaxed ${
           theme === "dark" ? "text-white" : "text-slate-600"
         }`}
       >
@@ -122,23 +122,27 @@ const Content = () => {
 };
 
 const GlowingChip = ({ children }: { children: string }) => {
-    const { theme } = useTheme();
-  
-    return (
+  const { theme } = useTheme();
+
+  return (
+    <span
+      className={`relative z-10 mb-4 inline-block rounded-full border ${
+        theme === "dark"
+          ? "border-zinc-700 bg-zinc-900/20 text-zinc-50"
+          : "border-slate-200 bg-slate-100 text-zinc-950"
+      } px-3 py-1.5 text-xs md:mb-0`}
+    >
+      {children}
       <span
-        className={`relative z-10 mb-4 inline-block rounded-full border ${
-          theme === "dark" ? "border-zinc-700 bg-zinc-900/20 text-zinc-50" : "border-slate-200 bg-slate-100 text-zinc-950"
-        } px-3 py-1.5 text-xs md:mb-0`}
-      >
-        {children}
-        <span
-          className={`absolute bottom-0 left-3 right-3 h-[1px] ${
-            theme === "dark" ? "bg-gradient-to-r from-zinc-500/0 via-zinc-300 to-zinc-500/0" : "bg-gradient-to-r from-slate-500/0 via-slate-300 to-slate-500/0"
-          }`}
-        />
-      </span>
-    );
-  };
+        className={`absolute bottom-0 left-3 right-3 h-[1px] ${
+          theme === "dark"
+            ? "bg-gradient-to-r from-zinc-500/0 via-zinc-300 to-zinc-500/0"
+            : "bg-gradient-to-r from-slate-500/0 via-slate-300 to-slate-500/0"
+        }`}
+      />
+    </span>
+  );
+};
 
 const SplashButton = ({ children, className, ...rest }: ButtonProps) => {
   return (

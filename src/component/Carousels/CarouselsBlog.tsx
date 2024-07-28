@@ -25,6 +25,9 @@ const BlogPostCarousel = () => {
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
+  const bgButtonColorClass =
+    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
+  const iconColor = theme === "light" ? "#09090b" : "#fafafa";
 
   const CARD_BUFFER =
     width > BREAKPOINTS.lg ? 3 : width > BREAKPOINTS.sm ? 2 : 1;
@@ -53,7 +56,7 @@ const BlogPostCarousel = () => {
       <div className="relative overflow-hidden">
         <div className="w-full">
           <div className="flex pt-4 items-center justify-between">
-            <div className="flex flex-col gap-4 w-full px-12 sm:px-12 pt-12 sm:pt-6">
+            <div className="flex flex-col gap-4 w-full px-12 sm:px-6 pt-12 sm:pt-6">
               <div className="flex sm:gap-4 w-full items-center justify-between">
                 <h2 className="text-4xl font-bold">Blog</h2>
                 <SearchButton />
@@ -73,22 +76,22 @@ const BlogPostCarousel = () => {
                 </p>
                 <div className="flex items-center gap-2">
                   <button
-                    className={`rounded-lg border-[1px] border-neutral-400 bg-white p-1.5 text-2xl transition-opacity ${
+                    className={`rounded-lg border-[1px] border-neutral-400 ${bgButtonColorClass} p-1.5 text-2xl transition-opacity ${
                       CAN_SHIFT_LEFT ? "" : "opacity-30"
                     }`}
                     disabled={!CAN_SHIFT_LEFT}
                     onClick={shiftLeft}
                   >
-                    <FiArrowLeft color="#000000" />
+                    <FiArrowLeft color={iconColor} />
                   </button>
                   <button
-                    className={`rounded-lg border-[1px] border-neutral-400 bg-white p-1.5 text-2xl transition-opacity ${
+                    className={`rounded-lg border-[1px] border-neutral-400 ${bgButtonColorClass} p-1.5 text-2xl transition-opacity ${
                       CAN_SHIFT_RIGHT ? "" : "opacity-30"
                     }`}
                     disabled={!CAN_SHIFT_RIGHT}
                     onClick={shiftRight}
                   >
-                    <FiArrowRight color="#000000" />
+                    <FiArrowRight color={iconColor} />
                   </button>
                 </div>
               </div>
@@ -101,7 +104,7 @@ const BlogPostCarousel = () => {
             transition={{
               ease: "easeInOut",
             }}
-            className="flex pt-2 px-12 pb-12"
+            className="flex pt-2 px-12 pb-12 sm:px-6 sm:pb-6"
           >
             {posts.map((post) => {
               return <Post key={post.id} {...post} />;
@@ -117,7 +120,10 @@ const Post = ({ imgUrl, author, title, description }: PostType) => {
   const { theme } = useTheme();
   const borderColorClass =
     theme === "light" ? "border-zinc-300" : "border-zinc-600";
-  const authorColorClass = theme === "light" ? "border-zinc-300 text-zinc-950" : "border-zinc-600 text-zinc-50";
+  const authorColorClass =
+    theme === "light"
+      ? "border-zinc-300 text-zinc-950"
+      : "border-zinc-600 text-zinc-50";
 
   return (
     <div
@@ -135,7 +141,9 @@ const Post = ({ imgUrl, author, title, description }: PostType) => {
         alt={`An image for a fake blog post titled ${title}`}
         src={imgUrl}
       />
-      <span className={`rounded-xl border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}>
+      <span
+        className={`rounded-xl border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}
+      >
         {author}
       </span>
       <p className="mt-1.5 text-lg font-medium">{title}</p>

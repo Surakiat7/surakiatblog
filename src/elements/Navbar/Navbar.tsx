@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -17,7 +17,8 @@ import Image from "next/image";
 import { ShiftingDropDownMenu } from "@/component/Dropdown/DropdownMenu";
 
 export default function NavbarElement() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
 
   const menuItems = [
@@ -32,13 +33,34 @@ export default function NavbarElement() {
   const logoSrc =
     theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
 
-  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
+  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       className={`transition-colors ${
-        theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50"
+        theme === "light"
+          ? isScrolled
+            ? "bg-zinc-50/30 backdrop-blur-sm text-zinc-950"
+            : "bg-zinc-50 text-zinc-950"
+          : isScrolled
+          ? "bg-zinc-950/30 backdrop-blur-sm text-zinc-50"
+          : "bg-zinc-950 text-zinc-50"
       }`}
     >
       <NavbarContent>
@@ -61,61 +83,24 @@ export default function NavbarElement() {
       </NavbarContent>
       <NavbarContent className="sm:hidden flex gap-4" justify="center">
         <ShiftingDropDownMenu />
-        {/* <NavbarItem isActive>
-          <Link color="success" href="#">
-            About
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link className={`${textColorClass}`} href="#" aria-current="page">
-            Blog
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link className={`${textColorClass}`} href="#" aria-current="page">
-            Education
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link className={`${textColorClass}`} href="#" aria-current="page">
-            Work Experience
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link className={`${textColorClass}`} href="#">
-            Contact
-          </Link>
-        </NavbarItem> */}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
           <ToggleSwitchTheme />
         </NavbarItem>
-        {/* <NavbarItem className="hidden lg:flex">
-          <Link href="#" color="success">
-            Login
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="success" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem> */}
       </NavbarContent>
       <NavbarMenu
-        className={`left-0 w-full ${
-          theme === "light" ? "bg-white text-slate-800" : "bg-zinc-950 text-white"
+        className={`left-0 w-full sm:border-t ${
+          theme === "light"
+            ? "bg-zinc-50 text-zinc-950"
+            : "bg-zinc-950 text-zinc-50"
         } ${
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto`}
       >
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className={`w-full ${textColorClass}`}
-              href="#"
-              size="lg"
-            >
+            <Link className={`w-full ${textColorClass}`} href="#" size="lg">
               {item}
             </Link>
           </NavbarMenuItem>
