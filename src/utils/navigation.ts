@@ -10,21 +10,16 @@ export const useNavigate = () => {
       await router?.back();
     },
 
-    Record: () => {
+    MainRoute: () => {
       return {
-        Drug: async () => {
-          await router?.push(`/record/drug`);
-        },
-        Report: async () => {
-          await router?.push(`/record/report`);
+        Home: async () => {
+          await router?.push(`/`);
         },
       };
     },
   };
 };
 
-export const routes = {
-  HOME: "/",
-  RECORD_DRUG: "record/drug/",
-  RECORD_REPORT: "record/report/create",
-};
+// export const routes = {
+//   HOME: "/",
+// };
