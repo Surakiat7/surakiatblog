@@ -26,8 +26,7 @@ import { RiNextjsFill } from "react-icons/ri";
 import { FaCloudflare } from "react-icons/fa6";
 import { useTheme } from "@/contexts/ThemeContext";
 import Link from "next/link";
-import { Tooltip } from "@nextui-org/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const LogoHero = () => {
   const { theme } = useTheme();
@@ -95,34 +94,16 @@ const TranslateWrapper = ({
 const LogoItem = ({ Icon, label }: { Icon: IconType; label: string }) => {
   const { theme } = useTheme();
   const logoColor = theme === "light" ? "#09090b" : "#fafafa";
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      const timer = setTimeout(() => {
-        setIsOpen(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
 
   return (
-    <Tooltip
-      content={label}
-      placement="top"
-      isOpen={isOpen}
-      onOpenChange={(open) => setIsOpen(open)}
+    <Link
+      href="/"
+      rel="nofollow"
+      target="_blank"
+      className="w-16 md:w-24 h-16 md:h-24 flex justify-center items-center hover:bg-zinc-800 text-white transition-colors"
     >
-      <Link
-        href="/"
-        rel="nofollow"
-        target="_blank"
-        className="w-16 md:w-24 h-16 md:h-24 flex justify-center items-center hover:bg-zinc-800 text-white transition-colors"
-        onMouseEnter={() => setIsOpen(true)}
-      >
-        <Icon color={logoColor} className="text-4xl md:text-5xl" />
-      </Link>
-    </Tooltip>
+      <Icon color={logoColor} className="text-4xl md:text-5xl" />
+    </Link>
   );
 };
 
