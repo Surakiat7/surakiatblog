@@ -23,8 +23,8 @@ const Footer = () => {
     theme === "light" ? "border-zinc-300" : "border-zinc-700";
   const bgColorClass =
     theme === "light"
-      ? "bg-zinc-100 text-zinc-950"
-      : "bg-zinc-950 text-zinc-50";
+      ? "bg-zinc-200 text-zinc-950"
+      : "bg-zinc-900 text-zinc-50";
   const socialColor = theme === "light" ? "#09090b" : "#fafafa";
 
   return (

@@ -14,7 +14,19 @@ import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
 import Image from "next/image";
 import { ShiftingDropDownMenu } from "@/component/Dropdown/DropdownMenu";
 
-export default function NavbarElement() {
+interface NavbarElementProps {
+  onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
+  onLogoClick: () => void;
+  aboutRef: React.RefObject<HTMLDivElement>;
+  blogRef: React.RefObject<HTMLDivElement>;
+}
+
+const NavbarElement: React.FC<NavbarElementProps> = ({
+  onScrollTo,
+  onLogoClick,
+  aboutRef,
+  blogRef,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
@@ -48,7 +60,7 @@ export default function NavbarElement() {
   return (
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
-      className={`transition-colors ${
+      className={`transition-colors navbar-container sticky top-0 z-50 ${
         theme === "light"
           ? isScrolled
             ? "bg-zinc-50/30 backdrop-blur-sm text-zinc-950"
@@ -72,12 +84,17 @@ export default function NavbarElement() {
             sizes="100vw"
             loading="lazy"
             className="object-cover w-[40px] h-[40px] cursor-pointer"
+            onClick={onLogoClick}
           />
           <p className={`font-bold sm:hidden ${textColorClass}`}>SURAKIAT</p>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="sm:hidden flex gap-4" justify="center">
-        <ShiftingDropDownMenu />
+        <ShiftingDropDownMenu
+          onScrollTo={onScrollTo}
+          aboutRef={aboutRef}
+          blogRef={blogRef}
+        />
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -103,4 +120,6 @@ export default function NavbarElement() {
       </NavbarMenu>
     </Navbar>
   );
-}
+};
+
+export default NavbarElement;

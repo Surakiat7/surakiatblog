@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState, RefObject } from "react";
 import { AnimationProps, motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { twMerge } from "tailwind-merge";

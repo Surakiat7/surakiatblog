@@ -4,16 +4,31 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Image } from "@nextui-org/image";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useRouter } from "next/navigation";
 
-export const ShiftingDropDownMenu = () => {
+interface ShiftingDropDownMenuProps {
+  onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
+  aboutRef: React.RefObject<HTMLDivElement>;
+  blogRef: React.RefObject<HTMLDivElement>;
+}
+
+export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
+  onScrollTo,
+  aboutRef,
+  blogRef,
+}) => {
   return (
     <div className="flex w-full justify-center">
-      <Tabs />
+      <Tabs onScrollTo={onScrollTo} aboutRef={aboutRef} blogRef={blogRef} />
     </div>
   );
 };
 
-const Tabs = () => {
+const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
+  onScrollTo,
+  aboutRef,
+  blogRef,
+}) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [dir, setDir] = useState<null | "l" | "r">(null);
   const hasComponent =
@@ -41,6 +56,9 @@ const Tabs = () => {
             selected={selected}
             handleSetSelected={handleSetSelected}
             tab={t.id}
+            onScrollTo={onScrollTo}
+            aboutRef={aboutRef}
+            blogRef={blogRef}
           >
             {t.title}
           </Tab>
@@ -54,16 +72,21 @@ const Tabs = () => {
   );
 };
 
-const Tab = ({
-  children,
-  tab,
-  handleSetSelected,
-  selected,
-}: {
+interface TabProps extends ShiftingDropDownMenuProps {
   children: ReactNode;
   tab: number;
   handleSetSelected: (val: number | null) => void;
   selected: number | null;
+}
+
+const Tab: React.FC<TabProps> = ({
+  children,
+  tab,
+  handleSetSelected,
+  selected,
+  onScrollTo,
+  aboutRef,
+  blogRef,
 }) => {
   const tabData = TABS.find((t) => t.id === tab);
   const hasComponent = !!tabData?.Component;
@@ -74,14 +97,29 @@ const Tab = ({
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-800 text-zinc-50";
 
+  const handleClick = () => {
+    if (!hasComponent) {
+      switch (tabData?.title.toLowerCase()) {
+        case "about":
+          onScrollTo(aboutRef);
+          break;
+        case "blog":
+          onScrollTo(blogRef);
+          break;
+        default:
+          break;
+      }
+    } else {
+      handleSetSelected(tab);
+    }
+  };
+
   return (
     <button
       id={`shift-tab-${tab}`}
-      onMouseEnter={() => handleSetSelected(tab)}
-      onClick={() => handleSetSelected(tab)}
-      className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-sm transition-colors ${
-        selected === tab ? bgColorClass : textColorClass
-      }`}
+      onMouseEnter={() => hasComponent && handleSetSelected(tab)}
+      onClick={handleClick}
+      className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-sm transition-colors hover:${bgColorClass} hover:${textColorClass}`}
     >
       <span>{children}</span>
       {hasComponent && (
