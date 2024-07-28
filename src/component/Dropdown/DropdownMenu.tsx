@@ -3,10 +3,11 @@ import { FiArrowRight, FiChevronDown } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Image } from "@nextui-org/image";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export const ShiftingDropDownMenu = () => {
   return (
-    <div className="flex w-full text-neutral-200 justify-center">
+    <div className="flex w-full justify-center">
       <Tabs />
     </div>
   );
@@ -66,13 +67,20 @@ const Tab = ({
 }) => {
   const tabData = TABS.find((t) => t.id === tab);
   const hasComponent = !!tabData?.Component;
+  const { theme } = useTheme();
+  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
+  const bgColorClass =
+    theme === "light"
+      ? "bg-zinc-100 text-zinc-950"
+      : "bg-zinc-800 text-zinc-50";
+
   return (
     <button
       id={`shift-tab-${tab}`}
       onMouseEnter={() => handleSetSelected(tab)}
       onClick={() => handleSetSelected(tab)}
       className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-sm transition-colors ${
-        selected === tab ? " bg-zinc-950 text-neutral-100" : "text-slate-800"
+        selected === tab ? bgColorClass : textColorClass
       }`}
     >
       <span>{children}</span>
@@ -96,6 +104,11 @@ const Content = ({
 }) => {
   const tab = TABS.find((t) => t.id === selected);
   const Component = tab?.Component;
+  const { theme } = useTheme();
+  const bgColorClass =
+    theme === "light"
+      ? "border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100"
+      : "border-zinc-700 bg-gradient-to-b from-zinc-950 via-zinc-800 to-zinc-950";
 
   return (
     <motion.div
@@ -112,7 +125,7 @@ const Content = ({
         opacity: 0,
         y: 8,
       }}
-      className="absolute left-0 top-[calc(100%_+_24px)] w-96 rounded-lg border border-neutral-600 bg-gradient-to-b from-neutral-900 via-neutral-900 to-neutral-800 p-4"
+      className={`absolute left-0 top-[calc(100%_+_24px)] w-96 rounded-3xl border ${bgColorClass} p-4`}
     >
       <Bridge />
       <Nub selected={selected} />
@@ -141,6 +154,11 @@ const Bridge = () => (
 
 const Nub = ({ selected }: { selected: number | null }) => {
   const [left, setLeft] = useState(0);
+  const { theme } = useTheme();
+  const nubColorClass =
+    theme === "light"
+      ? "border-zinc-200 bg-zinc-100"
+      : "border-zinc-700 bg-zinc-950";
 
   useEffect(() => {
     moveNub();
@@ -169,12 +187,14 @@ const Nub = ({ selected }: { selected: number | null }) => {
       }}
       animate={{ left }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-tl border border-neutral-600 bg-neutral-900"
+      className={`absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-tl border ${nubColorClass}`}
     />
   );
 };
 
 const Blog = () => {
+  const { theme } = useTheme();
+  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
   return (
     <div>
       <div className="grid grid-cols-2 gap-2">
@@ -187,10 +207,10 @@ const Blog = () => {
             alt="Mastering Responsive Design for Web Image with Zoom"
             src="https://arnapana.com/assets/images/blog/article_1597821616.jpg"
           />
-          <h4 className="mb-0.5 text-sm font-medium">
-            Mastering Responsive Design for Web
+          <h4 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
+            Mastering Responsive Design
           </h4>
-          <p className="text-xs text-neutral-400">
+          <p className={`text-xs ${textColorClass}`}>
             Tips and techniques for creating responsive web designs that look
             great on any device.
           </p>
@@ -204,18 +224,20 @@ const Blog = () => {
             src="https://www.xenonstack.com/hubfs/web-performance-optimization.png"
             alt="Web Performance Optimization Image"
           />
-          <h4 className="mb-0.5 text-sm font-medium">
-            Understanding Web Performance Optimization
+          <h4 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
+            Understanding Web Performance
           </h4>
-          <p className="text-xs text-neutral-400">
+          <p className={`text-xs ${textColorClass}`}>
             Learn about techniques to improve web performance, including
             optimizing images, minifying CSS and JavaScript.
           </p>
         </Link>
       </div>
-      <button className="ml-auto mt-4 flex items-center gap-1 text-sm text-indigo-300">
-        <span>View more</span>
-        <FiArrowRight />
+      <button className="ml-auto mt-4 flex items-center gap-1 text-sm">
+        <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
+          View more
+        </span>
+        <FiArrowRight color="#00597B" />
       </button>
     </div>
   );
