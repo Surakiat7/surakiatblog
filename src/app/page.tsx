@@ -17,6 +17,7 @@ export default function Home() {
   const bgColorClass = theme === "light" ? "bg-zinc-50" : "bg-zinc-950";
   const [navbarHeight, setNavbarHeight] = useState(0);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const educationRef = useRef<HTMLDivElement>(null);
   const blogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function Home() {
         onScrollTo={scrollTo}
         aboutRef={aboutRef}
         blogRef={blogRef}
+        educationRef={educationRef}
       />
       {/* Started home section */}
       <DarkGridHero />
@@ -71,7 +73,7 @@ export default function Home() {
       <div>
         <BlogPostCarousel />
       </div>
-      <div>
+      <div ref={educationRef}>
         <Education />
       </div>
       <div>

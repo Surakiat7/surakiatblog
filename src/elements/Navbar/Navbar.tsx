@@ -19,6 +19,7 @@ interface NavbarElementProps {
   onLogoClick: () => void;
   aboutRef: React.RefObject<HTMLDivElement>;
   blogRef: React.RefObject<HTMLDivElement>;
+  educationRef: React.RefObject<HTMLDivElement>;
 }
 
 const NavbarElement: React.FC<NavbarElementProps> = ({
@@ -26,6 +27,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   onLogoClick,
   aboutRef,
   blogRef,
+  educationRef,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,6 +96,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           onScrollTo={onScrollTo}
           aboutRef={aboutRef}
           blogRef={blogRef}
+          educationRef={educationRef}
         />
       </NavbarContent>
       <NavbarContent justify="end">

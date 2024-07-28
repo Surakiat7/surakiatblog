@@ -10,16 +10,23 @@ interface ShiftingDropDownMenuProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
   aboutRef: React.RefObject<HTMLDivElement>;
   blogRef: React.RefObject<HTMLDivElement>;
+  educationRef: React.RefObject<HTMLDivElement>;
 }
 
 export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
   onScrollTo,
   aboutRef,
   blogRef,
+  educationRef,
 }) => {
   return (
     <div className="flex w-full justify-center">
-      <Tabs onScrollTo={onScrollTo} aboutRef={aboutRef} blogRef={blogRef} />
+      <Tabs
+        onScrollTo={onScrollTo}
+        aboutRef={aboutRef}
+        blogRef={blogRef}
+        educationRef={educationRef}
+      />
     </div>
   );
 };
@@ -28,6 +35,7 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
   onScrollTo,
   aboutRef,
   blogRef,
+  educationRef,
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [dir, setDir] = useState<null | "l" | "r">(null);
@@ -59,6 +67,7 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
             onScrollTo={onScrollTo}
             aboutRef={aboutRef}
             blogRef={blogRef}
+            educationRef={educationRef}
           >
             {t.title}
           </Tab>
@@ -87,6 +96,7 @@ const Tab: React.FC<TabProps> = ({
   onScrollTo,
   aboutRef,
   blogRef,
+  educationRef,
 }) => {
   const tabData = TABS.find((t) => t.id === tab);
   const hasComponent = !!tabData?.Component;
@@ -104,6 +114,15 @@ const Tab: React.FC<TabProps> = ({
           onScrollTo(aboutRef);
           break;
         case "blog":
+          onScrollTo(blogRef);
+          break;
+        case "education":
+          onScrollTo(educationRef);
+          break;
+        case "experience":
+          onScrollTo(blogRef);
+          break;
+        case "contact":
           onScrollTo(blogRef);
           break;
         default:
