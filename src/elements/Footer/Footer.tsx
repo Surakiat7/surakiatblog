@@ -18,7 +18,7 @@ const Footer = () => {
   const logoSrc =
     theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
 
-  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
+  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
   const borderColorClass =
     theme === "light" ? "border-zinc-300" : "border-zinc-700";
   const bgColorClass =
@@ -61,7 +61,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               target="_blank"
               href="https://www.facebook.com/Surakiatz"
-              className="text-gray-500 transition-transform transform hover:translate-y-[-4px] duration-300 hover:text-deep-purple-accent-400"
+              className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
               <FaFacebookSquare color={socialColor} className="h-8 w-8" />
             </Link>
@@ -70,7 +70,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               target="_blank"
               href="https://line.me/ti/p/OtdDn-Ik0A"
-              className="text-gray-500 transition-transform transform hover:translate-y-[-4px] duration-300 hover:text-deep-purple-accent-400"
+              className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
               <FaLine color={socialColor} className="h-8 w-8" />
             </Link>
@@ -79,7 +79,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               target="_blank"
               href="https://dribbble.com/TABLAKORN"
-              className="text-gray-500 transition-transform transform hover:translate-y-[-4px] duration-300 hover:text-deep-purple-accent-400"
+              className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
               <FaDribbbleSquare color={socialColor} className="h-8 w-8" />
             </Link>
@@ -88,7 +88,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               target="_blank"
               href="https://www.linkedin.com/in/surakiat000/"
-              className="text-gray-500 transition-transform transform hover:translate-y-[-4px] duration-300 hover:text-deep-purple-accent-400"
+              className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
               <FaLinkedin color={socialColor} className="h-8 w-8" />
             </Link>

@@ -4,7 +4,7 @@ import { DarkGridHero } from "@/component/HeroComponent/HeroComponent";
 import ShuffleHero from "@/component/HeroComponent/ShuffleImageHero";
 import LogoHero from "@/component/HeroComponent/LogoTechStackHero";
 import BlogPostCarousel from "@/component/Carousels/CarouselsBlog";
-import { RevealBento } from "@/component/HeroComponent/SocialIntro";
+import { AboutHero } from "@/component/HeroComponent/AboutIntro";
 import { SwapLogos } from "@/component/HeroComponent/SwapLogos";
 import Footer from "@/elements/Footer/Footer";
 
@@ -12,11 +12,10 @@ export default function Home() {
   return (
     <>
       <NavbarElement />
-      {/* <Bolg /> */}
       <DarkGridHero />
-      <RevealBento />
-      <ShuffleHero />
+      <AboutHero />
       <LogoHero />
+      <ShuffleHero />
       <BlogPostCarousel />
       <SwapLogos />
       <Footer />

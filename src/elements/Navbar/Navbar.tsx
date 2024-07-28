@@ -38,7 +38,7 @@ export default function NavbarElement() {
     <Navbar
       onMenuOpenChange={setIsMenuOpen}
       className={`transition-colors ${
-        theme === "light" ? "bg-white text-slate-800" : "bg-zinc-950 text-white"
+        theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50"
       }`}
     >
       <NavbarContent>
