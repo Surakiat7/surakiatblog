@@ -80,7 +80,9 @@ const HeaderBlock = () => {
     theme === "light" ? "border-zinc-300" : "border-zinc-600";
 
   return (
-    <Block className={`col-span-12 row-span-2 md:col-span-6 ${bgColorClass} ${borderColorClass}`}>
+    <Block
+      className={`col-span-12 row-span-2 md:col-span-6 ${bgColorClass} ${borderColorClass}`}
+    >
       <div className="flex sm:flex-col items-center sm:items-start gap-4">
         <Image
           isZoomed
@@ -92,7 +94,7 @@ const HeaderBlock = () => {
         />
         <div className="flex flex-col gap-2">
           <h1
-            className={`text-4xl font-medium leading-tight ${textColorClass}`}
+            className={`text-4xl sm:text-xl font-medium leading-tight ${textColorClass}`}
           >
             Hi, I'm JJ. Surakiat Tablakorn{" "}
             <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
@@ -116,16 +118,18 @@ const AboutBlock = () => {
   const { theme } = useTheme();
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
   const bgColorClass =
-  theme === "light"
-    ? "bg-zinc-100 text-zinc-950"
-    : "bg-zinc-800 text-zinc-50";
+    theme === "light"
+      ? "bg-zinc-100 text-zinc-950"
+      : "bg-zinc-800 text-zinc-50";
 
-const borderColorClass =
-  theme === "light" ? "border-zinc-300" : "border-zinc-600";
+  const borderColorClass =
+    theme === "light" ? "border-zinc-300" : "border-zinc-600";
 
   return (
-    <Block className={`col-span-12 text-xl leading-snug ${bgColorClass} ${borderColorClass}`}>
-      <p className={`${textColorClass}`}>
+    <Block
+      className={`col-span-12 leading-snug ${bgColorClass} ${borderColorClass}`}
+    >
+      <p className={`${textColorClass} text-xl sm:text-base font-normal`}>
         I am passionate about creating exceptional user experiences{" "}
         <span className="text-zinc-400">
           through seamless design and development, utilizing modern technologies

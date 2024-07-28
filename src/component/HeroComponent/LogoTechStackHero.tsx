@@ -26,7 +26,6 @@ import { RiNextjsFill } from "react-icons/ri";
 import { FaCloudflare } from "react-icons/fa6";
 import { useTheme } from "@/contexts/ThemeContext";
 import Link from "next/link";
-import { useState } from "react";
 
 const LogoHero = () => {
   const { theme } = useTheme();
@@ -36,10 +35,10 @@ const LogoHero = () => {
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
       <div className="w-full px-6 py-6 flex flex-col items-center">
-        <h1 className="text-center text-4xl md:text-6xl max-w-xl font-semibold">
+        <h1 className="text-center font-bold text-4xl md:text-6xl max-w-xl">
           My TechStack
         </h1>
-        <p className="text-center max-w-2xl pt-4">
+        <p className="text-center font-normal text-md max-w-2xl pt-4">
           As a Frontend Developer, my tech stack is designed to deliver
           high-quality, interactive, and responsive web applications. Here’s a
           look at the key technologies and tools I use.
@@ -100,7 +99,9 @@ const LogoItem = ({ Icon, label }: { Icon: IconType; label: string }) => {
       href="/"
       rel="nofollow"
       target="_blank"
-      className="w-16 md:w-24 h-16 md:h-24 flex justify-center items-center hover:bg-zinc-800 text-white transition-colors"
+      className={`w-16 md:w-24 h-16 md:h-24 flex justify-center items-center text-white transition-colors ${
+        theme === "light" ? "hover:bg-zinc-200" : "hover:bg-zinc-800"
+      }`}
     >
       <Icon color={logoColor} className="text-4xl md:text-5xl" />
     </Link>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
 import SearchButton from "../Button/SearchButton";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -18,6 +19,9 @@ const BREAKPOINTS = {
 const BlogPostCarousel = () => {
   const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
+  const { theme } = useTheme();
+  const bgColorClass =
+    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
 
   const CARD_BUFFER =
     width > BREAKPOINTS.lg ? 3 : width > BREAKPOINTS.sm ? 2 : 1;
@@ -42,32 +46,49 @@ const BlogPostCarousel = () => {
   };
 
   return (
-    <section className="bg-slate-800 py-8" ref={ref}>
-      <div className="relative overflow-hidden p-4">
-        <div className="mx-auto max-w-6xl">
-          <SearchButton />
+    <section className={`${bgColorClass} p-12 sm:p-6`} ref={ref}>
+      <div className="relative overflow-hidden">
+        <div className="w-full">
           <div className="flex pt-4 items-center justify-between">
-            <h2 className="mb-4 text-4xl">Blog</h2>
-
-            <div className="flex items-center gap-2">
-              <button
-                className={`rounded-lg border-[1px] border-neutral-400 bg-white p-1.5 text-2xl transition-opacity ${
-                  CAN_SHIFT_LEFT ? "" : "opacity-30"
-                }`}
-                disabled={!CAN_SHIFT_LEFT}
-                onClick={shiftLeft}
-              >
-                <FiArrowLeft color="#000000" />
-              </button>
-              <button
-                className={`rounded-lg border-[1px] border-neutral-400 bg-white p-1.5 text-2xl transition-opacity ${
-                  CAN_SHIFT_RIGHT ? "" : "opacity-30"
-                }`}
-                disabled={!CAN_SHIFT_RIGHT}
-                onClick={shiftRight}
-              >
-                <FiArrowRight color="#000000" />
-              </button>
+            <div className="flex flex-col gap-4 w-full">
+              <div className="flex sm:gap-4 w-full items-center justify-between">
+                <h2 className="text-4xl font-bold">Blog</h2>
+                <SearchButton />
+              </div>
+              <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4">
+                <p className="font-normal text-md sm:hidden">
+                  Visit my blog to discover tips, techniques, and various
+                  methods for frontend development! Whether you're looking to
+                  enhance your skills or stay updated with the latest in
+                  frontend technology and design, I'll be sharing articles and
+                  tutorials that might help you in one way or another. Let's
+                  develop your frontend skills together with shared knowledge
+                  and experience.
+                </p>
+                <p className="hidden sm:flex font-normal text-md">
+                  Visit my blog to discover tips for frontend development.
+                </p>
+                <div className="flex items-center gap-2">
+                  <button
+                    className={`rounded-lg border-[1px] border-neutral-400 bg-white p-1.5 text-2xl transition-opacity ${
+                      CAN_SHIFT_LEFT ? "" : "opacity-30"
+                    }`}
+                    disabled={!CAN_SHIFT_LEFT}
+                    onClick={shiftLeft}
+                  >
+                    <FiArrowLeft color="#000000" />
+                  </button>
+                  <button
+                    className={`rounded-lg border-[1px] border-neutral-400 bg-white p-1.5 text-2xl transition-opacity ${
+                      CAN_SHIFT_RIGHT ? "" : "opacity-30"
+                    }`}
+                    disabled={!CAN_SHIFT_RIGHT}
+                    onClick={shiftRight}
+                  >
+                    <FiArrowRight color="#000000" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           <motion.div
@@ -126,7 +147,7 @@ const posts: PostType[] = [
   {
     id: 1,
     imgUrl:
-      "https://lh3.googleusercontent.com/proxy/MC8TmdpFTCJst901bvnIFQ-vibfGpoFvpXiH0FlPEK3NtFysARVKpFSBsUwGIlwz6qmb8KflDXWKjnriNFKXzipXheBtZDA9",
+      "https://inexture.com/wp-content/uploads/2023/04/Top-7-JavaScript-Frameworks-for-Web-App-Development-1100-x-600.png",
     author: "Surakiat",
     title: "Exploring Modern JavaScript Frameworks",
     description:
@@ -143,8 +164,7 @@ const posts: PostType[] = [
   },
   {
     id: 3,
-    imgUrl:
-      "https://arnapana.com/assets/images/blog/article_1597821616.jpg",
+    imgUrl: "https://arnapana.com/assets/images/blog/article_1597821616.jpg",
     author: "Surakiat",
     title: "Mastering Responsive Design for Web",
     description:
@@ -152,8 +172,7 @@ const posts: PostType[] = [
   },
   {
     id: 4,
-    imgUrl:
-      "https://www.xenonstack.com/hubfs/web-performance-optimization.png",
+    imgUrl: "https://www.xenonstack.com/hubfs/web-performance-optimization.png",
     author: "Surakiat",
     title: "Understanding Web Performance Optimization",
     description:
@@ -161,8 +180,7 @@ const posts: PostType[] = [
   },
   {
     id: 5,
-    imgUrl:
-      "https://cdn.presslabs.com/wp-content/uploads/2019/03/pwas.png",
+    imgUrl: "https://cdn.presslabs.com/wp-content/uploads/2019/03/pwas.png",
     author: "Surakiat",
     title: "Introduction to Progressive Web Apps",
     description:

@@ -15,9 +15,7 @@ export default function Home() {
       <DarkGridHero />
       <AboutHero />
       <LogoHero />
-      <ShuffleHero />
       <BlogPostCarousel />
-      <SwapLogos />
       <Footer />
     </>
   );
