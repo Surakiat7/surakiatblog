@@ -15,6 +15,7 @@ import {
 import { useTheme } from "@/contexts/ThemeContext";
 import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
 import Image from "next/image";
+import { ShiftingDropDownMenu } from "@/component/Dropdown/DropdownMenu";
 
 export default function NavbarElement() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -59,9 +60,9 @@ export default function NavbarElement() {
           <p className={`font-bold sm:hidden ${textColorClass}`}>SURAKIAT</p>
         </NavbarBrand>
       </NavbarContent>
-
       <NavbarContent className="sm:hidden flex gap-4" justify="center">
-        <NavbarItem isActive>
+        <ShiftingDropDownMenu />
+        {/* <NavbarItem isActive>
           <Link color="success" href="#">
             About
           </Link>
@@ -85,7 +86,7 @@ export default function NavbarElement() {
           <Link className={`${textColorClass}`} href="#">
             Contact
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
