@@ -14,9 +14,9 @@ const Contact = () => {
           Contact
         </h1>
         <p className="text-center font-normal text-md max-w-2xl pt-4">
-          I have a solid educational background that has prepared me for a
-          successful career as a Frontend Developer. Here’s an overview of my
-          educational journey.
+          Feel free to reach out to me directly for any inquiries or
+          collaborations. This contact form is for personal communication only
+          and not associated with any company.
         </p>
       </div>
     </section>
