@@ -303,12 +303,14 @@ const Blog = () => {
           </p>
         </Link>
       </div>
-      <button className="ml-auto mt-4 flex items-center gap-1 text-sm">
-        <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
-          View more
-        </span>
-        <FiArrowRight color="#00597B" />
-      </button>
+      <Link href="/blog">
+        <div className="mt-4 justify-end flex items-center gap-1 text-sm cursor-pointer transition-transform transform hover:translate-x-[-4px] duration-300">
+          <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
+            View more
+          </span>
+          <FiArrowRight color="#00597B" />
+        </div>
+      </Link>
     </div>
   );
 };

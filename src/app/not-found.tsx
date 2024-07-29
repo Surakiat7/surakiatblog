@@ -21,7 +21,7 @@ const NotFound = () => {
         height="0"
         sizes="100vw"
         loading="lazy"
-        className="object-cover w-[300px] h-[300px]"
+        className="object-cover w-[300px] sm:w-[200px] sm:h-[200px] h-[300px]"
       />
       <h1 className="text-3xl font-bold">Page Not Found</h1>
       <p>Sorry, the page you are looking for does not exist.</p>

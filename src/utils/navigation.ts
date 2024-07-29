@@ -15,6 +15,12 @@ export const useNavigate = () => {
         Home: async () => {
           await router?.push(`/`);
         },
+        Blog: async () => {
+          await router?.push(`/blog`);
+        },
+        BlogParam: async (id: string | number) => {
+          await router.push(`/blog/${id}`);
+        },
       };
     },
   };

@@ -86,7 +86,7 @@ const WorkExprience = () => {
                 </h2>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-2">
+            <ul className="flex w-full flex-col gap-2">
               {experience.details.map((detail, detailIndex) =>
                 index === 0 ? (
                   <li
@@ -104,7 +104,7 @@ const WorkExprience = () => {
                   </p>
                 )
               )}
-            </div>
+            </ul>
           </div>
         ))}
       </div>

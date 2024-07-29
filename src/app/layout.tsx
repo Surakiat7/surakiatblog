@@ -4,6 +4,7 @@ import { Providers } from "./provider";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Head from "next/head";
+import { MobileScreenProvider } from "@/contexts/MobileContext";
 
 export const metadata: Metadata = {
   title: "Surakiat",
@@ -34,7 +35,9 @@ export default function RootLayout({
       </Head>
       <body>
         <ThemeProvider>
-          <Providers>{children}</Providers>
+          <MobileScreenProvider>
+            <Providers>{children}</Providers>
+          </MobileScreenProvider>
         </ThemeProvider>
       </body>
     </html>

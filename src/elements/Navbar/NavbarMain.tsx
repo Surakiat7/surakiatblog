@@ -13,7 +13,6 @@ import { useTheme } from "@/contexts/ThemeContext";
 import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
 import Image from "next/image";
 import { ShiftingDropDownMenu } from "@/component/Dropdown/DropdownMenu";
-import { FaRegUser, FaEnvelope } from "react-icons/fa";
 import { Divider } from "@nextui-org/react";
 import { RiBloggerLine } from "react-icons/ri";
 import { PiGraduationCap } from "react-icons/pi";
@@ -136,7 +135,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             onClick={onLogoClick}
           />
           <p className={`font-bold sm:hidden ${textColorClass}`}>
-            Surakiat.Dev
+            Surakiat
           </p>
         </NavbarBrand>
       </NavbarContent>

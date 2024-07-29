@@ -18,7 +18,7 @@ const BREAKPOINTS = {
   lg: 1024,
 };
 
-const BlogPostCarousel = () => {
+const BlogPostFindAll = () => {
   const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
   const { theme } = useTheme();
@@ -62,10 +62,10 @@ const BlogPostCarousel = () => {
     <section className={`${bgColorClass}`} ref={ref}>
       <div className="relative overflow-hidden">
         <div className="w-full">
-          <div className="flex pt-4 items-center justify-between">
-            <div className="flex flex-col gap-4 w-full px-12 sm:px-6 pt-12 sm:pt-6">
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-4 w-full">
               <div className="flex sm:gap-4 w-full items-center justify-between">
-                <h2 className="text-4xl font-bold sm:w-full">Blog</h2>
+                <h2 className="text-4xl font-bold sm:w-full">All Posts</h2>
                 <SearchButton />
               </div>
               <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4">
@@ -81,26 +81,6 @@ const BlogPostCarousel = () => {
                 <p className="hidden sm:flex font-normal text-md">
                   Visit my blog to discover tips for frontend development.
                 </p>
-                <div className="flex items-center gap-2">
-                  <button
-                    className={`rounded-lg border-[1px] border-neutral-400 ${bgButtonColorClass} p-1.5 text-2xl transition-opacity ${
-                      CAN_SHIFT_LEFT ? "" : "opacity-30"
-                    }`}
-                    disabled={!CAN_SHIFT_LEFT}
-                    onClick={shiftLeft}
-                  >
-                    <FiArrowLeft color={iconColor} />
-                  </button>
-                  <button
-                    className={`rounded-lg border-[1px] border-neutral-400 ${bgButtonColorClass} p-1.5 text-2xl transition-opacity ${
-                      CAN_SHIFT_RIGHT ? "" : "opacity-30"
-                    }`}
-                    disabled={!CAN_SHIFT_RIGHT}
-                    onClick={shiftRight}
-                  >
-                    <FiArrowRight color={iconColor} />
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -111,10 +91,10 @@ const BlogPostCarousel = () => {
             transition={{
               ease: "easeInOut",
             }}
-            className="flex pt-2 px-12 pb-12 sm:px-6 sm:pb-6"
+            className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full"
           >
             {isLoading
-              ? Array.from({ length: 6 }, (_, index) => (
+              ? Array.from({ length: 3 }, (_, index) => (
                   <SkeletonBlogCard key={index} />
                 ))
               : posts.map((post) => <Post key={post.id} {...post} />)}
@@ -167,7 +147,7 @@ const Post = ({ id, imgUrl, author, title, description }: PostType) => {
   );
 };
 
-export default BlogPostCarousel;
+export default BlogPostFindAll;
 
 type PostType = {
   id: number;

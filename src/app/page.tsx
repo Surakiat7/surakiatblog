@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import NavbarElement from "@/elements/Navbar/Navbar";
+import NavbarElement from "@/elements/Navbar/NavbarMain";
 import { DarkGridHero } from "@/component/HeroComponent/HeroComponent";
 import LogoHero from "@/component/HeroComponent/LogoTechStackHero";
 import BlogPostCarousel from "@/component/Carousels/CarouselsBlog";

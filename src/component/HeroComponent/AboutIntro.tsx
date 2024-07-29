@@ -122,7 +122,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
             </span>
           </h1>
           <div
-            className="flex items-center cursor-pointer gap-1 transition-transform transform hover:translate-x-[4px] duration-300"
+            className="flex items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300"
             onClick={handleContactClick}
           >
             <span className={`${textColorClass}`}>Contact me</span>
