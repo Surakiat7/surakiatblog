@@ -92,7 +92,7 @@ const HeaderBlock = () => {
         />
         <div className="flex flex-col gap-2">
           <h1
-            className={`text-4xl sm:text-xl font-medium leading-tight ${textColorClass}`}
+            className={`text-4xl sm:text-xl font-bold leading-tight ${textColorClass}`}
           >
             Hi, I&apos;m JJ. Surakiat Tablakorn{" "}
             <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">

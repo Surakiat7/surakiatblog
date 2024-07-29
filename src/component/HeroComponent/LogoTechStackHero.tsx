@@ -31,6 +31,18 @@ const LogoHero = () => {
   const { theme } = useTheme();
   const bgColorClass =
     theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50";
+  const bgWarpperClass =
+    theme === "light"
+      ? "bg-zinc-50 border-zinc-200"
+      : "bg-zinc-950 border-zinc-700";
+  const bglinearLeftClass =
+    theme === "light"
+      ? "bg-gradient-to-r from-zinc-50 to-zinc-50/0"
+      : "bg-gradient-to-r from-zinc-950 to-zinc-950/0";
+  const bglinearRightClass =
+    theme === "light"
+      ? "bg-gradient-to-l from-zinc-50 to-zinc-50/0"
+      : "bg-gradient-to-l from-zinc-950 to-zinc-950/0";
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
@@ -44,28 +56,35 @@ const LogoHero = () => {
           look at the key technologies and tools I use.
         </p>
       </div>
-
-      <div className="flex overflow-hidden">
-        <TranslateWrapper>
-          <LogoItemsTop />
-        </TranslateWrapper>
-        <TranslateWrapper>
-          <LogoItemsTop />
-        </TranslateWrapper>
-        <TranslateWrapper>
-          <LogoItemsTop />
-        </TranslateWrapper>
-      </div>
-      <div className="flex overflow-hidden mt-4">
-        <TranslateWrapper reverse>
-          <LogoItemsBottom />
-        </TranslateWrapper>
-        <TranslateWrapper reverse>
-          <LogoItemsBottom />
-        </TranslateWrapper>
-        <TranslateWrapper reverse>
-          <LogoItemsBottom />
-        </TranslateWrapper>
+      <div className={`relative border-y-2 ${bgWarpperClass}`}>
+        <div className="flex overflow-hidden">
+          <TranslateWrapper>
+            <LogoItemsTop />
+          </TranslateWrapper>
+          <TranslateWrapper>
+            <LogoItemsTop />
+          </TranslateWrapper>
+          <TranslateWrapper>
+            <LogoItemsTop />
+          </TranslateWrapper>
+        </div>
+        <div className="flex overflow-hidden">
+          <TranslateWrapper reverse>
+            <LogoItemsBottom />
+          </TranslateWrapper>
+          <TranslateWrapper reverse>
+            <LogoItemsBottom />
+          </TranslateWrapper>
+          <TranslateWrapper reverse>
+            <LogoItemsBottom />
+          </TranslateWrapper>
+        </div>
+        <div
+          className={`pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-32 ${bglinearLeftClass}`}
+        />
+        <div
+          className={`pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-32 ${bglinearRightClass}`}
+        />
       </div>
     </section>
   );
@@ -95,16 +114,13 @@ const LogoItem = ({ Icon, label }: { Icon: IconType; label: string }) => {
   const logoColor = theme === "light" ? "#09090b" : "#fafafa";
 
   return (
-    <Link
-      href="/"
-      rel="nofollow"
-      target="_blank"
+    <div
       className={`w-16 md:w-24 h-16 md:h-24 flex justify-center items-center text-white transition-colors ${
         theme === "light" ? "hover:bg-zinc-200" : "hover:bg-zinc-800"
       }`}
     >
       <Icon color={logoColor} className="text-4xl md:text-5xl" />
-    </Link>
+    </div>
   );
 };
 

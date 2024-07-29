@@ -1,12 +1,12 @@
 "use client";
-
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
 import SearchButton from "../Button/SearchButton";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Image } from "@nextui-org/react";
+import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -28,6 +28,12 @@ const BlogPostCarousel = () => {
   const bgButtonColorClass =
     theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
   const iconColor = theme === "light" ? "#09090b" : "#fafafa";
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000);
+  }, []);
 
   const CARD_BUFFER =
     width > BREAKPOINTS.lg ? 3 : width > BREAKPOINTS.sm ? 2 : 1;
@@ -64,12 +70,12 @@ const BlogPostCarousel = () => {
               <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4">
                 <p className="font-normal text-md sm:hidden">
                   Visit my blog to discover tips, techniques, and various
-                  methods for frontend development! Whether you&apos;re looking to
-                  enhance your skills or stay updated with the latest in
-                  frontend technology and design, I&apos;ll be sharing articles and
-                  tutorials that might help you in one way or another. Let&apos;s
-                  develop your frontend skills together with shared knowledge
-                  and experience.
+                  methods for frontend development! Whether you&apos;re looking
+                  to enhance your skills or stay updated with the latest in
+                  frontend technology and design, I&apos;ll be sharing articles
+                  and tutorials that might help you in one way or another.
+                  Let&apos;s develop your frontend skills together with shared
+                  knowledge and experience.
                 </p>
                 <p className="hidden sm:flex font-normal text-md">
                   Visit my blog to discover tips for frontend development.
@@ -106,9 +112,11 @@ const BlogPostCarousel = () => {
             }}
             className="flex pt-2 px-12 pb-12 sm:px-6 sm:pb-6"
           >
-            {posts.map((post) => {
-              return <Post key={post.id} {...post} />;
-            })}
+            {isLoading
+              ? Array.from({ length: 6 }, (_, index) => (
+                  <SkeletonBlogCard key={index} />
+                ))
+              : posts.map((post) => <Post key={post.id} {...post} />)}
           </motion.div>
         </div>
       </div>
