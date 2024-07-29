@@ -74,10 +74,10 @@ const HeaderBlock = () => {
   const bgColorClass =
     theme === "light"
       ? "bg-zinc-100 text-zinc-950"
-      : "bg-zinc-800 text-zinc-50";
+      : "bg-zinc-950 text-zinc-50";
 
   const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-600";
+    theme === "light" ? "border-zinc-300" : "border-zinc-700";
 
   return (
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
@@ -118,10 +118,10 @@ const AboutBlock = () => {
   const bgColorClass =
     theme === "light"
       ? "bg-zinc-100 text-zinc-950"
-      : "bg-zinc-800 text-zinc-50";
+      : "bg-zinc-950 text-zinc-50";
 
   const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-600";
+    theme === "light" ? "border-zinc-300" : "border-zinc-700";
 
   return (
     <Block

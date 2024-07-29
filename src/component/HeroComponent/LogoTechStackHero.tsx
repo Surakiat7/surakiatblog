@@ -56,7 +56,7 @@ const LogoHero = () => {
           look at the key technologies and tools I use.
         </p>
       </div>
-      <div className={`relative border-y-2 ${bgWarpperClass}`}>
+      <div className={`relative border-y-1 ${bgWarpperClass}`}>
         <div className="flex overflow-hidden">
           <TranslateWrapper>
             <LogoItemsTop />

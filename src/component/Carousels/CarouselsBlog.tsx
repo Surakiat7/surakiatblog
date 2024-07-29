@@ -64,7 +64,7 @@ const BlogPostCarousel = () => {
           <div className="flex pt-4 items-center justify-between">
             <div className="flex flex-col gap-4 w-full px-12 sm:px-6 pt-12 sm:pt-6">
               <div className="flex sm:gap-4 w-full items-center justify-between">
-                <h2 className="text-4xl font-bold">Blog</h2>
+                <h2 className="text-4xl font-bold sm:w-full">Blog</h2>
                 <SearchButton />
               </div>
               <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4">
