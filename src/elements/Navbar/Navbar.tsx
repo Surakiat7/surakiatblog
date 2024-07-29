@@ -13,6 +13,13 @@ import { useTheme } from "@/contexts/ThemeContext";
 import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
 import Image from "next/image";
 import { ShiftingDropDownMenu } from "@/component/Dropdown/DropdownMenu";
+import { FaRegUser, FaEnvelope } from "react-icons/fa";
+import { Divider } from "@nextui-org/react";
+import { RiBloggerLine } from "react-icons/ri";
+import { PiGraduationCap } from "react-icons/pi";
+import { IoBriefcaseOutline } from "react-icons/io5";
+import { BsEnvelopePaper } from "react-icons/bs";
+import { TbUserSquareRounded } from "react-icons/tb";
 
 interface NavbarElementProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
@@ -40,18 +47,39 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
 
-  const menuItems = [
-    { name: "About", ref: aboutRef },
-    { name: "Blog", ref: blogRef },
-    { name: "Education", ref: educationRef },
-    { name: "Work Experience", ref: exprienceRef },
-    { name: "Contact", ref: contactRef },
-  ];
-
   const logoSrc =
     theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
-
+  const iconColor = theme === "light" ? "#09090b" : "#fafafa";
+  const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
+
+  const menuItems = [
+    {
+      name: "About",
+      ref: aboutRef,
+      icon: <TbUserSquareRounded size={26} color={iconColor} />,
+    },
+    {
+      name: "Blog",
+      ref: blogRef,
+      icon: <RiBloggerLine size={28} color={iconColor} />,
+    },
+    {
+      name: "Education",
+      ref: educationRef,
+      icon: <PiGraduationCap size={26} color={iconColor} />,
+    },
+    {
+      name: "Work Experience",
+      ref: exprienceRef,
+      icon: <IoBriefcaseOutline size={26} color={iconColor} />,
+    },
+    {
+      name: "Contact",
+      ref: contactRef,
+      icon: <BsEnvelopePaper size={26} color={iconColor} />,
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -134,23 +162,36 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             : "bg-zinc-950 text-zinc-50"
         } ${
           isMenuOpen ? "h-screen" : "h-0"
-        } transition-all duration-300 overflow-auto`}
+        } transition-all duration-300 overflow-auto flex flex-col`}
       >
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item.name}-${index}`}>
-            <Link
-              className={`w-full ${textColorClass}`}
-              href="#"
-              size="lg"
-              onClick={(e) => {
-                e.preventDefault();
-                handleMenuItemClick(item.ref);
-              }}
-            >
-              {item.name}
-            </Link>
+          <NavbarMenuItem className="w-full" key={`${item.name}-${index}`}>
+            <div className="flex flex-col items-start w-full gap-2">
+              <div
+                className="flex w-full items-center gap-4"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleMenuItemClick(item.ref);
+                }}
+              >
+                {item.icon}
+                <p className={`w-full text-md font-normal ${textColorClass}`}>
+                  {item.name}
+                </p>
+              </div>
+              <Divider style={{ backgroundColor: dividerColor }} />
+            </div>
           </NavbarMenuItem>
         ))}
+        <div className="flex-grow" />
+        <NavbarMenuItem>
+          <Divider style={{ backgroundColor: dividerColor }} />
+          <div className={`flex w-full sm:text-center justify-center py-3`}>
+            <p className={`text-sm sm:text-xs ${textColorClass}`}>
+              © Copyright 2024 Surakiat.Dev. All rights reserved.
+            </p>
+          </div>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
