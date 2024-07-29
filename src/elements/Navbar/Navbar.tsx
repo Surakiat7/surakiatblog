@@ -20,6 +20,10 @@ interface NavbarElementProps {
   aboutRef: React.RefObject<HTMLDivElement>;
   blogRef: React.RefObject<HTMLDivElement>;
   educationRef: React.RefObject<HTMLDivElement>;
+  exprienceRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
+  isMenuOpen: boolean;
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const NavbarElement: React.FC<NavbarElementProps> = ({
@@ -28,15 +32,20 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   aboutRef,
   blogRef,
   educationRef,
+  exprienceRef,
+  contactRef,
+  isMenuOpen,
+  setIsMenuOpen,
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
 
   const menuItems = [
-    { name: "Home", section: "home" },
-    { name: "About", section: "about" },
-    { name: "Blog", section: "blog" },
+    { name: "About", ref: aboutRef },
+    { name: "Blog", ref: blogRef },
+    { name: "Education", ref: educationRef },
+    { name: "Work Experience", ref: exprienceRef },
+    { name: "Contact", ref: contactRef },
   ];
 
   const logoSrc =
@@ -59,8 +68,18 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
     };
   }, []);
 
+  const handleMenuItemClick = (ref: React.RefObject<HTMLElement> | null) => {
+    if (ref) {
+      setIsMenuOpen(false);
+      setTimeout(() => {
+        onScrollTo(ref);
+      }, 100);
+    }
+  };
+
   return (
     <Navbar
+      isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       className={`transition-colors navbar-container sticky top-0 z-50 ${
         theme === "light"
@@ -88,7 +107,9 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden ${textColorClass}`}>Surakiat.Dev</p>
+          <p className={`font-bold sm:hidden ${textColorClass}`}>
+            Surakiat.Dev
+          </p>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="sm:hidden flex gap-4" justify="center">
@@ -97,6 +118,8 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           aboutRef={aboutRef}
           blogRef={blogRef}
           educationRef={educationRef}
+          exprienceRef={exprienceRef}
+          contactRef={contactRef}
         />
       </NavbarContent>
       <NavbarContent justify="end">
@@ -115,7 +138,15 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
       >
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
-            <Link className={`w-full ${textColorClass}`} href="#" size="lg">
+            <Link
+              className={`w-full ${textColorClass}`}
+              href="#"
+              size="lg"
+              onClick={(e) => {
+                e.preventDefault();
+                handleMenuItemClick(item.ref);
+              }}
+            >
               {item.name}
             </Link>
           </NavbarMenuItem>

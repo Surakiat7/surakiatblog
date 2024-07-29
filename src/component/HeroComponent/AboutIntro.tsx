@@ -8,7 +8,11 @@ import { Image } from "@nextui-org/image";
 import Link from "next/link";
 import { useTheme } from "@/contexts/ThemeContext";
 
-export const AboutHero = () => {
+interface AboutHeroProps {
+  contactRef: React.RefObject<HTMLDivElement>;
+}
+
+export const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
   const { theme } = useTheme();
 
   const bgColorClass =
@@ -26,7 +30,7 @@ export const AboutHero = () => {
         }}
         className="flex flex-col w-full gap-4"
       >
-        <HeaderBlock />
+        <HeaderBlock contactRef={contactRef} />
         <AboutBlock />
       </motion.div>
     </div>
@@ -67,7 +71,11 @@ const Block = ({ className, ...rest }: BlockProps) => {
   );
 };
 
-const HeaderBlock = () => {
+interface HeaderBlockProps {
+  contactRef: React.RefObject<HTMLDivElement>;
+}
+
+const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const { theme } = useTheme();
 
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
@@ -78,6 +86,20 @@ const HeaderBlock = () => {
 
   const borderColorClass =
     theme === "light" ? "border-zinc-300" : "border-zinc-700";
+
+  const handleContactClick = () => {
+    if (contactRef.current) {
+      const navbar = document.querySelector(
+        ".navbar-container"
+      ) as HTMLElement | null;
+      const yOffset = navbar ? -navbar.getBoundingClientRect().height : 0;
+      const y =
+        contactRef.current.getBoundingClientRect().top +
+        window.pageYOffset +
+        yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
@@ -99,13 +121,13 @@ const HeaderBlock = () => {
               Frontend Developer.
             </span>
           </h1>
-          <Link
-            href="#"
-            className="flex items-center gap-1 transition-transform transform hover:translate-y-[-4px] duration-300"
+          <div
+            className="flex items-center cursor-pointer gap-1 transition-transform transform hover:translate-x-[4px] duration-300"
+            onClick={handleContactClick}
           >
             <span className={`${textColorClass}`}>Contact me</span>
             <FiArrowRight />
-          </Link>
+          </div>
         </div>
       </div>
     </Block>

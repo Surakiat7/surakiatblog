@@ -7,7 +7,13 @@ import { twMerge } from "tailwind-merge";
 import { IoIosArrowDown } from "react-icons/io";
 import { useTheme } from "@/contexts/ThemeContext";
 
-export const DarkGridHero = () => {
+interface DarkGridHeroElementProps {
+  scrollToAbout: () => void;
+}
+
+export const DarkGridHero: React.FC<DarkGridHeroElementProps> = ({
+  scrollToAbout,
+}) => {
   const { theme } = useTheme();
   const strokeColor =
     theme === "dark" ? "rgb(0 88 124 / 0.5)" : "rgb(230 234 235 / 0.5)";
@@ -18,30 +24,23 @@ export const DarkGridHero = () => {
         theme === "dark" ? "bg-zinc-950" : "bg-zinc-50"
       }`}
     >
-      <Content />
+      <Content scrollToAbout={scrollToAbout} />
       <Beams />
       <GradientGrid theme={theme} strokeColor={strokeColor} />
     </section>
   );
 };
 
-const Content = () => {
+const Content: React.FC<{ scrollToAbout: () => void }> = ({
+  scrollToAbout,
+}) => {
   const { theme, setTheme } = useTheme();
   return (
     <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 sm:py-6 py-32">
       <motion.div
-        initial={{
-          y: 25,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 1.25,
-          ease: "easeInOut",
-        }}
+        initial={{ y: 25, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.25, ease: "easeInOut" }}
         className={`relative ${
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
@@ -49,19 +48,9 @@ const Content = () => {
         <GlowingChip>Welcome, I&apos;m JJ 😊</GlowingChip>
       </motion.div>
       <motion.h1
-        initial={{
-          y: 25,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 1.25,
-          delay: 0.25,
-          ease: "easeInOut",
-        }}
+        initial={{ y: 25, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.25, delay: 0.25, ease: "easeInOut" }}
         className={`pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
@@ -69,19 +58,9 @@ const Content = () => {
         Surakiat Tablakorn
       </motion.h1>
       <motion.p
-        initial={{
-          y: 25,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 1.25,
-          delay: 0.5,
-          ease: "easeInOut",
-        }}
+        initial={{ y: 25, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.25, delay: 0.5, ease: "easeInOut" }}
         className={`pb-8 sm:pb-4 text-center leading-relaxed sm:text-base text-lg md:leading-relaxed ${
           theme === "dark" ? "text-white" : "text-slate-600"
         }`}
@@ -97,22 +76,15 @@ const Content = () => {
         improving through direct communication and feedback.
       </motion.p>
       <motion.div
-        initial={{
-          y: 25,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 1.25,
-          delay: 0.75,
-          ease: "easeInOut",
-        }}
+        initial={{ y: 25, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.25, delay: 0.75, ease: "easeInOut" }}
         className="flex flex-col items-center gap-6 sm:flex-row"
       >
-        <SplashButton className="flex flex-col px-12 items-center">
+        <SplashButton
+          scrollToAbout={scrollToAbout}
+          className="flex flex-col px-12 items-center"
+        >
           Scroll Down
           <IoIosArrowDown />
         </SplashButton>
@@ -121,7 +93,7 @@ const Content = () => {
   );
 };
 
-const GlowingChip = ({ children }: { children: string }) => {
+const GlowingChip: React.FC<{ children: string }> = ({ children }) => {
   const { theme } = useTheme();
 
   return (
@@ -144,9 +116,15 @@ const GlowingChip = ({ children }: { children: string }) => {
   );
 };
 
-const SplashButton = ({ children, className, ...rest }: ButtonProps) => {
+const SplashButton: React.FC<ButtonProps> = ({
+  children,
+  className,
+  scrollToAbout,
+  ...rest
+}) => {
   return (
     <button
+      onClick={scrollToAbout}
       className={twMerge(
         "rounded-full bg-gradient-to-br from-[#4EDFE7] to-[#00597B] py-2 text-zinc-50 ring-2 ring-[#4EDFE7]/50 ring-offset-2 ring-offset-zinc-50 transition-all hover:scale-[1.02] hover:ring-transparent active:scale-[0.98] active:ring-blue-500/70",
         className
@@ -158,7 +136,7 @@ const SplashButton = ({ children, className, ...rest }: ButtonProps) => {
   );
 };
 
-const Beams = () => {
+const Beams: React.FC = () => {
   const { width } = useWindowSize();
 
   const numColumns = width ? Math.floor(width / GRID_BOX_SIZE) : 0;
@@ -251,86 +229,61 @@ const useWindowSize = () => {
   return windowSize;
 };
 
-const Beam = ({ top, left, transition = {} }: BeamType) => {
+const Beam: React.FC<BeamType> = ({ top, left, transition = {} }) => {
   return (
     <motion.div
-      initial={{
-        y: 0,
-        opacity: 0,
-      }}
-      animate={{
-        opacity: [0, 1, 0],
-        y: 32 * 8,
-      }}
+      initial={{ y: 0, opacity: 0 }}
+      animate={{ opacity: [0, 1, 0], y: 32 * 8 }}
       transition={{
         ease: "easeInOut",
         duration: 3,
         repeat: Infinity,
-        repeatDelay: 1.5,
+        repeatDelay: 1,
         ...transition,
       }}
-      style={{
-        top,
-        left,
-      }}
-      className="absolute z-10 h-[64px] w-[1px] bg-gradient-to-b from-blue-500/0 to-blue-500"
+      style={{ top, left }}
+      className="absolute z-10 h-[124px] sm:h-[64px] w-[2px] bg-gradient-to-b from-[#4EDFE7]/0 to-[#4EDFE7]"
     />
   );
 };
 
-const GradientGrid = ({
-  theme,
-  strokeColor,
-}: {
+const GradientGrid: React.FC<{
   theme: "light" | "dark";
   strokeColor: string;
-}) => {
+}> = ({ theme, strokeColor }) => {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 2.5,
-        ease: "easeInOut",
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2.5, ease: "easeInOut" }}
       className="absolute inset-0 z-0"
     >
       <div
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='${strokeColor}'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
+          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 32 32'%3e%3cg fill='none' stroke='${strokeColor}' stroke-width='.5'%3e%3cpath d='M1 16h30M1 8h30M1 24h30M1 4h30M1 12h30M1 20h30M1 28h30M5 0v32M9 0v32M13 0v32M17 0v32M21 0v32M25 0v32M29 0v32M3 0v32M7 0v32M11 0v32M15 0v32M19 0v32M23 0v32M27 0v32'/%3e%3c/g%3e%3c/svg%3e")`,
         }}
-        className="absolute inset-0 z-0"
-      />
-      <div
-        className={`absolute inset-0 z-10 bg-gradient-to-b ${
-          theme === "dark"
-            ? "from-zinc-950/0 to-zinc-950"
-            : "from-zinc-50/0 to-zinc-50"
-        }`}
+        className="absolute inset-0 bg-center [mask-image:radial-gradient(ellipse,white,transparent)]"
       />
     </motion.div>
   );
 };
 
-const GRID_BOX_SIZE = 32;
+const GRID_BOX_SIZE = 64;
 const BEAM_WIDTH_OFFSET = 1;
 
-type WindowSize = {
-  width: number | undefined;
-  height: number | undefined;
-};
-
-type BeamType = {
+interface BeamType {
   top: number;
   left: number;
   transition?: AnimationProps["transition"];
-};
+}
 
 type ButtonProps = {
   children: ReactNode;
   className?: string;
+  scrollToAbout: () => void;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+interface WindowSize {
+  width: number | undefined;
+  height: number | undefined;
+}

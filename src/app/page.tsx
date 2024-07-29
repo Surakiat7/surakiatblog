@@ -16,9 +16,13 @@ export default function Home() {
   const { theme } = useTheme();
   const bgColorClass = theme === "light" ? "bg-zinc-50" : "bg-zinc-950";
   const [navbarHeight, setNavbarHeight] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const aboutRef = useRef<HTMLDivElement>(null);
   const educationRef = useRef<HTMLDivElement>(null);
   const blogRef = useRef<HTMLDivElement>(null);
+  const exprienceRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -40,15 +44,17 @@ export default function Home() {
       const yOffset = -navbarHeight;
       const y =
         ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      console.log(
-        `Scrolling to Y: ${y}, Navbar Height: ${navbarHeight}, yOffset: ${yOffset}`
-      );
       window.scrollTo({ top: y, behavior: "smooth" });
+      setIsMenuOpen(false);
     }
   };
 
   const scrollToHome = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToAbout = () => {
+    scrollTo(aboutRef);
   };
 
   return (
@@ -59,27 +65,31 @@ export default function Home() {
         aboutRef={aboutRef}
         blogRef={blogRef}
         educationRef={educationRef}
+        exprienceRef={exprienceRef}
+        contactRef={contactRef}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
       />
       {/* Started home section */}
-      <DarkGridHero />
+      <DarkGridHero scrollToAbout={scrollToAbout} />
       {/* End home section */}
       {/* Started about section */}
       <div ref={aboutRef}>
-        <AboutHero />
+        <AboutHero contactRef={contactRef} />
       </div>
       <LogoHero />
       {/* End about section */}
       {/* Started blog section */}
-      <div>
+      <div ref={blogRef}>
         <BlogPostCarousel />
       </div>
       <div ref={educationRef}>
         <Education />
       </div>
-      <div>
+      <div ref={exprienceRef}>
         <WorkExprience />
       </div>
-      <div>
+      <div ref={contactRef}>
         <Contact />
       </div>
       {/* End blog section */}

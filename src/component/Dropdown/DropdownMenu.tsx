@@ -5,12 +5,15 @@ import Link from "next/link";
 import { Image } from "@nextui-org/image";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useRouter } from "next/navigation";
+import exp from "constants";
 
 interface ShiftingDropDownMenuProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
   aboutRef: React.RefObject<HTMLDivElement>;
   blogRef: React.RefObject<HTMLDivElement>;
   educationRef: React.RefObject<HTMLDivElement>;
+  exprienceRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
 }
 
 export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
@@ -18,6 +21,8 @@ export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
   aboutRef,
   blogRef,
   educationRef,
+  exprienceRef,
+  contactRef,
 }) => {
   return (
     <div className="flex w-full justify-center">
@@ -26,6 +31,8 @@ export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
         aboutRef={aboutRef}
         blogRef={blogRef}
         educationRef={educationRef}
+        exprienceRef={exprienceRef}
+        contactRef={contactRef}
       />
     </div>
   );
@@ -36,6 +43,8 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
   aboutRef,
   blogRef,
   educationRef,
+  exprienceRef,
+  contactRef,
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [dir, setDir] = useState<null | "l" | "r">(null);
@@ -68,6 +77,8 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
             aboutRef={aboutRef}
             blogRef={blogRef}
             educationRef={educationRef}
+            exprienceRef={exprienceRef}
+            contactRef={contactRef}
           >
             {t.title}
           </Tab>
@@ -97,6 +108,8 @@ const Tab: React.FC<TabProps> = ({
   aboutRef,
   blogRef,
   educationRef,
+  exprienceRef,
+  contactRef,
 }) => {
   const tabData = TABS.find((t) => t.id === tab);
   const hasComponent = !!tabData?.Component;
@@ -119,11 +132,11 @@ const Tab: React.FC<TabProps> = ({
         case "education":
           onScrollTo(educationRef);
           break;
-        case "experience":
-          onScrollTo(blogRef);
+        case "work experience":
+          onScrollTo(exprienceRef);
           break;
         case "contact":
-          onScrollTo(blogRef);
+          onScrollTo(contactRef);
           break;
         default:
           break;
