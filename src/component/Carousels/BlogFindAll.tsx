@@ -72,7 +72,7 @@ const BlogPostFindAll = () => {
                       {filteredPosts.length} Search Results: {searchQuery}
                     </>
                   ) : (
-                    "All Posts"
+                    `Totals ${filteredPosts.length} Posts`
                   )}
                 </h2>
               </div>
