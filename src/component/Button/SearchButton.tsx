@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Input, Button } from "@nextui-org/react";
 import { SearchIcon } from "../Button/SearchIcon";
 
@@ -10,6 +8,7 @@ interface SearchButtonProps {
 
 const SearchButton = ({ onSearch }: SearchButtonProps) => {
   const [query, setQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearchClick = () => {
     onSearch(query);
@@ -24,9 +23,29 @@ const SearchButton = ({ onSearch }: SearchButtonProps) => {
     onSearch("");
   };
 
+  const preventZoom = () => {
+    document.body.style.touchAction = "none";
+    const viewport = document.querySelector("meta[name=viewport]");
+    if (viewport) {
+      viewport.setAttribute(
+        "content",
+        "width=device-width, initial-scale=1, maximum-scale=1"
+      );
+    }
+  };
+
+  const allowZoom = () => {
+    document.body.style.touchAction = "auto";
+    const viewport = document.querySelector("meta[name=viewport]");
+    if (viewport) {
+      viewport.setAttribute("content", "width=device-width, initial-scale=1");
+    }
+  };
+
   return (
     <div className="flex items-center gap-2">
       <Input
+        ref={inputRef}
         classNames={{
           base: "sm:max-w-full max-w-[14rem] h-10",
           mainWrapper: "h-full",
@@ -40,6 +59,8 @@ const SearchButton = ({ onSearch }: SearchButtonProps) => {
         onChange={(e) => setQuery(e.target.value)}
         startContent={<SearchIcon size={18} />}
         type="search"
+        onFocus={preventZoom}
+        onBlur={allowZoom}
       />
       <Button
         isIconOnly
