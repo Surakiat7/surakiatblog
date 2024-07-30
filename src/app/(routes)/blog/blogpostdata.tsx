@@ -149,7 +149,7 @@ export const posts: Post[] = [
   {
     id: 7,
     imgUrl:
-      "https://www.hongkiat.com/blog/wp-content/uploads/2016/03/javascript-libraries-3.jpg",
+      "https://miro.medium.com/v2/resize:fit:1200/1*4cFhtuq6zRDqJ6p4s2pQ6g.jpeg",
     author: "Author: Surakiat",
     title: "Top JavaScript Libraries for Developers",
     view: 162,
