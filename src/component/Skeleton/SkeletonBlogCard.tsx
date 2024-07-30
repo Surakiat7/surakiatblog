@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Skeleton } from "@nextui-org/react";
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -14,13 +14,25 @@ const SkeletonBlogCard: React.FC = () => {
   const borderColorClass: string =
     theme === "light" ? "border-zinc-300" : "border-zinc-600";
 
+  const [isOnBlogPage, setIsOnBlogPage] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsOnBlogPage(window.location.pathname === "/blog");
+    }
+  }, []);
+
+  const cardStyle = isOnBlogPage
+    ? {}
+    : {
+        width: CARD_WIDTH,
+        marginRight: MARGIN,
+      };
+
   return (
     <Card
       className={`relative rounded-2xl border ${borderColorClass} p-3 shrink-0`}
-      style={{
-        width: CARD_WIDTH,
-        marginRight: MARGIN,
-      }}
+      style={cardStyle}
     >
       <Skeleton className="rounded-lg mb-3 h-[200px] w-full" />
       <Skeleton className="w-1/4 h-6 rounded-xl mb-2" />
