@@ -36,7 +36,7 @@ const BlogPostByID: React.FC<Props> = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-zinc-950">
         <Spinner label="Loading..." color="white" />
       </div>
     );
