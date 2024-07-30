@@ -8,6 +8,7 @@ import { Image, Divider, User, Link, Spinner } from "@nextui-org/react";
 import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
 import { PiEyeglassesDuotone } from "react-icons/pi";
 import posts from "../blogpostdata";
+import { useTheme } from "@/contexts/ThemeContext";
 
 type Props = {};
 
@@ -18,6 +19,12 @@ export default function BlogPostByID({}: Props) {
 
   const [post, setPost] = useState<(typeof posts)[0] | null>(null);
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
+
+  const bgColorClass =
+    theme === "light"
+      ? "bg-zinc-200 text-zinc-950"
+      : "bg-zinc-900 text-zinc-50";
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,7 +56,7 @@ export default function BlogPostByID({}: Props) {
     <main className="w-full">
       <NavbarElementContent />
       <div className="px-32 sm:px-0">
-        <div className="bg-zinc-900">
+        <div className={`${bgColorClass}`}>
           <div className="py-4 sm:py-4 px-8 sm:px-4 w-full">
             <div className="flex w-full gap-2 flex-col">
               <BreadcrumbsComponent items={breadcrumbsItems} />
@@ -73,9 +80,10 @@ export default function BlogPostByID({}: Props) {
                   className="w-full justify-start"
                   description={
                     <Link
-                      href="https://twitter.com/jrgarciadev"
+                      href="https://www.linkedin.com/in/surakiat000/"
                       size="sm"
                       isExternal
+                      color="primary"
                     >
                       @Surakiat
                     </Link>
