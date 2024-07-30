@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
       <div className="flex sm:flex-col-reverse sm:items-center sm:pt-6 sm:gap-6 w-full gap-24 px-12 sm:px-6">
         <div className="flex flex-col w-full gap-2">
           <div className="flex flex-col w-full gap-1">
-            <h3 className="text-base font-medium">Subject of Contact</h3>
+            <h2 className="text-base font-medium">Subject of Contact</h2>
             <Input
               type="text"
               label="Subject of Contact"
@@ -51,7 +51,7 @@ const Contact: React.FC = () => {
           </div>
           <div className="flex gap-4 w-full">
             <div className="flex flex-col w-full gap-1">
-              <h3 className="text-base font-medium">Name</h3>
+              <h2 className="text-base font-medium">Name</h2>
               <Input
                 type="text"
                 label="Name"
@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
               />
             </div>
             <div className="flex flex-col w-full gap-1">
-              <h3 className="text-base font-medium">Username</h3>
+              <h2 className="text-base font-medium">Username</h2>
               <Input
                 type="text"
                 label="Username"
@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
           </div>
           <div className="flex gap-4 w-full">
             <div className="flex flex-col w-full gap-1">
-              <h3 className="text-base font-medium">Phone</h3>
+              <h2 className="text-base font-medium">Phone</h2>
               <Input
                 type="text"
                 label="Phone"
@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
               />
             </div>
             <div className="flex flex-col w-full gap-1">
-              <h3 className="text-base font-medium">Email</h3>
+              <h2 className="text-base font-medium">Email</h2>
               <Input
                 type="email"
                 label="Email"
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col w-full gap-1">
-            <h3 className="text-base font-medium">Message</h3>
+            <h2 className="text-base font-medium">Message</h2>
             <Textarea
               type="text"
               label="Message"

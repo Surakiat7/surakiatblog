@@ -88,6 +88,7 @@ const BlogPostCarousel = () => {
                     }`}
                     disabled={!CAN_SHIFT_LEFT}
                     onClick={shiftLeft}
+                    aria-label="Shift Left"
                   >
                     <FiArrowLeft color={iconColor} />
                   </button>
@@ -97,6 +98,7 @@ const BlogPostCarousel = () => {
                     }`}
                     disabled={!CAN_SHIFT_RIGHT}
                     onClick={shiftRight}
+                    aria-label="Shift Right"
                   >
                     <FiArrowRight color={iconColor} />
                   </button>

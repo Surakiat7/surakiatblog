@@ -2,6 +2,7 @@
 
 import { useTheme } from "@/contexts/ThemeContext";
 import { Divider, Image } from "@nextui-org/react";
+import { LuDot } from "react-icons/lu";
 
 const workExperienceData = [
   {
@@ -20,7 +21,7 @@ const workExperienceData = [
       "Avenger Building Technology (Next.js): Developed the landing page using Figma, and Next.js.",
       "Avenger Checker (React): Designed UX/UI and developed the frontend using Figma, and React.",
       "BES (Next.js): Designed UX/UI and developed the frontend using Next.js.",
-      "Website Perfect Computer Solutions (React): Website Perfect Computer Solutions (React): Redesigned and developed the company website using Figma, and React.",
+      "Website Perfect Computer Solutions (React): Redesigned and developed the company website using Figma, and React.",
     ],
   },
   {
@@ -37,13 +38,15 @@ const workExperienceData = [
   },
 ];
 
-const WorkExprience = () => {
+const WorkExperience = () => {
   const { theme } = useTheme();
   const bgColorClass =
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
   const textColorClass = theme === "light" ? "text-zinc-600" : "text-zinc-500";
+  const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
+  const iconColor = theme === "light" ? "#27272a" : "#4b5563";
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
@@ -60,7 +63,12 @@ const WorkExprience = () => {
       <div className="flex w-full flex-col px-12 sm:px-6">
         {workExperienceData.map((experience, index) => (
           <div key={index} className="flex w-full flex-col">
-            {index !== 0 && <Divider className="my-6" />}
+            {index !== 0 && (
+              <Divider
+                style={{ backgroundColor: dividerColor }}
+                className="my-6"
+              />
+            )}
             <div className="flex sm:flex-col w-full gap-4 items-center">
               <div className="flex h-auto rounded-xl">
                 <Image
@@ -87,23 +95,17 @@ const WorkExprience = () => {
               </div>
             </div>
             <ul className="flex w-full flex-col gap-2">
-              {experience.details.map((detail, detailIndex) =>
-                index === 0 ? (
-                  <li
-                    key={detailIndex}
-                    className={`${textColorClass} pt-2 font-normal text-base sm:text-sm`}
-                  >
-                    {detail}
-                  </li>
-                ) : (
-                  <p
-                    key={detailIndex}
-                    className={`${textColorClass} pt-2 font-normal text-base sm:text-sm`}
-                  >
-                    {detail}
-                  </p>
-                )
-              )}
+              {experience.details.map((detail, detailIndex) => (
+                <li
+                  key={detailIndex}
+                  className={`${textColorClass} flex items-center pt-2 font-normal text-base sm:text-sm`}
+                >
+                  <div className="flex-shrink-0 w-6 h-6">
+                    <LuDot color={iconColor} className="w-full h-full" />
+                  </div>
+                  <span className="ml-1">{detail}</span>
+                </li>
+              ))}
             </ul>
           </div>
         ))}
@@ -112,4 +114,4 @@ const WorkExprience = () => {
   );
 };
 
-export default WorkExprience;
+export default WorkExperience;
