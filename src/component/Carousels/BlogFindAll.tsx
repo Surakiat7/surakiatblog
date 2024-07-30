@@ -2,74 +2,56 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import useMeasure from "react-use-measure";
-import SearchButton from "../Button/SearchButton";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Image } from "@nextui-org/react";
+import { Image, Button, Spinner } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
 import { useNavigate } from "@/utils/navigation";
 import type { Post as PostType } from "@/app/(routes)/blog/blogpostdata";
-import { posts } from "@/app/(routes)/blog/blogpostdata";
-
-const CARD_WIDTH = 350;
-const MARGIN = 20;
-const CARD_SIZE = CARD_WIDTH + MARGIN;
-
-const BREAKPOINTS = {
-  sm: 640,
-  lg: 1024,
-};
+import { posts as allPosts } from "@/app/(routes)/blog/blogpostdata";
+import SearchButton from "../Button/SearchButton";
 
 const BlogPostFindAll = () => {
-  const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredPosts, setFilteredPosts] = useState<PostType[]>(allPosts);
+  const [isLoading, setIsLoading] = useState(false);
   const { theme } = useTheme();
   const bgColorClass =
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
-  const bgButtonColorClass =
-    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
-  const iconColor = theme === "light" ? "#09090b" : "#fafafa";
-
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000);
-  }, []);
-
-  const CARD_BUFFER =
-    width > BREAKPOINTS.lg ? 3 : width > BREAKPOINTS.sm ? 2 : 1;
-
-  const CAN_SHIFT_LEFT = offset < 0;
-
-  const CAN_SHIFT_RIGHT =
-    Math.abs(offset) < CARD_SIZE * (posts.length - CARD_BUFFER);
-
-  const shiftLeft = () => {
-    if (!CAN_SHIFT_LEFT) {
-      return;
+    if (searchQuery === "") {
+      setFilteredPosts(allPosts);
+    } else {
+      setIsLoading(true);
+      const timeoutId = setTimeout(() => {
+        const results = allPosts.filter((post) =>
+          post.title.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredPosts(results);
+        setIsLoading(false);
+      }, 500);
+      return () => clearTimeout(timeoutId);
     }
-    setOffset((pv) => (pv += CARD_SIZE));
-  };
+  }, [searchQuery]);
 
-  const shiftRight = () => {
-    if (!CAN_SHIFT_RIGHT) {
-      return;
-    }
-    setOffset((pv) => (pv -= CARD_SIZE));
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
   };
 
   return (
-    <section className={`${bgColorClass}`} ref={ref}>
+    <section className={`${bgColorClass}`}>
       <div className="relative overflow-hidden">
         <div className="w-full">
           <div className="flex items-center justify-between">
-            <div className="flex flex-col gap-4 w-full">
-              <div className="flex sm:gap-4 w-full items-center justify-between">
-                <h2 className="text-4xl font-bold sm:w-full">All Posts</h2>
-                <SearchButton />
+            <div className="flex flex-col gap-2 w-full">
+              <div className="flex sm:flex-col sm:gap-2 w-full sm:items-start items-center justify-between">
+                <h1 className="text-4xl font-bold sm:w-full">Blog</h1>
+                <SearchButton onSearch={handleSearch} />
               </div>
-              <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4">
+              <div className="flex w-full items-start justify-between sm:items-center gap-8">
                 <p className="font-normal text-md sm:hidden">
                   Visit my blog to discover tips, techniques, and various
                   methods for frontend development! Whether you&apos;re looking
@@ -83,23 +65,46 @@ const BlogPostFindAll = () => {
                   Visit my blog to discover tips for frontend development.
                 </p>
               </div>
+              <div className="flex w-full pt-2">
+                <h2 className="text-xl font-bold sm:w-full bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
+                  {searchQuery ? (
+                    <>
+                      {filteredPosts.length} Search Results: {searchQuery}
+                    </>
+                  ) : (
+                    "All Posts"
+                  )}
+                </h2>
+              </div>
+              <div className="flex w-full pb-4">
+                {isLoading ? (
+                  <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full">
+                    {Array.from({ length: 3 }, (_, index) => (
+                      <SkeletonBlogCard key={index} />
+                    ))}
+                  </div>
+                ) : (
+                  <motion.div
+                    animate={{
+                      x: offset,
+                    }}
+                    transition={{
+                      ease: "easeInOut",
+                    }}
+                    className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full"
+                  >
+                    {filteredPosts.length > 0 ? (
+                      filteredPosts.map((post) => (
+                        <BlogPost key={post.id} {...post} />
+                      ))
+                    ) : (
+                      <p>No results found</p>
+                    )}
+                  </motion.div>
+                )}
+              </div>
             </div>
           </div>
-          <motion.div
-            animate={{
-              x: offset,
-            }}
-            transition={{
-              ease: "easeInOut",
-            }}
-            className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full"
-          >
-            {isLoading
-              ? Array.from({ length: 3 }, (_, index) => (
-                  <SkeletonBlogCard key={index} />
-                ))
-              : posts.map((post) => <BlogPost key={post.id} {...post} />)}
-          </motion.div>
         </div>
       </div>
     </section>
@@ -123,9 +128,6 @@ const BlogPost = ({ id, imgUrl, author, title, description }: PostType) => {
   return (
     <div
       className={`relative w-full rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(0,0,0,0.1)]`}
-      // style={{
-      //   width: CARD_WIDTH,
-      // }}
       onClick={() => handleBlogClick(id.toString())}
     >
       <Image
