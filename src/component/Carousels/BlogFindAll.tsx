@@ -76,7 +76,7 @@ const BlogPostFindAll = () => {
                   )}
                 </h2>
               </div>
-              <div className="flex w-full pb-4">
+              <div className="flex w-full min-h-screen pb-4">
                 {isLoading ? (
                   <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full">
                     {Array.from({ length: 3 }, (_, index) => (
@@ -98,7 +98,7 @@ const BlogPostFindAll = () => {
                         <BlogPost key={post.id} {...post} />
                       ))
                     ) : (
-                      <p>No results found</p>
+                      <p className="text-base font-normal">No results found</p>
                     )}
                   </motion.div>
                 )}
