@@ -121,11 +121,10 @@ const Post = ({ id, imgUrl, author, title, description }: PostType) => {
 
   return (
     <div
-      className={`relative rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(0,0,0,0.1)]`}
-      style={{
-        width: CARD_WIDTH,
-        marginRight: MARGIN,
-      }}
+      className={`relative w-full rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(0,0,0,0.1)]`}
+      // style={{
+      //   width: CARD_WIDTH,
+      // }}
       onClick={() => handleBlogClick(id.toString())}
     >
       <Image

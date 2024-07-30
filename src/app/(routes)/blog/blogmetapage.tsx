@@ -44,7 +44,7 @@ export default function BlogPost({}: Props) {
       <div className="px-32 sm:px-0">
         <div className={`${bgColorClass}`}>
           <div className="py-4 sm:py-4 px-8 sm:px-4 w-full">
-            <div className="flex w-full gap-2 flex-col">
+            <div className="flex justify-center w-full gap-2 flex-col">
               <BreadcrumbsComponent items={breadcrumbsItems} />
               <BackButton />
             </div>

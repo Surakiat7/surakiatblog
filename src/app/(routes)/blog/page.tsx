@@ -8,10 +8,10 @@ export const metadata = {
   openGraph: {
     images: [
       {
-        url: '/Surakiat-DarkBG.png',
+        url: "https://surakiat.vercel.app/Surakiat-DarkBG.png",
         width: 1200,
         height: 630,
-        alt: 'Surakiat Blog',
+        alt: "Surakiat Blog",
       },
     ],
   },
