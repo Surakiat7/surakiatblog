@@ -10,6 +10,16 @@ export const metadata: Metadata = {
   title: "Surakiat",
   description:
     "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
+  openGraph: {
+    images: [
+      {
+        url: "/Surakiat-DarkBG.png",
+        width: 1200,
+        height: 630,
+        alt: "Surakiat Blog",
+      },
+    ],
+  },
 };
 
 export const viewport = {

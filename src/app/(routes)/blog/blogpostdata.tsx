@@ -1,4 +1,4 @@
-const posts = [
+export const posts: Post[] = [
   {
     id: 1,
     imgUrl:
@@ -173,4 +173,21 @@ const posts = [
   },
 ];
 
-export default posts;
+export function getPostById(id: number): Post | undefined {
+  return posts.find((post) => post.id === id);
+}
+
+export interface Post {
+  id: number;
+  imgUrl: string;
+  author: string;
+  title: string;
+  view: number;
+  createdAt: string;
+  description: string;
+  content: Array<{
+    imagesrc: string;
+    subtitle: string;
+    paragraph: string;
+  }>;
+}
