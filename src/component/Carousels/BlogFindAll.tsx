@@ -69,7 +69,7 @@ const BlogPostFindAll = () => {
                 <h2 className="text-xl font-bold sm:w-full bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
                   {searchQuery ? (
                     <>
-                      {filteredPosts.length} Search Results: "{searchQuery}"
+                      {filteredPosts.length} Search Results: {searchQuery}
                     </>
                   ) : (
                     `Totals ${filteredPosts.length} Posts`
