@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Image } from "@nextui-org/image";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useRouter } from "next/navigation";
-import exp from "constants";
+import { Post, posts } from "@/app/(routes)/blog/blogpostdata";
 
 interface ShiftingDropDownMenuProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
@@ -262,78 +262,69 @@ const Nub = ({ selected }: { selected: number | null }) => {
   );
 };
 
+const getRandomPosts = (posts: Post[], count: number): Post[] => {
+  const shuffled = [...posts].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
+
 const Blog = () => {
   const { theme } = useTheme();
-  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
+  const textColorClass = theme === "light" ? "text-zinc-950" : "text-white";
+  const [selectedPosts, setSelectedPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const randomPosts = getRandomPosts(posts, 2);
+    setSelectedPosts(randomPosts);
+
+    const interval = setInterval(() => {
+      const newRandomPosts = getRandomPosts(posts, 2);
+      setSelectedPosts(newRandomPosts);
+    }, 24 * 60 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div>
-      <div className="grid grid-cols-2 gap-2">
-        <Link href="#">
-          <Image
-            isZoomed
-            width="100%"
-            height="auto"
-            className="mb-2 h-14 w-full object-cover"
-            alt="Mastering Responsive Design for Web Image with Zoom"
-            src="https://arnapana.com/assets/images/blog/article_1597821616.jpg"
-          />
-          <h4 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
-            Mastering Responsive Design
-          </h4>
-          <p className={`text-xs ${textColorClass}`}>
-            Tips and techniques for creating responsive web designs that look
-            great on any device.
-          </p>
-        </Link>
-        <Link href="#">
-          <Image
-            isZoomed
-            width="100%"
-            height="auto"
-            className="mb-2 h-14 w-full object-cover"
-            src="https://www.xenonstack.com/hubfs/web-performance-optimization.png"
-            alt="Web Performance Optimization Image"
-          />
-          <h4 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
-            Understanding Web Performance
-          </h4>
-          <p className={`text-xs ${textColorClass}`}>
-            Learn about techniques to improve web performance, including
-            optimizing images, minifying CSS and JavaScript.
-          </p>
+    <section className="w-full flex flex-col">
+      <div className="grid grid-cols-2 w-full gap-2">
+        {selectedPosts.map((post) => (
+          <div key={post.id}>
+            <Link href={`/blog/${post.id}`} passHref>
+              <Image
+                src={post.imgUrl}
+                alt={post.title}
+                isZoomed
+                loading="lazy"
+                width="100%"
+                height="auto"
+                className="mb-2 h-14 w-full object-cover"
+              />
+              <h3 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
+                {post.title}
+              </h3>
+              <p className={`text-xs ${textColorClass}`}>{post.description}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
+      <div className="flex w-full justify-end">
+        <Link href="/blog" passHref>
+          <div className="mt-4 justify-end flex items-center gap-1 text-sm cursor-pointer transition-transform transform hover:translate-x-[-4px] duration-300">
+            <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
+              Explore all posts
+            </span>
+            <FiArrowRight color="#00597B" />
+          </div>
         </Link>
       </div>
-      <Link href="/blog">
-        <div className="mt-4 justify-end flex items-center gap-1 text-sm cursor-pointer transition-transform transform hover:translate-x-[-4px] duration-300">
-          <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
-            View more
-          </span>
-          <FiArrowRight color="#00597B" />
-        </div>
-      </Link>
-    </div>
+    </section>
   );
 };
 
 const TABS = [
-  {
-    title: "About",
-    Component: undefined,
-  },
-  {
-    title: "Blog",
-    Component: Blog,
-  },
-  {
-    title: "Education",
-    Component: undefined,
-  },
-  {
-    title: "Work Experience",
-    Component: undefined,
-  },
-  {
-    title: "Contact",
-    Component: undefined,
-  },
-].map((n, idx) => ({ ...n, id: idx + 1 }));
+  { id: 1, title: "About", Component: null },
+  { id: 2, title: "Blog", Component: Blog },
+  { id: 3, title: "Education", Component: null },
+  { id: 4, title: "Work Experience", Component: null },
+  { id: 5, title: "Contact", Component: null },
+];
