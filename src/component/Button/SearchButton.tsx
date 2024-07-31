@@ -41,14 +41,14 @@ const SearchButton = ({ onSearch }: SearchButtonProps) => {
         startContent={<SearchIcon size={18} />}
         type="search"
       />
-      <Button
+      {/* <Button
         isIconOnly
         className="bg-gradient-to-br from-[#4EDFE7] to-[#00597B]"
         aria-label="Search"
         onClick={handleSearchClick}
       >
         <SearchIcon size={18} />
-      </Button>
+      </Button> */}
       {query && (
         <Button
           isIconOnly

@@ -69,7 +69,7 @@ const BlogPostFindAll = () => {
                 <h2 className="text-xl font-bold sm:w-full bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
                   {searchQuery ? (
                     <>
-                      {filteredPosts.length} Search Results: {searchQuery}
+                      {filteredPosts.length} Search Results: "{searchQuery}"
                     </>
                   ) : (
                     `Totals ${filteredPosts.length} Posts`
@@ -78,7 +78,7 @@ const BlogPostFindAll = () => {
               </div>
               <div className="flex w-full min-h-screen pb-4">
                 {isLoading ? (
-                  <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full">
+                  <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full h-fit">
                     {Array.from({ length: 3 }, (_, index) => (
                       <SkeletonBlogCard key={index} />
                     ))}
@@ -91,7 +91,7 @@ const BlogPostFindAll = () => {
                     transition={{
                       ease: "easeInOut",
                     }}
-                    className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full"
+                    className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full h-fit"
                   >
                     {filteredPosts.length > 0 ? (
                       filteredPosts.map((post) => (
