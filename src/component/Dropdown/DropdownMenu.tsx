@@ -299,9 +299,9 @@ const Blog = () => {
                 height="auto"
                 className="mb-2 h-14 w-full object-cover"
               />
-              <h3 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
+              <h1 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
                 {post.title}
-              </h3>
+              </h1>
               <p className={`text-xs ${textColorClass}`}>{post.description}</p>
             </Link>
           </div>
