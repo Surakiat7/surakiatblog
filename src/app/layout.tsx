@@ -31,10 +31,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <Head>
-        <meta
-          name="google-site-verification"
-          content="Ip9y8ba35nX-ze-tKhZawZZ68MPtGecVLGQ-AEijGZE"
-        />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
