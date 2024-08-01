@@ -6,10 +6,10 @@ import GradientButton from "@/component/Button/ActionButton";
 import { useNavigate } from "@/utils/navigation";
 
 const NotFound = () => {
-  const { MainRoute } = useNavigate();
+  const navigation = useNavigate();
 
   const handleReturnHome = async () => {
-    await MainRoute().Home();
+    await navigation.Home();
   };
 
   return (
