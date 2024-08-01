@@ -15,7 +15,7 @@ const BackButton: React.FC = () => {
       <Button
         size="md"
         className="bg-gradient-to-br from-[#4EDFE7] to-[#00597B]"
-        startContent={<IoChevronBack />}
+        startContent={<IoChevronBack data-testid="chevron-back-icon" />}
         onClick={handleBackClick}
       >
         Back

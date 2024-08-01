@@ -20,6 +20,7 @@ import {
   SiGit,
   SiDocker,
   SiMicrosoftazure,
+  SiJest,
 } from "react-icons/si";
 import { IconType } from "react-icons";
 import { RiNextjsFill } from "react-icons/ri";
@@ -147,6 +148,7 @@ const LogoItemsBottom = () => (
     <LogoItem Icon={SiDocker} label="Docker" />
     <LogoItem Icon={SiMicrosoftazure} label="Microsoft Azure" />
     <LogoItem Icon={SiMysql} label="MySQL" />
+    <LogoItem Icon={SiJest} label="Jest" />
     <LogoItem Icon={SiSwagger} label="Swagger" />
     <LogoItem Icon={SiPostman} label="Postman" />
     <LogoItem Icon={FaCloudflare} label="Cloudflare" />
