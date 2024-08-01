@@ -122,7 +122,7 @@ const BlogPost = ({ id, imgUrl, author, title, description }: PostType) => {
       : "border-zinc-600 text-zinc-50";
 
   const handleBlogClick = (id: string) => {
-    navigate.MainRoute().BlogParam(id);
+    navigate.BlogParam(id);
   };
 
   return (
