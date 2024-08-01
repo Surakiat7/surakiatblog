@@ -6,7 +6,6 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import Head from "next/head";
 import { MobileScreenProvider } from "@/contexts/MobileContext";
 import Script from "next/script";
-import GoogleAnalytics from "@/utils/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Surakiat",
