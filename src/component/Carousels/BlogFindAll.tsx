@@ -65,9 +65,7 @@ const BlogPostFindAll = () => {
                 </p>
                 <p className="hidden sm:flex font-normal text-md">
                   Visit my blog to discover tips, techniques, and various
-                  methods for frontend development! Whether you&apos;re looking
-                  to enhance your skills or stay updated with the latest in
-                  frontend technology and design.
+                  methods for frontend development!
                 </p>
               </div>
               <div className="flex w-full pt-2">
