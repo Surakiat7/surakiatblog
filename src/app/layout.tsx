@@ -33,13 +33,6 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <body>
-        <ThemeProvider>
-          <MobileScreenProvider>
-            <Providers>{children}</Providers>
-          </MobileScreenProvider>
-        </ThemeProvider>
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-S66GX9CHSJ`}
@@ -56,6 +49,13 @@ export default function RootLayout({
           `,
           }}
         />
+      </Head>
+      <body>
+        <ThemeProvider>
+          <MobileScreenProvider>
+            <Providers>{children}</Providers>
+          </MobileScreenProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
