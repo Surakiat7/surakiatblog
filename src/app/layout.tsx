@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Head from "next/head";
 import { MobileScreenProvider } from "@/contexts/MobileContext";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Surakiat",
@@ -39,6 +40,22 @@ export default function RootLayout({
             <Providers>{children}</Providers>
           </MobileScreenProvider>
         </ThemeProvider>
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-S66GX9CHSJ`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-S66GX9CHSJ');
+          `,
+          }}
+        />
       </body>
     </html>
   );
