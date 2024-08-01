@@ -45,6 +45,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
+  const [animation, setAnimation] = useState<any>(null);
 
   const logoSrc =
     theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
@@ -107,8 +108,9 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   return (
     <Navbar
       isMenuOpen={isMenuOpen}
+      disableAnimation={true}
       onMenuOpenChange={setIsMenuOpen}
-      className={`transition-colors navbar-container sticky top-0 z-50 ${
+      className={`navbar-container ${
         theme === "light"
           ? isScrolled
             ? "bg-zinc-50/30 backdrop-blur-sm text-zinc-950"
