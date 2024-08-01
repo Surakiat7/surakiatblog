@@ -47,9 +47,11 @@ const BlogPostFindAll = () => {
         <div className="w-full">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-2 w-full">
-              <div className="flex sm:flex-col sm:gap-2 w-full sm:items-start items-center justify-between">
-                <h1 className="text-4xl font-bold sm:w-full">Blog</h1>
-                <SearchButton onSearch={handleSearch} />
+              <div className="flex sm:gap-2 w-full sm:items-start items-center justify-between">
+                <h1 className="text-4xl font-bold sm:w-1/2">Blog</h1>
+                <div className="sm:w-full">
+                  <SearchButton onSearch={handleSearch} />
+                </div>
               </div>
               <div className="flex w-full items-start justify-between sm:items-center gap-8">
                 <p className="font-normal text-md sm:hidden">
@@ -62,7 +64,10 @@ const BlogPostFindAll = () => {
                   knowledge and experience.
                 </p>
                 <p className="hidden sm:flex font-normal text-md">
-                  Visit my blog to discover tips for frontend development.
+                  Visit my blog to discover tips, techniques, and various
+                  methods for frontend development! Whether you&apos;re looking
+                  to enhance your skills or stay updated with the latest in
+                  frontend technology and design.
                 </p>
               </div>
               <div className="flex w-full pt-2">

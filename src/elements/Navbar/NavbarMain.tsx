@@ -108,7 +108,6 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   return (
     <Navbar
       isMenuOpen={isMenuOpen}
-      disableAnimation={true}
       onMenuOpenChange={setIsMenuOpen}
       className={`navbar-container ${
         theme === "light"

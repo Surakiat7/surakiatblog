@@ -10,17 +10,13 @@ export const useNavigate = () => {
       await router?.back();
     },
     Home: async () => {
-      await router?.push(`/`);
+      await router?.push('/');
     },
     Blog: async () => {
-      await router?.push(`/blog`);
+      await router?.push('/blog');
     },
     BlogParam: async (id: string | number) => {
-      await router.push(`/blog/${id}`);
+      await router?.push(`/blog/${id}`);
     },
-  }
+  };
 };
-
-// export const routes = {
-//   HOME: "/",
-// };

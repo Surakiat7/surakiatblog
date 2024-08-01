@@ -170,7 +170,7 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: PostType) => {
         width="100%"
         height="auto"
         loading="lazy"
-        className="mb-3 h-[200px] w-full rounded-lg object-cover"
+        className="mb-3 !h-[200px] w-full rounded-lg object-cover"
         alt={`An image for a fake blog post titled ${title}`}
         src={imgUrl}
       />
