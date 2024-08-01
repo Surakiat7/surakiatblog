@@ -45,7 +45,7 @@ export default function RootLayout({
             <Providers>{children}</Providers>
           </MobileScreenProvider>
         </ThemeProvider>
-        {/* <Script
+        <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-S66GX9CHSJ`}
         />
@@ -60,8 +60,7 @@ export default function RootLayout({
             gtag('config', 'G-S66GX9CHSJ');
           `,
           }}
-        /> */}
-        <GoogleAnalytics GA_MEASUREMENT_ID="G-S66GX9CHSJ" />
+        />
       </body>
     </html>
   );
