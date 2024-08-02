@@ -35,6 +35,11 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
   scrollToAbout,
 }) => {
   const { theme, setTheme } = useTheme();
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+
   return (
     <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 sm:py-6 py-32">
       <motion.div
@@ -51,9 +56,7 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
         initial={{ y: 25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.25, delay: 0.25, ease: "easeInOut" }}
-        className={`pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${
-          theme === "dark" ? "text-white" : "text-slate-800"
-        }`}
+        className={`pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${TitleLinearColor}`}
       >
         Surakiat Tablakorn
       </motion.h1>

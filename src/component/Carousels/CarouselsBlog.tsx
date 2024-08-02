@@ -30,7 +30,10 @@ const BlogPostCarousel = () => {
   const bgButtonColorClass =
     theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
   const iconColor = theme === "light" ? "#09090b" : "#fafafa";
-
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -64,12 +67,13 @@ const BlogPostCarousel = () => {
       <div className="relative overflow-hidden">
         <div className="w-full">
           <div className="flex pt-4 items-center justify-between">
-            <div className="flex flex-col gap-4 sm:gap-2 w-full px-12 sm:px-6 pt-12 sm:pt-6">
-              <div className="flex w-full items-center justify-between">
-                <h2 className="text-4xl font-bold sm:w-full">Blog</h2>
-                {/* <SearchButton /> */}
-              </div>
-              <div className="flex w-full items-start justify-between sm:items-center gap-8 pb-4 sm:pb-0">
+            <div className="flex flex-col gap-2 sm:gap-2 w-full px-12 sm:px-6 pt-12 sm:pt-6">
+                <h2
+                  className={`text-4xl py-2 font-bold h-full sm:w-full ${TitleLinearColor}`}
+                >
+                  Blog
+                </h2>
+              <div className="flex w-full items-start justify-between sm:items-start gap-8 sm:gap-2 pb-4 sm:pb-0">
                 <p className="font-normal text-md sm:hidden">
                   Visit my blog to discover tips, techniques, and various
                   methods for frontend development! Whether you&apos;re looking

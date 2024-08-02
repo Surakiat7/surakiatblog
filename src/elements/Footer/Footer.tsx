@@ -26,6 +26,10 @@ const Footer = () => {
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
   const socialColor = theme === "light" ? "#09090b" : "#fafafa";
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
 
   return (
     <main className={`px-8 py-8 ${bgColorClass} w-full`}>
@@ -41,7 +45,7 @@ const Footer = () => {
               loading="lazy"
               className="object-cover w-[40px] h-[40px]"
             />
-            <p className={`font-bold sm:hidden ${textColorClass}`}>SURAKIAT</p>
+            <p className={`font-bold sm:hidden ${TitleLinearColor}`}>SURAKIAT</p>
           </div>
           <div
             className={`flex gap-2 border-l ${borderColorClass} items-center`}
@@ -98,7 +102,7 @@ const Footer = () => {
       <div
         className={`flex w-full sm:text-center sm:justify-center border-t ${borderColorClass} pt-4`}
       >
-        <p className={`text-sm sm:text-xs sm:text-center ${textColorClass}`}>
+        <p className={`text-sm sm:text-xs sm:text-center ${TitleLinearColor}`}>
           © Copyright 2024 Surakiat.Dev. All rights reserved.
         </p>
       </div>

@@ -83,7 +83,10 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     theme === "light"
       ? "bg-zinc-100 text-zinc-950"
       : "bg-zinc-950 text-zinc-50";
-
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
   const borderColorClass =
     theme === "light" ? "border-zinc-300" : "border-zinc-700";
 
@@ -116,7 +119,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
         />
         <div className="flex flex-col gap-2">
           <h1
-            className={`text-4xl sm:text-xl font-bold leading-tight ${textColorClass}`}
+            className={`text-4xl sm:text-xl font-bold leading-tight ${TitleLinearColor}`}
           >
             Hi, I&apos;m JJ. Surakiat Tablakorn{" "}
             <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
@@ -124,7 +127,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
             </span>
           </h1>
           <div
-            className="flex items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300"
+            className={`flex items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300 ${TitleLinearColor}`}
             onClick={handleContactClick}
           >
             <span className={`${textColorClass}`}>Contact me</span>

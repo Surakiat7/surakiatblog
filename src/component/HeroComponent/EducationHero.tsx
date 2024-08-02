@@ -27,11 +27,17 @@ const Education: React.FC = () => {
   const { theme } = useTheme();
   const bgColorClass =
     theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50";
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
       <div className="w-full sm:px-6 flex flex-col items-center">
-        <h1 className="text-center font-bold text-4xl md:text-6xl max-w-xl">
+        <h1
+          className={`text-center font-bold text-4xl md:text-6xl max-w-xl ${TitleLinearColor}`}
+        >
           Education
         </h1>
         <p className="text-center font-normal text-md max-w-2xl pt-4">
