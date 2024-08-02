@@ -98,7 +98,7 @@ const BlogPostByID: React.FC<Props> = () => {
                       href="https://www.linkedin.com/in/surakiat000/"
                       size="sm"
                       isExternal
-                      className={`${TitleLinearColor} text-xl`}
+                      className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text font-medium text-base"
                     >
                       @Surakiat
                     </Link>

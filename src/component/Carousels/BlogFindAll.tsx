@@ -51,7 +51,7 @@ const BlogPostFindAll = () => {
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-2 w-full">
               <div className="flex sm:gap-2 w-full sm:items-start items-center justify-between">
-                <h1 className={`text-4xl font-bold sm:w-1/2 ${TitleLinearColor}`}>Blog</h1>
+                <h1 className={`text-4xl py-2 font-bold sm:w-1/2 ${TitleLinearColor}`}>Blog</h1>
                 <div className="sm:w-full">
                   <SearchButton onSearch={handleSearch} />
                 </div>
