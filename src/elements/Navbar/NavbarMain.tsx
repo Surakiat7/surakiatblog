@@ -138,7 +138,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden ${TitleLinearColor}`}>Surakiat</p>
+          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>Surakiat</p>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="sm:hidden flex gap-4" justify="center">
