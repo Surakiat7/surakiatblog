@@ -13,9 +13,7 @@ const nextConfig = {
   },
   images: {
     domains: [
-      "cms-service.xn--42cmi5cav0akb2kza7ech6u.com",
-      "cms-service.พระครูบาบุญชุ่ม.com",
-      "i1.ytimg.com",
+      "surakiat.dev",
     ],
   },
 };
