@@ -135,9 +135,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden ${textColorClass}`}>
-            Surakiat
-          </p>
+          <p className={`font-bold sm:hidden ${textColorClass}`}>Surakiat</p>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="sm:hidden flex gap-4" justify="center">
@@ -164,25 +162,31 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto flex flex-col`}
       >
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem className="w-full" key={`${item.name}-${index}`}>
-            <div className="flex flex-col items-start w-full gap-2">
-              <div
-                className="flex w-full items-center gap-4"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleMenuItemClick(item.ref);
-                }}
-              >
-                {item.icon}
-                <p className={`w-full text-md font-normal ${textColorClass}`}>
-                  {item.name}
-                </p>
-              </div>
-              <Divider style={{ backgroundColor: dividerColor }} />
-            </div>
-          </NavbarMenuItem>
-        ))}
+        <ul className="list-none p-0 m-0">
+          {menuItems.map((item, index) => (
+            <li key={`${item.name}-${index}`} className="w-full">
+              <NavbarMenuItem className="w-full">
+                <div className="flex flex-col items-start w-full gap-2">
+                  <div
+                    className="flex w-full items-center gap-4"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleMenuItemClick(item.ref);
+                    }}
+                  >
+                    {item.icon}
+                    <p
+                      className={`w-full text-md font-normal ${textColorClass}`}
+                    >
+                      {item.name}
+                    </p>
+                  </div>
+                  <Divider style={{ backgroundColor: dividerColor }} />
+                </div>
+              </NavbarMenuItem>
+            </li>
+          ))}
+        </ul>
         <div className="flex-grow" />
         <NavbarMenuItem>
           <Divider style={{ backgroundColor: dividerColor }} />
