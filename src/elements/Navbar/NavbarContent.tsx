@@ -69,21 +69,23 @@ const NavbarElementContent: React.FC = () => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <nav className="flex items-center gap-2">
-          <Image
-            src={logoSrc}
-            alt="Surakiat-Logo"
-            width={40}
-            height={40}
-            priority
-            className="cursor-pointer"
-            onClick={() => router.push("/")}
-          />
-          <h1
-            className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
-          >
-            Surakiat
-          </h1>
+        <nav aria-label="Main navigation">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src={logoSrc}
+                alt="Surakiat-Logo"
+                width={40}
+                height={40}
+                priority
+              />
+              <h1
+                className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
+              >
+                Surakiat
+              </h1>
+            </Link>
+          </div>
         </nav>
       </NavbarContent>
 
@@ -107,7 +109,10 @@ const NavbarElementContent: React.FC = () => {
             {menuItems.map((item, index) => (
               <li key={`${item.name}-${index}`} className="w-full">
                 <NavbarMenuItem className="w-full">
-                  <Link href="/" className="flex w-full items-center pb-3 gap-4">
+                  <Link
+                    href="/"
+                    className="flex w-full items-center pb-3 gap-4"
+                  >
                     <div className="w-fit">{item.icon}</div>
                     <span
                       className={`w-full text-md font-normal ${textColorClass}`}

@@ -129,21 +129,23 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <nav className="flex items-center gap-2">
-          <Image
-            src={logoSrc}
-            alt="Surakiat-Logo"
-            width={40}
-            height={40}
-            priority
-            className="cursor-pointer"
-            onClick={onLogoClick}
-          />
-          <h1
-            className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
-          >
-            Surakiat
-          </h1>
+        <nav aria-label="Main navigation">
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src={logoSrc}
+                alt="Surakiat-Logo"
+                width={40}
+                height={40}
+                priority
+              />
+              <h1
+                className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
+              >
+                Surakiat
+              </h1>
+            </Link>
+          </div>
         </nav>
       </NavbarContent>
       <div className="sm:hidden flex">
