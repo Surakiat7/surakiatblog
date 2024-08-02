@@ -128,8 +128,8 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
-            width="0"
-            height="0"
+            width={40}
+            height={40}
             sizes="100vw"
             loading="lazy"
             className="object-cover w-[40px] h-[40px] cursor-pointer"

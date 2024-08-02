@@ -9,6 +9,7 @@ import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
 import { PiEyeglassesDuotone } from "react-icons/pi";
 import { Post, posts } from "../blogpostdata";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useMobileScreen } from "@/contexts/MobileContext";
 
 type Props = {};
 
@@ -16,6 +17,10 @@ const BlogPostByID: React.FC<Props> = () => {
   const params = useParams();
   const id = params.id as string;
   const postId = parseInt(id);
+  const { mobileScreen } = useMobileScreen();
+
+  const coverImageHeight = mobileScreen ? 200 : 600;
+  const contentImageHeight = mobileScreen ? 140 : 400;
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -67,10 +72,12 @@ const BlogPostByID: React.FC<Props> = () => {
                 isZoomed
                 width="100%"
                 radius="lg"
-                height="auto"
-                className="object-contain w-full h-auto"
+                style={{ height: coverImageHeight, width: "100%" }}
+                height={coverImageHeight}
+                className="object-cover w-full h-fit"
                 src={post.imgUrl}
                 alt={`${post.title} image`}
+                loading="lazy"
               />
               <h1 className="text-4xl sm:text-xl font-bold">{post.title}</h1>
               <Divider />
@@ -108,12 +115,13 @@ const BlogPostByID: React.FC<Props> = () => {
             {post.content.map((section, index) => (
               <div key={index} className="flex w-full gap-2 flex-col my-8">
                 {section.imagesrc && (
-                  <div className="px-20 w-full">
+                  <div className="w-full">
                     <Image
                       width="100%"
                       radius="lg"
-                      height="auto"
-                      className="object-contain w-full h-[500px]"
+                      style={{ height: contentImageHeight, width: "100%" }}
+                      height={contentImageHeight}
+                      className="object-cover w-full h-fit"
                       src={section.imagesrc}
                       alt={section.subtitle}
                     />
