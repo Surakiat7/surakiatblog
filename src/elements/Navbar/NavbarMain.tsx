@@ -122,12 +122,12 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           : "bg-zinc-950 text-zinc-50"
       }`}
     >
-      <NavbarContent>
+      <NavbarContent className="flex items-center gap-2" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <NavbarBrand className="flex items-center gap-2">
+        <NavbarBrand className="flex items-center gap-4">
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
@@ -138,9 +138,14 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+          {/* <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
             Surakiat
-          </p>
+          </p> */}
+          <NavbarItem>
+            <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+              Surakiat
+            </p>
+          </NavbarItem>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="sm:hidden flex" justify="center">

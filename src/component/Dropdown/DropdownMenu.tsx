@@ -25,7 +25,7 @@ export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
   contactRef,
 }) => {
   return (
-    <div className="flex w-full justify-center">
+    <ul className="flex w-full justify-center">
       <Tabs
         onScrollTo={onScrollTo}
         aboutRef={aboutRef}
@@ -34,7 +34,7 @@ export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
         exprienceRef={exprienceRef}
         contactRef={contactRef}
       />
-    </div>
+    </ul>
   );
 };
 
