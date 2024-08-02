@@ -30,6 +30,10 @@ const BlogPostByID: React.FC<Props> = () => {
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,7 +52,7 @@ const BlogPostByID: React.FC<Props> = () => {
   }
 
   if (!post) {
-    return <p>Post not found</p>;
+    return <p className={`${TitleLinearColor} text-xl`}>Post not found</p>;
   }
 
   const breadcrumbsItems = [
@@ -79,7 +83,11 @@ const BlogPostByID: React.FC<Props> = () => {
                 alt={`${post.title} image`}
                 loading="lazy"
               />
-              <h1 className="text-4xl sm:text-xl font-bold">{post.title}</h1>
+              <h1
+                className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}
+              >
+                {post.title}
+              </h1>
               <Divider />
               <div className="flex sm:flex-col sm:gap-4 sm:justify-start w-full justify-between items-center">
                 <User
@@ -90,7 +98,7 @@ const BlogPostByID: React.FC<Props> = () => {
                       href="https://www.linkedin.com/in/surakiat000/"
                       size="sm"
                       isExternal
-                      color="primary"
+                      className={`${TitleLinearColor} text-xl`}
                     >
                       @Surakiat
                     </Link>

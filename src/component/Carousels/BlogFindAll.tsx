@@ -19,6 +19,10 @@ const BlogPostFindAll = () => {
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
 
   useEffect(() => {
     if (searchQuery === "") {
@@ -47,7 +51,7 @@ const BlogPostFindAll = () => {
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-2 w-full">
               <div className="flex sm:gap-2 w-full sm:items-start items-center justify-between">
-                <h1 className="text-4xl font-bold sm:w-1/2">Blog</h1>
+                <h1 className={`text-4xl font-bold sm:w-1/2 ${TitleLinearColor}`}>Blog</h1>
                 <div className="sm:w-full">
                   <SearchButton onSearch={handleSearch} />
                 </div>
