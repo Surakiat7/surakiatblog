@@ -81,8 +81,7 @@ const NavbarElementContent: React.FC = ({}) => {
             width={40}
             height={40}
             priority
-            sizes="100vw"
-            className="object-cover w-[40px] h-[40px] cursor-pointer"
+            className="cursor-pointer"
             onClick={() => router.push("/")}
           />
           <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
