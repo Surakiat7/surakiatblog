@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
-import SearchButton from "../Button/SearchButton";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Image } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";

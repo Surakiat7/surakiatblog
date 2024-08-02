@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import useMeasure from "react-use-measure";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Image, Button, Spinner } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
