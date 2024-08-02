@@ -1,24 +1,12 @@
 "use client";
 
 import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
-export default function GoogleAnalytics({
-  GA_MEASUREMENT_ID,
-}: {
+interface GoogleAnalyticsProps {
   GA_MEASUREMENT_ID: string;
-}) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+}
 
-  useEffect(() => {
-    const url = pathname + searchParams.toString();
-    (window as any).gtag("config", GA_MEASUREMENT_ID, {
-      page_path: url,
-    });
-  }, [pathname, searchParams, GA_MEASUREMENT_ID]);
-
+const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({ GA_MEASUREMENT_ID }) => {
   return (
     <>
       <Script
@@ -39,4 +27,6 @@ export default function GoogleAnalytics({
       />
     </>
   );
-}
+};
+
+export default GoogleAnalytics;
