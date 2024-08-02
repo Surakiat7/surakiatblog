@@ -18,7 +18,7 @@ const NextJSLogo: React.FC = () => {
       height={70}
       loading="lazy"
       className="object-cover"
-      layout="intrinsic"
+      layout="fixed"
     />
   );
 };

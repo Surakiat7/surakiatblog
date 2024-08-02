@@ -76,7 +76,7 @@ const Screen: React.FC = () => {
           width={70}
           height={70}
           sizes="100vw"
-          layout="intrinsic"
+          layout="fixed"
           className="object-cover w-[70px] h-[70px]"
         />
       </div>

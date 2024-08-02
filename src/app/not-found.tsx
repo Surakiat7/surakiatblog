@@ -20,7 +20,7 @@ const NotFound = () => {
         alt="404 Not Found Image"
         width={300}
         height={300}
-        layout="intrinsic"
+        layout="fixed"
         className="object-contain"
       />
       <h1 className="text-3xl font-bold mt-4">Page Not Found</h1>
