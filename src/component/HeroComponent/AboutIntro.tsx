@@ -4,7 +4,8 @@ import React from "react";
 import { MotionProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight } from "react-icons/fi";
-import Image from "next/image";
+import { Image } from "@nextui-org/image";
+import Link from "next/link";
 import { useTheme } from "@/contexts/ThemeContext";
 
 interface AboutHeroProps {
@@ -107,10 +108,11 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
+          isZoomed
           className="object-cover w-[100px] h-[100px]"
           src="/img/me.jpg"
           alt="Profile me"
-          priority
+          loading="lazy"
           width={100}
           height={100}
           data-loaded="true"

@@ -122,12 +122,12 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           : "bg-zinc-950 text-zinc-50"
       }`}
     >
-      <NavbarContent className="flex items-center gap-2" justify="start">
+      <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <NavbarBrand className="flex items-center gap-4">
+        <NavbarBrand>
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
@@ -141,14 +141,14 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           {/* <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
             Surakiat
           </p> */}
-          <NavbarItem>
+          {/* <NavbarItem>
             <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
               Surakiat
             </p>
-          </NavbarItem>
+          </NavbarItem> */}
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent className="sm:hidden flex" justify="center">
+      <div className="sm:hidden flex">
         <ShiftingDropDownMenu
           onScrollTo={onScrollTo}
           aboutRef={aboutRef}
@@ -157,7 +157,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           exprienceRef={exprienceRef}
           contactRef={contactRef}
         />
-      </NavbarContent>
+      </div>
       <NavbarContent justify="end">
         <NavbarItem>
           <ToggleSwitchTheme />
