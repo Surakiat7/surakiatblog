@@ -134,14 +134,16 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             width={40}
             height={40}
             sizes="100vw"
-            loading="lazy"
+            priority
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>Surakiat</p>
+          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+            Surakiat
+          </p>
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent className="sm:hidden flex gap-4" justify="center">
+      <NavbarContent className="sm:hidden flex" justify="center">
         <ShiftingDropDownMenu
           onScrollTo={onScrollTo}
           aboutRef={aboutRef}

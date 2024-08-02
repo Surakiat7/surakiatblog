@@ -78,8 +78,8 @@ const NavbarElementContent: React.FC = ({}) => {
             alt="Surakiat-Logo"
             width={40}
             height={40}
+            priority
             sizes="100vw"
-            loading="lazy"
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={() => router.push("/")}
           />

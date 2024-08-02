@@ -62,9 +62,9 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
   };
 
   return (
-    <div
+    <li
       onMouseLeave={() => handleSetSelected(null)}
-      className="relative flex h-fit gap-2"
+      className="relative flex h-fit"
     >
       {TABS.map((t) => {
         return (
@@ -88,7 +88,7 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
       <AnimatePresence>
         {selected && hasComponent && <Content dir={dir} selected={selected} />}
       </AnimatePresence>
-    </div>
+    </li>
   );
 };
 
