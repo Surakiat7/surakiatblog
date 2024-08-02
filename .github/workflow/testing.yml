@@ -1,4 +1,4 @@
-name: Units Tests
+name: CICD Unit Test
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21.4.0'
+          node-version: "18"
 
       - name: Install dependencies
         run: npm install
