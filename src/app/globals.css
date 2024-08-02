@@ -26,10 +26,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.anuphan {
-  font-family: var(--font-anuphan_init);
-}
-
 .poppins {
   font-family: var(--font-poppins_init);
 }

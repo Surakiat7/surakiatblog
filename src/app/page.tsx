@@ -11,7 +11,6 @@ import { useTheme } from "@/contexts/ThemeContext";
 import Education from "@/component/HeroComponent/EducationHero";
 import WorkExprience from "@/component/HeroComponent/WorkExprienceHero";
 import Contact from "@/component/HeroComponent/ContactHero";
-import BackButton from "@/component/Button/BackButton";
 
 export default function Home() {
   const { theme } = useTheme();
