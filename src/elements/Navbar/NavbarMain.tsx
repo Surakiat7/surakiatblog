@@ -45,6 +45,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
+  const [animation, setAnimation] = useState<any>(null);
 
   const logoSrc =
     theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
@@ -53,16 +54,40 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
 
   const menuItems = [
-    { name: "About", ref: aboutRef, icon: <TbUserSquareRounded size={26} color={iconColor} /> },
-    { name: "Blog", ref: blogRef, icon: <RiBloggerLine size={28} color={iconColor} /> },
-    { name: "Education", ref: educationRef, icon: <PiGraduationCap size={26} color={iconColor} /> },
-    { name: "Work Experience", ref: exprienceRef, icon: <IoBriefcaseOutline size={26} color={iconColor} /> },
-    { name: "Contact", ref: contactRef, icon: <BsEnvelopePaper size={26} color={iconColor} /> },
+    {
+      name: "About",
+      ref: aboutRef,
+      icon: <TbUserSquareRounded size={26} color={iconColor} />,
+    },
+    {
+      name: "Blog",
+      ref: blogRef,
+      icon: <RiBloggerLine size={28} color={iconColor} />,
+    },
+    {
+      name: "Education",
+      ref: educationRef,
+      icon: <PiGraduationCap size={26} color={iconColor} />,
+    },
+    {
+      name: "Work Experience",
+      ref: exprienceRef,
+      icon: <IoBriefcaseOutline size={26} color={iconColor} />,
+    },
+    {
+      name: "Contact",
+      ref: contactRef,
+      icon: <BsEnvelopePaper size={26} color={iconColor} />,
+    },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -95,7 +120,10 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
       }`}
     >
       <NavbarContent>
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="hidden sm:flex" />
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="hidden sm:flex"
+        />
         <NavbarBrand className="flex items-center gap-2">
           <Image
             src={logoSrc}
@@ -147,7 +175,9 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
                     }}
                   >
                     {item.icon}
-                    <p className={`w-full text-md font-normal ${textColorClass}`}>
+                    <p
+                      className={`w-full text-md font-normal ${textColorClass}`}
+                    >
                       {item.name}
                     </p>
                   </div>
