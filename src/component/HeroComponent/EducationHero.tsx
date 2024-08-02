@@ -11,7 +11,7 @@ const educationData = [
     duration: "2013 - 2019",
     description:
       "Basic studies in science and mathematics, which drive interest in technology and problem-solving.",
-    logo: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/logo/kc-logo.png`,
+    logo: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/logo/kc-logo.png`,
   },
   {
     institution: "Ubon Ratchathani University",
@@ -19,7 +19,7 @@ const educationData = [
     duration: "2019 - 2023",
     description:
       "Acquired comprehensive knowledge in computer science, with a focus on web development and software design.",
-    logo: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/logo/ubu-logo.png`,
+    logo: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/logo/ubu-logo.png`,
   },
 ];
 

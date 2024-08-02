@@ -57,7 +57,9 @@ const HeaderBar: React.FC = () => {
 const Screen: React.FC = () => {
   const { theme } = useTheme();
   const logoSrc =
-    theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
+    theme === "light"
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.png`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.png`;
   const ColorClass =
     theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50";
   return (
@@ -74,7 +76,7 @@ const Screen: React.FC = () => {
           width={70}
           height={70}
           sizes="100vw"
-          loading="lazy"
+          layout="intrinsic"
           className="object-cover w-[70px] h-[70px]"
         />
       </div>

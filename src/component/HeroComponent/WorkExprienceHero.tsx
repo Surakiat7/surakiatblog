@@ -6,7 +6,7 @@ import { LuDot } from "react-icons/lu";
 
 const workExperienceData = [
   {
-    imageSrc: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/logo/pfc-logo.png`,
+    imageSrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/logo/pfc-logo.png`,
     companyName: "Perfect Computer Solutions Co., Ltd.",
     period: "July 24, 2023 - Present",
     position: "Frontend Developer (Working hybrid in Bangkok)",
@@ -26,7 +26,7 @@ const workExperienceData = [
     ],
   },
   {
-    imageSrc: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/logo/amarin-logo.png`,
+    imageSrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/logo/amarin-logo.png`,
     companyName: "Amarin Corporations Public Company Limited.",
     period: "April 20 - September 20, 2023",
     position:

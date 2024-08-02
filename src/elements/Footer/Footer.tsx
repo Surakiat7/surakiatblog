@@ -16,8 +16,9 @@ const Footer = () => {
   const { theme } = useTheme();
 
   const logoSrc =
-    theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
-
+    theme === "light"
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.png`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.png`;
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
   const borderColorClass =
     theme === "light" ? "border-zinc-300" : "border-zinc-700";
@@ -45,7 +46,9 @@ const Footer = () => {
               loading="lazy"
               className="object-cover w-[40px] h-[40px]"
             />
-            <p className={`font-bold sm:hidden ${TitleLinearColor}`}>SURAKIAT</p>
+            <p className={`font-bold sm:hidden ${TitleLinearColor}`}>
+              SURAKIAT
+            </p>
           </div>
           <div
             className={`flex gap-2 border-l ${borderColorClass} items-center`}
