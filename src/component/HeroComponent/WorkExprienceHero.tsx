@@ -17,6 +17,7 @@ const workExperienceData = [
       "Perfect Meeting (Next.js): Designed UX/UI and developed the frontend using Next.js for an internal meeting room management system. The system includes admin management of rooms and user booking with notifications via socket.io and Line for booking, cancellation, and modifications. The system supports different user permissions.",
       "Echo Looklak Admin (Next.js): Designed UX/UI and developed the frontend using Next.js for managing Echo games equipment maintenance. The website serves over 400 employees and includes statistics and evaluation data for all Echo branches.",
       "Echo Incident (Next.js): Designed UX/UI and developed the frontend using Next.js for a case notification system for management employees. The system sends notifications via the organization's Line bot and within the system, supporting different user permissions.",
+      "Echo Karaoke Website/CMS (Next.js): Developed a landing page for Echo Karaoke, featuring a comprehensive music catalog for song searches. The system includes a CMS for managing songs, which allows users to upload music using an Excel template, add or remove songs, and view search data statistics.",
       "GMB Solution (Next.js): Redesigned UX/UI and developed the frontend using Figma, and Next.js.",
       "Avenger Building Technology (Next.js): Developed the landing page using Figma, and Next.js.",
       "Avenger Checker (React): Designed UX/UI and developed the frontend using Figma, and React.",
