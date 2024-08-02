@@ -191,7 +191,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
         <NavbarMenuItem>
           <Divider style={{ backgroundColor: dividerColor }} />
           <div className={`flex w-full sm:text-center justify-center py-3`}>
-            <p className={`text-xs ${textColorClass}`}>
+            <p className={`text-sm sm:text-xs ${textColorClass}`}>
               © Copyright 2024 Surakiat. All rights reserved.
             </p>
           </div>
