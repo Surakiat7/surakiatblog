@@ -44,9 +44,11 @@ const WorkExperience = () => {
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
-  const textColorClass = theme === "light" ? "text-zinc-600" : "text-zinc-500";
+  const textColorClass = theme === "light" ? "text-zinc-600" : "text-white";
+  const exprienceTextColorClass =
+    theme === "light" ? "text-zinc-600" : "text-white";
   const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
-  const iconColor = theme === "light" ? "#27272a" : "#4b5563";
+  const iconColor = theme === "light" ? "#27272a" : "#ffff";
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
@@ -91,7 +93,9 @@ const WorkExperience = () => {
                     {experience.period}
                   </h2>
                 </div>
-                <h2 className="font-medium text-zinc-400 text-md sm:font-normal">
+                <h2
+                  className={`font-medium text-md sm:font-normal ${textColorClass}`}
+                >
                   {experience.position}
                 </h2>
               </div>
@@ -100,12 +104,12 @@ const WorkExperience = () => {
               {experience.details.map((detail, detailIndex) => (
                 <li
                   key={detailIndex}
-                  className={`${textColorClass} flex items-center pt-2 font-normal text-base sm:text-sm`}
+                  className={`${exprienceTextColorClass} flex items-center pt-2 font-normal text-base sm:text-sm`}
                 >
                   <div className="flex-shrink-0 w-6 h-6">
                     <LuDot color={iconColor} className="w-full h-full" />
                   </div>
-                  <span className="ml-1">{detail}</span>
+                  <span className="ml-1 text-normal text-sm">{detail}</span>
                 </li>
               ))}
             </ul>
