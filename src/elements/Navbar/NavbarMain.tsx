@@ -139,9 +139,13 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
-            Surakiat
-          </p>
+          <ul className="flex items-center gap-2 list-none p-0 m-0">
+            <li
+              className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
+            >
+              Surakiat
+            </li>
+          </ul>
         </div>
       </NavbarContent>
       <div className="sm:hidden flex">

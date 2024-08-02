@@ -84,9 +84,13 @@ const NavbarElementContent: React.FC = ({}) => {
             className="cursor-pointer"
             onClick={() => router.push("/")}
           />
-          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
-            Surakiat
-          </p>
+          <ul className="flex items-center gap-2 list-none p-0 m-0">
+            <li
+              className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
+            >
+              Surakiat
+            </li>
+          </ul>
         </div>
       </NavbarContent>
       {/* <NavbarContent className="sm:hidden flex gap-4" justify="center">
