@@ -26,14 +26,16 @@ export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
 }) => {
   return (
     <div className="flex w-full justify-center">
-      <Tabs
-        onScrollTo={onScrollTo}
-        aboutRef={aboutRef}
-        blogRef={blogRef}
-        educationRef={educationRef}
-        exprienceRef={exprienceRef}
-        contactRef={contactRef}
-      />
+      <ul className="list-none p-0 m-0 flex gap-4">
+        <Tabs
+          onScrollTo={onScrollTo}
+          aboutRef={aboutRef}
+          blogRef={blogRef}
+          educationRef={educationRef}
+          exprienceRef={exprienceRef}
+          contactRef={contactRef}
+        />
+      </ul>
     </div>
   );
 };
@@ -62,33 +64,35 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
   };
 
   return (
-    <li
-      onMouseLeave={() => handleSetSelected(null)}
-      className="relative flex h-fit"
-    >
+    <>
       {TABS.map((t) => {
         return (
-          <Tab
+          <li
             key={t.id}
-            selected={selected}
-            handleSetSelected={handleSetSelected}
-            tab={t.id}
-            onScrollTo={onScrollTo}
-            aboutRef={aboutRef}
-            blogRef={blogRef}
-            educationRef={educationRef}
-            exprienceRef={exprienceRef}
-            contactRef={contactRef}
+            onMouseLeave={() => handleSetSelected(null)}
+            className="relative flex h-fit"
           >
-            {t.title}
-          </Tab>
+            <Tab
+              selected={selected}
+              handleSetSelected={handleSetSelected}
+              tab={t.id}
+              onScrollTo={onScrollTo}
+              aboutRef={aboutRef}
+              blogRef={blogRef}
+              educationRef={educationRef}
+              exprienceRef={exprienceRef}
+              contactRef={contactRef}
+            >
+              {t.title}
+            </Tab>
+          </li>
         );
       })}
 
       <AnimatePresence>
         {selected && hasComponent && <Content dir={dir} selected={selected} />}
       </AnimatePresence>
-    </li>
+    </>
   );
 };
 
