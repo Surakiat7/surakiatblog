@@ -106,11 +106,13 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
           isZoomed
-          width="100%"
-          height="auto"
           className="object-cover w-[100px] h-[100px]"
           src="/img/me.jpg"
           alt="Profile me"
+          loading="lazy"
+          width={100}
+          height={100}
+          data-loaded="true"
         />
         <div className="flex flex-col gap-2">
           <h1

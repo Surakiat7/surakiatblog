@@ -297,7 +297,7 @@ const Blog = () => {
                 loading="lazy"
                 width="100%"
                 height="auto"
-                className="mb-2 h-14 w-full object-cover"
+                className="mb-2 !h-14 w-full object-cover"
               />
               <h1 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
                 {post.title}

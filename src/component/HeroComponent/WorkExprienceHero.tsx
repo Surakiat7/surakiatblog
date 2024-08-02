@@ -72,12 +72,14 @@ const WorkExperience = () => {
             <div className="flex sm:flex-col w-full gap-4 items-center">
               <div className="flex h-auto rounded-xl">
                 <Image
+                  width={80}
+                  height={80}
                   isZoomed
-                  width="100%"
-                  height="auto"
                   className="object-cover w-[80px] h-[80px]"
                   src={experience.imageSrc}
                   alt={`${experience.companyName} logo`}
+                  data-loaded="true"
+                  loading="lazy"
                 />
               </div>
               <div className="flex flex-col w-full">
