@@ -47,7 +47,9 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   const { theme } = useTheme();
 
   const logoSrc =
-    theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
+    theme === "light"
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.png`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.png`;
   const iconColor = theme === "light" ? "#09090b" : "#fafafa";
   const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";

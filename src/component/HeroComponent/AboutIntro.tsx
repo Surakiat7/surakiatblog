@@ -104,13 +104,15 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     }
   };
 
+  const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.jpg`;
+
   return (
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
           isZoomed
           className="object-cover w-[100px] h-[100px]"
-          src="/img/me.jpg"
+          src={profileImageUrl}
           alt="Profile me"
           loading="lazy"
           width={100}

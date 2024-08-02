@@ -6,7 +6,9 @@ const NextJSLogo: React.FC = () => {
   const { theme } = useTheme();
 
   const logoSrc =
-    theme === "light" ? "/icon/Nextjs-Logo-Black.png" : "/icon/Nextjs-Logo-White.png";
+    theme === "light"
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-Black.png`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-White.png`;
 
   return (
     <Image
@@ -16,6 +18,7 @@ const NextJSLogo: React.FC = () => {
       height={70}
       loading="lazy"
       className="object-cover"
+      layout="intrinsic"
     />
   );
 };

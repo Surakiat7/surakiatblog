@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://surakiat.vercel.app/Logo-openGraph.png",
+        url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.png`,
         width: 1200,
         height: 630,
-        alt: "Surakiat OpenGraph images",
+        alt: "Surakiat OpenGraph Images",
       },
     ],
   },

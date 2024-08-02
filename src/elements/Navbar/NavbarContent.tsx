@@ -23,11 +23,13 @@ const NavbarElementContent: React.FC = ({}) => {
   const router = useRouter();
 
   const logoSrc =
-    theme === "light" ? "/Surakiat-DarkBG.png" : "/Surakiat-WhiteBG.png";
+    theme === "light"
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.png`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.png`;
   const iconColor = theme === "light" ? "#09090b" : "#fafafa";
   const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
-    const TitleLinearColor =
+  const TitleLinearColor =
     theme === "dark"
       ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
       : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
@@ -83,7 +85,9 @@ const NavbarElementContent: React.FC = ({}) => {
             className="object-cover w-[40px] h-[40px] cursor-pointer"
             onClick={() => router.push("/")}
           />
-          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>Surakiat</p>
+          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+            Surakiat
+          </p>
         </NavbarBrand>
       </NavbarContent>
       {/* <NavbarContent className="sm:hidden flex gap-4" justify="center">
