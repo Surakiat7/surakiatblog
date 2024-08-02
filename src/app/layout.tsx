@@ -4,7 +4,7 @@ import { Providers } from "./provider";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { MobileScreenProvider } from "@/contexts/MobileContext";
-import GoogleAnalytics from "../../third-parties/GoogleTagManager";
+import Script from "next/script";
 import Head from "next/head";
 import { poppins } from "./fonts";
 
@@ -29,18 +29,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
   return (
     <html lang="en" className={`${poppins.className} dark`}>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-          rel="stylesheet"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body>
         <ThemeProvider>
@@ -48,9 +41,22 @@ export default function RootLayout({
             <Providers>{children}</Providers>
           </MobileScreenProvider>
         </ThemeProvider>
-        {GA_MEASUREMENT_ID && (
-          <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
-        )}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-S66GX9CHSJ`}
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-S66GX9CHSJ');
+          `,
+          }}
+        />
       </body>
     </html>
   );
