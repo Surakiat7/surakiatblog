@@ -162,7 +162,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto flex flex-col`}
       >
-        <ul className="list-none p-0 m-0">
+        <ul className="list-none p-0 m-0 flex flex-col gap-2">
           {menuItems.map((item, index) => (
             <li key={`${item.name}-${index}`} className="w-full">
               <NavbarMenuItem className="w-full">
