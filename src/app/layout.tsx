@@ -42,7 +42,8 @@ export default function RootLayout({
         </ThemeProvider>
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-S66GX9CHSJ`}
+          src="https://www.googletagmanager.com/gtag/js?id=G-S66GX9CHSJ"
+          async
         />
         <Script
           id="google-analytics"
@@ -52,7 +53,9 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-S66GX9CHSJ');
+            gtag('config', 'G-S66GX9CHSJ', {
+              page_path: window.location.pathname,
+            });
           `,
           }}
         />
