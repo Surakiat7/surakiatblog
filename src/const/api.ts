@@ -4,7 +4,7 @@
 export type ApiResponse = {
    status: number,
    success: boolean,
-   message_EN: string,
-   message_TH: string,
+   message_en: string,
+   message_eh: string,
    data: any
  }
