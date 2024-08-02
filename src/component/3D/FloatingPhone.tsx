@@ -71,8 +71,8 @@ const Screen: React.FC = () => {
         <Image
           src={logoSrc}
           alt="Surakiat-Logo"
-          width="0"
-          height="0"
+          width={70}
+          height={70}
           sizes="100vw"
           loading="lazy"
           className="object-cover w-[70px] h-[70px]"

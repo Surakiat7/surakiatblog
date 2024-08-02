@@ -49,7 +49,7 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
       <motion.div
         initial={{ y: 25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, ease: "easeInOut" }}
+        transition={{ duration: 1, ease: "easeInOut" }} // Reduced duration
         className={`relative ${
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
@@ -59,7 +59,7 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
       <motion.h1
         initial={{ y: 25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, delay: 0.25, ease: "easeInOut" }}
+        transition={{ duration: 1, delay: 0.25, ease: "easeInOut" }} // Reduced duration
         className={`pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
@@ -69,25 +69,25 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
       <motion.p
         initial={{ y: 25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, delay: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 1, delay: 0.5, ease: "easeInOut" }}
         className={`pb-8 sm:pb-4 text-center leading-relaxed sm:text-base text-lg md:leading-relaxed ${
           theme === "dark" ? "text-white" : "text-slate-600"
         }`}
       >
-        I&rsquo;m a Frontend Developer based in Bangkok, Thailand, specializing
-        in crafting exceptional web applications and everything in between. With
+        I’m a Frontend Developer based in Bangkok, Thailand, specializing in
+        crafting exceptional web applications and everything in between. With
         hands-on experience in Next.js, React, and JavaScript/TypeScript, I
         excel in creating responsive web applications and translating UI/UX
         designs into functional, user-friendly interfaces. My expertise includes
         collaborative problem-solving and finding effective solutions while
-        working directly with clients and system users. I&rsquo;m passionate
-        about delivering high-quality, scalable solutions and continuously
-        improving through direct communication and feedback.
+        working directly with clients and system users. I’m passionate about
+        delivering high-quality, scalable solutions and continuously improving
+        through direct communication and feedback.
       </motion.p>
       <motion.div
         initial={{ y: 25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, delay: 0.75, ease: "easeInOut" }}
+        transition={{ duration: 1, delay: 0.75, ease: "easeInOut" }}
         className="flex flex-col items-center gap-6 sm:flex-row"
       >
         <SplashButton

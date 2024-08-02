@@ -11,9 +11,6 @@ const ToggleSwitchTheme = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    // <div className={`grid h-[200px] place-content-center px-4 transition-colors ${theme === "light" ? "bg-white" : "bg-slate-900"}`}>
-    //   <SliderToggle selected={theme} setSelected={setTheme} />
-    // </div>
     <>
       <SliderToggle selected={theme} setSelected={setTheme} />
     </>
@@ -34,6 +31,7 @@ const SliderToggle = ({
           selected === "light" ? "text-white" : "text-slate-300"
         }`}
         onClick={() => setSelected("light")}
+        aria-label="Switch to light theme"
       >
         <FiMoon className="relative z-10 text-lg md:text-sm" />
         <span className="relative z-10">Light</span>
@@ -43,6 +41,7 @@ const SliderToggle = ({
           selected === "dark" ? "text-white" : "text-slate-800"
         }`}
         onClick={() => setSelected("dark")}
+        aria-label="Switch to dark theme"
       >
         <FiSun className="relative z-10 text-lg md:text-sm" />
         <span className="relative z-10">Dark</span>
