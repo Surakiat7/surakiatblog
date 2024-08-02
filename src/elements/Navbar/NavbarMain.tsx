@@ -129,7 +129,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <div className="flex items-center gap-2">
+        <nav className="flex items-center gap-2">
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
@@ -139,14 +139,12 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="cursor-pointer"
             onClick={onLogoClick}
           />
-          <ul className="flex items-center gap-2 list-none p-0 m-0">
-            <li
-              className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
-            >
-              Surakiat
-            </li>
-          </ul>
-        </div>
+          <h1
+            className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
+          >
+            Surakiat
+          </h1>
+        </nav>
       </NavbarContent>
       <div className="sm:hidden flex">
         <ShiftingDropDownMenu
@@ -172,40 +170,40 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto flex flex-col`}
       >
-        <ul className="list-none p-0 m-0 flex flex-col gap-2">
-          {menuItems.map((item, index) => (
-            <li key={`${item.name}-${index}`} className="w-full">
-              <NavbarMenuItem className="w-full">
-                <div className="flex flex-col items-start w-full gap-2">
-                  <div
-                    className="flex w-full items-center gap-4"
+        <nav>
+          <ul className="list-none p-0 m-0 flex flex-col gap-2">
+            {menuItems.map((item, index) => (
+              <li key={`${item.name}-${index}`} className="w-full">
+                <NavbarMenuItem className="w-full">
+                  <button
+                    className="flex w-fit items-center pb-3 gap-4"
                     onClick={(e) => {
                       e.preventDefault();
                       handleMenuItemClick(item.ref);
                     }}
                   >
-                    {item.icon}
-                    <p
+                    <div className="w-fit">{item.icon}</div>
+                    <span
                       className={`w-full text-md font-normal ${textColorClass}`}
                     >
                       {item.name}
-                    </p>
-                  </div>
+                    </span>
+                  </button>
                   <Divider style={{ backgroundColor: dividerColor }} />
-                </div>
-              </NavbarMenuItem>
-            </li>
-          ))}
-        </ul>
+                </NavbarMenuItem>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <div className="flex-grow" />
-        <NavbarMenuItem>
+        <footer>
           <Divider style={{ backgroundColor: dividerColor }} />
           <div className={`flex w-full sm:text-center justify-center py-3`}>
             <p className={`text-xs ${textColorClass}`}>
               © Copyright 2024 Surakiat. All rights reserved.
             </p>
           </div>
-        </NavbarMenuItem>
+        </footer>
       </NavbarMenu>
     </Navbar>
   );

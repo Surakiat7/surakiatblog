@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Navbar,
-  NavbarBrand,
   NavbarContent,
   NavbarItem,
   NavbarMenuToggle,
@@ -16,7 +15,7 @@ import { Divider } from "@nextui-org/react";
 import { TbSmartHome } from "react-icons/tb";
 import { useRouter } from "next/navigation";
 
-const NavbarElementContent: React.FC = ({}) => {
+const NavbarElementContent: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,11 +42,7 @@ const NavbarElementContent: React.FC = ({}) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -74,7 +69,7 @@ const NavbarElementContent: React.FC = ({}) => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <div className="flex items-center gap-2">
+        <nav className="flex items-center gap-2">
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
@@ -84,27 +79,20 @@ const NavbarElementContent: React.FC = ({}) => {
             className="cursor-pointer"
             onClick={() => router.push("/")}
           />
-          <ul className="flex items-center gap-2 list-none p-0 m-0">
-            <li
-              className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
-            >
-              Surakiat
-            </li>
-          </ul>
-        </div>
+          <h1
+            className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
+          >
+            Surakiat
+          </h1>
+        </nav>
       </NavbarContent>
-      {/* <NavbarContent className="sm:hidden flex gap-4" justify="center">
-        <NavbarItem>
-          <Link className={`${textColorClass}`} href="/">
-            Home
-          </Link>
-        </NavbarItem>
-      </NavbarContent> */}
+
       <NavbarContent justify="end">
         <NavbarItem>
           <ToggleSwitchTheme />
         </NavbarItem>
       </NavbarContent>
+
       <NavbarMenu
         className={`left-0 w-full sm:border-t ${
           theme === "light"
@@ -114,28 +102,34 @@ const NavbarElementContent: React.FC = ({}) => {
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto flex flex-col`}
       >
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem className="w-full" key={`${item.name}-${index}`}>
-            <div className="flex flex-col items-start w-full gap-2">
-              <Link href="/" className="flex w-full items-center gap-4">
-                {item.icon}
-                <p className={`w-full text-md font-normal ${textColorClass}`}>
-                  {item.name}
-                </p>
-              </Link>
-              <Divider style={{ backgroundColor: dividerColor }} />
-            </div>
-          </NavbarMenuItem>
-        ))}
+        <nav>
+          <ul className="list-none p-0 m-0">
+            {menuItems.map((item, index) => (
+              <li key={`${item.name}-${index}`} className="w-full">
+                <NavbarMenuItem className="w-full">
+                  <Link href="/" className="flex w-full items-center pb-3 gap-4">
+                    <div className="w-fit">{item.icon}</div>
+                    <span
+                      className={`w-full text-md font-normal ${textColorClass}`}
+                    >
+                      {item.name}
+                    </span>
+                  </Link>
+                  <Divider style={{ backgroundColor: dividerColor }} />
+                </NavbarMenuItem>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <div className="flex-grow" />
-        <NavbarMenuItem>
+        <footer>
           <Divider style={{ backgroundColor: dividerColor }} />
           <div className={`flex w-full sm:text-center justify-center py-3`}>
             <p className={`text-xs ${textColorClass}`}>
               © Copyright 2024 Surakiat. All rights reserved.
             </p>
           </div>
-        </NavbarMenuItem>
+        </footer>
       </NavbarMenu>
     </Navbar>
   );
