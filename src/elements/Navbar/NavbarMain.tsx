@@ -135,9 +135,8 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             alt="Surakiat-Logo"
             width={40}
             height={40}
-            sizes="100vw"
             priority
-            className="object-cover w-[40px] h-[40px] cursor-pointer"
+            className="cursor-pointer"
             onClick={onLogoClick}
           />
           {/* <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
