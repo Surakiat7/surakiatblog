@@ -129,24 +129,20 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <nav aria-label="Main navigation">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                src={logoSrc}
-                alt="Surakiat-Logo"
-                width={40}
-                height={40}
-                priority
-              />
-              <h1
-                className={`font-bold text-xl sm:hidden md:hidden ${TitleLinearColor}`}
-              >
-                Surakiat
-              </h1>
-            </Link>
-          </div>
-        </nav>
+        <div className="flex items-center gap-2">
+          <Image
+            src={logoSrc}
+            alt="Surakiat-Logo"
+            width={40}
+            height={40}
+            priority
+            className="cursor-pointer"
+            onClick={onLogoClick}
+          />
+          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+            Surakiat
+          </p>
+        </div>
       </NavbarContent>
       <div className="sm:hidden flex">
         <ShiftingDropDownMenu
@@ -172,40 +168,40 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           isMenuOpen ? "h-screen" : "h-0"
         } transition-all duration-300 overflow-auto flex flex-col`}
       >
-        <nav>
-          <ul className="list-none p-0 m-0 flex flex-col gap-2">
-            {menuItems.map((item, index) => (
-              <li key={`${item.name}-${index}`} className="w-full">
-                <NavbarMenuItem className="w-full">
-                  <button
-                    className="flex w-fit items-center pb-3 gap-4"
+        <ul className="list-none p-0 m-0 flex flex-col gap-2">
+          {menuItems.map((item, index) => (
+            <li key={`${item.name}-${index}`} className="w-full">
+              <NavbarMenuItem className="w-full">
+                <div className="flex flex-col items-start w-full gap-2">
+                  <div
+                    className="flex w-full items-center gap-4"
                     onClick={(e) => {
                       e.preventDefault();
                       handleMenuItemClick(item.ref);
                     }}
                   >
-                    <div className="w-fit">{item.icon}</div>
-                    <span
+                    {item.icon}
+                    <p
                       className={`w-full text-md font-normal ${textColorClass}`}
                     >
                       {item.name}
-                    </span>
-                  </button>
+                    </p>
+                  </div>
                   <Divider style={{ backgroundColor: dividerColor }} />
-                </NavbarMenuItem>
-              </li>
-            ))}
-          </ul>
-        </nav>
+                </div>
+              </NavbarMenuItem>
+            </li>
+          ))}
+        </ul>
         <div className="flex-grow" />
-        <footer>
+        <NavbarMenuItem>
           <Divider style={{ backgroundColor: dividerColor }} />
           <div className={`flex w-full sm:text-center justify-center py-3`}>
             <p className={`text-xs ${textColorClass}`}>
               © Copyright 2024 Surakiat. All rights reserved.
             </p>
           </div>
-        </footer>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
