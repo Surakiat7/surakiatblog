@@ -30,7 +30,7 @@ const Education: React.FC = () => {
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
-      <div className="w-full flex flex-col items-center">
+      <div className="w-full sm:px-6 flex flex-col items-center">
         <h1 className="text-center font-bold text-4xl md:text-6xl max-w-xl">
           Education
         </h1>
