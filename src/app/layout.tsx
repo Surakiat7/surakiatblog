@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: "https://surakiat.vercel.app/Logo-openGraph.png",
         width: 1200,
         height: 630,
-        alt: "Surakiat Blog",
+        alt: "Surakiat OpenGraph images",
       },
     ],
   },
