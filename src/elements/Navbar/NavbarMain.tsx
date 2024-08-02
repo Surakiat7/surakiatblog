@@ -129,7 +129,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <NavbarBrand>
+        <div className="flex items-center gap-2">
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
@@ -139,15 +139,10 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="cursor-pointer"
             onClick={onLogoClick}
           />
-          {/* <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
             Surakiat
-          </p> */}
-          {/* <NavbarItem>
-            <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
-              Surakiat
-            </p>
-          </NavbarItem> */}
-        </NavbarBrand>
+          </p>
+        </div>
       </NavbarContent>
       <div className="sm:hidden flex">
         <ShiftingDropDownMenu

@@ -74,7 +74,7 @@ const NavbarElementContent: React.FC = ({}) => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <NavbarBrand className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
           <Image
             src={logoSrc}
             alt="Surakiat-Logo"
@@ -87,7 +87,7 @@ const NavbarElementContent: React.FC = ({}) => {
           <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
             Surakiat
           </p>
-        </NavbarBrand>
+        </div>
       </NavbarContent>
       {/* <NavbarContent className="sm:hidden flex gap-4" justify="center">
         <NavbarItem>
