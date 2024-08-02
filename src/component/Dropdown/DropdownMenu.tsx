@@ -64,35 +64,33 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
   };
 
   return (
-    <>
+    <li
+      onMouseLeave={() => handleSetSelected(null)}
+      className="relative flex h-fit"
+    >
       {TABS.map((t) => {
         return (
-          <li
+          <Tab
             key={t.id}
-            onMouseLeave={() => handleSetSelected(null)}
-            className="relative flex h-fit"
+            selected={selected}
+            handleSetSelected={handleSetSelected}
+            tab={t.id}
+            onScrollTo={onScrollTo}
+            aboutRef={aboutRef}
+            blogRef={blogRef}
+            educationRef={educationRef}
+            exprienceRef={exprienceRef}
+            contactRef={contactRef}
           >
-            <Tab
-              selected={selected}
-              handleSetSelected={handleSetSelected}
-              tab={t.id}
-              onScrollTo={onScrollTo}
-              aboutRef={aboutRef}
-              blogRef={blogRef}
-              educationRef={educationRef}
-              exprienceRef={exprienceRef}
-              contactRef={contactRef}
-            >
-              {t.title}
-            </Tab>
-          </li>
+            {t.title}
+          </Tab>
         );
       })}
 
       <AnimatePresence>
         {selected && hasComponent && <Content dir={dir} selected={selected} />}
       </AnimatePresence>
-    </>
+    </li>
   );
 };
 
