@@ -5,7 +5,6 @@ import { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { MobileScreenProvider } from "@/contexts/MobileContext";
 import Script from "next/script";
-import Head from "next/head";
 import { poppins } from "./fonts";
 
 export const metadata: Metadata = {
@@ -22,6 +21,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -31,10 +33,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.className} dark`}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
       <body>
         <ThemeProvider>
           <MobileScreenProvider>
