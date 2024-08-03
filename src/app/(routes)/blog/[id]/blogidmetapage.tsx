@@ -55,6 +55,8 @@ const BlogPostByID: React.FC<Props> = () => {
     return <p className={`${TitleLinearColor} text-xl`}>Post not found</p>;
   }
 
+  const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.jpg`;
+
   const breadcrumbsItems = [
     { name: "Home", href: "/" },
     { name: "Blog", href: "/blog" },
@@ -104,7 +106,7 @@ const BlogPostByID: React.FC<Props> = () => {
                     </Link>
                   }
                   avatarProps={{
-                    src: "/img/me.jpg",
+                    src: `${profileImageUrl}`,
                   }}
                 />
                 <div className="flex gap-4 justify-end sm:justify-start w-full items-center">
