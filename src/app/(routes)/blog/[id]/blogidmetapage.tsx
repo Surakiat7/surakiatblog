@@ -4,10 +4,17 @@ import { useParams } from "next/navigation";
 import BackButton from "@/component/Button/BackButton";
 import NavbarElementContent from "@/elements/Navbar/NavbarContent";
 import React, { useEffect, useState } from "react";
-import { Image, Divider, User, Link, Spinner } from "@nextui-org/react";
+import {
+  Image,
+  Divider,
+  User,
+  Link,
+  Spinner,
+  Snippet,
+} from "@nextui-org/react";
 import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
 import { PiEyeglassesDuotone } from "react-icons/pi";
-import { Post, posts } from "../blogpostdata";
+import { PostData, Post } from "../blogpostmockdata";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useMobileScreen } from "@/contexts/MobileContext";
 
@@ -30,6 +37,7 @@ const BlogPostByID: React.FC<Props> = () => {
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
+  const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
   const TitleLinearColor =
     theme === "dark"
       ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
@@ -37,7 +45,7 @@ const BlogPostByID: React.FC<Props> = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      const foundPost = posts.find((p) => p.id === postId);
+      const foundPost = PostData.find((p) => p.id === postId);
       setPost(foundPost || null);
       setLoading(false);
     }, 1000);
@@ -90,7 +98,7 @@ const BlogPostByID: React.FC<Props> = () => {
               >
                 {post.title}
               </h1>
-              <Divider />
+              <Divider style={{ backgroundColor: `${dividerColor}` }} />
               <div className="flex sm:flex-col sm:gap-4 sm:justify-start w-full justify-between items-center">
                 <User
                   name={post.author}
@@ -113,11 +121,14 @@ const BlogPostByID: React.FC<Props> = () => {
                   <p>Written on {post.createdAt}</p>
                   <div className="flex items-center gap-2">
                     <PiEyeglassesDuotone size={26} />
-                    <p>{post.view}</p>
+                    <p>{post.views}</p>
                   </div>
                 </div>
               </div>
-              <Divider className="mb-8" />
+              <Divider
+                style={{ backgroundColor: `${dividerColor}` }}
+                className="mb-8"
+              />
             </div>
             <div className="flex w-full gap-2 flex-col">
               <p className="text-base">{post.description}</p>
@@ -139,6 +150,22 @@ const BlogPostByID: React.FC<Props> = () => {
                 )}
                 <h2 className="text-lg font-medium">{section.subtitle}</h2>
                 <p className="text-base">{section.paragraph}</p>
+                {section.snippet && (
+                  <div className="flex w-full custom-scrollbar overflow-hidden overflow-x-auto">
+                    <Snippet
+                      tooltipProps={{
+                        color: "foreground",
+                        content: "Copy this snippet",
+                        disableAnimation: true,
+                        placement: "right",
+                        closeDelay: 0,
+                      }}
+                      style={{ fontSize: mobileScreen ? "12px" : "inherit" }}
+                    >
+                      {section.snippet}
+                    </Snippet>
+                  </div>
+                )}
               </div>
             ))}
           </div>

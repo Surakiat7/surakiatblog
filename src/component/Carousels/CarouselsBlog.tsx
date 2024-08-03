@@ -7,7 +7,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Image } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
 import { useNavigate } from "@/utils/navigation";
-import { Post, posts } from "@/app/(routes)/blog/blogpostdata";
+import { PostData } from "@/app/(routes)/blog/blogpostmockdata";
 import Link from "next/link";
 
 const CARD_WIDTH = 350;
@@ -46,7 +46,7 @@ const BlogPostCarousel = () => {
   const CAN_SHIFT_LEFT = offset < 0;
 
   const CAN_SHIFT_RIGHT =
-    Math.abs(offset) < CARD_SIZE * (posts.length - CARD_BUFFER);
+    Math.abs(offset) < CARD_SIZE * (PostData.length - CARD_BUFFER);
 
   const shiftLeft = () => {
     if (!CAN_SHIFT_LEFT) {
@@ -68,11 +68,11 @@ const BlogPostCarousel = () => {
         <div className="w-full">
           <div className="flex pt-4 items-center justify-between">
             <div className="flex flex-col gap-2 sm:gap-2 w-full px-12 sm:px-6 pt-12 sm:pt-6">
-                <h2
-                  className={`text-4xl py-2 font-bold h-full sm:w-full ${TitleLinearColor}`}
-                >
-                  Blog
-                </h2>
+              <h2
+                className={`text-4xl py-2 font-bold h-full sm:w-full ${TitleLinearColor}`}
+              >
+                Blog
+              </h2>
               <div className="flex w-full items-start justify-between sm:items-start gap-8 sm:gap-2 pb-4 sm:pb-0">
                 <p className="font-normal text-md sm:hidden">
                   Visit my blog to discover tips, techniques, and various
@@ -138,7 +138,9 @@ const BlogPostCarousel = () => {
               ? Array.from({ length: 6 }, (_, index) => (
                   <SkeletonBlogCard key={index} />
                 ))
-              : posts.map((post) => <BlogPostCard key={post.id} {...post} />)}
+              : PostData.map((post) => (
+                  <BlogPostCard key={post.id} {...post} />
+                ))}
           </motion.div>
         </div>
       </div>
@@ -159,32 +161,43 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: PostType) => {
   const handleBlogClick = (id: string) => {
     navigate.BlogParam(id);
   };
+  const shadowClass =
+    theme === "light"
+      ? "hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]"
+      : "hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]";
 
   return (
     <div
-      className={`relative rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(0,0,0,0.1)]`}
+      className={`group relative flex flex-col gap-2 rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 ${shadowClass}`}
       style={{
         width: CARD_WIDTH,
         marginRight: MARGIN,
       }}
       onClick={() => handleBlogClick(id.toString())}
     >
-      <Image
-        width="100%"
-        height="200px"
-        loading="lazy"
-        style={{ width: "100%", height: "200px" }}
-        className="mb-3 !h-[200px] w-full rounded-lg object-cover"
-        alt={`An image for a fake blog post titled ${title}`}
-        src={imgUrl}
-      />
+      <div className="w-full mb-2 !h-[200px]">
+        <Image
+          width="100%"
+          height={200}
+          loading="lazy"
+          className="!h-[200px] w-full rounded-lg object-cover"
+          alt={`An image for a blog post titled ${title}`}
+          src={imgUrl}
+        />
+      </div>
       <span
-        className={`rounded-xl border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}
+        className={`rounded-xl w-fit border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}
       >
         {author}
       </span>
-      <p className="mt-1.5 text-lg font-medium">{title}</p>
-      <p className="text-sm">{description}</p>
+      <h3
+        className={`mt-2 text-lg font-medium transition-colors ${
+          theme === "light" ? "text-zinc-950" : "text-zinc-50"
+        } group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
+      >
+        {title}
+      </h3>
+      <p className={`text-sm`}>{description}</p>
     </div>
   );
 };

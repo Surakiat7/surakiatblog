@@ -1,7 +1,7 @@
 import React from "react";
 import BlogPostByID from "./blogidmetapage";
-import { getPostById } from "../blogpostdata";
 import { Metadata, ResolvingMetadata } from 'next'
+import { getPostDataById } from "../blogpostmockdata";
 
 type Props = {
   params: { id: string }
@@ -12,7 +12,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const id = parseInt(params.id)
-  const post = getPostById(id)
+  const post = getPostDataById(id)
   const previousImages = (await parent).openGraph?.images || []
 
   return {

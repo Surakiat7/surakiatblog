@@ -31,12 +31,12 @@ const SkeletonBlogCard: React.FC = () => {
 
   return (
     <Card
-      className={`relative rounded-2xl border ${borderColorClass} p-3 shrink-0`}
+      className={`relative flex flex-col gap-2 rounded-2xl border ${borderColorClass} p-3 shrink-0`}
       style={cardStyle}
     >
-      <Skeleton className="rounded-lg mb-3 h-[200px] w-full" />
-      <Skeleton className="w-1/4 h-6 rounded-xl mb-2" />
-      <Skeleton className="w-3/4 h-6 rounded-lg mb-2" />
+      <Skeleton className="rounded-lg mb-2 h-[200px] w-full" />
+      <Skeleton className="w-2/5 h-6 rounded-xl" />
+      <Skeleton className="w-3/4 h-6 rounded-lg mt-2" />
       <Skeleton className="w-full h-24 rounded-lg" />
     </Card>
   );

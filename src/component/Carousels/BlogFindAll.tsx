@@ -5,14 +5,13 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Image, Button, Spinner } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
 import { useNavigate } from "@/utils/navigation";
-import type { Post as PostType } from "@/app/(routes)/blog/blogpostdata";
-import { posts as allPosts } from "@/app/(routes)/blog/blogpostdata";
+import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 import SearchButton from "../Button/SearchButton";
 
 const BlogPostFindAll = () => {
   const [offset, setOffset] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredPosts, setFilteredPosts] = useState<PostType[]>(allPosts);
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>(PostData);
   const [isLoading, setIsLoading] = useState(false);
   const { theme } = useTheme();
   const bgColorClass =
@@ -26,11 +25,11 @@ const BlogPostFindAll = () => {
 
   useEffect(() => {
     if (searchQuery === "") {
-      setFilteredPosts(allPosts);
+      setFilteredPosts(PostData);
     } else {
       setIsLoading(true);
       const timeoutId = setTimeout(() => {
-        const results = allPosts.filter((post) =>
+        const results = PostData.filter((post) =>
           post.title.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredPosts(results);
@@ -51,7 +50,11 @@ const BlogPostFindAll = () => {
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-2 w-full">
               <div className="flex sm:gap-2 w-full sm:items-center items-center justify-between">
-                <h1 className={`text-4xl py-2 font-bold sm:w-1/2 ${TitleLinearColor}`}>Blog</h1>
+                <h1
+                  className={`text-4xl py-2 font-bold sm:w-1/2 ${TitleLinearColor}`}
+                >
+                  Blog
+                </h1>
                 <div className="sm:w-full">
                   <SearchButton onSearch={handleSearch} />
                 </div>
@@ -117,7 +120,7 @@ const BlogPostFindAll = () => {
   );
 };
 
-const BlogPost = ({ id, imgUrl, author, title, description }: PostType) => {
+const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const borderColorClass =
@@ -126,6 +129,10 @@ const BlogPost = ({ id, imgUrl, author, title, description }: PostType) => {
     theme === "light"
       ? "border-zinc-300 text-zinc-950"
       : "border-zinc-600 text-zinc-50";
+  const shadowClass =
+    theme === "light"
+      ? "hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]"
+      : "hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]";
 
   const handleBlogClick = (id: string) => {
     navigate.BlogParam(id);
@@ -133,24 +140,31 @@ const BlogPost = ({ id, imgUrl, author, title, description }: PostType) => {
 
   return (
     <div
-      className={`relative w-full rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-[0_0_60px_rgba(0,0,0,0.1)]`}
+      className={`group relative w-full flex flex-col gap-2 rounded-2xl border ${borderColorClass} p-3 shrink-0 cursor-pointer transition-transform hover:-translate-y-1 ${shadowClass}`}
       onClick={() => handleBlogClick(id.toString())}
     >
-      <Image
-        width="100%"
-        height="200px"
-        loading="lazy"
-        style={{ width: "100%", height: "200px" }}
-        className="mb-3 !h-[200px] w-full rounded-lg object-cover"
-        alt={`An image for a fake blog post titled ${title}`}
-        src={imgUrl}
-      />
+      <div className="w-full mb-2 !h-[200px]">
+        <Image
+          width="100%"
+          height={200}
+          loading="lazy"
+          className="!h-[200px] w-full rounded-lg object-cover"
+          alt={`An image for a blog post titled ${title}`}
+          src={imgUrl}
+        />
+      </div>
       <span
-        className={`rounded-xl border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}
+        className={`rounded-xl w-fit border-[1px] ${authorColorClass} px-1.5 py-1 text-xs uppercase`}
       >
         {author}
       </span>
-      <p className="mt-1.5 text-lg font-medium">{title}</p>
+      <h3
+        className={`mt-2 text-lg font-medium transition-colors ${
+          theme === "light" ? "text-zinc-950" : "text-zinc-50"
+        } group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
+      >
+        {title}
+      </h3>
       <p className="text-sm">{description}</p>
     </div>
   );

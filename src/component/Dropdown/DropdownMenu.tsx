@@ -4,8 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Image } from "@nextui-org/image";
 import { useTheme } from "@/contexts/ThemeContext";
-import { useRouter } from "next/navigation";
-import { Post, posts } from "@/app/(routes)/blog/blogpostdata";
+import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 
 interface ShiftingDropDownMenuProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
@@ -275,11 +274,11 @@ const Blog = () => {
   const [selectedPosts, setSelectedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const randomPosts = getRandomPosts(posts, 2);
+    const randomPosts = getRandomPosts(PostData, 2);
     setSelectedPosts(randomPosts);
 
     const interval = setInterval(() => {
-      const newRandomPosts = getRandomPosts(posts, 2);
+      const newRandomPosts = getRandomPosts(PostData, 2);
       setSelectedPosts(newRandomPosts);
     }, 24 * 60 * 60 * 1000);
 
@@ -291,16 +290,18 @@ const Blog = () => {
       <div className="grid grid-cols-2 w-full gap-2">
         {selectedPosts.map((post) => (
           <div key={post.id}>
-            <Link href={`/blog/${post.id}`} passHref>
-              <Image
-                src={post.imgUrl}
-                alt={post.title}
-                isZoomed
-                loading="lazy"
-                width="100%"
-                height="auto"
-                className="mb-2 !h-14 w-full object-cover"
-              />
+            <Link href={`/blog/${post.id}`} passHref className="flex flex-col gap-2">
+              <div className="w-full !h-14">
+                <Image
+                  src={post.imgUrl}
+                  alt={post.title}
+                  isZoomed
+                  loading="lazy"
+                  width="100%"
+                  height={56}
+                  className="pb-2 !h-14 w-full object-cover"
+                />
+              </div>
               <h1 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
                 {post.title}
               </h1>
