@@ -185,10 +185,10 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: PostType) => {
     >
       <div className="w-full mb-2 !h-[200px]">
         <Image
-          width="100%"
+          width={CARD_WIDTH}
           height={200}
           loading="lazy"
-          className="!h-[200px] w-full rounded-lg object-cover"
+          className="w-full rounded-lg object-cover"
           alt={`An image for a blog post titled ${title}`}
           src={imgUrl}
         />

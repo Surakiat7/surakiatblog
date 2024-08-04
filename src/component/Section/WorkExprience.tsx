@@ -120,19 +120,8 @@ const WorkExperience = () => {
                       size={20}
                       className="w-full h-full"
                     />
-                    <LuDot
-                      color={"#4ade80"}
-                      size={100}
-                      className="w-full h-full"
-                    />
                   </div>
                   <span className="ml-1 text-normal text-sm">{detail}</span>
-                  <div>
-                    <FaAccessibleIcon
-                      title="Accessible Icon"
-                      aria-label="Accessible Icon"
-                    />
-                  </div>
                 </li>
               ))}
             </ul>
