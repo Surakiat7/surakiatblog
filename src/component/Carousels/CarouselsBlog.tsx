@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import useMeasure from "react-use-measure";
+import { gsap } from "gsap";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Image } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
@@ -23,6 +24,7 @@ const BlogPostCarousel = () => {
   const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
   const { theme } = useTheme();
+  const carouselRef = useRef(null);
   const bgColorClass =
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
@@ -52,14 +54,26 @@ const BlogPostCarousel = () => {
     if (!CAN_SHIFT_LEFT) {
       return;
     }
-    setOffset((pv) => (pv += CARD_SIZE));
+    const newOffset = offset + CARD_SIZE;
+    setOffset(newOffset);
+    gsap.to(carouselRef.current, {
+      x: newOffset,
+      duration: 0.5,
+      ease: "power2.out",
+    });
   };
 
   const shiftRight = () => {
     if (!CAN_SHIFT_RIGHT) {
       return;
     }
-    setOffset((pv) => (pv -= CARD_SIZE));
+    const newOffset = offset - CARD_SIZE;
+    setOffset(newOffset);
+    gsap.to(carouselRef.current, {
+      x: newOffset,
+      duration: 0.5,
+      ease: "power2.out",
+    });
   };
 
   return (
@@ -125,13 +139,8 @@ const BlogPostCarousel = () => {
               </div>
             </div>
           </div>
-          <motion.div
-            animate={{
-              x: offset,
-            }}
-            transition={{
-              ease: "easeInOut",
-            }}
+          <div
+            ref={carouselRef}
             className="flex pt-2 px-12 pb-12 sm:px-6 sm:pb-6"
           >
             {isLoading
@@ -141,7 +150,7 @@ const BlogPostCarousel = () => {
               : PostData.map((post) => (
                   <BlogPostCard key={post.id} {...post} />
                 ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
