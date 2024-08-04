@@ -1,12 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { MotionProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight } from "react-icons/fi";
-import { Image } from "@nextui-org/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "@/contexts/ThemeContext";
+import dynamic from "next/dynamic";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
+const DynamicAboutBlock = dynamic(() => import("./AboutBlock"), { ssr: false });
 
 interface AboutHeroProps {
   contactRef: React.RefObject<HTMLDivElement>;
@@ -15,13 +21,18 @@ interface AboutHeroProps {
 export const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
   const { theme } = useTheme();
 
-  const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-900 text-zinc-50";
+  const bgColorClass = useMemo(
+    () =>
+      theme === "light"
+        ? "bg-zinc-200 text-zinc-950"
+        : "bg-zinc-900 text-zinc-50",
+    [theme]
+  );
 
   return (
-    <div className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass}`}>
+    <div
+      className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass} ${inter.className}`}
+    >
       <motion.div
         initial="initial"
         animate="animate"
@@ -31,7 +42,7 @@ export const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
         className="flex flex-col w-full gap-4"
       >
         <HeaderBlock contactRef={contactRef} />
-        <AboutBlock />
+        <DynamicAboutBlock />
       </motion.div>
     </div>
   );
@@ -78,17 +89,31 @@ interface HeaderBlockProps {
 const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const { theme } = useTheme();
 
-  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
-  const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-100 text-zinc-950"
-      : "bg-zinc-950 text-zinc-50";
-  const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
-  const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-700";
+  const textColorClass = useMemo(
+    () => (theme === "light" ? "text-zinc-950" : "text-zinc-50"),
+    [theme]
+  );
+
+  const bgColorClass = useMemo(
+    () =>
+      theme === "light"
+        ? "bg-zinc-100 text-zinc-950"
+        : "bg-zinc-950 text-zinc-50",
+    [theme]
+  );
+
+  const TitleLinearColor = useMemo(
+    () =>
+      theme === "dark"
+        ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+        : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text",
+    [theme]
+  );
+
+  const borderColorClass = useMemo(
+    () => (theme === "light" ? "border-zinc-300" : "border-zinc-700"),
+    [theme]
+  );
 
   const handleContactClick = () => {
     if (contactRef.current) {
@@ -110,14 +135,12 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
-          isZoomed
           className="object-cover w-[100px] h-[100px]"
           src={profileImageUrl}
           alt="Profile me"
-          loading="lazy"
           width={100}
           height={100}
-          data-loaded="true"
+          priority
         />
         <div className="flex flex-col gap-2">
           <h1
@@ -141,33 +164,4 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   );
 };
 
-const AboutBlock = () => {
-  const { theme } = useTheme();
-  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
-  const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-100 text-zinc-950"
-      : "bg-zinc-950 text-zinc-50";
-
-  const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-700";
-
-  return (
-    <Block
-      className={`col-span-12 leading-snug ${bgColorClass} ${borderColorClass}`}
-    >
-      <p className={`${textColorClass} text-xl sm:text-base font-normal`}>
-        I am passionate about creating exceptional user experiences{" "}
-        <span className="text-zinc-400">
-          through seamless design and development, utilizing modern technologies
-          like Next.js, React, Tailwind CSS, and many more. I love building
-          responsive and user-friendly web applications, and I am committed to
-          continuously improving website performance and speed. Additionally, I
-          am excited about learning and incorporating new technologies into my
-          development work, and I enjoy collaborating with teams to create
-          outstanding web experiences.
-        </span>
-      </p>
-    </Block>
-  );
-};
+export default AboutHero;
