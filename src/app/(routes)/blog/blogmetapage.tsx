@@ -3,9 +3,9 @@
 import BackButton from "@/component/Button/BackButton";
 import NavbarElementContent from "@/elements/Navbar/NavbarContent";
 import React, { useEffect, useState } from "react";
-import { Image, Divider, User, Link, Spinner } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
 import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
-import BlogPostFindAll from "@/component/Carousels/BlogFindAll";
+import BlogPostFindAll from "@/component/Carousels/CarouselsBlogFindAll";
 import { useTheme } from "@/contexts/ThemeContext";
 
 type Props = {};
