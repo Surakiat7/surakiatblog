@@ -93,11 +93,14 @@ const BlogPostByID: React.FC<Props> = () => {
                 alt={`${post.title} image`}
                 loading="lazy"
               />
-              <h1
-                className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}
-              >
-                {post.title}
-              </h1>
+              <div className="flex w-full flex-col gap-2">
+                <h1
+                  className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}
+                >
+                  {post.title}
+                </h1>
+                <p className="text-base text-md">{post.description}</p>
+              </div>
               <Divider style={{ backgroundColor: `${dividerColor}` }} />
               <div className="flex sm:flex-col sm:gap-4 sm:justify-start w-full justify-between items-center">
                 <User
@@ -127,14 +130,12 @@ const BlogPostByID: React.FC<Props> = () => {
               </div>
               <Divider
                 style={{ backgroundColor: `${dividerColor}` }}
-                className="mb-8"
+                className="mb-6"
               />
             </div>
-            <div className="flex w-full gap-2 flex-col">
-              <p className="text-base">{post.description}</p>
-            </div>
             {post.content.map((section, index) => (
-              <div key={index} className="flex w-full gap-2 flex-col my-8">
+              <div key={index} className="flex w-full gap-2 flex-col pb-6">
+                <h2 className="text-lg font-medium">{section.subtitle}</h2>
                 {section.imagesrc && (
                   <div className="w-full">
                     <Image
@@ -142,13 +143,12 @@ const BlogPostByID: React.FC<Props> = () => {
                       radius="lg"
                       style={{ height: contentImageHeight, width: "100%" }}
                       height={contentImageHeight}
-                      className="object-cover w-full h-fit"
+                      className="object-contain w-full h-fit"
                       src={section.imagesrc}
                       alt={section.subtitle}
                     />
                   </div>
                 )}
-                <h2 className="text-lg font-medium">{section.subtitle}</h2>
                 <p className="text-base">{section.paragraph}</p>
                 {section.snippet && (
                   <div className="flex w-full custom-scrollbar overflow-hidden overflow-x-auto">

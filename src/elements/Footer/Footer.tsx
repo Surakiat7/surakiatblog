@@ -40,11 +40,10 @@ const Footer = () => {
             <Image
               src={logoSrc}
               alt="Surakiat-Logo"
-              width="0"
-              height="0"
-              sizes="100vw"
-              loading="lazy"
-              className="object-cover w-[40px] h-[40px]"
+              width={40}
+              height={40}
+              priority
+              className="object-cover"
             />
             <p className={`font-bold sm:hidden ${TitleLinearColor}`}>
               SURAKIAT

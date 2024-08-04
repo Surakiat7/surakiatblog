@@ -75,9 +75,8 @@ const Screen: React.FC = () => {
           alt="Surakiat-Logo"
           width={70}
           height={70}
-          sizes="100vw"
-          layout="fixed"
-          className="object-cover w-[70px] h-[70px]"
+          priority
+          className="object-cover"
         />
       </div>
       <button

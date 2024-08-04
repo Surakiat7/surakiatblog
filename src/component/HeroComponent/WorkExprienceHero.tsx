@@ -3,6 +3,7 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { Divider, Image } from "@nextui-org/react";
 import { LuDot } from "react-icons/lu";
+import { FaAccessibleIcon } from "react-icons/fa";
 
 const workExperienceData = [
   {
@@ -114,9 +115,24 @@ const WorkExperience = () => {
                   className={`${exprienceTextColorClass} flex items-center pt-2 font-normal text-base sm:text-sm`}
                 >
                   <div className="flex-shrink-0 w-6 h-6">
-                    <LuDot color={iconColor} className="w-full h-full" />
+                    <LuDot
+                      color={iconColor}
+                      size={20}
+                      className="w-full h-full"
+                    />
+                    <LuDot
+                      color={"#4ade80"}
+                      size={100}
+                      className="w-full h-full"
+                    />
                   </div>
                   <span className="ml-1 text-normal text-sm">{detail}</span>
+                  <div>
+                    <FaAccessibleIcon
+                      title="Accessible Icon"
+                      aria-label="Accessible Icon"
+                    />
+                  </div>
                 </li>
               ))}
             </ul>

@@ -30,7 +30,7 @@ export const PostData: Post[] = [
       "Learn tips for using Tailwind CSS to enhance your frontend development, making it faster and more efficient.",
     content: [
       {
-        imagesrc: "https://www.tailwindcss.com/img/utility-first.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content1.1.png`,
         subtitle: "1. Using the Utility-First Approach",
         snippet:
           '<div class="bg-blue-500 text-white p-4">\n  Hello, Tailwind CSS!\n</div>\n',
@@ -38,15 +38,15 @@ export const PostData: Post[] = [
           "Tailwind CSS employs a utility-first approach that allows you to write CSS quickly and with high flexibility without creating new classes for each style you need. You can use pre-existing classes in Tailwind CSS to instantly customize the appearance. For instance, using `bg-blue-500` changes the background color to blue, and `text-white` changes the text color to white.",
       },
       {
-        imagesrc: "https://www.tailwindcss.com/img/responsive-design.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content1.2.png`,
         subtitle: "2. Easy Responsive Design with Tailwind CSS",
         snippet:
-          'html\n<div class="p-4 md:p-8 lg:p-12">\n  Responsive Padding\n</div>\n',
+          '<div class="p-4 md:p-8 lg:p-12">\n  Responsive Padding\n</div>\n',
         paragraph:
           "Responsive design is made easy with Tailwind CSS by using existing responsive modifiers like `md:` and `lg:` to adjust the appearance on different screen sizes. For example, using `p-4 md:p-8 lg:p-12` changes the padding for medium and large screens.",
       },
       {
-        imagesrc: "https://www.tailwindcss.com/img/hover-focus.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content1.3.png`,
         subtitle: "3. Using Hover and Focus States",
         snippet:
           '<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">\n  Hover Me\n</button>\n',
@@ -54,7 +54,7 @@ export const PostData: Post[] = [
           "Tailwind CSS provides utility classes for managing hover and focus states, allowing you to easily customize the appearance of elements during interactions. For example, using `hover:bg-green-700` changes the background color when hovered.",
       },
       {
-        imagesrc: "https://www.tailwindcss.com/img/dark-mode.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content1.4.png`,
         subtitle: "4. Supporting Dark Mode",
         snippet:
           '<div class="bg-white dark:bg-gray-800 text-black dark:text-white p-4">\n  Dark Mode Ready\n</div>\n',
@@ -62,7 +62,7 @@ export const PostData: Post[] = [
           "Supporting dark mode in Tailwind CSS is straightforward using the `dark:` modifier. For instance, using `dark:bg-gray-800` changes the background color to dark gray when dark mode is enabled.",
       },
       {
-        imagesrc: "https://www.tailwindcss.com/img/custom-styles.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content1.5.png`,
         subtitle: "5. Creating Custom Styles",
         snippet:
           '<style>\n@layer utilities {\n  .btn-primary {\n    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;\n  }\n}\n</style>\n<button class="btn-primary">\n  Custom Button\n</button>\n',
@@ -82,14 +82,14 @@ export const PostData: Post[] = [
       "A tutorial on how to start using Ant Design (Antd) in your project, with code snippets and examples.",
     content: [
       {
-        imagesrc: "https://ant.design/static/logo.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content2.1.png`,
         subtitle: "1. Installing Ant Design",
-        snippet: "npm install antd\n\nnyarn add antd\n",
+        snippet: "npm install antd or yarn add antd",
         paragraph:
           "To get started with Ant Design in your project, you first need to install the library. You can use either npm or yarn to do this. Run the following command in your project directory to install Ant Design:",
       },
       {
-        imagesrc: "https://ant.design/static/components/button.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content2.2.png`,
         subtitle: "2. Importing and Using Ant Design Components",
         snippet:
           "import React from 'react';\nimport { Button } from 'antd';\n\nconst App = () => (\n  <div>\n    <Button type=\"primary\">Primary Button</Button>\n  </div>\n);\n\nexport default App;\n",
@@ -97,7 +97,7 @@ export const PostData: Post[] = [
           "Once Ant Design is installed, you can start using its components in your project. Import the components you need from 'antd' and use them in your React components. Here's an example of how to import and use the `Button` component:",
       },
       {
-        imagesrc: "https://ant.design/static/components/form.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content2.3.png`,
         subtitle: "3. Creating a Form with Validation",
         snippet:
           'import React from \'react\';\nimport { Form, Input, Button } from \'antd\';\n\nconst App = () => {\n  const onFinish = (values) => {\n    console.log(\'Success:\', values);\n  };\n\n  const onFinishFailed = (errorInfo) => {\n    console.log(\'Failed:\', errorInfo);\n  };\n\n  return (\n    <Form\n      name="basic"\n      labelCol={{ span: 8 }}\n      wrapperCol={{ span: 16 }}\n      initialValues={{ remember: true }}\n      onFinish={onFinish}\n      onFinishFailed={onFinishFailed}\n      autoComplete="off"\n    >\n      <Form.Item\n        label="Username"\n        name="username"\n        rules={[{ required: true, message: \'Please input your username!\' }]}\n      >\n        <Input />\n      </Form.Item>\n\n      <Form.Item\n        label="Password"\n        name="password"\n        rules={[{ required: true, message: \'Please input your password!\' }]}\n      >\n        <Input.Password />\n      </Form.Item>\n\n      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>\n        <Button type="primary" htmlType="submit">\n          Submit\n        </Button>\n      </Form.Item>\n    </Form>\n  );\n};\n\nexport default App;\n',
@@ -105,7 +105,7 @@ export const PostData: Post[] = [
           "Creating forms with Ant Design is simple and straightforward. The `Form` component provides a flexible and extensible way to create and validate forms. Here's an example of a form with username and password fields, along with validation rules:",
       },
       {
-        imagesrc: "https://ant.design/static/components/layout.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content2.4.png`,
         subtitle: "4. Building Layouts with Ant Design",
         snippet:
           'import React from \'react\';\nimport { Layout, Menu, Breadcrumb } from \'antd\';\n\nconst { Header, Content, Footer } = Layout;\n\nconst App = () => (\n  <Layout className="layout">\n    <Header>\n      <div className="logo" />\n      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[\'1\']}>\n        <Menu.Item key="1">Home</Menu.Item>\n        <Menu.Item key="2">About</Menu.Item>\n        <Menu.Item key="3">Contact</Menu.Item>\n      </Menu>\n    </Header>\n    <Content style={{ padding: \'0 50px\' }}>\n      <Breadcrumb style={{ margin: \'16px 0\' }}>\n        <Breadcrumb.Item>Home</Breadcrumb.Item>\n        <Breadcrumb.Item>About</Breadcrumb.Item>\n      </Breadcrumb>\n      <div className="site-layout-content">Content</div>\n    </Content>\n    <Footer style={{ textAlign: \'center\' }}>Ant Design ©2024 Created by Ant UED</Footer>\n  </Layout>\n);\n\nexport default App;\n',
@@ -113,7 +113,7 @@ export const PostData: Post[] = [
           "Ant Design's `Layout` component helps you to build complex and responsive layouts effortlessly. The `Layout`, `Header`, `Content`, and `Footer` components provide a structured way to organize your application's main sections. Here's an example of how to build a basic layout with a header, content area, and footer:",
       },
       {
-        imagesrc: "https://ant.design/static/components/table.svg",
+        imagesrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Content2.5.png`,
         subtitle: "5. Displaying Data with Ant Design Table",
         snippet:
           "import React from 'react';\nimport { Table } from 'antd';\n\nconst columns = [\n  {\n    title: 'Name',\n    dataIndex: 'name',\n    key: 'name',\n  },\n  {\n    title: 'Age',\n    dataIndex: 'age',\n    key: 'age',\n  },\n  {\n    title: 'Address',\n    dataIndex: 'address',\n    key: 'address',\n  },\n];\n\nconst data = [\n  {\n    key: '1',\n    name: 'John Brown',\n    age: 32,\n    address: 'New York No. 1 Lake Park',\n  },\n  {\n    key: '2',\n    name: 'Jim Green',\n    age: 42,\n    address: 'London No. 1 Lake Park',\n  },\n  {\n    key: '3',\n    name: 'Joe Black',\n    age: 32,\n    address: 'Sydney No. 1 Lake Park',\n  },\n];\n\nconst App = () => <Table columns={columns} dataSource={data} />;\n\nexport default App;\n",
@@ -296,7 +296,7 @@ export const PostData: Post[] = [
         imagesrc: "https://mui.com/static/logo.png",
         subtitle: "2. Basic Usage of MUI Components",
         snippet:
-          "javascript\nimport React from 'react';\nimport Button from '@mui/material/Button';\n\nconst App = () => (\n  <div>\n    <Button variant=\"contained\" color=\"primary\">\n      Hello MUI\n    </Button>\n  </div>\n);\n\nexport default App;\n",
+          "import React from 'react';\nimport Button from '@mui/material/Button';\n\nconst App = () => (\n  <div>\n    <Button variant=\"contained\" color=\"primary\">\n      Hello MUI\n    </Button>\n  </div>\n);\n\nexport default App;\n",
         paragraph:
           "Once you have installed MUI, you can start using its components in your React application. In the example above, we import the `Button` component from `@mui/material` and use it to render a styled button with the `contained` variant and `primary` color.",
       },
@@ -304,7 +304,7 @@ export const PostData: Post[] = [
         imagesrc: "https://mui.com/static/logo.png",
         subtitle: "3. Customizing MUI Components",
         snippet:
-          "javascript\nimport React from 'react';\nimport { createTheme, ThemeProvider } from '@mui/material/styles';\nimport Button from '@mui/material/Button';\n\nconst theme = createTheme({\n  palette: {\n    primary: {\n      main: '#1976d2',\n    },\n  },\n});\n\nconst App = () => (\n  <ThemeProvider theme={theme}>\n    <Button variant=\"contained\" color=\"primary\">\n      Customized Button\n    </Button>\n  </ThemeProvider>\n);\n\nexport default App;\n",
+          "import React from 'react';\nimport { createTheme, ThemeProvider } from '@mui/material/styles';\nimport Button from '@mui/material/Button';\n\nconst theme = createTheme({\n  palette: {\n    primary: {\n      main: '#1976d2',\n    },\n  },\n});\n\nconst App = () => (\n  <ThemeProvider theme={theme}>\n    <Button variant=\"contained\" color=\"primary\">\n      Customized Button\n    </Button>\n  </ThemeProvider>\n);\n\nexport default App;\n",
         paragraph:
           "MUI allows for extensive customization through its theming system. By using the `createTheme` and `ThemeProvider` components, you can define a custom theme and apply it throughout your application. In the example above, we create a theme with a custom primary color and wrap the `Button` component in a `ThemeProvider` to apply this theme.",
       },
@@ -320,7 +320,7 @@ export const PostData: Post[] = [
         imagesrc: "https://mui.com/static/logo.png",
         subtitle: "5. Responsive Layout with MUI Grid",
         snippet:
-          "javascript\nimport React from 'react';\nimport Grid from '@mui/material/Grid';\nimport Paper from '@mui/material/Paper';\n\nconst App = () => (\n  <Grid container spacing={2}>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 1</Paper>\n    </Grid>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 2</Paper>\n    </Grid>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 3</Paper>\n    </Grid>\n  </Grid>\n);\n\nexport default App;\n",
+          "import React from 'react';\nimport Grid from '@mui/material/Grid';\nimport Paper from '@mui/material/Paper';\n\nconst App = () => (\n  <Grid container spacing={2}>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 1</Paper>\n    </Grid>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 2</Paper>\n    </Grid>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 3</Paper>\n    </Grid>\n  </Grid>\n);\n\nexport default App;\n",
         paragraph:
           "The MUI `Grid` component provides a powerful layout system for building responsive designs. You can specify different grid item sizes for various screen sizes using the `xs`, `sm`, and `md` props. In the example above, we use the `Grid` container and items to create a responsive layout with three items, each occupying different proportions of the screen on different device sizes.",
       },
@@ -348,14 +348,14 @@ export const PostData: Post[] = [
       {
         imagesrc: "https://nextjs.org/static/images/logo.png",
         subtitle: "2. Navigating to Your Project Directory",
-        snippet: "ncd my-nextjs-app\n",
+        snippet: "cd my-nextjs-app",
         paragraph:
           "After creating the project, navigate into the project directory using the `cd` command. This will change your working directory to the newly created Next.js project folder.",
       },
       {
         imagesrc: "https://nextjs.org/static/images/logo.png",
         subtitle: "3. Starting the Development Server",
-        snippet: "npm run dev\n\nnyarn dev\n",
+        snippet: "npm run dev or yarn dev",
         paragraph:
           "To start the development server and see your project in action, run the `dev` script. This will start the server and open your application in the browser. You can use `npm` or `yarn` to run the command:",
       },
@@ -371,7 +371,7 @@ export const PostData: Post[] = [
         imagesrc: "https://nextjs.org/static/images/logo.png",
         subtitle: "5. Adding a Custom Component",
         snippet:
-          "javascript\n// src/components/HelloWorld.js\nimport React from 'react';\n\nconst HelloWorld = () => (\n  <div>\n    <h1>Hello, Next.js!</h1>\n  </div>\n);\n\nexport default HelloWorld;\n\n// src/pages/index.js\nimport HelloWorld from '../components/HelloWorld';\n\nconst Home = () => (\n  <div>\n    <HelloWorld />\n  </div>\n);\n\nexport default Home;\n",
+          "/ src/components/HelloWorld.js import React from 'react';\n\nconst HelloWorld = () => (\n  <div>\n    <h1>Hello, Next.js!</h1>\n  </div>\n);\n\nexport default HelloWorld;\n\n// src/pages/index.js\nimport HelloWorld from '../components/HelloWorld';\n\nconst Home = () => (\n  <div>\n    <HelloWorld />\n  </div>\n);\n\nexport default Home;\n",
         paragraph:
           "You can create custom components in the `src/components/` directory. In the example above, we create a simple `HelloWorld` component and use it in the `index.js` page. This demonstrates how to organize and use components within your Next.js application.",
       },
@@ -379,7 +379,7 @@ export const PostData: Post[] = [
         imagesrc: "https://nextjs.org/static/images/logo.png",
         subtitle: "6. Configuring Global Styles",
         snippet:
-          "javascript\n// src/styles/globals.css\nbody {\n  margin: 0;\n  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}\n\n// src/pages/_app.js\nimport '../styles/globals.css';\n\nfunction MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />;\n}\n\nexport default MyApp;\n",
+          "/ src/styles/globals.css\nbody {\n  margin: 0;\n  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}\n\n// src/pages/_app.js\nimport '../styles/globals.css';\n\nfunction MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />;\n}\n\nexport default MyApp;\n",
         paragraph:
           "To apply global styles across your application, add CSS rules to the `globals.css` file in the `src/styles/` directory. Import this CSS file in the `_app.js` file to ensure that the styles are applied globally.",
       },
