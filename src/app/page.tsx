@@ -2,15 +2,15 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import NavbarElement from "@/elements/Navbar/NavbarMain";
-import { DarkGridHero } from "@/component/HeroComponent/HeroComponent";
-import LogoHero from "@/component/HeroComponent/LogoTechStackHero";
+import { DarkGridHero } from "@/component/Section/HeroWelcome";
+import LogoHero from "@/component/Section/LogoTechStack";
 import BlogPostCarousel from "@/component/Carousels/CarouselsBlog";
-import { AboutHero } from "@/component/HeroComponent/AboutIntro";
+import { AboutHero } from "@/component/Section/AboutIntro";
 import Footer from "@/elements/Footer/Footer";
 import { useTheme } from "@/contexts/ThemeContext";
-import Education from "@/component/HeroComponent/EducationHero";
-import WorkExprience from "@/component/HeroComponent/WorkExprienceHero";
-import Contact from "@/component/HeroComponent/ContactHero";
+import Education from "@/component/Section/Education";
+import WorkExperience from "@/component/Section/WorkExprience";
+import Contact from "@/component/Section/Contact";
 
 export default function Home() {
   const { theme } = useTheme();
@@ -87,7 +87,7 @@ export default function Home() {
         <Education />
       </div>
       <div ref={exprienceRef}>
-        <WorkExprience />
+        <WorkExperience />
       </div>
       <div ref={contactRef}>
         <Contact />
