@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { FiArrowRight } from "react-icons/fi";
 import Image from "next/image";
@@ -21,10 +21,14 @@ interface AboutHeroProps {
 
 export const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
   const { theme } = useTheme();
-  const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-900 text-zinc-50";
+
+  const bgColorClass = useMemo(
+    () =>
+      theme === "light"
+        ? "bg-zinc-200 text-zinc-950"
+        : "bg-zinc-900 text-zinc-50",
+    [theme]
+  );
 
   return (
     <div
@@ -73,12 +77,8 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.avif`;
 
   return (
-    <Block
-      className={`rounded-lg p-6 flex w-full ${bgColorClass} ${borderColorClass}`}
-    >
-      <div
-        className={`flex w-full sm:flex-col items-center sm:items-start gap-4`}
-      >
+    <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
+      <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
           className="object-cover w-[100px] rounded-2xl h-[100px]"
           src={profileImageUrl}

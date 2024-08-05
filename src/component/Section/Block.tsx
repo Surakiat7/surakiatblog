@@ -9,7 +9,7 @@ export const Block = ({ className, ...rest }: BlockProps) => {
   return (
     <div
       className={twMerge(
-        "flex w-full rounded-lg border border-zinc-700 bg-zinc-800 p-6",
+        "col-span-12 rounded-lg border border-zinc-700 bg-zinc-800 p-6",
         className
       )}
       {...rest}
