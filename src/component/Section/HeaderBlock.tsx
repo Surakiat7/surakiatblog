@@ -50,7 +50,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     }
   };
 
-  const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.jpg`;
+  const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.avif`;
 
   return (
     <div className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
