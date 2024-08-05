@@ -113,9 +113,9 @@ const Tab: React.FC<TabProps> = ({
   exprienceRef,
   contactRef,
 }) => {
+  const { theme } = useTheme();
   const tabData = _.find(TABS, { id: tab });
   const hasComponent = !!tabData?.Component;
-  const { theme } = useTheme();
   const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
   const bgColorClass =
     theme === "light"
@@ -176,7 +176,12 @@ const Content = ({
 }) => {
   const tab = _.find(TABS, { id: selected });
 
-  if (!tab || typeof tab !== 'object' || !('Component' in tab) || tab.Component === null) {
+  if (
+    !tab ||
+    typeof tab !== "object" ||
+    !("Component" in tab) ||
+    tab.Component === null
+  ) {
     return <div />;
   }
 
