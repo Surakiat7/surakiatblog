@@ -19,7 +19,7 @@ interface AboutHeroProps {
   contactRef: React.RefObject<HTMLDivElement>;
 }
 
-export const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
+const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
   const { theme } = useTheme();
 
   const bgColorClass = useMemo(
@@ -53,7 +53,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     theme === "light"
       ? "bg-zinc-100 text-zinc-950"
       : "bg-zinc-950 text-zinc-50";
-  const TitleLinearColor =
+  const titleGradientClass =
     theme === "dark"
       ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
       : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
@@ -80,16 +80,16 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
-          className="object-cover w-[100px] rounded-2xl h-[100px]"
+          className="object-cover w-[100px] h-[100px] rounded-2xl"
           src={profileImageUrl}
           alt="Profile me"
           width={100}
           height={100}
           priority
         />
-        <div className={`flex flex-col gap-2`}>
+        <div className="flex flex-col gap-2">
           <h1
-            className={`text-2xl sm:text-[18px] font-bold ${TitleLinearColor}`}
+            className={`text-2xl sm:text-[18px] font-bold ${titleGradientClass}`}
           >
             Hi, I&apos;m JJ. Surakiat Tablakorn Frontend Developer
           </h1>

@@ -5,7 +5,7 @@ import NavbarElement from "@/elements/Navbar/NavbarMain";
 import { DarkGridHero } from "@/component/Section/HeroWelcome";
 import LogoHero from "@/component/Section/LogoTechStack";
 import BlogPostCarousel from "@/component/Carousels/CarouselsBlog";
-import { AboutHero } from "@/component/Section/AboutIntro";
+import AboutHero from "@/component/Section/AboutIntro";
 import Footer from "@/elements/Footer/Footer";
 import { useTheme } from "@/contexts/ThemeContext";
 import Education from "@/component/Section/Education";
