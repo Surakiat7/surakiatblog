@@ -7,8 +7,9 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { Image } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
 import { useNavigate } from "@/utils/navigation";
-import { PostData } from "@/app/(routes)/blog/blogpostmockdata";
+import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 import Link from "next/link";
+import _ from "lodash";
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -143,9 +144,7 @@ const BlogPostCarousel = () => {
             className="flex pt-2 px-12 pb-12 sm:px-6 sm:pb-6"
           >
             {isLoading
-              ? Array.from({ length: 6 }, (_, index) => (
-                  <SkeletonBlogCard key={index} />
-                ))
+              ? _.times(6, (index) => <SkeletonBlogCard key={index} />)
               : PostData.map((post) => (
                   <BlogPostCard key={post.id} {...post} />
                 ))}
@@ -156,7 +155,7 @@ const BlogPostCarousel = () => {
   );
 };
 
-const BlogPostCard = ({ id, imgUrl, author, title, description }: PostType) => {
+const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const borderColorClass =
@@ -211,11 +210,3 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: PostType) => {
 };
 
 export default BlogPostCarousel;
-
-type PostType = {
-  id: number;
-  imgUrl: string;
-  author: string;
-  title: string;
-  description: string;
-};

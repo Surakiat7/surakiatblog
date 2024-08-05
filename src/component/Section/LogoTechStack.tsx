@@ -26,7 +26,6 @@ import { IconType } from "react-icons";
 import { RiNextjsFill } from "react-icons/ri";
 import { FaCloudflare } from "react-icons/fa6";
 import { useTheme } from "@/contexts/ThemeContext";
-import Link from "next/link";
 
 const LogoHero = () => {
   const { theme } = useTheme();

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Image } from "@nextui-org/image";
 import { useTheme } from "@/contexts/ThemeContext";
 import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
+import _ from "lodash";
 
 interface ShiftingDropDownMenuProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
@@ -112,7 +113,7 @@ const Tab: React.FC<TabProps> = ({
   exprienceRef,
   contactRef,
 }) => {
-  const tabData = TABS.find((t) => t.id === tab);
+  const tabData = _.find(TABS, { id: tab });
   const hasComponent = !!tabData?.Component;
   const { theme } = useTheme();
   const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
@@ -173,8 +174,13 @@ const Content = ({
   selected: number | null;
   dir: null | "l" | "r";
 }) => {
-  const tab = TABS.find((t) => t.id === selected);
-  const Component = tab?.Component;
+  const tab = _.find(TABS, { id: selected });
+
+  if (!tab || typeof tab !== 'object' || !('Component' in tab) || tab.Component === null) {
+    return <div />;
+  }
+
+  const Component = tab.Component;
   const { theme } = useTheme();
   const bgColorClass =
     theme === "light"
@@ -264,8 +270,8 @@ const Nub = ({ selected }: { selected: number | null }) => {
 };
 
 const getRandomPosts = (posts: Post[], count: number): Post[] => {
-  const shuffled = [...posts].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+  const shuffled = _.shuffle(posts);
+  return _.take(shuffled, count);
 };
 
 const Blog = () => {
@@ -290,7 +296,11 @@ const Blog = () => {
       <div className="grid grid-cols-2 w-full gap-2">
         {selectedPosts.map((post) => (
           <div key={post.id}>
-            <Link href={`/blog/${post.id}`} passHref className="flex flex-col gap-2">
+            <Link
+              href={`/blog/${post.id}`}
+              passHref
+              className="flex flex-col gap-2"
+            >
               <div className="w-full !h-14">
                 <Image
                   src={post.imgUrl}
@@ -324,7 +334,13 @@ const Blog = () => {
   );
 };
 
-const TABS = [
+interface TabItem {
+  id: number;
+  title: string;
+  Component: React.FC | null;
+}
+
+const TABS: TabItem[] = [
   { id: 1, title: "About", Component: null },
   { id: 2, title: "Blog", Component: Blog },
   { id: 3, title: "Education", Component: null },

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Image, Button, Spinner } from "@nextui-org/react";
@@ -7,6 +7,7 @@ import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
 import { useNavigate } from "@/utils/navigation";
 import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 import SearchButton from "../Button/SearchButton";
+import _ from "lodash";
 
 const BlogPostFindAll = () => {
   const [offset, setOffset] = useState(0);
@@ -23,21 +24,25 @@ const BlogPostFindAll = () => {
       ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
       : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
 
+  const debouncedSearch = useCallback(
+    _.debounce((query: string) => {
+      const results = PostData.filter((post) =>
+        post.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredPosts(results);
+      setIsLoading(false);
+    }, 500),
+    []
+  );
+
   useEffect(() => {
     if (searchQuery === "") {
       setFilteredPosts(PostData);
     } else {
       setIsLoading(true);
-      const timeoutId = setTimeout(() => {
-        const results = PostData.filter((post) =>
-          post.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-        setFilteredPosts(results);
-        setIsLoading(false);
-      }, 500);
-      return () => clearTimeout(timeoutId);
+      debouncedSearch(searchQuery);
     }
-  }, [searchQuery]);
+  }, [searchQuery, debouncedSearch]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -66,8 +71,6 @@ const BlogPostFindAll = () => {
                   to enhance your skills or stay updated with the latest in
                   frontend technology and design, I&apos;ll be sharing articles
                   and tutorials that might help you in one way or another.
-                  Let&apos;s develop your frontend skills together with shared
-                  knowledge and experience.
                 </p>
                 <p className="hidden sm:flex font-normal text-md">
                   Visit my blog to discover tips, techniques, and various
@@ -78,17 +81,17 @@ const BlogPostFindAll = () => {
                 <h2 className="text-xl font-bold sm:w-full bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
                   {searchQuery ? (
                     <>
-                      {filteredPosts.length} Search Results: {searchQuery}
+                      {_.size(filteredPosts)} Search Results: {searchQuery}
                     </>
                   ) : (
-                    `Totals ${filteredPosts.length} Posts`
+                    `Totals ${_.size(filteredPosts)} Posts`
                   )}
                 </h2>
               </div>
               <div className="flex w-full min-h-screen pb-4">
                 {isLoading ? (
                   <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full h-fit">
-                    {Array.from({ length: 3 }, (_, index) => (
+                    {_.times(3, (index) => (
                       <SkeletonBlogCard key={index} />
                     ))}
                   </div>
@@ -102,7 +105,7 @@ const BlogPostFindAll = () => {
                     }}
                     className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full h-fit"
                   >
-                    {filteredPosts.length > 0 ? (
+                    {_.size(filteredPosts) > 0 ? (
                       filteredPosts.map((post) => (
                         <BlogPost key={post.id} {...post} />
                       ))
