@@ -76,7 +76,7 @@ const Screen: React.FC = () => {
           alt="Surakiat-Logo"
           width={70}
           height={70}
-          priority
+          loading="lazy"
           className="object-cover"
         />
       </div>

@@ -16,7 +16,7 @@ const NextJSLogo: React.FC = () => {
       alt="NextJS Logo"
       width={70}
       height={70}
-      priority
+      loading="lazy"
       className="object-cover"
     />
   );
