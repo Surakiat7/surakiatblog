@@ -48,32 +48,17 @@ interface HeaderBlockProps {
 
 const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const { theme } = useTheme();
-
-  const textColorClass = useMemo(
-    () => (theme === "light" ? "text-zinc-950" : "text-zinc-50"),
-    [theme]
-  );
-
-  const bgColorClass = useMemo(
-    () =>
-      theme === "light"
-        ? "bg-zinc-100 text-zinc-950"
-        : "bg-zinc-950 text-zinc-50",
-    [theme]
-  );
-
-  const TitleLinearColor = useMemo(
-    () =>
-      theme === "dark"
-        ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-        : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text",
-    [theme]
-  );
-
-  const borderColorClass = useMemo(
-    () => (theme === "light" ? "border-zinc-300" : "border-zinc-700"),
-    [theme]
-  );
+  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
+  const bgColorClass =
+    theme === "light"
+      ? "bg-zinc-100 text-zinc-950"
+      : "bg-zinc-950 text-zinc-50";
+  const TitleLinearColor =
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+  const borderColorClass =
+    theme === "light" ? "border-zinc-300" : "border-zinc-700";
 
   const handleContactClick = () => {
     if (contactRef.current) {
@@ -102,20 +87,18 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
           height={100}
           priority
         />
-        <div className="flex flex-col gap-2">
+        <div className={`flex flex-col gap-2`}>
           <h1
             className={`text-4xl sm:text-xl font-bold leading-tight ${TitleLinearColor}`}
           >
             Hi, I&apos;m JJ. Surakiat Tablakorn{" "}
-            <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
-              Frontend Developer.
-            </span>
+            <span className="inline-block">Frontend Developer.</span>
           </h1>
           <div
-            className={`flex items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300 ${TitleLinearColor}`}
+            className={`flex items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300 ${textColorClass}`}
             onClick={handleContactClick}
           >
-            <span className={`${textColorClass}`}>Contact me</span>
+            <span>Contact me</span>
             <FiArrowRight />
           </div>
         </div>
