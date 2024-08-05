@@ -1,46 +1,7 @@
-"use client";
-
 import React, { useMemo } from "react";
-import dynamic from "next/dynamic";
-import { FiArrowRight } from "react-icons/fi";
-import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Poppins } from "next/font/google";
-import { Block } from "./Block";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "700"],
-});
-
-const DynamicAboutBlock = dynamic(() => import("./AboutBlock"), { ssr: false });
-
-interface AboutHeroProps {
-  contactRef: React.RefObject<HTMLDivElement>;
-}
-
-export const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
-  const { theme } = useTheme();
-
-  const bgColorClass = useMemo(
-    () =>
-      theme === "light"
-        ? "bg-zinc-200 text-zinc-950"
-        : "bg-zinc-900 text-zinc-50",
-    [theme]
-  );
-
-  return (
-    <div
-      className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass} ${poppins.className}`}
-    >
-      <div className="flex flex-col w-full gap-4">
-        <HeaderBlock contactRef={contactRef} />
-        <DynamicAboutBlock />
-      </div>
-    </div>
-  );
-};
+import Image from "next/image";
+import { FiArrowRight } from "react-icons/fi";
 
 interface HeaderBlockProps {
   contactRef: React.RefObject<HTMLDivElement>;
@@ -92,7 +53,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.jpg`;
 
   return (
-    <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
+    <div className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
           className="object-cover w-[100px] h-[100px]"
@@ -103,9 +64,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
           priority
         />
         <div className="flex flex-col gap-2">
-          <h1
-            className={`text-4xl sm:text-xl font-bold leading-tight ${TitleLinearColor}`}
-          >
+          <h1 className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}>
             Hi, I&apos;m JJ. Surakiat Tablakorn{" "}
             <span className="bg-gradient-to-r from-[#4EDFE7] to-[#00597B] inline-block text-transparent bg-clip-text">
               Frontend Developer.
@@ -120,8 +79,8 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
           </div>
         </div>
       </div>
-    </Block>
+    </div>
   );
 };
 
-export default AboutHero;
+export default HeaderBlock;

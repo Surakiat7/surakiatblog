@@ -63,7 +63,7 @@ const BlogPostByID: React.FC<Props> = () => {
     return <p className={`${TitleLinearColor} text-xl`}>Post not found</p>;
   }
 
-  const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.jpg`;
+  const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.avif`;
 
   const breadcrumbsItems = [
     { name: "Home", href: "/" },
