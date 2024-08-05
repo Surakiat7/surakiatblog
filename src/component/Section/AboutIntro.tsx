@@ -80,7 +80,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
     <Block className={`flex w-full ${bgColorClass} ${borderColorClass}`}>
       <div className="flex w-full sm:flex-col items-center sm:items-start gap-4">
         <Image
-          className="object-cover w-[100px] h-[100px]"
+          className="object-cover w-[100px] rounded-2xl h-[100px]"
           src={profileImageUrl}
           alt="Profile me"
           width={100}
@@ -88,17 +88,14 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
           priority
         />
         <div className={`flex flex-col gap-2`}>
-          <h1
-            className={`text-4xl sm:text-xl font-bold leading-tight ${TitleLinearColor}`}
-          >
-            Hi, I&apos;m JJ. Surakiat Tablakorn{" "}
-            <span className="inline-block">Frontend Developer.</span>
+          <h1 className={`text-2xl sm:text-[18px] font-bold ${TitleLinearColor}`}>
+            Hi, I&apos;m JJ. Surakiat Tablakorn Frontend Developer
           </h1>
           <div
-            className={`flex items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300 ${textColorClass}`}
+            className={`flex w-fit items-center gap-1 cursor-pointer transition-transform transform hover:translate-x-[4px] duration-300 ${textColorClass}`}
             onClick={handleContactClick}
           >
-            <span>Contact me</span>
+            <span className="text-md">Contact me</span>
             <FiArrowRight />
           </div>
         </div>
