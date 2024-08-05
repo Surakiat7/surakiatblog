@@ -62,6 +62,7 @@ const Screen: React.FC = () => {
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
   const ColorClass =
     theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50";
+
   return (
     <div
       className={`relative z-0 grid h-full w-full place-content-center overflow-hidden rounded-[20px] ${ColorClass}`}
