@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.png`,
+        url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
         width: 1200,
         height: 630,
         alt: "Surakiat OpenGraph Images",

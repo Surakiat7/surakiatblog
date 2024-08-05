@@ -4,7 +4,7 @@ import Image from "next/image";
 import GradientButton from "@/component/Button/ActionButton";
 import { useNavigate } from "@/utils/navigation";
 
-const imageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/404-notfound.png`;
+const imageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/404-notfound.avif`;
 
 const NotFound = () => {
   const navigation = useNavigate();

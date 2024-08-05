@@ -7,8 +7,8 @@ const NextJSLogo: React.FC = () => {
 
   const logoSrc =
     theme === "light"
-      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-Black.png`
-      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-White.png`;
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-Black.avif`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-White.avif`;
 
   return (
     <Image

@@ -7,7 +7,7 @@ import { FaAccessibleIcon } from "react-icons/fa";
 
 const workExperienceData = [
   {
-    imageSrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/pfc-logo.png`,
+    imageSrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/pfc-logo.avif`,
     companyName: "Perfect Computer Solutions Co., Ltd.",
     period: "July 24, 2023 - Present",
     position: "Frontend Developer (Working hybrid in Bangkok)",
@@ -27,7 +27,7 @@ const workExperienceData = [
     ],
   },
   {
-    imageSrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/amarin-logo.png`,
+    imageSrc: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/amarin-logo.avif`,
     companyName: "Amarin Corporations Public Company Limited.",
     period: "April 20 - September 20, 2023",
     position:

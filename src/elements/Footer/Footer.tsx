@@ -17,8 +17,8 @@ const Footer = () => {
 
   const logoSrc =
     theme === "light"
-      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.png`
-      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.png`;
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
   const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
   const borderColorClass =
     theme === "light" ? "border-zinc-300" : "border-zinc-700";
