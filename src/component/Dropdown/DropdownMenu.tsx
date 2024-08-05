@@ -174,6 +174,7 @@ const Content = ({
   selected: number | null;
   dir: null | "l" | "r";
 }) => {
+  const { theme } = useTheme();
   const tab = _.find(TABS, { id: selected });
 
   if (
@@ -186,7 +187,6 @@ const Content = ({
   }
 
   const Component = tab.Component;
-  const { theme } = useTheme();
   const bgColorClass =
     theme === "light"
       ? "border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100"
@@ -235,8 +235,8 @@ const Bridge = () => (
 );
 
 const Nub = ({ selected }: { selected: number | null }) => {
-  const [left, setLeft] = useState(0);
   const { theme } = useTheme();
+  const [left, setLeft] = useState(0);
   const nubColorClass =
     theme === "light"
       ? "border-zinc-200 bg-zinc-100"
