@@ -1,11 +1,17 @@
 "use client";
 
-import React, { ReactNode, useEffect, useState, RefObject } from "react";
+import React, {
+  ReactNode,
+  useEffect,
+  useState,
+  RefObject,
+  useMemo,
+} from "react";
 import { AnimationProps, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { IoIosArrowDown } from "react-icons/io";
 import { useTheme } from "@/contexts/ThemeContext";
-import dynamic from "next/dynamic";
+import _ from "lodash";
 
 interface DarkGridHeroElementProps {
   scrollToAbout: () => void;
@@ -31,42 +37,42 @@ export const DarkGridHero: React.FC<DarkGridHeroElementProps> = ({
   );
 };
 
+const getStyles = _.memoize((theme) => ({
+  TitleLinearColor:
+    theme === "dark"
+      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text",
+  contentTextColor: theme === "dark" ? "text-white" : "text-slate-600",
+  chipBorderAndBg:
+    theme === "dark"
+      ? "border-zinc-700 bg-zinc-900/20 text-zinc-50"
+      : "border-slate-200 bg-slate-100 text-zinc-950",
+  chipGradient:
+    theme === "dark"
+      ? "bg-gradient-to-r from-zinc-500/0 via-zinc-300 to-zinc-500/0"
+      : "bg-gradient-to-r from-slate-500/0 via-slate-300 to-slate-500/0",
+}));
+
 const Content: React.FC<{ scrollToAbout: () => void }> = ({
   scrollToAbout,
 }) => {
-  const { theme, setTheme } = useTheme();
-  const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+  const { theme } = useTheme();
+  const styles = getStyles(theme);
 
   return (
     <div className="relative z-20 mx-auto flex max-w-6xl flex-col items-center justify-center px-4 sm:py-6 py-32">
-      <motion.div
-        initial={{ y: 25, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, ease: "easeInOut" }}
-        className={`relative ${
-          theme === "dark" ? "text-white" : "text-slate-800"
-        }`}
+      <div
+        className={`relative animate-fadeInUp1 opacity-0 ${styles.contentTextColor}`}
       >
         <GlowingChip>Welcome, I&apos;m JJ 😊</GlowingChip>
-      </motion.div>
-      <motion.h1
-        initial={{ y: 25, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, delay: 0.25, ease: "easeInOut" }}
-        className={`pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${TitleLinearColor}`}
+      </div>
+      <h1
+        className={`animate-fadeInUp2 opacity-0 pb-2 text-center font-bold leading-tight sm:text-2xl text-5xl md:text-7xl lg:leading-tight ${styles.TitleLinearColor}`}
       >
         Surakiat Tablakorn
-      </motion.h1>
-      <motion.p
-        initial={{ y: 25, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, delay: 0.5, ease: "easeInOut" }}
-        className={`pb-8 sm:pb-4 text-center leading-relaxed sm:text-base text-lg md:leading-relaxed ${
-          theme === "dark" ? "text-white" : "text-slate-600"
-        }`}
+      </h1>
+      <p
+        className={`animate-fadeInUp3 opacity-0 pb-8 sm:pb-4 text-center leading-relaxed sm:text-base text-lg md:leading-relaxed ${styles.contentTextColor}`}
       >
         I&rsquo;m a Frontend Developer based in Bangkok, Thailand, specializing
         in crafting exceptional web applications and everything in between. With
@@ -77,13 +83,8 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
         working directly with clients and system users. I&rsquo;m passionate
         about delivering high-quality, scalable solutions and continuously
         improving through direct communication and feedback.
-      </motion.p>
-      <motion.div
-        initial={{ y: 25, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.25, delay: 0.75, ease: "easeInOut" }}
-        className="flex flex-col items-center gap-6 sm:flex-row"
-      >
+      </p>
+      <div className="animate-fadeInUp4 opacity-0 flex flex-col items-center gap-6 sm:flex-row">
         <SplashButton
           scrollToAbout={scrollToAbout}
           className="flex flex-col px-12 items-center"
@@ -91,29 +92,22 @@ const Content: React.FC<{ scrollToAbout: () => void }> = ({
           Scroll Down
           <IoIosArrowDown />
         </SplashButton>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
 const GlowingChip: React.FC<{ children: string }> = ({ children }) => {
   const { theme } = useTheme();
+  const styles = getStyles(theme);
 
   return (
     <span
-      className={`relative z-10 mb-4 inline-block rounded-full border ${
-        theme === "dark"
-          ? "border-zinc-700 bg-zinc-900/20 text-zinc-50"
-          : "border-slate-200 bg-slate-100 text-zinc-950"
-      } px-3 py-1.5 text-xs md:mb-0`}
+      className={`relative z-10 mb-4 inline-block rounded-full border ${styles.chipBorderAndBg} px-3 py-1.5 text-xs md:mb-0`}
     >
       {children}
       <span
-        className={`absolute bottom-0 left-3 right-3 h-[1px] ${
-          theme === "dark"
-            ? "bg-gradient-to-r from-zinc-500/0 via-zinc-300 to-zinc-500/0"
-            : "bg-gradient-to-r from-slate-500/0 via-slate-300 to-slate-500/0"
-        }`}
+        className={`absolute bottom-0 left-3 right-3 h-[1px] ${styles.chipGradient}`}
       />
     </span>
   );
@@ -139,66 +133,71 @@ const SplashButton: React.FC<ButtonProps> = ({
   );
 };
 
+const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    const handleResize = _.debounce(() => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    }, 250);
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return windowSize;
+};
+
 const Beams: React.FC = () => {
   const { width } = useWindowSize();
 
   const numColumns = width ? Math.floor(width / GRID_BOX_SIZE) : 0;
 
-  const placements = [
-    {
-      top: GRID_BOX_SIZE * 0,
-      left: Math.floor(numColumns * 0.05) * GRID_BOX_SIZE,
-      transition: {
-        duration: 3.5,
-        repeatDelay: 5,
-        delay: 2,
+  const placements = useMemo(
+    () => [
+      {
+        top: GRID_BOX_SIZE * 0,
+        left: Math.floor(numColumns * 0.05) * GRID_BOX_SIZE,
+        transition: { duration: 3.5, repeatDelay: 5, delay: 2 },
       },
-    },
-    {
-      top: GRID_BOX_SIZE * 12,
-      left: Math.floor(numColumns * 0.15) * GRID_BOX_SIZE,
-      transition: {
-        duration: 3.5,
-        repeatDelay: 10,
-        delay: 4,
+      {
+        top: GRID_BOX_SIZE * 12,
+        left: Math.floor(numColumns * 0.15) * GRID_BOX_SIZE,
+        transition: { duration: 3.5, repeatDelay: 10, delay: 4 },
       },
-    },
-    {
-      top: GRID_BOX_SIZE * 3,
-      left: Math.floor(numColumns * 0.25) * GRID_BOX_SIZE,
-    },
-    {
-      top: GRID_BOX_SIZE * 9,
-      left: Math.floor(numColumns * 0.75) * GRID_BOX_SIZE,
-      transition: {
-        duration: 2,
-        repeatDelay: 7.5,
-        delay: 3.5,
+      {
+        top: GRID_BOX_SIZE * 3,
+        left: Math.floor(numColumns * 0.25) * GRID_BOX_SIZE,
       },
-    },
-    {
-      top: 0,
-      left: Math.floor(numColumns * 0.7) * GRID_BOX_SIZE,
-      transition: {
-        duration: 3,
-        repeatDelay: 2,
-        delay: 1,
+      {
+        top: GRID_BOX_SIZE * 9,
+        left: Math.floor(numColumns * 0.75) * GRID_BOX_SIZE,
+        transition: { duration: 2, repeatDelay: 7.5, delay: 3.5 },
       },
-    },
-    {
-      top: GRID_BOX_SIZE * 2,
-      left: Math.floor(numColumns * 1) * GRID_BOX_SIZE - GRID_BOX_SIZE,
-      transition: {
-        duration: 5,
-        repeatDelay: 5,
-        delay: 5,
+      {
+        top: 0,
+        left: Math.floor(numColumns * 0.7) * GRID_BOX_SIZE,
+        transition: { duration: 3, repeatDelay: 2, delay: 1 },
       },
-    },
-  ];
+      {
+        top: GRID_BOX_SIZE * 2,
+        left: Math.floor(numColumns * 1) * GRID_BOX_SIZE - GRID_BOX_SIZE,
+        transition: { duration: 5, repeatDelay: 5, delay: 5 },
+      },
+    ],
+    [numColumns]
+  );
 
   return (
     <>
-      {placements.map((p, i) => (
+      {_.map(placements, (p, i) => (
         <Beam
           key={i}
           top={p.top}
@@ -208,28 +207,6 @@ const Beams: React.FC = () => {
       ))}
     </>
   );
-};
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: undefined,
-    height: undefined,
-  });
-
-  useEffect(() => {
-    const handleResize = () =>
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return windowSize;
 };
 
 const Beam: React.FC<BeamType> = ({ top, left, transition = {} }) => {
@@ -258,7 +235,7 @@ const GradientGrid: React.FC<{
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2.5, ease: "easeInOut" }}
+      transition={{ duration: 1.50, ease: "easeInOut" }}
       className="absolute inset-0 z-0"
     >
       <div

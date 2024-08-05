@@ -8,6 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(25px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        fadeInUp1: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0s forwards",
+        fadeInUp2: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards",
+        fadeInUp3: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards",
+        fadeInUp4: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.75s forwards",
+      },
       screens: {
         sm: { min: "220px", max: "767px" },
         md: { min: "768px", max: "1023px" },
