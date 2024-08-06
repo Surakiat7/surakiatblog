@@ -7,7 +7,7 @@ export const SendContact = async (
 ): Promise<ApiResponse> => {
   try {
     const response: AxiosResponse<ApiResponse> = await axios.post(
-      `${apiEndPoint}/api/v1/contact`,
+      `${apiEndPoint}/api/v1/contact/feature/contact`,
       body
     );
     return response.data;

@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
 
   const [title, setTitle] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const [surname, setsurname] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -92,7 +92,7 @@ const Contact: React.FC = () => {
   const isButtonDisabled =
     !title ||
     !name ||
-    !username ||
+    !surname ||
     !phone ||
     !email ||
     !message ||
@@ -102,8 +102,8 @@ const Contact: React.FC = () => {
   const handleSubmit = async () => {
     const ContactData: SendContactRequest = {
       title,
-      firstName: name.split(" ")[0],
-      lastName: name.split(" ")[1] || "",
+      firstName: name || "",
+      lastName: name || "",
       phoneNumber: phone,
       email,
       message,
@@ -123,13 +123,13 @@ const Contact: React.FC = () => {
         useWorker: true,
         duration: 6000,
       } as ConfettiOptions);
-      // setToast({
-      //   type: "success",
-      //   message: "Your message was sent successfully!",
-      // });
-      setModalTitle("Success");
-      setModalMessage("Your message was sent successfully!");
-      setModalType("success");
+      setToast({
+        type: "success",
+        message: "Your message was sent successfully!",
+      });
+      // setModalTitle("Success");
+      // setModalMessage("Your message was sent successfully!");
+      // setModalType("success");
     } catch (error) {
       console.error("Error sending contact:", error);
       // setToast({
@@ -219,15 +219,15 @@ const Contact: React.FC = () => {
             </div>
             <div className="flex flex-col w-full gap-1">
               <label className="text-base font-medium">
-                Username<span className="text-[#FD7573]"> *</span>
+                Surname<span className="text-[#FD7573]"> *</span>
               </label>
               <Input
                 type="text"
-                label="Username"
+                label="Surname"
                 variant="flat"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => handleInputChange(e, setUsername)}
+                placeholder="Enter your surname"
+                value={surname}
+                onChange={(e) => handleInputChange(e, setsurname)}
                 className="w-full"
               />
             </div>
