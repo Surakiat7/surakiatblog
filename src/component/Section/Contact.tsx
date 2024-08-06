@@ -7,6 +7,7 @@ import { useState, ChangeEvent } from "react";
 import { SendContact, SendContactRequest } from "@/api/contact";
 import confetti from "canvas-confetti";
 import Toast from "../Notification/ToastContact";
+import ModalNotification from "../Modal/ModalContact";
 
 interface ConfettiOptions extends confetti.Options {
   useWorker?: boolean;
@@ -36,6 +37,10 @@ const Contact: React.FC = () => {
     type: "success" | "error";
     message: string;
   } | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>("");
+  const [modalTitle, setModalTitle] = useState<string>("");
+  const [modalType, setModalType] = useState<"success" | "error">("success");
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -118,30 +123,58 @@ const Contact: React.FC = () => {
         useWorker: true,
         duration: 6000,
       } as ConfettiOptions);
-      setToast({
-        type: "success",
-        message: "Your message was sent successfully!",
-      });
+      // setToast({
+      //   type: "success",
+      //   message: "Your message was sent successfully!",
+      // });
+      setModalTitle("Success");
+      setModalMessage("Your message was sent successfully!");
+      setModalType("success");
     } catch (error) {
       console.error("Error sending contact:", error);
-      setToast({
-        type: "error",
-        message: "Failed to send your message. Please try again.",
-      });
+      // setToast({
+      //   type: "error",
+      //   message: "Failed to send your message. Please try again.",
+      // });
+      setModalTitle("error");
+      setModalMessage("Failed to send your message. Please try again.");
+      setModalType("error");
     } finally {
       setIsLoading(false);
     }
+    setIsModalOpen(true);
+  };
+
+  const handleToastClose = () => {
+    setToast(null);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
-      <>
-        {toast && (
-          <div className="fixed bottom-4 right-4 z-50">
-            <Toast type={toast.type} message={toast.message} />
-          </div>
-        )}
-      </>
+      {/* Start Toast */}
+      {toast && (
+        <div className="fixed top-16 right-4 z-50">
+          <Toast
+            type={toast.type}
+            message={toast.message}
+            onClose={handleToastClose}
+          />
+        </div>
+      )}
+      {/* End Toast */}
+      {/* Start Modal */}
+      <ModalNotification
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        message={modalMessage}
+        title={modalTitle}
+        type={modalType}
+      />
+      {/* End Modal */}
       <div className="w-full px-6 py-6 flex flex-col items-center">
         <h1
           className={`text-center font-bold text-4xl md:text-6xl max-w-xl ${TitleLinearColor}`}
@@ -255,7 +288,7 @@ const Contact: React.FC = () => {
           </div>
           <div className="w-20 h-auto pt-2">
             <Button
-              isDisabled={isButtonDisabled}
+              // isDisabled={isButtonDisabled}
               isLoading={isLoading}
               radius="md"
               size="lg"

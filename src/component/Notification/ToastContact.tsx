@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ToastProps {
   type: "success" | "error";
   message: string;
+  onClose: () => void;
 }
 
-const Toast: React.FC<ToastProps> = ({ type, message }) => {
+const Toast: React.FC<ToastProps> = ({ type, message, onClose }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+      setTimeout(onClose, 500);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
   return (
     <div
-      className={`max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700 ${
-        type === "success"
-          ? "bg-teal-50 text-teal-500"
-          : "bg-red-50 text-red-500"
+      className={`fixed right-4 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-zinc-900 dark:border-zinc-900 ${
+        isVisible
+          ? type === "success"
+            ? "bg-teal-50 text-teal-500 animate-slideInRight"
+            : "bg-red-50 text-red-500 animate-slideInRight"
+          : type === "success"
+          ? "bg-teal-50 text-teal-500 animate-slideOutRight"
+          : "bg-red-50 text-red-500 animate-slideOutRight"
       }`}
       role="alert"
       aria-labelledby={`hs-toast-${type}-example-label`}
@@ -19,7 +35,7 @@ const Toast: React.FC<ToastProps> = ({ type, message }) => {
       <div className="flex p-4">
         <div className="shrink-0">
           <svg
-            className={`shrink-0 size-4 ${
+            className={`shrink-0 size-8 ${
               type === "success" ? "text-teal-500" : "text-red-500"
             } mt-0.5`}
             xmlns="http://www.w3.org/2000/svg"

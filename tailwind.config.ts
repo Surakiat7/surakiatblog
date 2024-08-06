@@ -13,12 +13,22 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(25px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        slideInRight: {
+          "0%": { transform: "translateX(100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        slideOutRight: {
+          "0%": { transform: "translateX(0)", opacity: "1" },
+          "100%": { transform: "translateX(100%)", opacity: "0" },
+        },
       },
       animation: {
         fadeInUp1: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0s forwards",
         fadeInUp2: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards",
         fadeInUp3: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards",
         fadeInUp4: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.75s forwards",
+        slideInRight: "slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        slideOutRight: "slideOutRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards",
       },
       screens: {
         sm: { min: "220px", max: "767px" },
