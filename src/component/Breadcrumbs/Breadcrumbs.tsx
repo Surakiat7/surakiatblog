@@ -16,7 +16,7 @@ const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
   items,
 }) => {
   const { mobileScreen } = useMobileScreen();
-  const maxLength = mobileScreen ? 26 : Infinity;
+  const maxLength = mobileScreen ? 24 : Infinity;
 
   return (
     <Breadcrumbs variant="solid" radius={"md"} className="breadcrumbs">
