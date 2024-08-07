@@ -3,7 +3,6 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { Divider, Image } from "@nextui-org/react";
 import { LuDot } from "react-icons/lu";
-import { FaAccessibleIcon } from "react-icons/fa";
 
 const workExperienceData = [
   {
@@ -90,6 +89,7 @@ const WorkExperience = () => {
                   alt={`${experience.companyName} logo`}
                   data-loaded="true"
                   loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 80px"
                 />
               </div>
               <div className="flex flex-col w-full">
