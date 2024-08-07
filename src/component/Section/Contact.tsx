@@ -94,7 +94,8 @@ const Contact: React.FC = () => {
     !email ||
     !message ||
     isPhoneError ||
-    isEmailError;
+    isEmailError ||
+    !recaptchaRef.current?.getValue();
 
   const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
 
@@ -319,7 +320,7 @@ const Contact: React.FC = () => {
           {/* End reCAPTCHA widget */}
           <div className="w-20 h-auto pt-2">
             <Button
-              isDisabled={isButtonDisabled || !recaptchaRef.current?.getValue()}
+              isDisabled={isButtonDisabled}
               isLoading={isLoading}
               radius="md"
               size="lg"
