@@ -7,6 +7,7 @@ import { useNavigate } from "@/utils/navigation";
 import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 import SearchButton from "../Button/SearchButton";
 import _ from "lodash";
+import NextImage from "next/image";
 
 const BlogPostFindAll = () => {
   const [offset, setOffset] = useState(0);
@@ -138,13 +139,13 @@ const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
       onClick={() => handleBlogClick(id.toString())}
     >
       <div className="w-full mb-2 !h-[200px]">
-        <Image
-          width="100%"
-          height={200}
-          loading="lazy"
-          className="!h-[200px] w-full rounded-lg object-cover"
-          alt={`An image for a blog post titled ${title}`}
+        <NextImage
           src={imgUrl}
+          alt={`An image for a blog post titled ${title}`}
+          width={350}
+          height={200}
+          priority
+          className="w-full rounded-lg object-cover"
           style={{ height: "200px", objectFit: "cover" }}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />

@@ -67,18 +67,21 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
+[data-slot="item"] {
+  gap: 0.6rem !important;
+}
+
 .breadcrumb-item a {
   color: #ffffff;
   text-decoration: none;
 }
 
 [aria-current="page"] {
-  color: #4EDFE7 !important;
+  color: #4edfe7 !important;
   cursor: default;
 }
 
 [aria-current="page"] a {
-  color: #4EDFE7 !important;
+  color: #4edfe7 !important;
   pointer-events: none;
 }
-
