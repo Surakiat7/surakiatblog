@@ -38,6 +38,11 @@ const Contact: React.FC = () => {
   const [modalMessage, setModalMessage] = useState<string>("");
   const [modalTitle, setModalTitle] = useState<string>("");
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+
+  const handleRecaptchaChange = (value: string | null) => {
+    setIsRecaptchaVerified(!!value);
+  };
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -95,7 +100,7 @@ const Contact: React.FC = () => {
     !message ||
     isPhoneError ||
     isEmailError ||
-    !recaptchaRef.current?.getValue();
+    !isRecaptchaVerified;
 
   const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
 
@@ -132,6 +137,8 @@ const Contact: React.FC = () => {
       setIsModalOpen(true);
       return;
     }
+    
+    setIsRecaptchaVerified(true);
 
     console.log("Token recaptcha:", token);
 
@@ -314,6 +321,7 @@ const Contact: React.FC = () => {
               <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey="6LcZKiEqAAAAAJpiMvxYI11nYwvi5OPxswwbJ7xA"
+                onChange={handleRecaptchaChange}
               />
             </div>
           )}
