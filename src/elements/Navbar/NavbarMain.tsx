@@ -7,8 +7,9 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Link,
 } from "@nextui-org/react";
+import { useMemo } from "react";
+import { throttle } from "lodash";
 import { useTheme } from "@/contexts/ThemeContext";
 import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
 import Image from "next/image";
@@ -46,58 +47,60 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
 
-  const logoSrc =
-    theme === "light"
-      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
-      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
-  const iconColor = theme === "light" ? "#09090b" : "#fafafa";
-  const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
-  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
-  const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+  const themeValues = useMemo(
+    () => ({
+      logoSrc:
+        theme === "light"
+          ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
+          : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`,
+      iconColor: theme === "light" ? "#09090b" : "#fafafa",
+      dividerColor: theme === "light" ? "#d1d5db" : "#4b5563",
+      textColorClass: theme === "light" ? "text-zinc-950" : "text-zinc-50",
+      TitleLinearColor:
+        theme === "dark"
+          ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
+          : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text",
+    }),
+    [theme]
+  );
 
   const menuItems = [
     {
       name: "About",
       ref: aboutRef,
-      icon: <TbUserSquareRounded size={26} color={iconColor} />,
+      icon: <TbUserSquareRounded size={26} color={themeValues.iconColor} />,
     },
     {
       name: "Blog",
       ref: blogRef,
-      icon: <RiBloggerLine size={28} color={iconColor} />,
+      icon: <RiBloggerLine size={28} color={themeValues.iconColor} />,
     },
     {
       name: "Education",
       ref: educationRef,
-      icon: <PiGraduationCap size={26} color={iconColor} />,
+      icon: <PiGraduationCap size={26} color={themeValues.iconColor} />,
     },
     {
       name: "Work Experience",
       ref: exprienceRef,
-      icon: <IoBriefcaseOutline size={26} color={iconColor} />,
+      icon: <IoBriefcaseOutline size={26} color={themeValues.iconColor} />,
     },
     {
       name: "Contact",
       ref: contactRef,
-      icon: <BsEnvelopePaper size={26} color={iconColor} />,
+      icon: <BsEnvelopePaper size={26} color={themeValues.iconColor} />,
     },
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+    const handleScroll = throttle(() => {
+      setIsScrolled(window.scrollY > 0);
+    }, 100);
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel();
     };
   }, []);
 
@@ -124,14 +127,14 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           : "bg-zinc-950 text-zinc-50"
       }`}
     >
-      <NavbarContent justify="start">
+      <NavbarContent justify="start" as="ul" className="list-none p-0 m-0">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="hidden sm:flex"
         />
-        <div className="flex items-center gap-2">
+        <li className="flex items-center gap-2">
           <Image
-            src={logoSrc}
+            src={themeValues.logoSrc}
             alt="Surakiat-Logo"
             width={40}
             height={40}
@@ -139,10 +142,12 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             className="cursor-pointer"
             onClick={onLogoClick}
           />
-          <p className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}>
+          <p
+            className={`font-bold sm:hidden md:hidden ${themeValues.TitleLinearColor}`}
+          >
             Surakiat
           </p>
-        </div>
+        </li>
       </NavbarContent>
       <div className="sm:hidden flex">
         <ShiftingDropDownMenu
@@ -182,12 +187,14 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
                   >
                     {item.icon}
                     <p
-                      className={`w-full text-md font-normal ${textColorClass}`}
+                      className={`w-full text-md font-normal ${themeValues.textColorClass}`}
                     >
                       {item.name}
                     </p>
                   </div>
-                  <Divider style={{ backgroundColor: dividerColor }} />
+                  <Divider
+                    style={{ backgroundColor: themeValues.dividerColor }}
+                  />
                 </div>
               </NavbarMenuItem>
             </li>
@@ -195,9 +202,9 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
         </ul>
         <div className="flex-grow" />
         <NavbarMenuItem>
-          <Divider style={{ backgroundColor: dividerColor }} />
+          <Divider style={{ backgroundColor: themeValues.dividerColor }} />
           <div className={`flex w-full sm:text-center justify-center py-3`}>
-            <p className={`text-xs ${textColorClass}`}>
+            <p className={`text-xs ${themeValues.textColorClass}`}>
               © Copyright 2024 Surakiat. All rights reserved.
             </p>
           </div>
