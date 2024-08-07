@@ -3,7 +3,7 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { Input, Textarea, Button } from "@nextui-org/react";
 import Phone3D from "../3D/FloatingPhone";
-import { useState, ChangeEvent, useRef } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import { SendContact, SendContactRequest } from "@/api/contact";
 import confetti from "canvas-confetti";
 import ModalNotification from "../Modal/ModalContact";
@@ -37,8 +37,6 @@ const Contact: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>("");
   const [modalTitle, setModalTitle] = useState<string>("");
-  const [modalType, setModalType] = useState<"success" | "error">("success");
-
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleInputChange = (
@@ -97,6 +95,21 @@ const Contact: React.FC = () => {
     !message ||
     isPhoneError ||
     isEmailError;
+
+  const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsFormComplete(
+      Boolean(title) &&
+        Boolean(name) &&
+        Boolean(surname) &&
+        Boolean(phone) &&
+        Boolean(email) &&
+        Boolean(message) &&
+        !isPhoneError &&
+        !isEmailError
+    );
+  }, [title, name, surname, phone, email, message, isPhoneError, isEmailError]);
 
   const resetFormFields = () => {
     setTitle("");
@@ -295,12 +308,15 @@ const Contact: React.FC = () => {
             />
           </div>
           {/* reCAPTCHA widget */}
-          <div className="my-4">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey="6LcZKiEqAAAAAJpiMvxYI11nYwvi5OPxswwbJ7xA"
-            />
-          </div>
+          {isFormComplete && (
+            <div className="my-4">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey="6LcZKiEqAAAAAJpiMvxYI11nYwvi5OPxswwbJ7xA"
+              />
+            </div>
+          )}
+          {/* End reCAPTCHA widget */}
           <div className="w-20 h-auto pt-2">
             <Button
               isDisabled={isButtonDisabled || !recaptchaRef.current?.getValue()}
