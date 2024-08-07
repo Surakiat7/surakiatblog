@@ -19,16 +19,19 @@ const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
   const maxLength = mobileScreen ? 26 : Infinity;
 
   return (
-    <Breadcrumbs variant="solid" radius={"md"}>
+    <Breadcrumbs variant="solid" radius={"md"} className="breadcrumbs">
       {items.map((item, index) => (
         <BreadcrumbItem
           key={index}
           separator={index < items.length - 1 ? "/" : undefined}
           startContent={index === 0 ? <TbSmartHome /> : undefined}
           className="breadcrumb-item"
+          aria-current={index === items.length - 1 ? "page" : undefined}
         >
           {item.href ? (
-            <Link href={item.href}>{truncateText(item.name, maxLength)}</Link>
+            <Link href={item.href} className="breadcrumb-link">
+              {truncateText(item.name, maxLength)}
+            </Link>
           ) : (
             truncateText(item.name, maxLength)
           )}

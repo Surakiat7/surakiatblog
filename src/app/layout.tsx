@@ -32,8 +32,59 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.className} dark`}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`}
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        {/* <!-- Apple Touch Icons -->  */}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`}
+        />
+
+        {/* <!-- Android Icons -->  */}
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/android-icon.png`}
+        />
+
+        {/* <!-- Favicon -->  */}
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/favicon-32x32.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/favicon-16x16.png`}
+        />
+
+        {/* <!-- Manifest -->  */}
+        <link
+          rel="manifest"
+          href={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/manifest.json`}
+        />
+
+        {/* <!-- Microsoft Tile Icons -->  */}
+        <meta
+          name="msapplication-TileImage"
+          content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/mstile-150x150.png`}
+        />
+
+        {/* <!-- Safari Pinned Tab Icon -->  */}
+        <link
+          rel="mask-icon"
+          href={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/safari-pinned-tab.svg`}
+          color="#000000"
+        />
       </Head>
       <body>
         <ThemeProvider>

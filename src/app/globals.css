@@ -55,3 +55,30 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+/* General styles for breadcrumb items for seo */
+.breadcrumb-item {
+  color: #333;
+}
+
+[data-slot="separator"] {
+  padding-left: 0.6rem !important;
+  padding-right: 0.6rem !important;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.breadcrumb-item a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+[aria-current="page"] {
+  color: #4EDFE7 !important;
+  cursor: default;
+}
+
+[aria-current="page"] a {
+  color: #4EDFE7 !important;
+  pointer-events: none;
+}
+
