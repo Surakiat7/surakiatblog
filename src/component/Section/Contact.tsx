@@ -3,11 +3,12 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { Input, Textarea, Button } from "@nextui-org/react";
 import Phone3D from "../3D/FloatingPhone";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useRef } from "react";
 import { SendContact, SendContactRequest } from "@/api/contact";
 import confetti from "canvas-confetti";
-import Toast from "../Notification/ToastContact";
 import ModalNotification from "../Modal/ModalContact";
+import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface ConfettiOptions extends confetti.Options {
   useWorker?: boolean;
@@ -24,7 +25,7 @@ const Contact: React.FC = () => {
 
   const [title, setTitle] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const [surname, setsurname] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -33,14 +34,12 @@ const Contact: React.FC = () => {
   const [isEmailError, setIsEmailError] = useState<boolean>(false);
   const [displayPhone, setDisplayPhone] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [toast, setToast] = useState<{
-    type: "success" | "error";
-    message: string;
-  } | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>("");
   const [modalTitle, setModalTitle] = useState<string>("");
   const [modalType, setModalType] = useState<"success" | "error">("success");
+
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -99,11 +98,33 @@ const Contact: React.FC = () => {
     isPhoneError ||
     isEmailError;
 
+  const resetFormFields = () => {
+    setTitle("");
+    setName("");
+    setSurname("");
+    setPhone("");
+    setEmail("");
+    setMessage("");
+    setDisplayPhone("");
+    setIsPhoneError(false);
+    setIsEmailError(false);
+  };
+
   const handleSubmit = async () => {
+    const token = recaptchaRef.current?.getValue();
+    if (!token) {
+      setModalTitle("Error");
+      setModalMessage("Please verify that you are not a robot.");
+      setIsModalOpen(true);
+      return;
+    }
+
+    console.log("Token recaptcha:", token);
+
     const ContactData: SendContactRequest = {
       title,
       firstName: name || "",
-      lastName: name || "",
+      lastName: surname || "",
       phoneNumber: phone,
       email,
       message,
@@ -113,6 +134,7 @@ const Contact: React.FC = () => {
       setIsLoading(true);
       const response = await SendContact(ContactData);
       console.log("Sending Contact Successfully:", response);
+      const { messageEN } = response;
       confetti({
         particleCount: 200,
         spread: 70,
@@ -123,30 +145,28 @@ const Contact: React.FC = () => {
         useWorker: true,
         duration: 6000,
       } as ConfettiOptions);
-      setToast({
-        type: "success",
-        message: "Your message was sent successfully!",
-      });
-      // setModalTitle("Success");
-      // setModalMessage("Your message was sent successfully!");
-      // setModalType("success");
+      setModalTitle("Success");
+      setModalMessage(messageEN);
+      resetFormFields();
     } catch (error) {
       console.error("Error sending contact:", error);
-      // setToast({
-      //   type: "error",
-      //   message: "Failed to send your message. Please try again.",
-      // });
-      setModalTitle("error");
-      setModalMessage("Failed to send your message. Please try again.");
-      setModalType("error");
+      setModalTitle("Error");
+      if (axios.isAxiosError(error)) {
+        setModalMessage(
+          error.response?.data?.messageEN ||
+            "Failed to send your message. Please try again."
+        );
+      } else {
+        setModalMessage("An unexpected error occurred. Please try again.");
+      }
+      resetFormFields();
     } finally {
       setIsLoading(false);
     }
     setIsModalOpen(true);
-  };
-
-  const handleToastClose = () => {
-    setToast(null);
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 6000);
   };
 
   const handleModalClose = () => {
@@ -155,24 +175,12 @@ const Contact: React.FC = () => {
 
   return (
     <section className={`${bgColorClass} py-12 sm:py-6`}>
-      {/* Start Toast */}
-      {toast && (
-        <div className="fixed top-16 right-4 z-50">
-          <Toast
-            type={toast.type}
-            message={toast.message}
-            onClose={handleToastClose}
-          />
-        </div>
-      )}
-      {/* End Toast */}
       {/* Start Modal */}
       <ModalNotification
         isOpen={isModalOpen}
         onClose={handleModalClose}
         message={modalMessage}
         title={modalTitle}
-        type={modalType}
       />
       {/* End Modal */}
       <div className="w-full px-6 py-6 flex flex-col items-center">
@@ -227,7 +235,7 @@ const Contact: React.FC = () => {
                 variant="flat"
                 placeholder="Enter your surname"
                 value={surname}
-                onChange={(e) => handleInputChange(e, setsurname)}
+                onChange={(e) => handleInputChange(e, setSurname)}
                 className="w-full"
               />
             </div>
@@ -286,9 +294,16 @@ const Contact: React.FC = () => {
               className="w-full"
             />
           </div>
+          {/* reCAPTCHA widget */}
+          <div className="my-4">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey="6LcZKiEqAAAAAJpiMvxYI11nYwvi5OPxswwbJ7xA"
+            />
+          </div>
           <div className="w-20 h-auto pt-2">
             <Button
-              // isDisabled={isButtonDisabled}
+              isDisabled={isButtonDisabled || !recaptchaRef.current?.getValue()}
               isLoading={isLoading}
               radius="md"
               size="lg"
