@@ -184,12 +184,14 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
     >
       <div className="w-full mb-2 !h-[200px]">
         <Image
-          width={CARD_WIDTH}
+          src={imgUrl}
+          alt={`An image for a blog post titled ${title}`}
+          width={350}
           height={200}
           loading="lazy"
           className="w-full rounded-lg object-cover"
-          alt={`An image for a blog post titled ${title}`}
-          src={imgUrl}
+          style={{ height: "200px", objectFit: "cover" }}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <span

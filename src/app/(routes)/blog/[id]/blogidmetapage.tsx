@@ -27,10 +27,11 @@ const BlogPostByID: React.FC<Props> = () => {
   const { mobileScreen } = useMobileScreen();
 
   const coverImageHeight = mobileScreen ? 200 : 600;
-  const contentImageHeight = mobileScreen ? 140 : 400;
+  const contentImageHeight = mobileScreen ? 140 : 675;
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
+  const [imgSrc, setImgSrc] = useState<string | undefined>(undefined);
   const { theme } = useTheme();
 
   const bgColorClass =
@@ -64,6 +65,10 @@ const BlogPostByID: React.FC<Props> = () => {
   }
 
   const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.avif`;
+  const fallbackImageUrl =
+    theme === "light"
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-Dark.avif`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-white.avif`;
 
   const breadcrumbsItems = [
     { name: "Home", href: "/" },
@@ -146,6 +151,7 @@ const BlogPostByID: React.FC<Props> = () => {
                       className="object-contain w-full h-fit"
                       src={section.imagesrc}
                       alt={section.subtitle}
+                      fallbackSrc={fallbackImageUrl}
                     />
                   </div>
                 )}

@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Image, Button, Spinner } from "@nextui-org/react";
 import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
@@ -96,15 +95,7 @@ const BlogPostFindAll = () => {
                     ))}
                   </div>
                 ) : (
-                  <motion.div
-                    animate={{
-                      x: offset,
-                    }}
-                    transition={{
-                      ease: "easeInOut",
-                    }}
-                    className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full h-fit"
-                  >
+                  <div className="grid grid-cols-3 sm:grid-cols-1 gap-4 w-full h-fit">
                     {_.size(filteredPosts) > 0 ? (
                       filteredPosts.map((post) => (
                         <BlogPost key={post.id} {...post} />
@@ -112,7 +103,7 @@ const BlogPostFindAll = () => {
                     ) : (
                       <p className="text-base font-normal">No results found</p>
                     )}
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </div>
@@ -154,6 +145,8 @@ const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
           className="!h-[200px] w-full rounded-lg object-cover"
           alt={`An image for a blog post titled ${title}`}
           src={imgUrl}
+          style={{ height: "200px", objectFit: "cover" }}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <span
