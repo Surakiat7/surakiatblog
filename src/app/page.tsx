@@ -1,6 +1,5 @@
 "use client";
 
-import { debounce } from "lodash";
 import React, { useRef, useState, useEffect } from "react";
 import NavbarElement from "@/elements/Navbar/NavbarMain";
 import { DarkGridHero } from "@/component/Section/HeroWelcome";
@@ -26,18 +25,17 @@ export default function Home() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleResize = debounce(() => {
+    const handleResize = () => {
       const navbar = document.querySelector(".navbar-container");
       if (navbar) {
         setNavbarHeight(navbar.getBoundingClientRect().height);
       }
-    }, 300);
+    };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-      handleResize.cancel();
     };
   }, []);
 
