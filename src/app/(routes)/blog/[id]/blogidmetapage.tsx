@@ -1,22 +1,16 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import BackButton from "@/component/Button/BackButton";
-import NavbarElementContent from "@/elements/Navbar/NavbarContent";
 import React, { useEffect, useState } from "react";
-import {
-  Image,
-  Divider,
-  User,
-  Link,
-  Spinner,
-  Snippet,
-} from "@nextui-org/react";
+import { useParams } from "next/navigation";
+import { Image, Divider, User, Link, Spinner, Snippet } from "@nextui-org/react";
 import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
+import BackButton from "@/component/Button/BackButton";
 import { PiEyeglassesDuotone } from "react-icons/pi";
 import { PostData, Post } from "../blogpostmockdata";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useMobileScreen } from "@/contexts/MobileContext";
+import NavbarElementContent from "@/elements/Navbar/NavbarContent";
+import FallbackImage from "@/component/FallbackImage/FallbackImage";
 
 type Props = {};
 
@@ -31,7 +25,6 @@ const BlogPostByID: React.FC<Props> = () => {
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
-  const [imgSrc, setImgSrc] = useState<string | undefined>(undefined);
   const { theme } = useTheme();
 
   const bgColorClass =
@@ -67,8 +60,8 @@ const BlogPostByID: React.FC<Props> = () => {
   const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.avif`;
   const fallbackImageUrl =
     theme === "light"
-      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-Dark.avif`
-      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-white.avif`;
+      ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-Black.avif`
+      : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-White.avif`;
 
   const breadcrumbsItems = [
     { name: "Home", href: "/" },
@@ -99,9 +92,7 @@ const BlogPostByID: React.FC<Props> = () => {
                 loading="lazy"
               />
               <div className="flex w-full flex-col gap-2">
-                <h1
-                  className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}
-                >
+                <h1 className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}>
                   {post.title}
                 </h1>
                 <p className="text-base text-md">{post.description}</p>
@@ -142,13 +133,13 @@ const BlogPostByID: React.FC<Props> = () => {
               <div key={index} className="flex w-full gap-2 flex-col pb-6">
                 <h2 className="text-lg font-medium">{section.subtitle}</h2>
                 {section.imagesrc && (
-                  <div className="w-full">
-                    <Image
+                  <div className="w-full justify-center">
+                    <FallbackImage
                       width="100%"
                       radius="lg"
-                      style={{ height: contentImageHeight, width: "100%" }}
                       height={contentImageHeight}
-                      className="object-contain w-full h-fit"
+                      style={{ height: contentImageHeight, width: "100%" }}
+                      className="w-full h-full"
                       src={section.imagesrc}
                       alt={section.subtitle}
                       fallbackSrc={fallbackImageUrl}

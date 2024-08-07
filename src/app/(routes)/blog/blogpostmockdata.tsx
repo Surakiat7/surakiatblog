@@ -5,7 +5,7 @@ export interface Post {
   title: string;
   description: string;
   content: Array<{
-    imagesrc: string;
+    imagesrc?: string;
     subtitle: string;
     snippet: string;
     paragraph: string;
@@ -133,7 +133,7 @@ export const PostData: Post[] = [
       "A guide on how to integrate and use React Icons in your React project, complete with installation commands and usage examples.",
     content: [
       {
-        imagesrc: "https://react-icons.github.io/react-icons/img/logo.svg",
+        imagesrc: undefined,
         subtitle: "1. Installing React Icons",
         snippet: "npm install react-icons",
         paragraph:
@@ -147,14 +147,14 @@ export const PostData: Post[] = [
           "Once React Icons is installed, you can start using the icons in your project. Import the icons you need from 'react-icons' and use them in your React components. Here's an example of how to import and use the `FaBeer` icon from Font Awesome:",
       },
       {
-        imagesrc: "https://react-icons.github.io/react-icons/img/customize.svg",
+        imagesrc: undefined,
         subtitle: "3. Customizing Icons",
         snippet: '<FaCoffee size={50} color="brown" />',
         paragraph:
           "React Icons can be customized using props such as `size` and `color`. This allows you to easily adjust the appearance of the icons to fit your design. Here's an example of how to customize the `FaCoffee` icon:",
       },
       {
-        imagesrc: "https://react-icons.github.io/react-icons/img/library.svg",
+        imagesrc: undefined,
         subtitle: "4. Using Icons from Different Libraries",
         snippet:
           "import { FaApple } from 'react-icons/fa';\nimport { MdAlarm } from 'react-icons/md';",
@@ -163,7 +163,7 @@ export const PostData: Post[] = [
       },
       {
         imagesrc:
-          "https://react-icons.github.io/react-icons/img/accessibility.svg",
+          "",
         subtitle: "5. Enhancing Accessibility with Icons",
         snippet:
           '<FaAccessibleIcon title="Accessible Icon" aria-label="Accessible Icon" />',
@@ -183,14 +183,14 @@ export const PostData: Post[] = [
       "A guide on how to use Swagger to integrate API documentation and testing into your frontend application, complete with setup instructions and code examples.",
     content: [
       {
-        imagesrc: "https://swagger.io/docs/assets/img/openapi-icon.svg",
+        imagesrc: undefined,
         subtitle: "1. Setting Up Swagger in Your Project",
         snippet: "npm install swagger-ui-react or yarn add swagger-ui-react",
         paragraph:
           "To integrate Swagger into your frontend application, you first need to install the Swagger UI React component. This component allows you to embed Swagger API documentation directly into your React application. You can install it using npm or yarn with the following command:",
       },
       {
-        imagesrc: "https://swagger.io/docs/assets/img/swagger-ui.avif",
+        imagesrc: undefined,
         subtitle: "2. Adding Swagger UI to Your React Component",
         snippet:
           "import React from 'react';\nimport SwaggerUI from 'swagger-ui-react';\nimport 'swagger-ui-react/swagger-ui.css';\n\nconst ApiDocs = () => (\n  <div>\n    <SwaggerUI url=\"https://petstore.swagger.io/v2/swagger.json\" />\n  </div>\n);\n\nexport default ApiDocs;\n",
@@ -198,7 +198,7 @@ export const PostData: Post[] = [
           "After installing the package, you can use the `SwaggerUI` component to display your API documentation. In the example above, replace `url` with the URL of your Swagger JSON file. This will render the Swagger UI within your React component, providing interactive API documentation for your frontend.",
       },
       {
-        imagesrc: "https://swagger.io/docs/assets/img/test-api.avif",
+        imagesrc: undefined,
         subtitle: "3. Testing API Endpoints with Swagger UI",
         snippet:
           "import React from 'react';\nimport SwaggerUI from 'swagger-ui-react';\nimport 'swagger-ui-react/swagger-ui.css';\n\nconst TestApi = () => (\n  <div>\n    <SwaggerUI url=\"https://your-api-url.com/swagger.json\" />\n  </div>\n);\n\nexport default TestApi;\n",
@@ -206,7 +206,7 @@ export const PostData: Post[] = [
           "Swagger UI not only provides documentation but also allows you to interact with and test your API endpoints directly from the UI. Ensure that the `url` prop points to the Swagger JSON file for your API. This will enable you to explore the API, test endpoints, and view responses directly from the documentation.",
       },
       {
-        imagesrc: "https://swagger.io/docs/assets/img/branding.svg",
+        imagesrc: undefined,
         subtitle: "4. Customizing Swagger UI Appearance",
         snippet:
           "import React from 'react';\nimport SwaggerUI from 'swagger-ui-react';\nimport 'swagger-ui-react/swagger-ui.css';\nimport { createTheme } from 'swagger-ui-react';\n\nconst customTheme = createTheme({\n  primaryColor: '#1D4ED8',\n  backgroundColor: '#F3F4F6',\n});\n\nconst CustomApiDocs = () => (\n  <div>\n    <SwaggerUI url=\"https://your-api-url.com/swagger.json\" theme={customTheme} />\n  </div>\n);\n\nexport default CustomApiDocs;\n",
@@ -214,7 +214,7 @@ export const PostData: Post[] = [
           "Swagger UI allows for customization of its appearance to match your application's branding. You can create a custom theme by defining colors and other styles. In the example above, the `createTheme` function is used to create a custom theme, which is then applied to the Swagger UI component via the `theme` prop.",
       },
       {
-        imagesrc: "https://swagger.io/docs/assets/img/developer-portal.svg",
+        imagesrc: undefined,
         subtitle: "5. Integrating Swagger UI with Your Developer Portal",
         snippet:
           "<title>My API Documentation</title>\n</head>\n<body>\n  <div id=\"swagger-ui\"></div>\n  <script src=\"https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js\"></script>\n  <script>\n    SwaggerUIBundle({\n      url: 'https://your-api-url.com/swagger.json',\n      dom_id: '#swagger-ui',\n    });\n  </script>",
@@ -234,14 +234,14 @@ export const PostData: Post[] = [
       "A guide on how to use Figma DevTools to streamline the design-to-development process, including setup instructions and tips for extracting design assets.",
     content: [
       {
-        imagesrc: "https://figma.com/images/figma-devtools.avif",
+        imagesrc: undefined,
         subtitle: "1. Installing Figma DevTools",
         snippet: "npm install figma-devtools or yarn add figma-devtools",
         paragraph:
           "To start using Figma DevTools, you need to install it as a development dependency in your project. You can do this using npm or yarn with the following commands:",
       },
       {
-        imagesrc: "https://figma.com/images/figma-plugin.avif",
+        imagesrc: undefined,
         subtitle: "2. Setting Up Figma DevTools Plugin",
         snippet:
           "import React from 'react';\nimport { FigmaDevTools } from 'figma-devtools';\n\nconst App = () => (\n  <div>\n    <FigmaDevTools\n      figmaUrl=\"https://www.figma.com/file/your-figma-file-id\"\n      apiKey=\"YOUR_FIGMA_API_KEY\"\n    />\n  </div>\n);\n\nexport default App;\n",
@@ -249,7 +249,7 @@ export const PostData: Post[] = [
           "After installing the Figma DevTools package, you need to set up the Figma DevTools component in your React application. Replace `figmaUrl` with the URL of your Figma file and `apiKey` with your Figma API key. This will integrate Figma DevTools into your project and allow you to access design assets and inspect designs.",
       },
       {
-        imagesrc: "https://figma.com/images/figma-assets.avif",
+        imagesrc: undefined,
         subtitle: "3. Extracting Design Assets",
         snippet:
           "import React from 'react';\nimport { FigmaAssets } from 'figma-devtools';\n\nconst DesignAssets = () => (\n  <div>\n    <FigmaAssets\n      figmaUrl=\"https://www.figma.com/file/your-figma-file-id\"\n      apiKey=\"YOUR_FIGMA_API_KEY\"\n    />\n  </div>\n);\n\nexport default DesignAssets;\n",
@@ -257,7 +257,7 @@ export const PostData: Post[] = [
           "Figma DevTools allows you to extract design assets directly from your Figma file. By using the `FigmaAssets` component, you can pull in images, colors, and other assets into your React project. This simplifies the process of keeping your frontend in sync with your design.",
       },
       {
-        imagesrc: "https://figma.com/images/figma-designs.avif",
+        imagesrc: undefined,
         subtitle: "4. Inspecting and Synchronizing Designs",
         snippet:
           "import React from 'react';\nimport { FigmaInspector } from 'figma-devtools';\n\nconst DesignInspector = () => (\n  <div>\n    <FigmaInspector\n      figmaUrl=\"https://www.figma.com/file/your-figma-file-id\"\n      apiKey=\"YOUR_FIGMA_API_KEY\"\n    />\n  </div>\n);\n\nexport default DesignInspector;\n",
@@ -265,7 +265,7 @@ export const PostData: Post[] = [
           "With the `FigmaInspector` component, you can inspect the design elements and synchronize them with your code. This feature helps you ensure that your implementation matches the design specifications accurately, making the development process more efficient.",
       },
       {
-        imagesrc: "https://figma.com/images/figma-workflow.avif",
+        imagesrc: undefined,
         subtitle: "5. Collaborating with Designers",
         snippet:
           "import React from 'react';\nimport { FigmaCollaboration } from 'figma-devtools';\n\nconst Collaboration = () => (\n  <div>\n    <FigmaCollaboration\n      figmaUrl=\"https://www.figma.com/file/your-figma-file-id\"\n      apiKey=\"YOUR_FIGMA_API_KEY\"\n    />\n  </div>\n);\n\nexport default Collaboration;\n",
@@ -285,7 +285,7 @@ export const PostData: Post[] = [
       "A guide to getting started with MUI (Material-UI), including installation instructions, basic usage, and customization tips for frontend developers.",
     content: [
       {
-        imagesrc: "https://mui.com/static/logo.avif",
+        imagesrc: undefined,
         subtitle: "1. Installing MUI in Your Project",
         snippet:
           "npm install @mui/material @emotion/react @emotion/styled\n\nnyarn add @mui/material @emotion/react @emotion/styled\n",
@@ -293,7 +293,7 @@ export const PostData: Post[] = [
           "To start using MUI in your React project, you need to install the core MUI package along with `@emotion/react` and `@emotion/styled` for styling. You can install these dependencies using npm or yarn with the following commands:",
       },
       {
-        imagesrc: "https://mui.com/static/logo.avif",
+        imagesrc: undefined,
         subtitle: "2. Basic Usage of MUI Components",
         snippet:
           "import React from 'react';\nimport Button from '@mui/material/Button';\n\nconst App = () => (\n  <div>\n    <Button variant=\"contained\" color=\"primary\">\n      Hello MUI\n    </Button>\n  </div>\n);\n\nexport default App;\n",
@@ -301,7 +301,7 @@ export const PostData: Post[] = [
           "Once you have installed MUI, you can start using its components in your React application. In the example above, we import the `Button` component from `@mui/material` and use it to render a styled button with the `contained` variant and `primary` color.",
       },
       {
-        imagesrc: "https://mui.com/static/logo.avif",
+        imagesrc: undefined,
         subtitle: "3. Customizing MUI Components",
         snippet:
           "import React from 'react';\nimport { createTheme, ThemeProvider } from '@mui/material/styles';\nimport Button from '@mui/material/Button';\n\nconst theme = createTheme({\n  palette: {\n    primary: {\n      main: '#1976d2',\n    },\n  },\n});\n\nconst App = () => (\n  <ThemeProvider theme={theme}>\n    <Button variant=\"contained\" color=\"primary\">\n      Customized Button\n    </Button>\n  </ThemeProvider>\n);\n\nexport default App;\n",
@@ -309,7 +309,7 @@ export const PostData: Post[] = [
           "MUI allows for extensive customization through its theming system. By using the `createTheme` and `ThemeProvider` components, you can define a custom theme and apply it throughout your application. In the example above, we create a theme with a custom primary color and wrap the `Button` component in a `ThemeProvider` to apply this theme.",
       },
       {
-        imagesrc: "https://mui.com/static/logo.avif",
+        imagesrc: undefined,
         subtitle: "4. Using MUI Icons",
         snippet:
           "npm install @mui/icons-material\n\nnyarn add @mui/icons-material\n\n\njavascript\nimport React from 'react';\nimport IconButton from '@mui/material/IconButton';\nimport DeleteIcon from '@mui/icons-material/Delete';\n\nconst App = () => (\n  <div>\n    <IconButton color=\"primary\">\n      <DeleteIcon />\n    </IconButton>\n  </div>\n);\n\nexport default App;\n",
@@ -317,7 +317,7 @@ export const PostData: Post[] = [
           "MUI also provides a set of Material Design icons that you can use in your application. To use MUI icons, install the `@mui/icons-material` package and import the desired icon component. In the example above, we use the `IconButton` component along with the `DeleteIcon` from `@mui/icons-material` to render a button with an icon.",
       },
       {
-        imagesrc: "https://mui.com/static/logo.avif",
+        imagesrc: undefined,
         subtitle: "5. Responsive Layout with MUI Grid",
         snippet:
           "import React from 'react';\nimport Grid from '@mui/material/Grid';\nimport Paper from '@mui/material/Paper';\n\nconst App = () => (\n  <Grid container spacing={2}>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 1</Paper>\n    </Grid>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 2</Paper>\n    </Grid>\n    <Grid item xs={12} sm={6} md={4}>\n      <Paper style={{ padding: 16 }}>Item 3</Paper>\n    </Grid>\n  </Grid>\n);\n\nexport default App;\n",
@@ -338,7 +338,7 @@ export const PostData: Post[] = [
       "A guide to starting a new Next.js project using Create Next App, including setup instructions and basic configuration for frontend development.",
     content: [
       {
-        imagesrc: "https://nextjs.org/static/images/logo.avif",
+        imagesrc: undefined,
         subtitle: "1. Creating a New Next.js Project",
         snippet:
           "nnpx create-next-app@latest my-nextjs-app\n\nnyarn create next-app my-nextjs-app\n",
@@ -346,21 +346,21 @@ export const PostData: Post[] = [
           "To create a new Next.js project, you can use the `create-next-app` command. This sets up a new project with a default configuration. Replace `my-nextjs-app` with your desired project name. You can use `npx` or `yarn` to run the command:",
       },
       {
-        imagesrc: "https://nextjs.org/static/images/logo.avif",
+        imagesrc: undefined,
         subtitle: "2. Navigating to Your Project Directory",
         snippet: "cd my-nextjs-app",
         paragraph:
           "After creating the project, navigate into the project directory using the `cd` command. This will change your working directory to the newly created Next.js project folder.",
       },
       {
-        imagesrc: "https://nextjs.org/static/images/logo.avif",
+        imagesrc: undefined,
         subtitle: "3. Starting the Development Server",
         snippet: "npm run dev or yarn dev",
         paragraph:
           "To start the development server and see your project in action, run the `dev` script. This will start the server and open your application in the browser. You can use `npm` or `yarn` to run the command:",
       },
       {
-        imagesrc: "https://nextjs.org/static/images/logo.avif",
+        imagesrc: undefined,
         subtitle: "4. Basic Folder Structure",
         snippet:
           "plaintext\nmy-nextjs-app/\n  ├── public/\n  ├── src/\n  ├── pages/\n  ├── components/\n  ├── styles/\n  ├── .gitignore\n  ├── package.json\n  └── README.md\n",
@@ -368,7 +368,7 @@ export const PostData: Post[] = [
           "The default folder structure for a Next.js project includes several key directories and files. `pages/` contains your route components, `components/` is where you can place your reusable components, and `styles/` is for your global CSS files. The `public/` folder is used for static assets.",
       },
       {
-        imagesrc: "https://nextjs.org/static/images/logo.avif",
+        imagesrc: undefined,
         subtitle: "5. Adding a Custom Component",
         snippet:
           "/ src/components/HelloWorld.js import React from 'react';\n\nconst HelloWorld = () => (\n  <div>\n    <h1>Hello, Next.js!</h1>\n  </div>\n);\n\nexport default HelloWorld;\n\n// src/pages/index.js\nimport HelloWorld from '../components/HelloWorld';\n\nconst Home = () => (\n  <div>\n    <HelloWorld />\n  </div>\n);\n\nexport default Home;\n",
@@ -376,7 +376,7 @@ export const PostData: Post[] = [
           "You can create custom components in the `src/components/` directory. In the example above, we create a simple `HelloWorld` component and use it in the `index.js` page. This demonstrates how to organize and use components within your Next.js application.",
       },
       {
-        imagesrc: "https://nextjs.org/static/images/logo.avif",
+        imagesrc: undefined,
         subtitle: "6. Configuring Global Styles",
         snippet:
           "/ src/styles/globals.css\nbody {\n  margin: 0;\n  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}\n\n// src/pages/_app.js\nimport '../styles/globals.css';\n\nfunction MyApp({ Component, pageProps }) {\n  return <Component {...pageProps} />;\n}\n\nexport default MyApp;\n",
