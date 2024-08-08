@@ -127,11 +127,12 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
       }`}
     >
       <NavbarContent justify="start" as="ul" className="list-none p-0 m-0">
-        <NavbarMenuToggle
-          as="li"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        <li
           className="hidden sm:flex"
-        />
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        >
+          <NavbarMenuToggle />
+        </li>
         <li className="flex items-center gap-2">
           <Image
             src={themeValues.logoSrc}
