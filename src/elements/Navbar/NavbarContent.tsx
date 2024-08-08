@@ -37,7 +37,8 @@ const NavbarElementContent: React.FC = () => {
 
   return (
     <Navbar
-      className={`transition-colors navbar-container sticky top-0 z-50 ${
+      style={{ position: "sticky", top: 0, zIndex: 50 }}
+      className={`navbar-container sticky top-0 z-50 ${
         theme === "light"
           ? isScrolled
             ? "bg-zinc-50/30 backdrop-blur-sm text-zinc-950"
