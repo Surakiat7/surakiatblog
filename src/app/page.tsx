@@ -1,25 +1,16 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import NavbarElement from "@/elements/Navbar/NavbarMain";
+import { DarkGridHero } from "@/component/Section/HeroWelcome";
+import LogoHero from "@/component/Section/LogoTechStack";
+import BlogPostCarousel from "@/component/Carousels/CarouselsBlog";
+import AboutHero from "@/component/Section/AboutIntro";
 import Footer from "@/elements/Footer/Footer";
 import { useTheme } from "@/contexts/ThemeContext";
-
-interface DarkGridHeroProps {
-  scrollToAbout: () => void;
-}
-
-// Lazy load components
-const DarkGridHero = dynamic<DarkGridHeroProps>(() =>
-  import('@/component/Section/HeroWelcome').then((mod) => mod.DarkGridHero)
-);
-const LogoHero = dynamic(() => import('@/component/Section/LogoTechStack'));
-const BlogPostCarousel = dynamic(() => import('@/component/Carousels/CarouselsBlog'));
-const AboutHero = dynamic(() => import('@/component/Section/AboutIntro'));
-const Education = dynamic(() => import('@/component/Section/Education'));
-const WorkExperience = dynamic(() => import('@/component/Section/WorkExprience'));
-const Contact = dynamic(() => import('@/component/Section/Contact'));
+import Education from "@/component/Section/Education";
+import WorkExperience from "@/component/Section/WorkExprience";
+import Contact from "@/component/Section/Contact";
 
 export default function Home() {
   const { theme } = useTheme();
