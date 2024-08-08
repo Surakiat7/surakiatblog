@@ -39,6 +39,10 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     if (ref.current) {
       const yOffset = -navbarHeight;
