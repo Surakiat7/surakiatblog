@@ -59,16 +59,18 @@ body {
 /* General styles for breadcrumb items for seo */
 .breadcrumb-item {
   color: #333;
+  min-height: 24px !important;
 }
 
 [data-slot="separator"] {
-  padding-left: 0.6rem !important;
-  padding-right: 0.6rem !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
   color: rgba(255, 255, 255, 0.5);
 }
 
 [data-slot="item"] {
-  gap: 0.6rem !important;
+  padding: 4px 8px !important;
+  line-height: 1.5 !important;
 }
 
 .breadcrumb-item a {
