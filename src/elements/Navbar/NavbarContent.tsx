@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
 import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
 import { useRouter } from "next/navigation";
+import { throttle } from "lodash";
 
 const NavbarElementContent: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,13 +26,14 @@ const NavbarElementContent: React.FC = () => {
   );
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setIsScrolled(window.scrollY > 0);
-    };
+    }, 100);
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel();
     };
   }, []);
 
