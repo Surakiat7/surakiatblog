@@ -93,7 +93,7 @@ body {
 /* Sidebar and navbar stlye */
 
 .menu {
-  background-color: transparent;
+  /* background-color: transparent; */
   border: none;
   cursor: pointer;
   display: flex;

@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { FiArrowRight, FiChevronDown } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 import _ from "lodash";
@@ -309,10 +309,11 @@ const Blog = () => {
               <div className="w-full !h-fit">
                 <Image
                   sizes="100vw"
-                  height={40}
-                  width={40}
+                  height={20}
+                  width={"100%"}
                   style={{
                     objectFit: "cover",
+                    width: "100%",
                     borderTopLeftRadius: "1rem",
                     borderTopRightRadius: "1rem",
                   }}

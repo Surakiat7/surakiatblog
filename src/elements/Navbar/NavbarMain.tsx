@@ -113,14 +113,13 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
         onScrollTo(ref);
       }, 100);
     }
-    
+
     const menuButton = document.querySelector(".menu");
     if (menuButton) {
       menuButton.classList.remove("opened");
       menuButton.setAttribute("aria-expanded", "false");
     }
   };
-  
 
   return (
     <Navbar
@@ -140,23 +139,20 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
         <li className="hidden sm:flex">
           <button
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-controls="menu-content"
+            aria-expanded={isMenuOpen}
             onClick={() => {
               toggleMenu();
               const menuButton = document.querySelector(".menu");
               if (menuButton) {
                 menuButton.classList.toggle("opened");
-                menuButton.setAttribute(
-                  "aria-expanded",
-                  menuButton.classList.contains("opened").toString()
-                );
               }
             }}
-            aria-controls="logo-sidebar"
             className={`inline-flex items-center p-1 border rounded-lg ${
               theme === "light" ? "border-zinc-900" : "border-zinc-50"
             }`}
           >
-            <div className="menu" aria-label="Main Menu">
+            <div className="menu" id="menu-content" aria-label="Main Menu">
               <svg width="31" height="31" viewBox="0 0 100 100">
                 <path
                   className={`line line1 ${
@@ -232,7 +228,6 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
                   <div
                     className="flex w-full items-center gap-4"
                     onClick={(e) => {
-                      
                       e.preventDefault();
                       handleMenuItemClick(item.ref);
                     }}
