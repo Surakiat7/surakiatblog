@@ -126,14 +126,12 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           : "bg-zinc-950 text-zinc-50"
       }`}
     >
-      <NavbarContent justify="start" as="ul" className="list-none p-0 m-0">
-        <li
+      <NavbarContent justify="start" className="list-none p-0 m-0">
+        <NavbarMenuToggle
           className="hidden sm:flex"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        >
-          <NavbarMenuToggle />
-        </li>
-        <li className="flex items-center gap-2">
+        />
+        <div className="flex items-center gap-2">
           <Image
             src={themeValues.logoSrc}
             alt="Surakiat-Logo"
@@ -148,7 +146,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
           >
             Surakiat
           </p>
-        </li>
+        </div>
       </NavbarContent>
       <div className="sm:hidden flex">
         <ShiftingDropDownMenu
