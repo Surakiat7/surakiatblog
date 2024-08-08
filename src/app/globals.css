@@ -44,8 +44,8 @@ body {
 
 /* Custom Scroll Bar */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px !important;
-  height: 12px !important;
+  width: 4px;
+  height: 12px;
   background-color: transparent;
 }
 
@@ -58,21 +58,20 @@ body {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* General styles for breadcrumb items for seo */
+/* Breadcrumb Styles */
 .breadcrumb-item {
   color: #333;
-  min-height: 24px !important;
+  min-height: 24px;
 }
 
 [data-slot="separator"] {
-  padding-left: 4px !important;
-  padding-right: 4px !important;
+  padding: 0 4px;
   color: rgba(255, 255, 255, 0.5);
 }
 
 [data-slot="item"] {
-  padding: 4px 4px !important;
-  line-height: 1.5 !important;
+  padding: 4px;
+  line-height: 1.5;
 }
 
 .breadcrumb-item a {
@@ -81,19 +80,17 @@ body {
 }
 
 [aria-current="page"] {
-  color: #4edfe7 !important;
+  color: #4edfe7;
   cursor: default;
 }
 
 [aria-current="page"] a {
-  color: #4edfe7 !important;
+  color: #4edfe7;
   pointer-events: none;
 }
 
-/* Sidebar and navbar stlye */
-
+/* Sidebar and Navbar Styles */
 .menu {
-  /* background-color: transparent; */
   border: none;
   cursor: pointer;
   display: flex;
@@ -109,45 +106,47 @@ body {
     stroke 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 .theme-dark {
   --line-stroke-color: #fff;
 }
 
+.line1,
+.line2,
+.line3 {
+  stroke-width: 6;
+}
+
 .line1 {
   stroke-dasharray: 60 207;
-  stroke-width: 6;
 }
 
 .line2 {
   stroke-dasharray: 60 60;
-  stroke-width: 6;
 }
 
 .line3 {
   stroke-dasharray: 60 207;
-  stroke-width: 6;
+}
+
+.opened .line1,
+.opened .line2,
+.opened .line3 {
+  stroke: #4edfe7;
 }
 
 .opened .line1 {
-  stroke: #4edfe7;
   stroke-dasharray: 90 207;
   stroke-dashoffset: -134;
-  stroke-width: 6;
 }
 
 .opened .line2 {
-  stroke: #4edfe7;
   stroke-dasharray: 1 60;
   stroke-dashoffset: -30;
-  stroke-width: 6;
 }
 
 .opened .line3 {
-  stroke: #4edfe7;
   stroke-dasharray: 90 207;
   stroke-dashoffset: -134;
-  stroke-width: 6;
 }
 
 .sidebar-container {
@@ -155,10 +154,6 @@ body {
 }
 
 .sidebar-transition {
-  transition: width 0.5s ease, padding 0.5s ease, border 0.5s ease;
-}
-
-.sidebar.closemobile {
   transition: width 0.5s ease, padding 0.5s ease, border 0.5s ease;
 }
 
@@ -175,17 +170,16 @@ body {
   top: 65px;
 }
 
-/* iPad or Desktop media query */
+/* Media Queries */
 @media screen and (min-width: 767px) {
   .logo-sidebar-display {
-    display: none !important;
+    display: none;
   }
 }
 
-/* Mobile media query */
 @media screen and (max-width: 767px) {
   .logo-navbar-display {
-    display: none !important;
+    display: none;
   }
 
   .notification-position {
@@ -197,7 +191,7 @@ body {
   }
 
   .logo-sidebar-display {
-    display: block !important;
+    display: block;
   }
 
   .sidebar-transition {
@@ -229,7 +223,6 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    overflow-y: hidden !important;
     width: 100%;
     height: 100%;
     z-index: 30;
@@ -244,15 +237,11 @@ body {
   }
 
   .fade-in {
-    animation-name: fadeIn;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+    animation: fadeIn 0.5s forwards;
   }
 
   .fade-out {
-    animation-name: fadeOut;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+    animation: fadeOut 0.5s forwards;
   }
 
   @keyframes fadeIn {

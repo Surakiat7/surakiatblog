@@ -46,18 +46,30 @@ const NavbarElementContent: React.FC = () => {
           ? "bg-zinc-950/30 backdrop-blur-sm text-zinc-50"
           : "bg-zinc-950 text-zinc-50"
       }`}
+      role="navigation"
+      aria-label="Main navigation"
     >
-      <NavbarContent justify="start" as="ul" className="list-none p-0 m-0">
+      <NavbarContent
+        as="ul"
+        className="list-none p-0 m-0 flex gap-4 items-center"
+        role="menubar"
+        aria-label="Main menu"
+      >
         <li className="flex items-center gap-2">
-          <Image
-            src={themeValues.logoSrc}
-            alt="Surakiat-Logo"
-            width={40}
-            height={40}
-            priority
-            className="cursor-pointer"
+          <button
+            aria-label="Go to homepage"
             onClick={() => router.push("/")}
-          />
+            className="flex items-center"
+          >
+            <Image
+              src={themeValues.logoSrc}
+              alt="Surakiat logo"
+              width={40}
+              height={40}
+              priority
+              className="cursor-pointer"
+            />
+          </button>
           <p
             className={`font-bold sm:hidden md:hidden ${themeValues.TitleLinearColor}`}
           >
@@ -65,11 +77,13 @@ const NavbarElementContent: React.FC = () => {
           </p>
         </li>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <ToggleSwitchTheme />
+      <NavbarContent justify="end" className="flex items-center" role="none">
+        <li className="flex items-center gap-2">
+          <ToggleSwitchTheme />
+        </li>
       </NavbarContent>
     </Navbar>
   );
 };
 
-export default NavbarElementContent
+export default NavbarElementContent;
