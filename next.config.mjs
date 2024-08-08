@@ -10,6 +10,23 @@ const nextConfig = {
       },
     ],
   },
+  compress: true,
+  swcMinify: true,
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization.splitChunks.cacheGroups = {
+        default: false,
+        vendors: false,
+        vendor: {
+          name: "vendor",
+          chunks: "all",
+          reuseExistingChunk: true,
+          test: /[\\/]node_modules[\\/]/,
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
