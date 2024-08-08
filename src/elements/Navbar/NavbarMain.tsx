@@ -138,8 +138,8 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
       <NavbarContent justify="start" as="ul" className="list-none p-0 m-0">
         <li className="hidden sm:flex">
           <button
+            role="button"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            aria-controls="menu-content"
             aria-expanded={isMenuOpen}
             onClick={() => {
               toggleMenu();
@@ -152,8 +152,8 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
               theme === "light" ? "border-zinc-900" : "border-zinc-50"
             }`}
           >
-            <div className="menu" id="menu-content" aria-label="Main Menu">
-              <svg width="31" height="31" viewBox="0 0 100 100">
+            <div className="menu" id="menu-content">
+              <svg width="30" height="30" viewBox="0 0 100 100">
                 <path
                   className={`line line1 ${
                     theme === "dark" ? "theme-dark" : ""
