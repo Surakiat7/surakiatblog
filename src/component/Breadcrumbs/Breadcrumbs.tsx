@@ -1,6 +1,5 @@
 import React from "react";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
-import { TbSmartHome } from "react-icons/tb";
 import Link from "next/link";
 import { useMobileScreen } from "@/contexts/MobileContext";
 
@@ -24,7 +23,6 @@ const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
         <BreadcrumbItem
           key={index}
           separator={index < items.length - 1 ? "/" : undefined}
-          startContent={index === 0 ? <TbSmartHome /> : undefined}
           className="breadcrumb-item"
           aria-current={index === items.length - 1 ? "page" : undefined}
         >
