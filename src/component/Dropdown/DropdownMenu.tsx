@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from "react";
 import { FiArrowRight, FiChevronDown } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { Image } from "@nextui-org/image";
+import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
 import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
 import _ from "lodash";
@@ -297,30 +297,37 @@ const Blog = () => {
   }, []);
 
   return (
-    <section className="w-full flex flex-col">
-      <div className="grid grid-cols-2 w-full gap-2">
+    <section className="w-full flex flex-col h-full">
+      <div className="grid grid-cols-2 w-full h-full gap-2">
         {selectedPosts.map((post) => (
           <div key={post.id}>
             <Link
               href={`/blog/${post.id}`}
               passHref
-              className="flex flex-col gap-2"
+              className="flex flex-col h-full gap-2"
             >
-              <div className="w-full !h-14">
+              <div className="w-full !h-fit">
                 <Image
+                  sizes="100vw"
+                  height={40}
+                  width={40}
+                  style={{
+                    objectFit: "cover",
+                    borderTopLeftRadius: "1rem",
+                    borderTopRightRadius: "1rem",
+                  }}
                   src={post.imgUrl}
                   alt={post.title}
-                  isZoomed
                   loading="lazy"
-                  width="100%"
-                  height={56}
-                  className="pb-2 !h-14 w-full object-cover"
+                  className="!h-full w-full"
                 />
               </div>
-              <h1 className={`mb-0.5 font-bold text-sm ${textColorClass}`}>
+              <h1 className={`font-bold text-sm ${textColorClass}`}>
                 {post.title}
               </h1>
-              <p className={`text-xs ${textColorClass}`}>{post.description}</p>
+              <p className={`text-xs ${textColorClass}`}>
+                {post.description}
+              </p>
             </Link>
           </div>
         ))}
