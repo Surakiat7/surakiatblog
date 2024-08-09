@@ -58,7 +58,7 @@ const NavbarElementContent: React.FC = () => {
         role="menubar"
         aria-label="Main menu"
       >
-        <li className="flex items-center gap-2">
+        <li className="flex items-center gap-2" role="menuitem">
           <button
             aria-label="Go to homepage"
             onClick={() => router.push("/")}
@@ -79,9 +79,7 @@ const NavbarElementContent: React.FC = () => {
             Surakiat
           </p>
         </li>
-      </NavbarContent>
-      <NavbarContent justify="end" className="flex items-center" role="none">
-        <li className="flex items-center gap-2">
+        <li className="flex items-center gap-2" role="menuitem">
           <ToggleSwitchTheme />
         </li>
       </NavbarContent>
