@@ -87,7 +87,7 @@ const WorkExperience = () => {
                   className="object-cover"
                   src={experience.imageSrc}
                   alt={`${experience.companyName} logo`}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 80px"
+                  sizes="(max-width: 640px) 50vw, 60px (max-width: 1024px) 80vw, 80px"
                 />
               </div>
               <div className="flex flex-col w-full">
