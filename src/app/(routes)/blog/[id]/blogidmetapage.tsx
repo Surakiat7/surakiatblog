@@ -21,7 +21,7 @@ const BlogPostByID: React.FC<Props> = () => {
   const { mobileScreen } = useMobileScreen();
 
   const coverImageHeight = mobileScreen ? 200 : 600;
-  const contentImageHeight = mobileScreen ? 140 : 675;
+  const contentImageHeight = mobileScreen ? 140 : 400;
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -133,15 +133,16 @@ const BlogPostByID: React.FC<Props> = () => {
               <div key={index} className="flex w-full gap-2 flex-col pb-6">
                 <h2 className="text-lg font-medium">{section.subtitle}</h2>
                 {section.imagesrc && (
-                  <div className="w-full justify-center">
+                  <div className="w-full sm:h-full justify-center">
                     <FallbackImage
                       width="100%"
                       radius="lg"
                       height={contentImageHeight}
                       style={{ height: contentImageHeight, width: "100%" }}
-                      className="w-full h-full"
+                      className="w-full h-full object-contain"
                       src={section.imagesrc}
                       alt={section.subtitle}
+                      loading="lazy"
                       fallbackSrc={fallbackImageUrl}
                     />
                   </div>
