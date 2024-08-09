@@ -2,7 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { Image, Divider, User, Link, Spinner, Snippet } from "@nextui-org/react";
+import {
+  Image,
+  Divider,
+  User,
+  Link,
+  Spinner,
+  Snippet,
+} from "@nextui-org/react";
 import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
 import BackButton from "@/component/Button/BackButton";
 import { PiEyeglassesDuotone } from "react-icons/pi";
@@ -90,9 +97,12 @@ const BlogPostByID: React.FC<Props> = () => {
                 src={post.imgUrl}
                 alt={`${post.title} image`}
                 loading="lazy"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <div className="flex w-full flex-col gap-2">
-                <h1 className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}>
+                <h1
+                  className={`text-4xl sm:text-xl font-bold ${TitleLinearColor}`}
+                >
                   {post.title}
                 </h1>
                 <p className="text-base text-md">{post.description}</p>
@@ -144,6 +154,7 @@ const BlogPostByID: React.FC<Props> = () => {
                       alt={section.subtitle}
                       loading="lazy"
                       fallbackSrc={fallbackImageUrl}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                 )}
