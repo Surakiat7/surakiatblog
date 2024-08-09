@@ -79,7 +79,7 @@ const WorkExperience = () => {
               />
             )}
             <div className="flex sm:flex-col w-full gap-4 items-center">
-              <div className="flex h-fit rounded-xl">
+              <div className="flex w-[80px] h-[80px] rounded-xl">
                 <Image
                   width={80}
                   height={80}
@@ -87,7 +87,9 @@ const WorkExperience = () => {
                   className="object-cover"
                   src={experience.imageSrc}
                   alt={`${experience.companyName} logo`}
-                  sizes="(max-width: 640px) 50vw, 60px (max-width: 1024px) 80vw, 80px"
+                  data-loaded="true"
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 80px"
                 />
               </div>
               <div className="flex flex-col w-full">
