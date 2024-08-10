@@ -10,6 +10,17 @@ type Props = {
 const DEFAULT_OG_IMAGE = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev";
 
+// ฟังก์ชันสำหรับแปลงรูปภาพด้วย Imgix
+function convertToJpeg(imageUrl: string): string {
+  const url = new URL(imageUrl);
+  url.searchParams.set('fm', 'jpg');
+  url.searchParams.set('fit', 'crop');
+  url.searchParams.set('w', '1200');
+  url.searchParams.set('h', '630');
+  url.searchParams.set('q', '75');
+  return url.toString();
+}
+
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
@@ -17,9 +28,12 @@ export async function generateMetadata(
   const id = parseInt(params.id);
   const post = getPostDataById(id);
 
-  const imageUrl = post?.imgUrl.toString
+  let imageUrl = post?.imgUrl
     ? new URL(post.imgUrl, BASE_URL).toString()
     : DEFAULT_OG_IMAGE;
+  
+  imageUrl = convertToJpeg(imageUrl);
+  
   const canonicalUrl = `${BASE_URL}/blog/${params.id}`;
 
   const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
@@ -41,6 +55,7 @@ export async function generateMetadata(
           width: 1200,
           height: 630,
           alt: post ? `${post.title} | Surakiat` : "Blog | Surakiat",
+          type: 'image/jpeg',
         },
       ],
       locale: "th_TH",
@@ -52,10 +67,7 @@ export async function generateMetadata(
       title: title,
       description: description,
       creator: "@surakiat",
-      images: {
-        url: imageUrl,
-        alt: `Preview image for ${title}`,
-      },
+      images: [imageUrl],
     },
     alternates: {
       canonical: canonicalUrl,
