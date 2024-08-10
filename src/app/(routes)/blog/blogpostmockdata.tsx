@@ -24,7 +24,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-1.avif`,
     author: "Author: Surakiat",
     views: 56,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title: "5 Tips for Using Tailwind CSS in Your Project",
     description:
       "Learn tips for using Tailwind CSS to enhance your frontend development, making it faster and more efficient.",
@@ -76,7 +76,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-2.avif`,
     author: "Author: Surakiat",
     views: 47,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title: "Getting Started with Ant Design in Your Project",
     description:
       "A tutorial on how to start using Ant Design (Antd) in your project, with code snippets and examples.",
@@ -127,7 +127,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-3.avif`,
     author: "Author: Surakiat",
     views: 68,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title: "Getting Started with React Icons in Your Project",
     description:
       "A guide on how to integrate and use React Icons in your React project, complete with installation commands and usage examples.",
@@ -177,7 +177,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-4.avif`,
     author: "Author: Surakiat",
     views: 26,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title: "Using Swagger for Frontend Development",
     description:
       "A guide on how to use Swagger to integrate API documentation and testing into your frontend application, complete with setup instructions and code examples.",
@@ -228,7 +228,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-5.avif`,
     author: "Author: Surakiat",
     views: 92,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title: "Using Figma DevTools for Developers",
     description:
       "A guide on how to use Figma DevTools to streamline the design-to-development process, including setup instructions and tips for extracting design assets.",
@@ -279,7 +279,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-6.avif`,
     author: "Author: Surakiat",
     views: 53,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title: "Getting Started with MUI for Frontend Developers",
     description:
       "A guide to getting started with MUI (Material-UI), including installation instructions, basic usage, and customization tips for frontend developers.",
@@ -331,7 +331,7 @@ export const PostData: Post[] = [
     imgUrl: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Banner-Cover-7.avif`,
     author: "Author: Surakiat",
     views: 71,
-    createdAt: "2024-07-30T08:00:00Z",
+    createdAt: "30/07/2024 08:00 AM.",
     title:
       "Getting Started with Create Next.js Project and Basic Frontend Setup",
     description:

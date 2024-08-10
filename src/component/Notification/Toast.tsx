@@ -20,7 +20,7 @@ const Toast: React.FC<ToastProps> = ({ type, message, onClose }) => {
 
   return (
     <div
-      className={`fixed right-4 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-zinc-900 dark:border-zinc-900 ${
+      className={`fixed z-50 right-8 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-zinc-900 dark:border-zinc-900 ${
         isVisible
           ? type === "success"
             ? "bg-teal-50 text-teal-500 animate-slideInRight"
@@ -29,10 +29,14 @@ const Toast: React.FC<ToastProps> = ({ type, message, onClose }) => {
           ? "bg-teal-50 text-teal-500 animate-slideOutRight"
           : "bg-red-50 text-red-500 animate-slideOutRight"
       }`}
+      style={{
+        boxShadow:
+          "0 2px 4px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)",
+      }}
       role="alert"
       aria-labelledby={`hs-toast-${type}-example-label`}
     >
-      <div className="flex p-4">
+      <div className="flex items-center p-4">
         <div className="shrink-0">
           <svg
             className={`shrink-0 size-8 ${
