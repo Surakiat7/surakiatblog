@@ -24,11 +24,9 @@ function convertToJpeg(imageUrl: string): string {
 function generateKeywords(title: string): string {
   const words = title.split(" ");
   const keywords = words.filter((word) => word.length > 3).join(", ");
-
   return keywords;
 }
 
-// แปลงวันที่ ISO 8601
 function formatDateToISO(dateStr: string): string {
   const [datePart, timePart] = dateStr.split(" ");
   const [day, month, year] = datePart.split("/");
@@ -48,14 +46,12 @@ export async function generateMetadata(
   const id = parseInt(params.id);
   const post = getPostDataById(id);
 
-  let imageUrl = post?.imgUrl
+  const imageUrl = post?.imgUrl
     ? new URL(post.imgUrl, BASE_URL).toString()
     : DEFAULT_OG_IMAGE;
 
-  imageUrl = convertToJpeg(imageUrl);
-
+  const convertedImageUrl = convertToJpeg(imageUrl);
   const canonicalUrl = `${BASE_URL}/blog/${params.id}`;
-
   const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
   const description =
     post?.description ||
@@ -74,7 +70,7 @@ export async function generateMetadata(
       siteName: "Surakiat Blog",
       images: [
         {
-          url: imageUrl,
+          url: convertedImageUrl,
           width: 1200,
           height: 630,
           alt: post ? `${post.title} | Surakiat` : "Blog | Surakiat",
@@ -90,7 +86,7 @@ export async function generateMetadata(
       title: title,
       description: description,
       creator: "@surakiat",
-      images: imageUrl,
+      images: convertedImageUrl,
     },
     alternates: {
       canonical: canonicalUrl,
@@ -99,15 +95,6 @@ export async function generateMetadata(
     other: {
       "og:image:width": "1200",
       "og:image:height": "630",
-      // Line specific
-      "line:card": "summary_large_image",
-      "line:title": title,
-      "line:description": description,
-      "line:image": imageUrl,
-      // LinkedIn specific
-      "linkedin:title": title,
-      "linkedin:description": description,
-      "linkedin:image": imageUrl,
       "article:published_time": publishedTime,
       "article:section": "blog",
     },
