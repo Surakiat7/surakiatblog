@@ -27,7 +27,7 @@ export async function generateMetadata(
           url: post?.imgUrl || DEFAULT_OG_IMAGE,
           width: 1200,
           height: 630,
-          alt: "Surakiat Blog",
+          alt: post ? `${post.title} | Surakiat` : "Blog | Surakiat",
         },
       ],
     },
