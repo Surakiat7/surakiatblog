@@ -20,7 +20,7 @@ const Toast: React.FC<ToastProps> = ({ type, message, onClose }) => {
 
   return (
     <div
-      className={`fixed z-50 right-8 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-zinc-900 dark:border-zinc-900 ${
+      className={`fixed z-50 right-8 sm:right-4 sm:top-20 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-zinc-900 dark:border-zinc-900 ${
         isVisible
           ? type === "success"
             ? "bg-teal-50 text-teal-500 animate-slideInRight"

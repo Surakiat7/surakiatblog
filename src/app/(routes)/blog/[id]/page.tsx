@@ -17,7 +17,7 @@ export async function generateMetadata(
   const id = parseInt(params.id);
   const post = getPostDataById(id);
 
-  const imageUrl = post?.imgUrl
+  const imageUrl = post?.imgUrl.toString
     ? new URL(post.imgUrl, BASE_URL).toString()
     : DEFAULT_OG_IMAGE;
   const canonicalUrl = `${BASE_URL}/blog/${params.id}`;
