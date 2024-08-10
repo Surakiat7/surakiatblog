@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   description:
     "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
   openGraph: {
+    title: "Surakiat",
+    description:
+      "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev",
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
@@ -21,6 +25,16 @@ export const metadata: Metadata = {
         alt: "Surakiat OpenGraph Images",
       },
     ],
+    type: "website",
+    locale: "th_TH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@surakiat",
+    title: "Surakiat",
+    description:
+      "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
+    images: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
   },
 };
 
@@ -33,8 +47,20 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.className} dark`}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:type" content="website" />
+        <meta name="description" content="Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more." />
+        <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Surakiat" />
+        <meta property="og:description" content="Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more." />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"} />
+        <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="canonical" href={process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"} />
       </Head>
       <body>
         <ThemeProvider>
