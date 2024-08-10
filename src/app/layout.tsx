@@ -6,9 +6,12 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { MobileScreenProvider } from "@/contexts/MobileContext";
 import Script from "next/script";
 import { poppins } from "./fonts";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"
+  ),
   title: "Surakiat",
   description:
     "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
@@ -66,4 +69,10 @@ export default function RootLayout({
       </body>
     </html>
   );
+}
+
+export function generateCacheControlHeader() {
+  const headersList = headers();
+  headersList.set("Cache-Control", "no-cache, no-store, must-revalidate");
+  return headersList;
 }
