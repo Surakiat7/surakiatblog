@@ -54,7 +54,7 @@ const NavbarElementContent: React.FC = () => {
     >
       <NavbarContent
         as="ul"
-        className="list-none p-0 m-0 flex gap-4 items-center"
+        className="w-full p-0 m-0 items-center flex justify-between"
         role="menubar"
         aria-label="Main menu"
       >
@@ -79,7 +79,7 @@ const NavbarElementContent: React.FC = () => {
             Surakiat
           </p>
         </li>
-        <li className="flex items-center gap-2" role="menuitem">
+        <li className="flex items-center gap-2 ml-auto" role="menuitem">
           <ToggleSwitchTheme />
         </li>
       </NavbarContent>
