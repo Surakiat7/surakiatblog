@@ -57,7 +57,7 @@ export default function RootLayout({
         <meta property="og:image" content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale" content="th_TH" />
         <meta property="og:type" content="website" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"} />
