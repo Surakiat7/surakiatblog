@@ -33,6 +33,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.className} dark`}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <body>

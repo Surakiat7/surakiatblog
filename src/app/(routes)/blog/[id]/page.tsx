@@ -44,9 +44,14 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
+      site: 'surakiat.dev',
       title: title,
       description: description,
-      images: [imageUrl],
+      creator: '@surakiat',
+      images: {
+        url: imageUrl,
+        alt: title,
+      }
     },
     alternates: {
       canonical: canonicalUrl,
