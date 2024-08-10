@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import BlogPostByID from "./blogidmetapage";
 import { Metadata, ResolvingMetadata } from "next";
 import { getPostDataById } from "../blogpostmockdata";
@@ -10,15 +11,34 @@ type Props = {
 const DEFAULT_OG_IMAGE = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`;
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev";
 
-// ฟังก์ชันสำหรับแปลงรูปภาพด้วย Imgix
 function convertToJpeg(imageUrl: string): string {
   const url = new URL(imageUrl);
-  url.searchParams.set('fm', 'jpg');
-  url.searchParams.set('fit', 'crop');
-  url.searchParams.set('w', '1200');
-  url.searchParams.set('h', '630');
-  url.searchParams.set('q', '75');
+  url.searchParams.set("fm", "jpg");
+  url.searchParams.set("fit", "crop");
+  url.searchParams.set("w", "1200");
+  url.searchParams.set("h", "630");
+  url.searchParams.set("q", "75");
   return url.toString();
+}
+
+function generateKeywords(title: string): string {
+  const words = title.split(" ");
+  const keywords = words.filter((word) => word.length > 3).join(", ");
+
+  return keywords;
+}
+
+// แปลงวันที่ ISO 8601
+function formatDateToISO(dateStr: string): string {
+  const [datePart, timePart] = dateStr.split(" ");
+  const [day, month, year] = datePart.split("/");
+  const [time, period] = timePart.split(" ");
+
+  let [hour, minute] = time.split(":");
+  if (period === "PM" && hour !== "12") hour = (parseInt(hour) + 12).toString();
+  if (period === "AM" && hour === "12") hour = "00";
+
+  return `${year}-${month}-${day}T${hour}:${minute}:00+07:00`;
 }
 
 export async function generateMetadata(
@@ -31,15 +51,18 @@ export async function generateMetadata(
   let imageUrl = post?.imgUrl
     ? new URL(post.imgUrl, BASE_URL).toString()
     : DEFAULT_OG_IMAGE;
-  
+
   imageUrl = convertToJpeg(imageUrl);
-  
+
   const canonicalUrl = `${BASE_URL}/blog/${params.id}`;
 
   const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
   const description =
     post?.description ||
     "Visit my blog to discover tips, techniques, and various methods for frontend development!";
+
+  const keywords = post ? generateKeywords(post.title) : "";
+  const publishedTime = post?.createdAt ? formatDateToISO(post.createdAt) : "";
 
   return {
     title: title,
@@ -55,7 +78,7 @@ export async function generateMetadata(
           width: 1200,
           height: 630,
           alt: post ? `${post.title} | Surakiat` : "Blog | Surakiat",
-          type: 'image/jpeg',
+          type: "image/jpeg",
         },
       ],
       locale: "th_TH",
@@ -63,11 +86,11 @@ export async function generateMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      site: "surakiat.dev",
+      site: "@surakiat",
       title: title,
       description: description,
       creator: "@surakiat",
-      images: [imageUrl],
+      images: imageUrl,
     },
     alternates: {
       canonical: canonicalUrl,
@@ -85,10 +108,28 @@ export async function generateMetadata(
       "linkedin:title": title,
       "linkedin:description": description,
       "linkedin:image": imageUrl,
+      "article:published_time": publishedTime,
+      "article:section": "blog",
     },
   };
 }
 
 export default function Page({ params }: { params: { id: string } }) {
-  return <BlogPostByID />;
+  const id = parseInt(params.id);
+  const post = getPostDataById(id);
+  const keywords = post ? generateKeywords(post.title) : "";
+
+  return (
+    <>
+      <Head>
+        <meta name="keywords" content={keywords} />
+        <meta
+          property="article:published_time"
+          content={post ? formatDateToISO(post.createdAt) : ""}
+        />
+        <meta property="article:section" content="blog" />
+      </Head>
+      <BlogPostByID />
+    </>
+  );
 }
