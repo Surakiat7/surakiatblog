@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "https://surakiat.vercel.app/Logo-openGraph.avif",
+        url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
         width: 1200,
         height: 630,
         alt: "Surakiat Blog",
