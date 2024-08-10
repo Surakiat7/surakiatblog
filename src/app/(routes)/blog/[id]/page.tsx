@@ -18,10 +18,11 @@ export async function generateMetadata(
   const post = getPostDataById(id);
 
   const imageUrl = post?.imgUrl
-    ? new URL(post.imgUrl, BASE_URL).toString()
-    : DEFAULT_OG_IMAGE;
-  const canonicalUrl = `${BASE_URL}/blog/${params.id}`;
+    ? new URL(post.imgUrl, process.env.NEXT_PUBLIC_BASE_URL).toString()
+    : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${params.id}`;
 
+  console.log("imageUrl blog test", imageUrl);
   const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
   const description =
     post?.description ||
@@ -48,32 +49,16 @@ export async function generateMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      site: "surakiat.dev",
+      site: "@surakiat",
       title: title,
       description: description,
       creator: "@surakiat",
-      images: {
-        url: imageUrl,
-        alt: title,
-      },
+      images: [imageUrl],
     },
     alternates: {
       canonical: canonicalUrl,
     },
     authors: [{ name: "Surakiat", url: "https://www.facebook.com/Surakiatz/" }],
-    other: {
-      "og:image:width": "1200",
-      "og:image:height": "630",
-      // Line specific
-      "line:card": "summary_large_image",
-      "line:title": title,
-      "line:description": description,
-      "line:image": imageUrl,
-      // LinkedIn specific
-      "linkedin:title": title,
-      "linkedin:description": description,
-      "linkedin:image": imageUrl,
-    },
   };
 }
 
