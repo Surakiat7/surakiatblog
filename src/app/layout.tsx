@@ -5,21 +5,14 @@ import { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { MobileScreenProvider } from "@/contexts/MobileContext";
 import Script from "next/script";
+import Head from "next/head";
 import { poppins } from "./fonts";
-import { headers } from "next/headers";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"
-  ),
   title: "Surakiat",
   description:
     "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: process.env.NEXT_PUBLIC_BASE_URL,
-    siteName: "Surakiat",
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
@@ -28,15 +21,6 @@ export const metadata: Metadata = {
         alt: "Surakiat OpenGraph Images",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@surakiat",
-    creator: "@surakiat",
-  },
-  viewport: "width=device-width, initial-scale=1",
-  icons: {
-    icon: "/favicon.ico",
   },
 };
 
@@ -47,6 +31,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.className} dark`}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <body>
         <ThemeProvider>
           <MobileScreenProvider>
@@ -69,10 +58,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
-
-export function generateCacheControlHeader() {
-  const headersList = headers();
-  headersList.set("Cache-Control", "no-cache, no-store, must-revalidate");
-  return headersList;
 }

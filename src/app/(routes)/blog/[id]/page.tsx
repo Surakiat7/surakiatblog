@@ -2,7 +2,6 @@ import React from "react";
 import BlogPostByID from "./blogidmetapage";
 import { Metadata, ResolvingMetadata } from "next";
 import { getPostDataById } from "../blogpostmockdata";
-import { headers } from "next/headers";
 
 type Props = {
   params: { id: string };
@@ -55,7 +54,7 @@ export async function generateMetadata(
       creator: "@surakiat",
       images: {
         url: imageUrl,
-        alt: title,
+        alt: `Preview image for ${title}`,
       },
     },
     alternates: {
@@ -80,10 +79,4 @@ export async function generateMetadata(
 
 export default function Page({ params }: { params: { id: string } }) {
   return <BlogPostByID />;
-}
-
-export function generateCacheControlHeader() {
-  const headersList = headers();
-  headersList.set("Cache-Control", "no-cache, no-store, must-revalidate");
-  return headersList;
 }
