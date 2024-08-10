@@ -18,6 +18,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useMobileScreen } from "@/contexts/MobileContext";
 import NavbarElementContent from "@/elements/Navbar/NavbarContent";
 import FallbackImage from "@/component/FallbackImage/FallbackImage";
+import Footer from "@/elements/Footer/Footer";
 
 type Props = {};
 
@@ -34,10 +35,14 @@ const BlogPostByID: React.FC<Props> = () => {
   const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
 
-  const bgColorClass =
+  const bgContentColorClass =
     theme === "light"
       ? "bg-zinc-200 text-zinc-950"
       : "bg-zinc-900 text-zinc-50";
+  const borderColorClass =
+    theme === "light"
+      ? "border-zinc-400"
+      : "boder-zinc-50";
   const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
   const TitleLinearColor =
     theme === "dark"
@@ -77,10 +82,10 @@ const BlogPostByID: React.FC<Props> = () => {
   ];
 
   return (
-    <main className="w-full">
+    <main className={`w-full ${bgContentColorClass}`}>
       <NavbarElementContent />
-      <div className="px-32 sm:px-0">
-        <div className={`${bgColorClass}`}>
+      <div className={`px-32 sm:px-0 border-b-1 ${borderColorClass}`}>
+        <div className={`${bgContentColorClass}`}>
           <div className="py-4 sm:py-4 px-8 sm:px-4 w-full">
             <div className="flex w-full gap-2 flex-col">
               <BreadcrumbsComponent items={breadcrumbsItems} />
@@ -180,6 +185,7 @@ const BlogPostByID: React.FC<Props> = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 };
