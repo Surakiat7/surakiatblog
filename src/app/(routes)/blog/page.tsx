@@ -48,37 +48,8 @@ export default function Page() {
       <Head>
         <meta
           name="keywords"
-          content="blog, frontend development, tips, techniques, methods"
+          content="blog, frontend development, tips, techniques, methods, blog post"
         />
-        <meta property="og:title" content="Blog | Surakiat" />
-        <meta
-          property="og:description"
-          content="Visit my blog to discover tips, techniques, and various methods for frontend development!"
-        />
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_BASE_URL}/blog`}
-        />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`}
-        />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="th_TH" />
-        <meta property="og:type" content="website" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content="@surakiat" />
-        <meta property="twitter:title" content="Blog | Surakiat" />
-        <meta
-          property="twitter:description"
-          content="Visit my blog to discover tips, techniques, and various methods for frontend development!"
-        />
-        <meta
-          property="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`}
-        />
-        <meta property="article:section" content="blog" />
       </Head>
       <BlogPost />
     </>
