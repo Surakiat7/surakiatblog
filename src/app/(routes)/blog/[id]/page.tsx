@@ -8,7 +8,7 @@ type Props = {
 };
 
 const DEFAULT_OG_IMAGE = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`;
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://yourwebsite.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.surakiat.dev';
 
 export async function generateMetadata(
   { params }: Props,
@@ -20,14 +20,15 @@ export async function generateMetadata(
   const imageUrl = post?.imgUrl ? new URL(post.imgUrl, BASE_URL).toString() : DEFAULT_OG_IMAGE;
   const canonicalUrl = `${BASE_URL}/blog/${params.id}`;
 
+  const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
+  const description = post?.description || "Visit my blog to discover tips, techniques, and various methods for frontend development!";
+
   return {
-    title: post ? `${post.title} | Surakiat` : "Blog Post | Surakiat",
-    description:
-      post?.description ||
-      "Visit my blog to discover tips, techniques, and various methods for frontend development!",
+    title: title,
+    description: description,
     openGraph: {
-      title: post ? `${post.title} | Surakiat` : "Blog Post | Surakiat",
-      description: post?.description || "Visit my blog to discover tips, techniques, and various methods for frontend development!",
+      title: title,
+      description: description,
       url: canonicalUrl,
       siteName: 'Surakiat Blog',
       images: [
@@ -43,14 +44,27 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: post ? `${post.title} | Surakiat` : "Blog Post | Surakiat",
-      description: post?.description || "Visit my blog to discover tips, techniques, and various methods for frontend development!",
+      title: title,
+      description: description,
       images: [imageUrl],
     },
     alternates: {
       canonical: canonicalUrl,
     },
     authors: [{ name: 'Surakiat', url: 'https://www.facebook.com/Surakiatz/' }],
+    other: {
+      'og:image:width': '1200',
+      'og:image:height': '630',
+      // Line specific
+      'line:card': 'summary_large_image',
+      'line:title': title,
+      'line:description': description,
+      'line:image': imageUrl,
+      // LinkedIn specific
+      'linkedin:title': title,
+      'linkedin:description': description,
+      'linkedin:image': imageUrl,
+    },
   };
 }
 
