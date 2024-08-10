@@ -13,13 +13,12 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const id = parseInt(params.id)
   const post = getPostDataById(id)
-  const previousImages = (await parent).openGraph?.images || []
 
   return {
     title: post ? `${post.title} | Surakiat` : 'Blog Post | Surakiat',
     description: post?.description || 'Visit my blog to discover tips, techniques, and various methods for frontend development!',
     openGraph: {
-      images: post?.imgUrl ? [post.imgUrl, ...previousImages] : previousImages,
+      images: post?.imgUrl ? [post.imgUrl] : [],
     },
   }
 }
