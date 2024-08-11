@@ -81,6 +81,13 @@ export async function generateMetadata(
       locale: "th_TH",
       type: "article",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description: description,
+      creator: "@surakiat",
+      images: [`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`],
+    },
     alternates: {
       canonical: canonicalUrl,
     },
@@ -121,12 +128,7 @@ export default function Page({ params }: { params: { id: string } }) {
           content={post ? formatDateToISO(post.createdAt) : ""}
         />
         <meta property="article:section" content="blog" />
-        <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@surakiat" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:creator" content="@surakiat" />
-        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`} />
       </Head>
       <BlogPostByID />
     </>
