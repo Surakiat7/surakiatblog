@@ -90,6 +90,11 @@ export async function generateMetadata(
       "article:published_time": publishedTime,
       "article:section": "blog",
     },
+    verification: {
+      google: "google",
+      yandex: "yandex",
+      yahoo: "yahoo",
+    },
   };
 }
 

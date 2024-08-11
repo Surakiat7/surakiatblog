@@ -23,14 +23,6 @@ export const metadata: Metadata = {
     locale: "th_TH",
     type: "article",
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "@surakiat",
-    title: "Blog | Surakiat",
-    description:
-      "Visit my blog to discover tips, techniques, and various methods for frontend development!",
-    images: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
-  },
   alternates: {
     canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/blog`,
   },
@@ -40,12 +32,18 @@ export const metadata: Metadata = {
     "og:image:height": "630",
     "article:section": "blog",
   },
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+  },
 };
 
 export default function Page() {
   return (
     <>
       <Head>
+        <meta property="article:section" content="blog" />
         <meta
           name="keywords"
           content="blog, frontend development, tips, techniques, methods, blog post"

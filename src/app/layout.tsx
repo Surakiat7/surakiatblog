@@ -28,13 +28,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "th_TH",
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "@surakiat",
-    title: "Surakiat",
-    description:
-      "Surakiat is a blog and personal website where JJ shares insights, stories, and information on various topics. Explore posts about web development, technology, and more.",
-    images: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.avif`,
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
   },
 };
 
