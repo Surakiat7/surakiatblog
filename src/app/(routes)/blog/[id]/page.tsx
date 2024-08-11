@@ -85,14 +85,7 @@ export async function generateMetadata(
       title: title,
       description: description,
       creator: "@Surakiat",
-      images: [
-        {
-          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.jpg`,
-          width: 1200,
-          height: 630,
-          alt: `Preview for ${title}`,
-        },
-      ],
+      images: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.jpg`,
     },
     alternates: {
       canonical: canonicalUrl,
