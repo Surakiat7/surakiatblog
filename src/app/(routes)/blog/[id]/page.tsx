@@ -71,11 +71,10 @@ export async function generateMetadata(
       siteName: "Surakiat Blog",
       images: [
         {
-          url: convertedImageUrl,
+          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`,
           width: 1200,
           height: 630,
           alt: post ? `${post.title} | Surakiat` : "Blog | Surakiat",
-          type: "image/jpeg",
         },
       ],
       locale: "th_TH",
