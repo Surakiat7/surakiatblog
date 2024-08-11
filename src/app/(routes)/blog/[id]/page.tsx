@@ -62,6 +62,7 @@ export async function generateMetadata(
 
   return {
     title: title,
+    keywords: generateKeywords(title),
     description: description,
     openGraph: {
       title: title,
@@ -101,7 +102,6 @@ export async function generateMetadata(
 export default function Page({ params }: { params: { id: string } }) {
   const id = parseInt(params.id);
   const post = getPostDataById(id);
-  const keywords = post ? generateKeywords(post.title) : "";
   const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
   const description =
     post?.description ||
@@ -109,17 +109,13 @@ export default function Page({ params }: { params: { id: string } }) {
   const convertedImageUrl = post?.imgUrl
     ? convertToJpeg(new URL(post.imgUrl, BASE_URL).toString())
     : convertToJpeg(DEFAULT_OG_IMAGE);
-
-  console.log("Keywords:", keywords);
   console.log("Post:", post);
   console.log("Title:", post?.title);
-  console.log("Generated Keywords:", keywords);
   console.log("Converted Image URL:", convertedImageUrl);
 
   return (
     <>
       <Head>
-        {keywords && <meta name="keywords" content={`${keywords}`} />}
         <meta
           property="article:published_time"
           content={post ? formatDateToISO(post.createdAt) : ""}

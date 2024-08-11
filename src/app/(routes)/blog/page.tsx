@@ -5,6 +5,15 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog | Surakiat",
+  keywords: [
+    "tips",
+    "techniques",
+    "methods",
+    "blog",
+    "post",
+    "surakiat",
+    "Surakiat Tabakorn",
+  ],
   description:
     "Visit my blog to discover tips, techniques, and various methods for frontend development!",
   openGraph: {
