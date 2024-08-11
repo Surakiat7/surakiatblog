@@ -85,8 +85,15 @@ export async function generateMetadata(
       card: "summary_large_image",
       title: title,
       description: description,
-      creator: "@surakiat",
-      images: [`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`],
+      creator: "@Surakiat",
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`,
+          width: 1200,
+          height: 630,
+          alt: `Preview for ${title}`,
+        },
+      ],
     },
     alternates: {
       canonical: canonicalUrl,
@@ -109,16 +116,6 @@ export async function generateMetadata(
 export default function Page({ params }: { params: { id: string } }) {
   const id = parseInt(params.id);
   const post = getPostDataById(id);
-  const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
-  const description =
-    post?.description ||
-    "Visit my blog to discover tips, techniques, and various methods for frontend development!";
-  const convertedImageUrl = post?.imgUrl
-    ? convertToJpeg(new URL(post.imgUrl, BASE_URL).toString())
-    : convertToJpeg(DEFAULT_OG_IMAGE);
-  console.log("Post:", post);
-  console.log("Title:", post?.title);
-  console.log("Converted Image URL:", convertedImageUrl);
 
   return (
     <>
