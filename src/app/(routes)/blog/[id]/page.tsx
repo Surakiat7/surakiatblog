@@ -57,7 +57,7 @@ export async function generateMetadata(
     post?.description ||
     "Visit my blog to discover tips, techniques, and various methods for frontend development!";
 
-  const keywords = post ? generateKeywords(post.title) : "";
+  console.log("convertedImageUrl test:", convertedImageUrl);
   const publishedTime = post?.createdAt ? formatDateToISO(post.createdAt) : "";
 
   return {
@@ -80,14 +80,6 @@ export async function generateMetadata(
       locale: "th_TH",
       type: "article",
     },
-    twitter: {
-      card: "summary_large_image",
-      site: "@surakiat",
-      title: title,
-      description: description,
-      creator: "@surakiat",
-      images: convertedImageUrl,
-    },
     alternates: {
       canonical: canonicalUrl,
     },
@@ -105,16 +97,35 @@ export default function Page({ params }: { params: { id: string } }) {
   const id = parseInt(params.id);
   const post = getPostDataById(id);
   const keywords = post ? generateKeywords(post.title) : "";
+  const title = post ? `${post.title} | Surakiat` : "Blog Post | Surakiat";
+  const description =
+    post?.description ||
+    "Visit my blog to discover tips, techniques, and various methods for frontend development!";
+  const convertedImageUrl = post?.imgUrl
+    ? convertToJpeg(new URL(post.imgUrl, BASE_URL).toString())
+    : convertToJpeg(DEFAULT_OG_IMAGE);
+
+  console.log("Keywords:", keywords);
+  console.log("Post:", post);
+  console.log("Title:", post?.title);
+  console.log("Generated Keywords:", keywords);
+  console.log("Converted Image URL:", convertedImageUrl);
 
   return (
     <>
       <Head>
-        <meta name="keywords" content={keywords} />
+        {keywords && <meta name="keywords" content={keywords} />}
         <meta
           property="article:published_time"
           content={post ? formatDateToISO(post.createdAt) : ""}
         />
         <meta property="article:section" content="blog" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@surakiat" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:creator" content="@surakiat" />
+        <meta name="twitter:image" content={convertedImageUrl} />
       </Head>
       <BlogPostByID />
     </>
