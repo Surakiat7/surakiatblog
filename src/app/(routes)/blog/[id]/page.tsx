@@ -114,13 +114,13 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <>
       <Head>
-        {keywords && <meta name="keywords" content={keywords} />}
+        {keywords && <meta name="keywords" content={`${keywords}`} />}
         <meta
           property="article:published_time"
           content={post ? formatDateToISO(post.createdAt) : ""}
         />
         <meta property="article:section" content="blog" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@surakiat" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
