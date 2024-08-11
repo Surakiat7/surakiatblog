@@ -126,7 +126,7 @@ export default function Page({ params }: { params: { id: string } }) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@surakiat" />
-        <meta name="twitter:image" content={convertedImageUrl} />
+        <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`} />
       </Head>
       <BlogPostByID />
     </>
