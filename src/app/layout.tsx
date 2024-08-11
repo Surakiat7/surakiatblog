@@ -61,10 +61,6 @@ export default function RootLayout({
           href={process.env.NEXT_PUBLIC_BASE_URL || "https://www.surakiat.dev"}
         />
         <meta name="robots" content="index, follow" />
-        <meta
-          name="keywords"
-          content="blog, personal website, web development, technology, insights, stories, surakiat, Surakiat Tabakorn, JJ, jj"
-        />
       </Head>
       <body>
         <ThemeProvider>
