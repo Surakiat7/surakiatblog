@@ -71,7 +71,7 @@ export async function generateMetadata(
       siteName: "Surakiat Blog",
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`,
+          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.jpg`,
           width: 1200,
           height: 630,
           alt: post ? `${post.title} | Surakiat` : "Blog | Surakiat",
@@ -87,7 +87,7 @@ export async function generateMetadata(
       creator: "@Surakiat",
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.webp`,
+          url: `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Logo-openGraph.jpg`,
           width: 1200,
           height: 630,
           alt: `Preview for ${title}`,
