@@ -3,12 +3,11 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { Input, Textarea, Button } from "@nextui-org/react";
 import Phone3D from "../3D/FloatingPhone";
-import { useState, ChangeEvent, useRef, useEffect } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { SendContact, SendContactRequest } from "@/api/contact";
 import confetti from "canvas-confetti";
 import ModalNotification from "../Modal/ModalContact";
 import axios from "axios";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 interface ConfettiOptions extends confetti.Options {
@@ -40,15 +39,9 @@ const Contact: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>("");
   const [modalTitle, setModalTitle] = useState<string>("");
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
   const [turnstileStatus, setTurnstileStatus] =
     useState<TurnstileStatus>("required");
   const [error, setError] = useState<string | null>(null);
-
-  const handleRecaptchaChange = (value: string | null) => {
-    setIsRecaptchaVerified(!!value);
-  };
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -106,7 +99,7 @@ const Contact: React.FC = () => {
     !message ||
     isPhoneError ||
     isEmailError ||
-    !isRecaptchaVerified;
+    turnstileStatus !== "success";
 
   const [isFormComplete, setIsFormComplete] = useState<boolean>(false);
 
@@ -133,20 +126,16 @@ const Contact: React.FC = () => {
     setDisplayPhone("");
     setIsPhoneError(false);
     setIsEmailError(false);
+    setTurnstileStatus("required");
   };
 
   const handleSubmit = async () => {
-    const token = recaptchaRef.current?.getValue();
-    if (!token) {
+    if (turnstileStatus !== "success") {
       setModalTitle("Error");
-      setModalMessage("Please verify that you are not a robot.");
+      setModalMessage("Please complete the Turnstile verification.");
       setIsModalOpen(true);
       return;
     }
-
-    setIsRecaptchaVerified(true);
-
-    console.log("Token recaptcha:", token);
 
     const ContactData: SendContactRequest = {
       title,
@@ -321,17 +310,7 @@ const Contact: React.FC = () => {
               className="w-full"
             />
           </div>
-          {/* reCAPTCHA widget */}
-          {/* {isFormComplete && (
-            <div className="my-4">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey="6LcZKiEqAAAAAJpiMvxYI11nYwvi5OPxswwbJ7xA"
-                onChange={handleRecaptchaChange}
-              />
-            </div>
-          )} */}
-          {/* End reCAPTCHA widget */}
+          {/* Start Turnstile widget */}
           {isFormComplete && (
             <Turnstile
               siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
@@ -343,6 +322,7 @@ const Contact: React.FC = () => {
               }}
             />
           )}
+          {/* End Turnstile widget */}
           <div className="w-20 h-auto pt-2">
             <Button
               isDisabled={isButtonDisabled}
