@@ -9,10 +9,13 @@ import confetti from "canvas-confetti";
 import ModalNotification from "../Modal/ModalContact";
 import axios from "axios";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 interface ConfettiOptions extends confetti.Options {
   useWorker?: boolean;
 }
+
+type TurnstileStatus = "success" | "error" | "expired" | "required";
 
 const Contact: React.FC = () => {
   const { theme } = useTheme();
@@ -39,6 +42,9 @@ const Contact: React.FC = () => {
   const [modalTitle, setModalTitle] = useState<string>("");
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false);
+  const [turnstileStatus, setTurnstileStatus] =
+    useState<TurnstileStatus>("required");
+  const [error, setError] = useState<string | null>(null);
 
   const handleRecaptchaChange = (value: string | null) => {
     setIsRecaptchaVerified(!!value);
@@ -137,7 +143,7 @@ const Contact: React.FC = () => {
       setIsModalOpen(true);
       return;
     }
-    
+
     setIsRecaptchaVerified(true);
 
     console.log("Token recaptcha:", token);
@@ -316,7 +322,7 @@ const Contact: React.FC = () => {
             />
           </div>
           {/* reCAPTCHA widget */}
-          {isFormComplete && (
+          {/* {isFormComplete && (
             <div className="my-4">
               <ReCAPTCHA
                 ref={recaptchaRef}
@@ -324,8 +330,19 @@ const Contact: React.FC = () => {
                 onChange={handleRecaptchaChange}
               />
             </div>
-          )}
+          )} */}
           {/* End reCAPTCHA widget */}
+          {isFormComplete && (
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onError={() => setTurnstileStatus("error")}
+              onExpire={() => setTurnstileStatus("expired")}
+              onSuccess={() => {
+                setTurnstileStatus("success");
+                setError(null);
+              }}
+            />
+          )}
           <div className="w-20 h-auto pt-2">
             <Button
               isDisabled={isButtonDisabled}

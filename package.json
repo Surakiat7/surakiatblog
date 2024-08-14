@@ -11,6 +11,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@marsidev/react-turnstile": "^0.7.2",
     "@nextui-org/react": "^2.4.6",
     "@types/axios": "^0.14.0",
     "@types/jest": "^29.5.11",
