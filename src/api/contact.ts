@@ -1,6 +1,7 @@
 import { apiEndPoint } from "@/const/api";
 import axios, { AxiosResponse } from "axios";
 import { ApiResponse } from "@/const/api";
+import { SendContactRequest } from "@/types";
 
 export const SendContact = async (
   body: SendContactRequest
@@ -16,12 +17,3 @@ export const SendContact = async (
     throw error.response?.data || error;
   }
 };
-
-export type SendContactRequest = {
-    title: string;
-    firstName?: string;
-    lastName?: string;
-    phoneNumber: string;
-    email: string;
-    message: string;
-  };

@@ -2,10 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import React from "react";
-
-type MobileScreenContextValue = {
-  mobileScreen: boolean;
-};
+import { MobileScreenContextValue } from "@/types";
 
 const MobileScreenContext = createContext<MobileScreenContextValue>({} as MobileScreenContextValue);
 
