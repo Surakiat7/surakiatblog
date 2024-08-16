@@ -8,7 +8,7 @@ import { SendContact, SendContactRequest } from "@/api/contact";
 import confetti from "canvas-confetti";
 import ModalNotification from "../Modal/ModalContact";
 import axios from "axios";
-import { Turnstile } from "@marsidev/react-turnstile";
+import TurnstileWidget from "../../../third-parties/TurnstileWidget";
 
 interface ConfettiOptions extends confetti.Options {
   useWorker?: boolean;
@@ -311,14 +311,10 @@ const Contact: React.FC = () => {
           </div>
           {/* Start Turnstile widget */}
           {isFormComplete && (
-            <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onError={() => setTurnstileStatus("error")}
-              onExpire={() => setTurnstileStatus("expired")}
-              onSuccess={() => {
-                setTurnstileStatus("success");
-                setError(null);
-              }}
+            <TurnstileWidget
+              isFormComplete={isFormComplete}
+              setTurnstileStatus={setTurnstileStatus}
+              setError={setError}
             />
           )}
           {/* End Turnstile widget */}
