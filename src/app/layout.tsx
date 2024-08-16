@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { MobileScreenProvider } from "@/hooks/UseMobileMediaQuery";
 import Script from "next/script";
 import Head from "next/head";
-import { poppins } from "./fonts";
+import { poppins } from "../styles/fonts";
 
 export const metadata: Metadata = {
   title: "Surakiat",
