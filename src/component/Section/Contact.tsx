@@ -149,7 +149,6 @@ const Contact: React.FC = () => {
     try {
       setIsLoading(true);
       const response = await SendContact(ContactData);
-      console.log("Sending Contact Successfully:", response);
       const { messageEN } = response;
       confetti({
         particleCount: 200,
