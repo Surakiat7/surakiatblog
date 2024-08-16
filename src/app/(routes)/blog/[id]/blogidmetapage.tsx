@@ -15,7 +15,7 @@ import BackButton from "@/component/Button/BackButton";
 import { PiEyeglassesDuotone } from "react-icons/pi";
 import { PostData, Post } from "../blogpostmockdata";
 import { useTheme } from "@/contexts/ThemeContext";
-import { useMobileScreen } from "@/contexts/MobileContext";
+import { useMobileScreen } from "@/hooks/UseMobileMediaQuery";
 import NavbarElementContent from "@/elements/Navbar/NavbarContent";
 import FallbackImage from "@/component/FallbackImage/FallbackImage";
 import Footer from "@/elements/Footer/Footer";

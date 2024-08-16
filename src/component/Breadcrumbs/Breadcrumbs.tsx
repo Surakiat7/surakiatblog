@@ -1,7 +1,7 @@
 import React from "react";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 import Link from "next/link";
-import { useMobileScreen } from "@/contexts/MobileContext";
+import { useMobileScreen } from "@/hooks/UseMobileMediaQuery";
 
 type BreadcrumbsComponentProps = {
   items: { name: string; href?: string }[];

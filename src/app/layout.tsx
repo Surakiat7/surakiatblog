@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/styles/globals.css";
 import * as React from "react";
 import { Providers } from "./provider";
 import { Metadata } from "next";
