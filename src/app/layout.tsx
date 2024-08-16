@@ -3,7 +3,7 @@ import * as React from "react";
 import { Providers } from "./provider";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import { MobileScreenProvider } from "@/contexts/MobileContext";
+import { MobileScreenProvider } from "@/contexts/UseMobileMediaQuery";
 import Script from "next/script";
 import Head from "next/head";
 import { poppins } from "./fonts";
