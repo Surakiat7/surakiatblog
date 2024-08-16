@@ -7,6 +7,7 @@ import { MobileScreenProvider } from "@/hooks/UseMobileMediaQuery";
 import Script from "next/script";
 import Head from "next/head";
 import { poppins } from "../styles/fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Surakiat",
@@ -81,6 +82,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <SpeedInsights />
       </body>
     </html>
   );
