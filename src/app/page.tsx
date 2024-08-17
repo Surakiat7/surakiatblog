@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React, { useRef, useState, useEffect } from "react";
-import NavbarElement from "@/elements/Navbar/NavbarMain";
-import { DarkGridHero } from "@/component/Section/HeroWelcome";
-import LogoHero from "@/component/Section/LogoTechStack";
-import BlogPostCarousel from "@/component/Carousels/CarouselsBlog";
-import AboutHero from "@/component/Section/AboutIntro";
-import Footer from "@/elements/Footer/Footer";
-import { useTheme } from "@/contexts/ThemeContext";
-import Education from "@/component/Section/Education";
-import WorkExperience from "@/component/Section/WorkExprience";
-import Contact from "@/component/Section/Contact";
+import React, { useRef, useState, useEffect } from 'react';
+import NavbarElement from '@/elements/Navbar/NavbarMain';
+import { DarkGridHero } from '@/components/Sections/HeroWelcome';
+import LogoHero from '@/components/Sections/LogoTechStack';
+import BlogPostCarousel from '@/components/Carousels/CarouselsBlog';
+import AboutHero from '@/components/Sections/AboutIntro';
+import Footer from '@/elements/Footer/Footer';
+import { useTheme } from '@/contexts/ThemeContext';
+import Education from '@/components/Sections/Education';
+import WorkExperience from '@/components/Sections/WorkExprience';
+import Contact from '@/components/Sections/Contact';
 
 export default function Home() {
   const { theme } = useTheme();
-  const bgColorClass = theme === "light" ? "bg-zinc-50" : "bg-zinc-950";
+  const bgColorClass = theme === 'light' ? 'bg-zinc-50' : 'bg-zinc-950';
   const [navbarHeight, setNavbarHeight] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -26,21 +26,21 @@ export default function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      const navbar = document.querySelector(".navbar-container");
+      const navbar = document.querySelector('.navbar-container');
       if (navbar) {
         setNavbarHeight(navbar.getBoundingClientRect().height);
       }
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
@@ -48,13 +48,13 @@ export default function Home() {
       const yOffset = -navbarHeight;
       const y =
         ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollTo({ top: y, behavior: 'smooth' });
       setIsMenuOpen(false);
     }
   };
 
   const scrollToHome = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const scrollToAbout = () => {

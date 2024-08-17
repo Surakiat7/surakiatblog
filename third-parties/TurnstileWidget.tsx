@@ -1,7 +1,7 @@
-import React from "react";
-import { Turnstile } from "@marsidev/react-turnstile";
+import React from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
-type TurnstileStatus = "success" | "error" | "expired" | "required";
+type TurnstileStatus = 'success' | 'error' | 'expired' | 'required';
 
 interface TurnstileWidgetProps {
   isFormComplete: boolean;
@@ -19,10 +19,10 @@ const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   return (
     <Turnstile
       siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-      onError={() => setTurnstileStatus("error")}
-      onExpire={() => setTurnstileStatus("expired")}
+      onError={() => setTurnstileStatus('error')}
+      onExpire={() => setTurnstileStatus('expired')}
       onSuccess={() => {
-        setTurnstileStatus("success");
+        setTurnstileStatus('success');
         setError(null);
       }}
     />

@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { useTheme } from "@/contexts/ThemeContext";
-import NextJSLogo from "./NextjsLogo";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTheme } from '@/contexts/ThemeContext';
+import NextJSLogo from './NextjsLogo';
 import {
   FaLinkedin,
   FaFacebookSquare,
   FaLine,
   FaDribbbleSquare,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 const Footer = () => {
   const { theme } = useTheme();
 
   const logoSrc =
-    theme === "light"
+    theme === 'light'
       ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
-  const textColorClass = theme === "light" ? "text-zinc-950" : "text-zinc-50";
+  const textColorClass = theme === 'light' ? 'text-zinc-950' : 'text-zinc-50';
   const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-700";
+    theme === 'light' ? 'border-zinc-300' : 'border-zinc-700';
   const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-900 text-zinc-50";
-  const socialColor = theme === "light" ? "#09090b" : "#fafafa";
+    theme === 'light'
+      ? 'bg-zinc-200 text-zinc-950'
+      : 'bg-zinc-900 text-zinc-50';
+  const socialColor = theme === 'light' ? '#09090b' : '#fafafa';
   const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+    theme === 'dark'
+      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
+      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
 
   return (
     <main className={`px-8 py-8 ${bgColorClass} w-full`}>

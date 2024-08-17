@@ -1,12 +1,12 @@
-import React from "react";
-import Image from "next/image";
-import { useTheme } from "@/contexts/ThemeContext";
+import React from 'react';
+import Image from 'next/image';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const NextJSLogo: React.FC = () => {
   const { theme } = useTheme();
 
   const logoSrc =
-    theme === "light"
+    theme === 'light'
       ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-Black.avif`
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Nextjs-Logo-White.avif`;
 

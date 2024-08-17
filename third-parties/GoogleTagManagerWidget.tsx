@@ -1,12 +1,14 @@
-"use client";
+'use client';
 
-import Script from "next/script";
+import Script from 'next/script';
 
 interface GoogleAnalyticsProps {
   GA_MEASUREMENT_ID: string;
 }
 
-const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({ GA_MEASUREMENT_ID }) => {
+const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({
+  GA_MEASUREMENT_ID,
+}) => {
   return (
     <>
       <Script

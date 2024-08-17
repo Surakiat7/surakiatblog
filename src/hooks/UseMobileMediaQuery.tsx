@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useEffect, useState } from "react";
-import React from "react";
-import { MobileScreenContextValue } from "@/types";
+import { createContext, useContext, useEffect, useState } from 'react';
+import React from 'react';
+import { MobileScreenContextValue } from '@/types';
 
-const MobileScreenContext = createContext<MobileScreenContextValue>({} as MobileScreenContextValue);
+const MobileScreenContext = createContext<MobileScreenContextValue>(
+  {} as MobileScreenContextValue
+);
 
 type Props = {
   children: React.ReactNode;
@@ -21,10 +23,10 @@ export const MobileScreenProvider: React.FC<Props> = ({ children }) => {
 
     handleResize();
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -44,7 +46,9 @@ export const MobileScreenProvider: React.FC<Props> = ({ children }) => {
 export const useMobileScreen = (): MobileScreenContextValue => {
   const context = useContext(MobileScreenContext);
   if (!context) {
-    throw new Error("useMobileScreen must be used within a MobileScreenProvider");
+    throw new Error(
+      'useMobileScreen must be used within a MobileScreenProvider'
+    );
   }
   return context;
 };

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import GradientButton from "@/component/Button/ActionButton";
-import { useNavigate } from "@/utils/navigation";
+import Image from 'next/image';
+import GradientButton from '@/components/Button/ActionButton';
+import { useNavigate } from '@/@core/utils/navigation';
 
 const imageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/404-notfound.avif`;
 

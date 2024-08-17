@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --line-stroke-color: #000;
+  --line-opened-stroke-color: #4edfe7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.poppins {
+  font-family: var(--font-poppins_init);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.dashed-border-bg {
+  border: 2px dashed rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Custom Scroll Bar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 12px;
+  background-color: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Breadcrumb Styles */
+.breadcrumb-item {
+  color: #333;
+  min-height: 24px;
+}
+
+[data-slot='separator'] {
+  padding: 0 4px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-slot='item'] {
+  padding: 4px;
+  line-height: 1.5;
+}
+
+.breadcrumb-item a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+[aria-current='page'] {
+  color: #4edfe7;
+  cursor: default;
+}
+
+[aria-current='page'] a {
+  color: #4edfe7;
+  pointer-events: none;
+}
+
+/* Sidebar and Navbar Styles */
+.menu {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+
+.line {
+  stroke: var(--line-stroke-color);
+  fill: none;
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-dark {
+  --line-stroke-color: #fff;
+}
+
+.line1,
+.line2,
+.line3 {
+  stroke-width: 6;
+}
+
+.line1 {
+  stroke-dasharray: 60 207;
+}
+
+.line2 {
+  stroke-dasharray: 60 60;
+}
+
+.line3 {
+  stroke-dasharray: 60 207;
+}
+
+.opened .line1,
+.opened .line2,
+.opened .line3 {
+  stroke: #4edfe7;
+}
+
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
+
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+}
+
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
+
+.sidebar-container {
+  margin-top: 5rem;
+}
+
+.sidebar-transition {
+  transition: width 0.5s ease, padding 0.5s ease, border 0.5s ease;
+}
+
+.logo-sidebar-display {
+  display: none;
+}
+
+.space-menu-sidebar {
+  padding: 8px;
+}
+
+.notification-position {
+  position: absolute;
+  top: 65px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 767px) {
+  .logo-sidebar-display {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .logo-navbar-display {
+    display: none;
+  }
+
+  .notification-position {
+    left: 3rem;
+  }
+
+  .space-menu-sidebar {
+    padding: 4px;
+  }
+
+  .logo-sidebar-display {
+    display: block;
+  }
+
+  .sidebar-transition {
+    transform: translateX(-100%);
+  }
+
+  .sidebar-transition.fade-in::before {
+    content: '';
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sidebar-transition.fade-in.isSidebarOpen::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  body.sidebar-open main::after {
+    overflow-y: hidden;
+  }
+
+  main::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  body.sidebar-open main::after {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s forwards;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  input#menu:checked + .side-menu {
+    transform: translateX(0);
+  }
+
+  input#menu:checked + .side-menu .side-menu-content {
+    opacity: 1;
+    animation: fadeIn 0.5s forwards;
+  }
+
+  input#menu:not(:checked) + .side-menu .side-menu-content {
+    animation: fadeOut 0.5s forwards;
+  }
+}

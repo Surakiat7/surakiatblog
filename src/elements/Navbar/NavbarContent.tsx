@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Navbar, NavbarContent } from "@nextui-org/react";
-import Image from "next/image";
-import { useTheme } from "@/contexts/ThemeContext";
-import ToggleSwitchTheme from "@/component/Toggle/ThemeSwitchToggle";
-import { useRouter } from "next/navigation";
-import { throttle } from "lodash";
+import React, { useState, useEffect, useMemo } from 'react';
+import { Navbar, NavbarContent } from '@nextui-org/react';
+import Image from 'next/image';
+import { useTheme } from '@/contexts/ThemeContext';
+import ToggleSwitchTheme from '@/components/Toggle/ThemeSwitchToggle';
+import { useRouter } from 'next/navigation';
+import { throttle } from 'lodash';
 
 const NavbarElementContent: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,13 +14,13 @@ const NavbarElementContent: React.FC = () => {
   const themeValues = useMemo(
     () => ({
       logoSrc:
-        theme === "light"
+        theme === 'light'
           ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
           : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`,
       TitleLinearColor:
-        theme === "dark"
-          ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-          : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text",
+        theme === 'dark'
+          ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
+          : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text',
     }),
     [theme]
   );
@@ -30,24 +30,24 @@ const NavbarElementContent: React.FC = () => {
       setIsScrolled(window.scrollY > 0);
     }, 100);
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
       handleScroll.cancel();
     };
   }, []);
 
   return (
     <Navbar
-      style={{ position: "sticky", top: 0, zIndex: 50 }}
+      style={{ position: 'sticky', top: 0, zIndex: 50 }}
       className={`navbar-container sticky top-0 z-50 ${
-        theme === "light"
+        theme === 'light'
           ? isScrolled
-            ? "bg-zinc-50/30 backdrop-blur-sm text-zinc-950"
-            : "bg-zinc-50 text-zinc-950"
+            ? 'bg-zinc-50/30 backdrop-blur-sm text-zinc-950'
+            : 'bg-zinc-50 text-zinc-950'
           : isScrolled
-          ? "bg-zinc-950/30 backdrop-blur-sm text-zinc-50"
-          : "bg-zinc-950 text-zinc-50"
+          ? 'bg-zinc-950/30 backdrop-blur-sm text-zinc-50'
+          : 'bg-zinc-950 text-zinc-50'
       }`}
       role="navigation"
       aria-label="Main navigation"
@@ -61,7 +61,7 @@ const NavbarElementContent: React.FC = () => {
         <li className="flex items-center gap-2" role="menuitem">
           <button
             aria-label="Go to homepage"
-            onClick={() => router.push("/")}
+            onClick={() => router.push('/')}
             className="flex items-center"
           >
             <Image

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 import {
   Image,
   Divider,
@@ -9,19 +9,19 @@ import {
   Link,
   Spinner,
   Snippet,
-} from "@nextui-org/react";
-import BreadcrumbsComponent from "@/component/Breadcrumbs/Breadcrumbs";
-import BackButton from "@/component/Button/BackButton";
-import { PiEyeglassesDuotone } from "react-icons/pi";
-import { PostData, Post } from "../blogpostmockdata";
-import { useTheme } from "@/contexts/ThemeContext";
-import { useMobileScreen } from "@/hooks/UseMobileMediaQuery";
-import NavbarElementContent from "@/elements/Navbar/NavbarContent";
-import FallbackImage from "@/component/FallbackImage/FallbackImage";
-import Footer from "@/elements/Footer/Footer";
-import { FaLine, FaLinkedin, FaShareAltSquare } from "react-icons/fa";
-import { FaSquareFacebook, FaSquareXTwitter } from "react-icons/fa6";
-import Toast from "@/component/Notification/Toast";
+} from '@nextui-org/react';
+import BreadcrumbsComponent from '@/components/Breadcrumbs/Breadcrumbs';
+import BackButton from '@/components/Button/BackButton';
+import { PiEyeglassesDuotone } from 'react-icons/pi';
+import { PostData, Post } from '../blogpostmockdata';
+import { useTheme } from '@/contexts/ThemeContext';
+import { useMobileScreen } from '@/hooks/UseMobileMediaQuery';
+import NavbarElementContent from '@/elements/Navbar/NavbarContent';
+import FallbackImage from '@/components/FallbackImage/FallbackImage';
+import Footer from '@/elements/Footer/Footer';
+import { FaLine, FaLinkedin, FaShareAltSquare } from 'react-icons/fa';
+import { FaSquareFacebook, FaSquareXTwitter } from 'react-icons/fa6';
+import Toast from '@/components/Notification/Toast';
 
 const BlogPostByID: React.FC = () => {
   const { id } = useParams();
@@ -35,21 +35,21 @@ const BlogPostByID: React.FC = () => {
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const [toast, setToast] = useState<{
-    type: "success" | "error";
+    type: 'success' | 'error';
     message: string;
   } | null>(null);
 
   const bgContentColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-900 text-zinc-50";
+    theme === 'light'
+      ? 'bg-zinc-200 text-zinc-950'
+      : 'bg-zinc-900 text-zinc-50';
   const borderColorClass =
-    theme === "light" ? "border-zinc-400" : "border-zinc-50";
-  const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
+    theme === 'light' ? 'border-zinc-400' : 'border-zinc-50';
+  const dividerColor = theme === 'light' ? '#d1d5db' : '#4b5563';
   const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+    theme === 'dark'
+      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
+      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
 
   useEffect(() => {
     const foundPost = PostData.find((p) => p.id === postId);
@@ -71,24 +71,24 @@ const BlogPostByID: React.FC = () => {
 
   const profileImageUrl = `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/me.avif`;
   const fallbackImageUrl =
-    theme === "light"
+    theme === 'light'
       ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-Black.avif`
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Image-notfound-White.avif`;
 
   const breadcrumbsItems = [
-    { name: "Home", href: "/" },
-    { name: "Blog", href: "/blog" },
+    { name: 'Home', href: '/' },
+    { name: 'Blog', href: '/blog' },
     { name: post.title },
   ];
 
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   const shareToFacebook = () => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
         currentUrl
       )}`,
-      "_blank"
+      '_blank'
     );
   };
 
@@ -97,7 +97,7 @@ const BlogPostByID: React.FC = () => {
       `https://twitter.com/intent/tweet?url=${encodeURIComponent(
         currentUrl
       )}&text=${encodeURIComponent(post.title)}`,
-      "_blank"
+      '_blank'
     );
   };
 
@@ -106,7 +106,7 @@ const BlogPostByID: React.FC = () => {
       `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(
         currentUrl
       )}`,
-      "_blank"
+      '_blank'
     );
   };
 
@@ -115,18 +115,18 @@ const BlogPostByID: React.FC = () => {
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
         currentUrl
       )}`,
-      "_blank"
+      '_blank'
     );
   };
 
   const copyLink = () => {
     navigator.clipboard.writeText(currentUrl).then(
       () => {
-        setToast({ type: "success", message: "Link copied to clipboard!" });
+        setToast({ type: 'success', message: 'Link copied to clipboard!' });
       },
       (err) => {
-        console.error("Failed to copy link: ", err);
-        setToast({ type: "error", message: "Failed to copy link!" });
+        console.error('Failed to copy link: ', err);
+        setToast({ type: 'error', message: 'Failed to copy link!' });
       }
     );
   };
@@ -155,7 +155,7 @@ const BlogPostByID: React.FC = () => {
                 isZoomed
                 width="100%"
                 radius="lg"
-                style={{ height: coverImageHeight, width: "100%" }}
+                style={{ height: coverImageHeight, width: '100%' }}
                 height={coverImageHeight}
                 className="object-cover w-full h-fit"
                 src={post.imgUrl}
@@ -195,23 +195,23 @@ const BlogPostByID: React.FC = () => {
                       {[
                         {
                           Icon: FaSquareFacebook,
-                          alt: "Facebook",
+                          alt: 'Facebook',
                           onClick: shareToFacebook,
                         },
                         {
                           Icon: FaSquareXTwitter,
-                          alt: "Twitter",
+                          alt: 'Twitter',
                           onClick: shareToTwitter,
                         },
-                        { Icon: FaLine, alt: "Line", onClick: shareToLine },
+                        { Icon: FaLine, alt: 'Line', onClick: shareToLine },
                         {
                           Icon: FaLinkedin,
-                          alt: "LinkedIn",
+                          alt: 'LinkedIn',
                           onClick: shareToLinkedIn,
                         },
                         {
                           Icon: FaShareAltSquare,
-                          alt: "Share",
+                          alt: 'Share',
                           onClick: copyLink,
                         },
                       ].map(({ Icon, alt, onClick }, idx) => (
@@ -250,7 +250,7 @@ const BlogPostByID: React.FC = () => {
                       width="100%"
                       radius="lg"
                       height={contentImageHeight}
-                      style={{ height: contentImageHeight, width: "100%" }}
+                      style={{ height: contentImageHeight, width: '100%' }}
                       className="w-full h-full object-contain"
                       src={section.imagesrc}
                       alt={section.subtitle}
@@ -265,13 +265,13 @@ const BlogPostByID: React.FC = () => {
                   <div className="flex w-full custom-scrollbar overflow-hidden overflow-x-auto">
                     <Snippet
                       tooltipProps={{
-                        color: "foreground",
-                        content: "Copy this snippet",
+                        color: 'foreground',
+                        content: 'Copy this snippet',
                         disableAnimation: true,
-                        placement: "right",
+                        placement: 'right',
                         closeDelay: 0,
                       }}
-                      style={{ fontSize: mobileScreen ? "12px" : "inherit" }}
+                      style={{ fontSize: mobileScreen ? '12px' : 'inherit' }}
                     >
                       {section.snippet}
                     </Snippet>
@@ -289,11 +289,11 @@ const BlogPostByID: React.FC = () => {
                   <p>Share</p>
                   <div className="flex items-center gap-2">
                     {[
-                      { Icon: FaSquareFacebook, alt: "Facebook" },
-                      { Icon: FaSquareXTwitter, alt: "Twitter" },
-                      { Icon: FaLine, alt: "Line" },
-                      { Icon: FaLinkedin, alt: "LinkedIn" },
-                      { Icon: FaShareAltSquare, alt: "Share" },
+                      { Icon: FaSquareFacebook, alt: 'Facebook' },
+                      { Icon: FaSquareXTwitter, alt: 'Twitter' },
+                      { Icon: FaLine, alt: 'Line' },
+                      { Icon: FaLinkedin, alt: 'LinkedIn' },
+                      { Icon: FaShareAltSquare, alt: 'Share' },
                     ].map(({ Icon, alt }, idx) => (
                       <Icon
                         key={idx}

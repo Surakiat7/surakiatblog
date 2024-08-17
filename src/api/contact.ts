@@ -1,7 +1,7 @@
-import { apiEndPoint } from "@/const/api";
-import axios, { AxiosResponse } from "axios";
-import { ApiResponse } from "@/const/api";
-import { SendContactRequest } from "@/types";
+import { apiEndPoint } from '@/@core/const/api';
+import axios, { AxiosResponse } from 'axios';
+import { ApiResponse } from '@/types';
+import { SendContactRequest } from '@/types';
 
 export const SendContact = async (
   body: SendContactRequest
@@ -13,7 +13,7 @@ export const SendContact = async (
     );
     return response.data;
   } catch (error: any) {
-    console.error("Error sending contact:", error);
+    console.error('Error sending contact:', error);
     throw error.response?.data || error;
   }
 };
