@@ -6,19 +6,16 @@ import { useTheme } from '@/contexts/ThemeContext';
 import _ from 'lodash';
 import useWindowSize from '@/hooks/UseWindowSize';
 import { BeamType, SplashButtonProps, DarkGridHeroElementProps } from '@/types';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 export const DarkGridHero: React.FC<DarkGridHeroElementProps> = ({
   scrollToAbout,
 }) => {
-  const { theme } = useTheme();
-  const strokeColor =
-    theme === 'dark' ? 'rgb(0 88 124 / 0.5)' : 'rgb(230 234 235 / 0.5)';
+  const { strokeColor, bgColorClass } = useThemeColors();
 
   return (
     <section
-      className={`relative overflow-hidden ${
-        theme === 'dark' ? 'bg-zinc-950' : 'bg-zinc-50'
-      }`}
+      className={`relative overflow-hidden ${bgColorClass}`}
     >
       <Content scrollToAbout={scrollToAbout} />
       <Beams />

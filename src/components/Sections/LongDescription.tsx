@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LongDescription = () => (
-  <span className="text-zinc-400">
+  <span className="text-zinc-500">
     through seamless design and development, utilizing modern technologies like
     Next.js, React, Tailwind CSS, and many more. I love building responsive and
     user-friendly web applications, and I am committed to continuously improving

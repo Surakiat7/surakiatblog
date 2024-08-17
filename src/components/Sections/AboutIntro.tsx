@@ -1,26 +1,18 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { FiArrowRight } from 'react-icons/fi';
 import Image from 'next/image';
-import { useTheme } from '@/contexts/ThemeContext';
 import { Block } from './Block';
 import { AboutHeroProps, HeaderBlockProps } from '@/types';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const DynamicAboutBlock = dynamic(() => import('./AboutBlock'), { ssr: false });
 
 const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
-  const { theme } = useTheme();
-
-  const bgColorClass = useMemo(
-    () =>
-      theme === 'light'
-        ? 'bg-zinc-200 text-zinc-950'
-        : 'bg-zinc-900 text-zinc-50',
-    [theme]
-  );
+  const { bgColorSencondaryClass } = useThemeColors();
 
   return (
-    <div className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass}`}>
+    <div className={`flex w-full h-full p-12 sm:p-6 ${bgColorSencondaryClass}`}>
       <div className="flex flex-col w-full gap-4">
         <HeaderBlock contactRef={contactRef} />
         <DynamicAboutBlock />
@@ -30,18 +22,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
 };
 
 const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
-  const { theme } = useTheme();
-  const textColorClass = theme === 'light' ? 'text-zinc-950' : 'text-zinc-50';
-  const bgColorClass =
-    theme === 'light'
-      ? 'bg-zinc-100 text-zinc-950'
-      : 'bg-zinc-950 text-zinc-50';
-  const titleGradientClass =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
-  const borderColorClass =
-    theme === 'light' ? 'border-zinc-300' : 'border-zinc-700';
+  const { bgColorClass, textColorClass, borderColorClass, TitleLinearColor } = useThemeColors();
 
   const handleContactClick = () => {
     if (contactRef.current) {
@@ -72,7 +53,7 @@ const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
         />
         <div className="flex flex-col gap-2">
           <h1
-            className={`text-2xl sm:text-[18px] font-bold ${titleGradientClass}`}
+            className={`text-2xl sm:text-[18px] font-bold ${TitleLinearColor}`}
           >
             Hi, I&apos;m JJ. Surakiat Tablakorn Frontend Developer
           </h1>

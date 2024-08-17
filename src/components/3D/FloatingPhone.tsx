@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FiBatteryCharging, FiWifi } from 'react-icons/fi';
 import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const Phone3D: React.FC = () => {
   return (
@@ -56,16 +57,15 @@ const HeaderBar: React.FC = () => {
 
 const Screen: React.FC = () => {
   const { theme } = useTheme();
+  const { Color3DClass } = useThemeColors();
   const logoSrc =
     theme === 'light'
       ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
-  const ColorClass =
-    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-950 text-zinc-50';
 
   return (
     <div
-      className={`relative z-0 grid h-full w-full place-content-center overflow-hidden rounded-[20px] ${ColorClass}`}
+      className={`relative z-0 grid h-full w-full place-content-center overflow-hidden rounded-[20px] ${Color3DClass}`}
     >
       <div className="flex flex-col gap-4 w-full justify-center items-center">
         <p className={`text-center font-bold text-2xl sm:text-xl`}>
@@ -81,7 +81,7 @@ const Screen: React.FC = () => {
         />
       </div>
       <button
-        className={`absolute bottom-4 left-4 right-4 z-10 rounded-lg py-2 text-sm font-medium ${ColorClass}`}
+        className={`absolute bottom-4 left-4 right-4 z-10 rounded-lg py-2 text-sm font-medium ${Color3DClass}`}
       >
         Send Message
       </button>

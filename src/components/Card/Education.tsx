@@ -1,20 +1,19 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, Divider, Image } from '@nextui-org/react';
-import { useTheme } from '@/contexts/ThemeContext';
 import { CardEducationsProps } from '@/types';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const CardEducations: React.FC<CardEducationsProps> = ({ data }) => {
-  const { theme } = useTheme();
-  const bgColorClass =
-    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-900 text-zinc-50';
-  const borderColorClass =
-    theme === 'light' ? 'border-[#d1d5db]' : 'border-zinc-700';
-  const dividerColor = theme === 'light' ? '#d1d5db' : '#4b5563';
+  const {
+    bgColorSencondaryClass,
+    borderColorClass,
+    dividerColor,
+  } = useThemeColors();
 
   return (
     <div className="w-full flex sm:flex-col gap-4">
       {data.map((edu, index) => (
-        <Card key={index} className={`w-full ${bgColorClass}`}>
+        <Card key={index} className={`w-full ${bgColorSencondaryClass}`}>
           <CardHeader className="flex sm:flex-col gap-3">
             <Image
               alt="education logo"

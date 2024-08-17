@@ -1,6 +1,6 @@
-import { useTheme } from '@/contexts/ThemeContext';
 import { Divider, Image } from '@nextui-org/react';
 import { LuDot } from 'react-icons/lu';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const workExperienceData = [
   {
@@ -38,23 +38,16 @@ const workExperienceData = [
 ];
 
 const WorkExperience = () => {
-  const { theme } = useTheme();
-  const bgColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-900 text-zinc-50';
-  const textColorClass = theme === 'light' ? 'text-zinc-600' : 'text-white';
-  const exprienceTextColorClass =
-    theme === 'light' ? 'text-zinc-600' : 'text-white';
-  const dividerColor = theme === 'light' ? '#d1d5db' : '#4b5563';
-  const iconColor = theme === 'light' ? '#27272a' : '#ffff';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
+  const {
+    bgColorSencondaryClass,
+    TitleLinearColor,
+    textExprienceColorClass,
+    iconColor,
+    dividerColor,
+  } = useThemeColors();
 
   return (
-    <section className={`${bgColorClass} py-12 sm:py-6`}>
+    <section className={`${bgColorSencondaryClass} py-12 sm:py-6`}>
       <div className="w-full px-6 py-6 flex flex-col items-center">
         <h1
           className={`text-center font-bold text-4xl md:text-6xl max-w-xl ${TitleLinearColor}`}
@@ -100,7 +93,7 @@ const WorkExperience = () => {
                   </h2>
                 </div>
                 <h2
-                  className={`font-medium text-md sm:font-normal ${textColorClass}`}
+                  className={`font-medium text-md sm:font-normal ${textExprienceColorClass}`}
                 >
                   {experience.position}
                 </h2>
@@ -110,7 +103,7 @@ const WorkExperience = () => {
               {experience.details.map((detail, detailIndex) => (
                 <li
                   key={detailIndex}
-                  className={`${exprienceTextColorClass} flex items-center pt-2 font-normal text-base sm:text-sm`}
+                  className={`${textExprienceColorClass} flex items-center pt-2 font-normal text-base sm:text-sm`}
                 >
                   <div className="flex-shrink-0 w-6 h-6">
                     <LuDot

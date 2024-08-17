@@ -20,6 +20,18 @@ export interface MediaQueryRange {
   max?: string;
 }
 
+type Theme = 'light' | 'dark';
+
+export interface ThemeContextType {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+}
+
+export interface SliderToggleProps {
+  selected: Theme;
+  setSelected: (theme: Theme) => void;
+}
+
 export interface SearchButtonProps {
   onSearch: (query: string) => void;
 }

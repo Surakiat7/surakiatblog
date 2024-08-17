@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import NavbarElement from '@/elements/Navbar/NavbarMain';
 import { DarkGridHero } from '@/components/Sections/Welcome';
 import LogoHero from '@/components/Sections/LogoTechStack';
@@ -11,11 +11,12 @@ import { useTheme } from '@/contexts/ThemeContext';
 import Education from '@/components/Sections/Education';
 import WorkExperience from '@/components/Sections/WorkExprience';
 import Contact from '@/components/Sections/Contact';
+import { useNavbarHeight, useScrollToTop } from '@/hooks/UseCustomEffects';
 
 export default function Home() {
   const { theme } = useTheme();
   const bgColorClass = theme === 'light' ? 'bg-zinc-50' : 'bg-zinc-950';
-  const [navbarHeight, setNavbarHeight] = useState(0);
+  const navbarHeight = useNavbarHeight();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -24,24 +25,7 @@ export default function Home() {
   const exprienceRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const navbar = document.querySelector('.navbar-container');
-      if (navbar) {
-        setNavbarHeight(navbar.getBoundingClientRect().height);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+  useScrollToTop();
 
   const scrollTo = (ref: React.RefObject<HTMLElement>) => {
     if (ref.current) {

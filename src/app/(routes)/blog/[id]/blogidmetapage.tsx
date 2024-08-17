@@ -23,6 +23,7 @@ import { FaLine, FaLinkedin, FaShareAltSquare } from 'react-icons/fa';
 import { FaSquareFacebook, FaSquareXTwitter } from 'react-icons/fa6';
 import Toast from '@/components/Notification/Toast';
 import useMediaQuery from '@/hooks/UseMediaQuery';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const BlogPostByID: React.FC = () => {
   const { id } = useParams();
@@ -45,17 +46,12 @@ const BlogPostByID: React.FC = () => {
     message: string;
   } | null>(null);
 
-  const bgContentColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-900 text-zinc-50';
-  const borderColorClass =
-    theme === 'light' ? 'border-zinc-400' : 'border-zinc-50';
-  const dividerColor = theme === 'light' ? '#d1d5db' : '#4b5563';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
+  const {
+    bgContentColorClass,
+    borderColorClass,
+    dividerColor,
+    TitleLinearColor,
+  } = useThemeColors();
 
   useEffect(() => {
     const foundPost = PostData.find((p) => p.id === postId);
@@ -161,7 +157,9 @@ const BlogPostByID: React.FC = () => {
             <div className="flex gap-4 w-full pt-6 sm:pt-4 flex-col">
               <Image
                 isZoomed
-                width={isXXl ? 2560 : isXl ? 1660 : isLg ? 1279 : isMd ? 1023 : 1200}
+                width={
+                  isXXl ? 2560 : isXl ? 1660 : isLg ? 1279 : isMd ? 1023 : 1200
+                }
                 radius="lg"
                 style={{ height: coverImageHeight, width: '100%' }}
                 height={coverImageHeight}

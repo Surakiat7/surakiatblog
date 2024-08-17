@@ -23,31 +23,19 @@ import {
 import { IconType } from 'react-icons';
 import { RiNextjsFill } from 'react-icons/ri';
 import { FaCloudflare } from 'react-icons/fa6';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const LogoHero = () => {
-  const { theme } = useTheme();
-  const bgColorClass =
-    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-950 text-zinc-50';
-  const bgWarpperClass =
-    theme === 'light'
-      ? 'bg-zinc-50 border-zinc-200'
-      : 'bg-zinc-950 border-zinc-700';
-  const bglinearLeftClass =
-    theme === 'light'
-      ? 'bg-gradient-to-r from-zinc-50 to-zinc-50/0'
-      : 'bg-gradient-to-r from-zinc-950 to-zinc-950/0';
-  const bglinearRightClass =
-    theme === 'light'
-      ? 'bg-gradient-to-l from-zinc-50 to-zinc-50/0'
-      : 'bg-gradient-to-l from-zinc-950 to-zinc-950/0';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
+  const {
+    bgColorThridClass,
+    bgWarpperClass,
+    TitleLinearColor,
+    bglinearLeftClass,
+    bglinearRightClass,
+  } = useThemeColors();
 
   return (
-    <section className={`${bgColorClass} py-12 sm:py-6`}>
+    <section className={`${bgColorThridClass} py-12 sm:py-6`}>
       <div className="w-full px-6 py-6 flex flex-col items-center">
         <h1
           className={`text-center font-bold text-4xl md:text-6xl max-w-xl ${TitleLinearColor}`}
@@ -113,15 +101,12 @@ const TranslateWrapper = ({
   );
 };
 
-const LogoItem = ({ Icon, label }: { Icon: IconType; label: string }) => {
-  const { theme } = useTheme();
-  const logoColor = theme === 'light' ? '#09090b' : '#fafafa';
+const LogoItem = ({ Icon }: { Icon: IconType; label: string }) => {
+  const { logoColor, bgLogoColorClass } = useThemeColors();
 
   return (
     <div
-      className={`w-16 md:w-24 h-16 md:h-24 flex justify-center items-center text-white transition-colors ${
-        theme === 'light' ? 'hover:bg-zinc-200' : 'hover:bg-zinc-800'
-      }`}
+      className={`w-16 md:w-24 h-16 md:h-24 flex justify-center items-center text-white transition-colors ${bgLogoColorClass}`}
     >
       <Icon color={logoColor} className="text-4xl md:text-5xl" />
     </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import useMeasure from 'react-use-measure';
 import { gsap } from 'gsap';
-import { useTheme } from '@/contexts/ThemeContext';
 import { Image } from '@nextui-org/react';
 import SkeletonBlogCard from '../Skeleton/BlogCard';
 import { useNavigate } from '@/@core/utils/navigation';
@@ -10,6 +9,7 @@ import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
 import { Post } from '@/types';
 import Link from 'next/link';
 import _ from 'lodash';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -23,19 +23,13 @@ const BREAKPOINTS = {
 const BlogPostCarousel = () => {
   const [ref, { width }] = useMeasure();
   const [offset, setOffset] = useState(0);
-  const { theme } = useTheme();
+  const {
+    bgColorSencondaryClass,
+    bgButtonColorClass,
+    TitleLinearColor,
+    iconColor,
+  } = useThemeColors();
   const carouselRef = useRef(null);
-  const bgColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-900 text-zinc-50';
-  const bgButtonColorClass =
-    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-900 text-zinc-50';
-  const iconColor = theme === 'light' ? '#09090b' : '#fafafa';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -77,7 +71,7 @@ const BlogPostCarousel = () => {
   };
 
   return (
-    <section className={`${bgColorClass}`} ref={ref}>
+    <section className={`${bgColorSencondaryClass}`} ref={ref}>
       <div className="relative overflow-hidden">
         <div className="w-full">
           <div className="flex pt-4 items-center justify-between">
@@ -156,22 +150,12 @@ const BlogPostCarousel = () => {
 };
 
 const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
-  const { theme } = useTheme();
+  const { authorColorClass, shadowClass, borderColorClass } = useThemeColors();
   const navigate = useNavigate();
-  const borderColorClass =
-    theme === 'light' ? 'border-zinc-300' : 'border-zinc-600';
-  const authorColorClass =
-    theme === 'light'
-      ? 'border-zinc-300 text-zinc-950'
-      : 'border-zinc-600 text-zinc-50';
 
   const handleBlogClick = (id: string) => {
     navigate.BlogId(id);
   };
-  const shadowClass =
-    theme === 'light'
-      ? 'hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]'
-      : 'hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]';
 
   return (
     <div
@@ -200,9 +184,7 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
         {author}
       </span>
       <h3
-        className={`mt-2 text-lg font-medium transition-colors ${
-          theme === 'light' ? 'text-zinc-950' : 'text-zinc-50'
-        } group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
+        className={`mt-2 text-lg font-medium transition-colors group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
       >
         {title}
       </h3>

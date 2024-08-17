@@ -7,13 +7,9 @@ import {
   useEffect,
   ReactNode,
 } from 'react';
+import { ThemeContextType } from '@/types';
 
 type Theme = 'light' | 'dark';
-
-interface ThemeContextType {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-}
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 

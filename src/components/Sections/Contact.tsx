@@ -1,4 +1,3 @@
-import { useTheme } from '@/contexts/ThemeContext';
 import { Input, Textarea, Button } from '@nextui-org/react';
 import Phone3D from '../3D/FloatingPhone';
 import { useState, ChangeEvent, useEffect } from 'react';
@@ -8,18 +7,15 @@ import confetti from 'canvas-confetti';
 import ModalNotification from '../Modal/Contact';
 import axios from 'axios';
 import TurnstileWidget from '../../../third-parties/TurnstileWidget';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 type TurnstileStatus = 'success' | 'error' | 'expired' | 'required';
 
 const Contact: React.FC = () => {
-  const { theme } = useTheme();
-  const bgColorClass =
-    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-950 text-zinc-50';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
-
+  const {
+    bgColorClass,
+    TitleLinearColor,
+  } = useThemeColors();
   const [title, setTitle] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [surname, setSurname] = useState<string>('');

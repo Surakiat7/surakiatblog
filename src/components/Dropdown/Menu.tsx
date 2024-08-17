@@ -3,10 +3,10 @@ import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { Image } from '@nextui-org/react';
-import { useTheme } from '@/contexts/ThemeContext';
 import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
 import _ from 'lodash';
 import { ShiftingDropDownMenuProps, TabProps, Post } from '@/types';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
   onScrollTo,
@@ -98,14 +98,9 @@ const Tab: React.FC<TabProps> = ({
   exprienceRef,
   contactRef,
 }) => {
-  const { theme } = useTheme();
   const tabData = _.find(TABS, { id: tab });
   const hasComponent = !!tabData?.Component;
-  const textColorClass = theme === 'light' ? 'text-slate-800' : 'text-white';
-  const bgColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-800 text-zinc-50';
+  const { textColorClass, bgDropDownMenuColorClass } = useThemeColors();
 
   const handleClick = () => {
     if (!hasComponent) {
@@ -138,7 +133,7 @@ const Tab: React.FC<TabProps> = ({
       id={`shift-tab-${tab}`}
       onMouseEnter={() => hasComponent && handleSetSelected(tab)}
       onClick={handleClick}
-      className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-sm transition-colors hover:${bgColorClass} hover:${textColorClass}`}
+      className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-sm transition-colors hover:${bgDropDownMenuColorClass} hover:${textColorClass}`}
     >
       <span>{children}</span>
       {hasComponent && (
@@ -159,7 +154,7 @@ const Content = ({
   selected: number | null;
   dir: null | 'l' | 'r';
 }) => {
-  const { theme } = useTheme();
+  const { bgLinearDropDownMenuColorClass } = useThemeColors();
   const tab = _.find(TABS, { id: selected });
 
   if (
@@ -172,10 +167,6 @@ const Content = ({
   }
 
   const Component = tab.Component;
-  const bgColorClass =
-    theme === 'light'
-      ? 'border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100'
-      : 'border-zinc-700 bg-gradient-to-b from-zinc-950 via-zinc-800 to-zinc-950';
 
   return (
     <motion.div
@@ -192,7 +183,7 @@ const Content = ({
         opacity: 0,
         y: 8,
       }}
-      className={`absolute left-0 top-[calc(100%_+_24px)] w-96 rounded-3xl border ${bgColorClass} p-4`}
+      className={`absolute left-0 top-[calc(100%_+_24px)] w-96 rounded-3xl border ${bgLinearDropDownMenuColorClass} p-4`}
     >
       <Bridge />
       <Nub selected={selected} />
@@ -220,12 +211,8 @@ const Bridge = () => (
 );
 
 const Nub = ({ selected }: { selected: number | null }) => {
-  const { theme } = useTheme();
   const [left, setLeft] = useState(0);
-  const nubColorClass =
-    theme === 'light'
-      ? 'border-zinc-200 bg-zinc-100'
-      : 'border-zinc-700 bg-zinc-950';
+  const { nubColorClass } = useThemeColors();
 
   useEffect(() => {
     moveNub();
@@ -265,8 +252,7 @@ const getRandomPosts = (posts: Post[], count: number): Post[] => {
 };
 
 const Blog = () => {
-  const { theme } = useTheme();
-  const textColorClass = theme === 'light' ? 'text-zinc-950' : 'text-white';
+  const { textColorClass } = useThemeColors();
   const [selectedPosts, setSelectedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -289,7 +275,7 @@ const Blog = () => {
             <Link
               href={`/blog/${post.id}`}
               passHref
-              className="flex flex-col h-full gap-2"
+              className="flex group flex-col h-full gap-2"
             >
               <div className="w-full !h-fit">
                 <Image
@@ -308,7 +294,9 @@ const Blog = () => {
                   className="!h-full w-full"
                 />
               </div>
-              <h1 className={`font-bold text-sm ${textColorClass}`}>
+              <h1
+                className={`font-bold text-sm ${textColorClass} group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
+              >
                 {post.title}
               </h1>
               <p className={`text-xs ${textColorClass}`}>{post.description}</p>

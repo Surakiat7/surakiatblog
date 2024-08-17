@@ -1,37 +1,11 @@
-import React, { useMemo } from 'react';
-import { useTheme } from '@/contexts/ThemeContext';
+import React from 'react';
 import Image from 'next/image';
 import { FiArrowRight } from 'react-icons/fi';
 import { HeaderBlockProps } from '@/types';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
-  const { theme } = useTheme();
-
-  const textColorClass = useMemo(
-    () => (theme === 'light' ? 'text-zinc-950' : 'text-zinc-50'),
-    [theme]
-  );
-
-  const bgColorClass = useMemo(
-    () =>
-      theme === 'light'
-        ? 'bg-zinc-100 text-zinc-950'
-        : 'bg-zinc-950 text-zinc-50',
-    [theme]
-  );
-
-  const TitleLinearColor = useMemo(
-    () =>
-      theme === 'dark'
-        ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-        : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text',
-    [theme]
-  );
-
-  const borderColorClass = useMemo(
-    () => (theme === 'light' ? 'border-zinc-300' : 'border-zinc-700'),
-    [theme]
-  );
+  const { bgColorClass, textColorClass, borderColorClass, TitleLinearColor } = useThemeColors();
 
   const handleContactClick = () => {
     if (contactRef.current) {

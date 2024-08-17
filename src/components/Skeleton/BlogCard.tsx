@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Skeleton } from '@nextui-org/react';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 interface ThemeContextType {
   theme: 'light' | 'dark';
@@ -10,10 +10,9 @@ const CARD_WIDTH = 350;
 const MARGIN = 20;
 
 const SkeletonBlogCard: React.FC = () => {
-  const { theme } = useTheme() as ThemeContextType;
-  const borderColorClass: string =
-    theme === 'light' ? 'border-zinc-300' : 'border-zinc-600';
-
+  const {
+    borderColorClass,
+  } = useThemeColors();
   const [isOnBlogPage, setIsOnBlogPage] = useState(false);
 
   useEffect(() => {

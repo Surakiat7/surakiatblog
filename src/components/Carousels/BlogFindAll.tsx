@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useTheme } from '@/contexts/ThemeContext';
 import SkeletonBlogCard from '../Skeleton/BlogCard';
 import { useNavigate } from '@/@core/utils/navigation';
 import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
@@ -7,20 +6,13 @@ import { Post } from '@/types';
 import SearchButton from '../Buttons/Search';
 import _ from 'lodash';
 import NextImage from 'next/image';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const BlogPostFindAll = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPosts, setFilteredPosts] = useState<Post[]>(PostData);
   const [isLoading, setIsLoading] = useState(false);
-  const { theme } = useTheme();
-  const bgColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-900 text-zinc-50';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
+  const { bgColorSencondaryClass, TitleLinearColor } = useThemeColors();
 
   const debouncedSearch = useCallback(
     _.debounce((query: string) => {
@@ -47,7 +39,7 @@ const BlogPostFindAll = () => {
   };
 
   return (
-    <section className={`${bgColorClass}`}>
+    <section className={`${bgColorSencondaryClass}`}>
       <div className="relative overflow-hidden">
         <div className="w-full">
           <div className="flex items-center justify-between">
@@ -114,18 +106,8 @@ const BlogPostFindAll = () => {
 };
 
 const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
-  const { theme } = useTheme();
+  const { borderColorClass, authorColorClass, shadowClass } = useThemeColors();
   const navigate = useNavigate();
-  const borderColorClass =
-    theme === 'light' ? 'border-zinc-300' : 'border-zinc-600';
-  const authorColorClass =
-    theme === 'light'
-      ? 'border-zinc-300 text-zinc-950'
-      : 'border-zinc-600 text-zinc-50';
-  const shadowClass =
-    theme === 'light'
-      ? 'hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]'
-      : 'hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]';
 
   const handleBlogClick = (id: string) => {
     navigate.BlogId(id);
@@ -154,9 +136,7 @@ const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
         {author}
       </span>
       <h3
-        className={`mt-2 text-lg font-medium transition-colors ${
-          theme === 'light' ? 'text-zinc-950' : 'text-zinc-50'
-        } group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
+        className={`mt-2 text-lg font-medium transition-colors group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
       >
         {title}
       </h3>

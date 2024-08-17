@@ -4,23 +4,16 @@ import BackButton from '@/components/Buttons/Back';
 import NavbarElementContent from '@/elements/Navbar/NavbarContent';
 import React, { useEffect, useState } from 'react';
 import { Spinner } from '@nextui-org/react';
-import BreadcrumbsComponent from '@/components/Breadcrumb/Breadcrumbs';
+import BreadcrumbsComponent from '@/components/Breadcrumb/Breadcrumb';
 import BlogPostFindAll from '@/components/Carousels/BlogFindAll';
-import { useTheme } from '@/contexts/ThemeContext';
 import Footer from '@/elements/Footer/Footer';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 type Props = {};
 
 export default function BlogPost({}: Props) {
   const [loading, setLoading] = useState(true);
-  const { theme } = useTheme();
-
-  const bgContentColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-900 text-zinc-50';
-  const borderColorClass =
-    theme === 'light' ? 'border-zinc-400' : 'boder-zinc-50';
+  const { bgContentColorClass, borderColorClass } = useThemeColors();
 
   useEffect(() => {
     setTimeout(() => {

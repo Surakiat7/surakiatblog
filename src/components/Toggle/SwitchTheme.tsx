@@ -1,27 +1,21 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import { useTheme } from '@/contexts/ThemeContext';
+import { SliderToggleProps } from '@/types';
 
 const TOGGLE_CLASSES =
   'text-sm font-medium flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-3 md:py-1.5 transition-colors relative z-10';
 
-const ToggleSwitchTheme = () => {
+const ToggleSwitchTheme: React.FC = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <>
-      <SliderToggle selected={theme} setSelected={setTheme} />
-    </>
+    <SliderToggle selected={theme} setSelected={setTheme} />
   );
 };
 
-const SliderToggle = ({
-  selected,
-  setSelected,
-}: {
-  selected: 'light' | 'dark';
-  setSelected: (theme: 'light' | 'dark') => void;
-}) => {
+const SliderToggle: React.FC<SliderToggleProps> = ({ selected, setSelected }) => {
   return (
     <div className="relative flex w-fit items-center rounded-full">
       <button
