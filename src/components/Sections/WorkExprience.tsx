@@ -1,5 +1,3 @@
-'use client';
-
 import { useTheme } from '@/contexts/ThemeContext';
 import { Divider, Image } from '@nextui-org/react';
 import { LuDot } from 'react-icons/lu';

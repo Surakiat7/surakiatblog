@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import { FiArrowRight } from 'react-icons/fi';

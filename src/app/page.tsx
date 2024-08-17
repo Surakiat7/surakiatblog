@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import NavbarElement from '@/elements/Navbar/NavbarMain';
 import { DarkGridHero } from '@/components/Sections/HeroWelcome';
 import LogoHero from '@/components/Sections/LogoTechStack';
-import BlogPostCarousel from '@/components/Carousels/CarouselsBlog';
+import BlogPostCarousel from '@/components/Sections/CarouselBlogs';
 import AboutHero from '@/components/Sections/AboutIntro';
 import Footer from '@/elements/Footer/Footer';
 import { useTheme } from '@/contexts/ThemeContext';

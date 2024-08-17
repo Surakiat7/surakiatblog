@@ -60,7 +60,9 @@ const BlogPostByID: React.FC = () => {
   useEffect(() => {
     const foundPost = PostData.find((p) => p.id === postId);
     setPost(foundPost || null);
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [postId]);
 
   if (loading) {

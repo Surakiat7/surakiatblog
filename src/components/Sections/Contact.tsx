@@ -1,5 +1,3 @@
-'use client';
-
 import { useTheme } from '@/contexts/ThemeContext';
 import { Input, Textarea, Button } from '@nextui-org/react';
 import Phone3D from '../3D/FloatingPhone';

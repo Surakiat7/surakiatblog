@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import BackButton from '@/components/Button/BackButton';
 
 // Mock useNavigate hook
-jest.mock('@/utils/navigation.ts', () => ({
+jest.mock('@/@core/utils/navigation', () => ({
   useNavigate: jest.fn(() => ({
     Back: jest.fn(),
   })),
@@ -28,7 +28,7 @@ describe('BackButton', () => {
   it('calls navigate.Back when the button is clicked', () => {
     const mockBack = jest.fn();
     jest
-      .spyOn(require('@/utils/navigation'), 'useNavigate')
+      .spyOn(require('@/@core/utils/navigation'), 'useNavigate')
       .mockImplementation(() => ({
         Back: mockBack,
       }));
