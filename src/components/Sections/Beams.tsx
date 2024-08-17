@@ -1,40 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { BeamType } from '@/types';
+import useWindowSize from '@/hooks/UseWindowSize';
 
 const GRID_BOX_SIZE = 64;
 const BEAM_WIDTH_OFFSET = 1;
-
-interface BeamType {
-  top: number;
-  left: number;
-  transition?: any;
-}
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState<{
-    width?: number;
-    height?: number;
-  }>({
-    width: undefined,
-    height: undefined,
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return windowSize;
-};
 
 const Beam: React.FC<BeamType> = ({ top, left, transition = {} }) => {
   return (

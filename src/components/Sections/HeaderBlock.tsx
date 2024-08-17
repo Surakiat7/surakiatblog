@@ -2,10 +2,7 @@ import React, { useMemo } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import Image from 'next/image';
 import { FiArrowRight } from 'react-icons/fi';
-
-interface HeaderBlockProps {
-  contactRef: React.RefObject<HTMLDivElement>;
-}
+import { HeaderBlockProps } from '@/types';
 
 const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const { theme } = useTheme();

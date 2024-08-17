@@ -1,9 +1,6 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
-
-type BlockProps = {
-  className?: string;
-} & React.HTMLProps<HTMLDivElement>;
+import { BlockProps } from '@/types';
 
 export const Block = ({ className, ...rest }: BlockProps) => {
   return (

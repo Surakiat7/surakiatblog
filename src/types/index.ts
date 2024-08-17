@@ -19,6 +19,17 @@ export interface SearchIconProps extends React.SVGProps<SVGSVGElement> {
   strokeWidth?: number;
 }
 
+export type SplashButtonProps = {
+  children: ReactNode;
+  className?: string;
+  scrollToAbout: () => void;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export interface MediaQueryRange {
+  min: string;
+  max?: string;
+}
+
 export interface SearchButtonProps {
   onSearch: (query: string) => void;
 }
@@ -54,10 +65,51 @@ export type FallbackImageProps = {
   [key: string]: any;
 };
 
+export interface BeamType {
+  top: number;
+  left: number;
+  transition?: any;
+}
+
+export type BlockProps = {
+  className?: string;
+} & React.HTMLProps<HTMLDivElement>;
+
+export interface AboutHeroProps {
+  contactRef: React.RefObject<HTMLDivElement>;
+}
+
+export interface HeaderBlockProps {
+  contactRef: React.RefObject<HTMLDivElement>;
+}
+
 export interface ToastProps {
   type: 'success' | 'error';
   message: string;
   onClose: () => void;
+}
+
+export interface GoogleAnalyticsProps {
+  GA_MEASUREMENT_ID: string;
+}
+
+type TurnstileStatus = 'success' | 'error' | 'expired' | 'required';
+
+export interface TurnstileWidgetProps {
+  isFormComplete: boolean;
+  setTurnstileStatus: React.Dispatch<React.SetStateAction<TurnstileStatus>>;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface ConfettiOptions extends confetti.Options {
+  useWorker?: boolean;
+}
+
+export interface TabProps extends ShiftingDropDownMenuProps {
+  children: ReactNode;
+  tab: number;
+  handleSetSelected: (val: number | null) => void;
+  selected: number | null;
 }
 
 export interface ModalNotificationProps {
@@ -73,6 +125,19 @@ export interface ShiftingDropDownMenuProps {
   blogRef: React.RefObject<HTMLDivElement>;
   educationRef: React.RefObject<HTMLDivElement>;
   exprienceRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
+}
+
+export interface GradientGridProps {
+  theme: 'light' | 'dark';
+  strokeColor: string;
+}
+
+export interface DarkGridHeroElementProps {
+  scrollToAbout: () => void;
+}
+
+export interface HeaderBlockProps {
   contactRef: React.RefObject<HTMLDivElement>;
 }
 
@@ -106,6 +171,3 @@ export type SendContactRequest = {
   message: string;
 };
 
-export type MobileScreenContextValue = {
-  mobileScreen: boolean;
-};

@@ -1,12 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { GradientGridProps } from '@/types';
 
-interface GradientGridProps {
-  theme: 'light' | 'dark';
-  strokeColor: string;
-}
-
-const GradientGrid: React.FC<GradientGridProps> = ({ theme, strokeColor }) => {
+const GradientGrid: React.FC<GradientGridProps> = ({ strokeColor }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}

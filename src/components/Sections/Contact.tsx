@@ -5,15 +5,11 @@ import { Input, Textarea, Button } from '@nextui-org/react';
 import Phone3D from '../3D/FloatingPhone';
 import { useState, ChangeEvent, useEffect } from 'react';
 import { SendContact } from '@/api/contact';
-import { SendContactRequest } from '@/types';
+import { SendContactRequest, ConfettiOptions } from '@/types';
 import confetti from 'canvas-confetti';
 import ModalNotification from '../Modal/ModalContact';
 import axios from 'axios';
 import TurnstileWidget from '../../../third-parties/TurnstileWidget';
-
-interface ConfettiOptions extends confetti.Options {
-  useWorker?: boolean;
-}
 
 type TurnstileStatus = 'success' | 'error' | 'expired' | 'required';
 
@@ -155,7 +151,7 @@ const Contact: React.FC = () => {
         particleCount: 200,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#f7c948', '#d4a000'],
+        colors: ['#4EDFE7', '#00597B'],
         zIndex: 9999,
         disableForReducedMotion: true,
         useWorker: true,

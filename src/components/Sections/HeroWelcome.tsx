@@ -1,21 +1,13 @@
 'use client';
 
-import React, {
-  ReactNode,
-  useEffect,
-  useState,
-  RefObject,
-  useMemo,
-} from 'react';
-import { AnimationProps, motion } from 'framer-motion';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useTheme } from '@/contexts/ThemeContext';
 import _ from 'lodash';
-
-interface DarkGridHeroElementProps {
-  scrollToAbout: () => void;
-}
+import useWindowSize from '@/hooks/UseWindowSize';
+import { BeamType, SplashButtonProps, DarkGridHeroElementProps } from '@/types';
 
 export const DarkGridHero: React.FC<DarkGridHeroElementProps> = ({
   scrollToAbout,
@@ -32,7 +24,7 @@ export const DarkGridHero: React.FC<DarkGridHeroElementProps> = ({
     >
       <Content scrollToAbout={scrollToAbout} />
       <Beams />
-      <GradientGrid theme={theme} strokeColor={strokeColor} />
+      <GradientGrid strokeColor={strokeColor} />
     </section>
   );
 };
@@ -113,7 +105,7 @@ const GlowingChip: React.FC<{ children: string }> = ({ children }) => {
   );
 };
 
-const SplashButton: React.FC<ButtonProps> = ({
+const SplashButton: React.FC<SplashButtonProps> = ({
   children,
   className,
   scrollToAbout,
@@ -131,28 +123,6 @@ const SplashButton: React.FC<ButtonProps> = ({
       {children}
     </button>
   );
-};
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: undefined,
-    height: undefined,
-  });
-
-  useEffect(() => {
-    const handleResize = _.debounce(() => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    }, 250);
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  return windowSize;
 };
 
 const Beams: React.FC = () => {
@@ -228,9 +198,8 @@ const Beam: React.FC<BeamType> = ({ top, left, transition = {} }) => {
 };
 
 const GradientGrid: React.FC<{
-  theme: 'light' | 'dark';
   strokeColor: string;
-}> = ({ theme, strokeColor }) => {
+}> = ({ strokeColor }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -250,20 +219,3 @@ const GradientGrid: React.FC<{
 
 const GRID_BOX_SIZE = 64;
 const BEAM_WIDTH_OFFSET = 1;
-
-interface BeamType {
-  top: number;
-  left: number;
-  transition?: AnimationProps['transition'];
-}
-
-type ButtonProps = {
-  children: ReactNode;
-  className?: string;
-  scrollToAbout: () => void;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
-
-interface WindowSize {
-  width: number | undefined;
-  height: number | undefined;
-}

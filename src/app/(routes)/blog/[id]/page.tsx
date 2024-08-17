@@ -56,8 +56,6 @@ export async function generateMetadata(
   const description =
     post?.description ||
     'Visit my blog to discover tips, techniques, and various methods for frontend development!';
-
-  console.log('convertedImageUrl test:', convertedImageUrl);
   const publishedTime = post?.createdAt ? formatDateToISO(post.createdAt) : '';
 
   return {

@@ -13,24 +13,30 @@ import {
 import BreadcrumbsComponent from '@/components/Breadcrumbs/Breadcrumbs';
 import BackButton from '@/components/Button/BackButton';
 import { PiEyeglassesDuotone } from 'react-icons/pi';
-import { PostData, Post } from '../blogpostmockdata';
+import { PostData } from '../blogpostmockdata';
+import { Post } from '@/types';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useMobileScreen } from '@/hooks/UseMobileMediaQuery';
 import NavbarElementContent from '@/elements/Navbar/NavbarContent';
 import FallbackImage from '@/components/FallbackImage/FallbackImage';
 import Footer from '@/elements/Footer/Footer';
 import { FaLine, FaLinkedin, FaShareAltSquare } from 'react-icons/fa';
 import { FaSquareFacebook, FaSquareXTwitter } from 'react-icons/fa6';
 import Toast from '@/components/Notification/Toast';
+import useMediaQuery from '@/hooks/UseMediaQuery';
 
 const BlogPostByID: React.FC = () => {
   const { id } = useParams();
   const postId = parseInt(id as string);
-  const { mobileScreen } = useMobileScreen();
   const { theme } = useTheme();
 
-  const coverImageHeight = mobileScreen ? 200 : 600;
-  const contentImageHeight = mobileScreen ? 140 : 400;
+  const isSm = useMediaQuery('sm');
+  const isMd = useMediaQuery('md');
+  const isLg = useMediaQuery('lg');
+  const isXl = useMediaQuery('xl');
+  const isXXl = useMediaQuery('xxl');
+
+  const coverImageHeight = isSm ? 200 : 600;
+  const contentImageHeight = isSm ? 140 : 400;
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -153,7 +159,7 @@ const BlogPostByID: React.FC = () => {
             <div className="flex gap-4 w-full pt-6 sm:pt-4 flex-col">
               <Image
                 isZoomed
-                width="100%"
+                width={isXXl ? 2560 : isXl ? 1660 : isLg ? 1279 : isMd ? 1023 : 1200}
                 radius="lg"
                 style={{ height: coverImageHeight, width: '100%' }}
                 height={coverImageHeight}
@@ -247,7 +253,7 @@ const BlogPostByID: React.FC = () => {
                 {section.imagesrc && (
                   <div className="w-full sm:h-full justify-center">
                     <FallbackImage
-                      width="100%"
+                      width={isXl ? 2560 : isLg ? 1920 : isMd ? 1600 : 1200}
                       radius="lg"
                       height={contentImageHeight}
                       style={{ height: contentImageHeight, width: '100%' }}
@@ -271,7 +277,7 @@ const BlogPostByID: React.FC = () => {
                         placement: 'right',
                         closeDelay: 0,
                       }}
-                      style={{ fontSize: mobileScreen ? '12px' : 'inherit' }}
+                      style={{ fontSize: isSm ? '12px' : 'inherit' }}
                     >
                       {section.snippet}
                     </Snippet>

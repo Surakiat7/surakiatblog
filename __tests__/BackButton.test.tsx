@@ -2,7 +2,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import BackButton from '@/component/Button/BackButton';
+import BackButton from '@/components/Button/BackButton';
 
 // Mock useNavigate hook
 jest.mock('@/utils/navigation.ts', () => ({

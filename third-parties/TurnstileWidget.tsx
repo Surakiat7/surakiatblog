@@ -1,13 +1,6 @@
 import React from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
-
-type TurnstileStatus = 'success' | 'error' | 'expired' | 'required';
-
-interface TurnstileWidgetProps {
-  isFormComplete: boolean;
-  setTurnstileStatus: React.Dispatch<React.SetStateAction<TurnstileStatus>>;
-  setError: React.Dispatch<React.SetStateAction<string | null>>;
-}
+import { TurnstileWidgetProps } from '@/types';
 
 const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   isFormComplete,

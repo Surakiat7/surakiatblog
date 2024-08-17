@@ -1,8 +1,7 @@
-import '@/styles/globals.css';
+import '@/@core/styles/globals.css';
 import * as React from 'react';
 import { Metadata } from 'next';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { MobileScreenProvider } from '@/hooks/UseMobileMediaQuery';
 import Script from 'next/script';
 import Head from 'next/head';
 import { poppins } from '../@core/styles/fonts';
@@ -65,9 +64,7 @@ export default function RootLayout({
       </Head>
       <body>
         <ThemeProvider>
-          <MobileScreenProvider>
-            <Provider>{children}</Provider>
-          </MobileScreenProvider>
+          <Provider>{children}</Provider>
         </ThemeProvider>
         <Script
           id="gtm-script"

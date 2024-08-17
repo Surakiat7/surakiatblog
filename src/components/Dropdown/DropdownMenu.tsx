@@ -1,13 +1,12 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { Image } from '@nextui-org/react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
-import { Post } from '@/types';
 import _ from 'lodash';
-import { ShiftingDropDownMenuProps } from '@/types';
+import { ShiftingDropDownMenuProps, TabProps, Post } from '@/types';
 
 export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
   onScrollTo,
@@ -86,13 +85,6 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
     </li>
   );
 };
-
-interface TabProps extends ShiftingDropDownMenuProps {
-  children: ReactNode;
-  tab: number;
-  handleSetSelected: (val: number | null) => void;
-  selected: number | null;
-}
 
 const Tab: React.FC<TabProps> = ({
   children,

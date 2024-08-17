@@ -5,19 +5,10 @@ import dynamic from 'next/dynamic';
 import { FiArrowRight } from 'react-icons/fi';
 import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
-import { Poppins } from 'next/font/google';
 import { Block } from './Block';
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700'],
-});
+import { AboutHeroProps, HeaderBlockProps } from '@/types';
 
 const DynamicAboutBlock = dynamic(() => import('./AboutBlock'), { ssr: false });
-
-interface AboutHeroProps {
-  contactRef: React.RefObject<HTMLDivElement>;
-}
 
 const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
   const { theme } = useTheme();
@@ -31,9 +22,7 @@ const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
   );
 
   return (
-    <div
-      className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass} ${poppins.className}`}
-    >
+    <div className={`flex w-full h-full p-12 sm:p-6 ${bgColorClass}`}>
       <div className="flex flex-col w-full gap-4">
         <HeaderBlock contactRef={contactRef} />
         <DynamicAboutBlock />
@@ -41,10 +30,6 @@ const AboutHero: React.FC<AboutHeroProps> = ({ contactRef }) => {
     </div>
   );
 };
-
-interface HeaderBlockProps {
-  contactRef: React.RefObject<HTMLDivElement>;
-}
 
 const HeaderBlock: React.FC<HeaderBlockProps> = ({ contactRef }) => {
   const { theme } = useTheme();

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
 import Link from 'next/link';
-import { useMobileScreen } from '@/hooks/UseMobileMediaQuery';
+import useMediaQuery from '@/hooks/UseMediaQuery';
 import { BreadcrumbsComponentProps } from '@/types';
 import { truncateText } from '@/@core/utils/truncateText';
 
 const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
   items,
 }) => {
-  const { mobileScreen } = useMobileScreen();
-  const maxLength = mobileScreen ? 24 : Infinity;
+  const isSm = useMediaQuery('sm');
+  const maxLength = isSm ? 24 : Infinity;
 
   return (
     <Breadcrumbs variant="solid" radius={'md'} className="breadcrumbs">
