@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     'insights',
     'stories',
     'surakiat',
+    'surakiat tablakorn',
     'Surakiat Tabakorn',
     'JJ',
     'jj',

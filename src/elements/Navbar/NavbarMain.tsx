@@ -18,6 +18,7 @@ import { PiGraduationCap } from 'react-icons/pi';
 import { IoBriefcaseOutline } from 'react-icons/io5';
 import { BsEnvelopePaper } from 'react-icons/bs';
 import { TbUserSquareRounded } from 'react-icons/tb';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 interface NavbarElementProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
@@ -43,7 +44,13 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
   setIsMenuOpen,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
+  const {
+    iconColor,
+    dividerColor,
+    textColorClass,
+    TitleLinearColor,
+  } = useThemeColors();
 
   const themeValues = useMemo(
     () => ({
@@ -51,13 +58,6 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
         theme === 'light'
           ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
           : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`,
-      iconColor: theme === 'light' ? '#09090b' : '#fafafa',
-      dividerColor: theme === 'light' ? '#d1d5db' : '#4b5563',
-      textColorClass: theme === 'light' ? 'text-zinc-950' : 'text-zinc-50',
-      TitleLinearColor:
-        theme === 'dark'
-          ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-          : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text',
     }),
     [theme]
   );
@@ -66,27 +66,27 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
     {
       name: 'About',
       ref: aboutRef,
-      icon: <TbUserSquareRounded size={26} color={themeValues.iconColor} />,
+      icon: <TbUserSquareRounded size={26} color={iconColor} />,
     },
     {
       name: 'Blog',
       ref: blogRef,
-      icon: <RiBloggerLine size={28} color={themeValues.iconColor} />,
+      icon: <RiBloggerLine size={28} color={iconColor} />,
     },
     {
       name: 'Education',
       ref: educationRef,
-      icon: <PiGraduationCap size={26} color={themeValues.iconColor} />,
+      icon: <PiGraduationCap size={26} color={iconColor} />,
     },
     {
       name: 'Work Experience',
       ref: exprienceRef,
-      icon: <IoBriefcaseOutline size={26} color={themeValues.iconColor} />,
+      icon: <IoBriefcaseOutline size={26} color={iconColor} />,
     },
     {
       name: 'Contact',
       ref: contactRef,
-      icon: <BsEnvelopePaper size={26} color={themeValues.iconColor} />,
+      icon: <BsEnvelopePaper size={26} color={iconColor} />,
     },
   ];
 
@@ -190,7 +190,7 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
             onClick={onLogoClick}
           />
           <p
-            className={`font-bold sm:hidden md:hidden ${themeValues.TitleLinearColor}`}
+            className={`font-bold sm:hidden md:hidden ${TitleLinearColor}`}
           >
             Surakiat
           </p>
@@ -234,13 +234,13 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
                   >
                     {item.icon}
                     <p
-                      className={`w-full text-md font-normal ${themeValues.textColorClass}`}
+                      className={`w-full text-md font-normal ${textColorClass}`}
                     >
                       {item.name}
                     </p>
                   </div>
                   <Divider
-                    style={{ backgroundColor: themeValues.dividerColor }}
+                    style={{ backgroundColor: dividerColor }}
                   />
                 </div>
               </NavbarMenuItem>
@@ -249,9 +249,9 @@ const NavbarElement: React.FC<NavbarElementProps> = ({
         </ul>
         <div className="flex-grow" />
         <NavbarMenuItem>
-          <Divider style={{ backgroundColor: themeValues.dividerColor }} />
+          <Divider style={{ backgroundColor: dividerColor }} />
           <div className={`flex w-full sm:text-center justify-center py-3`}>
-            <p className={`text-xs ${themeValues.textColorClass}`}>
+            <p className={`text-xs ${textColorClass}`}>
               © Copyright 2024 Surakiat. All rights reserved.
             </p>
           </div>

@@ -11,29 +11,25 @@ import {
   FaLine,
   FaDribbbleSquare,
 } from 'react-icons/fa';
+import { useThemeColors } from '@/@core/utils/themeColorClass';
 
 const Footer = () => {
   const { theme } = useTheme();
+  const {
+    borderColorClass,
+    textColorClass,
+    bgColorSencondaryClass,
+    TitleLinearColor,
+    socialColorClass
+  } = useThemeColors();
 
   const logoSrc =
     theme === 'light'
       ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
-  const textColorClass = theme === 'light' ? 'text-zinc-950' : 'text-zinc-50';
-  const borderColorClass =
-    theme === 'light' ? 'border-zinc-300' : 'border-zinc-700';
-  const bgColorClass =
-    theme === 'light'
-      ? 'bg-zinc-200 text-zinc-950'
-      : 'bg-zinc-900 text-zinc-50';
-  const socialColor = theme === 'light' ? '#09090b' : '#fafafa';
-  const TitleLinearColor =
-    theme === 'dark'
-      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
-      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
 
   return (
-    <main className={`px-8 py-8 ${bgColorClass} w-full`}>
+    <main className={`px-8 py-8 ${bgColorSencondaryClass} w-full`}>
       <div className="flex sm:flex-col sm:justify-center w-full justify-between pb-4 sm:gap-4">
         <div className="flex w-full justify-start sm:justify-center items-center gap-6">
           <div className="flex sm:w-fit sm:justify-center items-center gap-2">
@@ -69,7 +65,7 @@ const Footer = () => {
               href="https://www.facebook.com/Surakiatz"
               className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
-              <FaFacebookSquare color={socialColor} className="h-8 w-8" />
+              <FaFacebookSquare color={socialColorClass} className="h-8 w-8" />
             </Link>
             <Link
               aria-label="Visit our line add"
@@ -78,7 +74,7 @@ const Footer = () => {
               href="https://line.me/ti/p/OtdDn-Ik0A"
               className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
-              <FaLine color={socialColor} className="h-8 w-8" />
+              <FaLine color={socialColorClass} className="h-8 w-8" />
             </Link>
             <Link
               aria-label="Visit our dribbble profile"
@@ -87,7 +83,7 @@ const Footer = () => {
               href="https://dribbble.com/TABLAKORN"
               className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
-              <FaDribbbleSquare color={socialColor} className="h-8 w-8" />
+              <FaDribbbleSquare color={socialColorClass} className="h-8 w-8" />
             </Link>
             <Link
               aria-label="Visit our linkedin profile"
@@ -96,7 +92,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/surakiat000/"
               className="transition-transform transform hover:translate-y-[-4px] duration-300"
             >
-              <FaLinkedin color={socialColor} className="h-8 w-8" />
+              <FaLinkedin color={socialColorClass} className="h-8 w-8" />
             </Link>
           </div>
         </div>
