@@ -2,14 +2,8 @@ import React from 'react';
 import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
 import Link from 'next/link';
 import { useMobileScreen } from '@/hooks/UseMobileMediaQuery';
-
-type BreadcrumbsComponentProps = {
-  items: { name: string; href?: string }[];
-};
-
-const truncateText = (text: string, maxLength: number) => {
-  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-};
+import { BreadcrumbsComponentProps } from '@/types';
+import { truncateText } from '@/@core/utils/truncateText';
 
 const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
   items,

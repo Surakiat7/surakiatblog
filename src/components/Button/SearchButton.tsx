@@ -3,17 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button } from '@nextui-org/react';
 import { SearchIcon } from './SearchIcon';
-
-interface SearchButtonProps {
-  onSearch: (query: string) => void;
-}
+import { SearchButtonProps } from '@/types';
 
 const SearchButton = ({ onSearch }: SearchButtonProps) => {
   const [query, setQuery] = useState('');
-
-  const handleSearchClick = () => {
-    onSearch(query);
-  };
 
   useEffect(() => {
     onSearch(query);

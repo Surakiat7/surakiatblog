@@ -1,4 +1,3 @@
-'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import useMeasure from 'react-use-measure';
@@ -7,7 +6,8 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { Image } from '@nextui-org/react';
 import SkeletonBlogCard from '../Skeleton/SkeletonBlogCard';
 import { useNavigate } from '@/@core/utils/navigation';
-import { PostData, Post } from '@/app/(routes)/blog/blogpostmockdata';
+import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
+import { Post } from '@/types';
 import Link from 'next/link';
 import _ from 'lodash';
 

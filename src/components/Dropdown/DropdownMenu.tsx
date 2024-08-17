@@ -4,17 +4,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { Image } from '@nextui-org/react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { PostData, Post } from '@/app/(routes)/blog/blogpostmockdata';
+import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
+import { Post } from '@/types';
 import _ from 'lodash';
-
-interface ShiftingDropDownMenuProps {
-  onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
-  aboutRef: React.RefObject<HTMLDivElement>;
-  blogRef: React.RefObject<HTMLDivElement>;
-  educationRef: React.RefObject<HTMLDivElement>;
-  exprienceRef: React.RefObject<HTMLDivElement>;
-  contactRef: React.RefObject<HTMLDivElement>;
-}
+import { ShiftingDropDownMenuProps } from '@/types';
 
 export const ShiftingDropDownMenu: React.FC<ShiftingDropDownMenuProps> = ({
   onScrollTo,

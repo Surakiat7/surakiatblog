@@ -1,18 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardBody, Divider, Image } from '@nextui-org/react';
 import { useTheme } from '@/contexts/ThemeContext';
-
-interface EducationData {
-  logo: string;
-  program: string;
-  institution: string;
-  duration: string;
-  description: string;
-}
-
-interface CardEducationsProps {
-  data: EducationData[];
-}
+import { CardEducationsProps } from '@/types';
 
 const CardEducations: React.FC<CardEducationsProps> = ({ data }) => {
   const { theme } = useTheme();

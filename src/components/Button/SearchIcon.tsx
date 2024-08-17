@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface SearchIconProps extends React.SVGProps<SVGSVGElement> {
-  size?: number;
-  strokeWidth?: number;
-}
+import { SearchIconProps } from '@/types';
 
 export const SearchIcon: React.FC<SearchIconProps> = ({
   size = 24,

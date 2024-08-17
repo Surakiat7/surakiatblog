@@ -1,16 +1,14 @@
-'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { Image, Button, Spinner } from '@nextui-org/react';
 import SkeletonBlogCard from '../Skeleton/SkeletonBlogCard';
 import { useNavigate } from '@/@core/utils/navigation';
-import { PostData, Post } from '@/app/(routes)/blog/blogpostmockdata';
+import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
+import { Post } from '@/types';
 import SearchButton from '../Button/SearchButton';
 import _ from 'lodash';
 import NextImage from 'next/image';
 
 const BlogPostFindAll = () => {
-  const [offset, setOffset] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPosts, setFilteredPosts] = useState<Post[]>(PostData);
   const [isLoading, setIsLoading] = useState(false);

@@ -14,6 +14,7 @@ const BackButton: React.FC = () => {
     <div className="flex">
       <Button
         size="md"
+        aria-label={'Back to previous page'}
         className="bg-gradient-to-br from-[#4EDFE7] to-[#00597B]"
         startContent={<IoChevronBack data-testid="chevron-back-icon" />}
         onClick={handleBackClick}

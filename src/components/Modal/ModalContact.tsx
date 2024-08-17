@@ -7,13 +7,7 @@ import {
   ModalBody,
   ModalFooter,
 } from '@nextui-org/react';
-
-interface ModalNotificationProps {
-  isOpen: boolean;
-  onClose: () => void;
-  message: string;
-  title: string;
-}
+import { ModalNotificationProps } from '@/types';
 
 const ModalNotification: React.FC<ModalNotificationProps> = ({
   isOpen,

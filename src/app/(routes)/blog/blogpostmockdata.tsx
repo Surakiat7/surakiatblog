@@ -1,18 +1,4 @@
-export interface Post {
-  id: number;
-  imgUrl: string;
-  author: string;
-  title: string;
-  description: string;
-  content: Array<{
-    imagesrc?: string;
-    subtitle: string;
-    snippet: string;
-    paragraph: string;
-  }>;
-  views: number;
-  createdAt: string;
-}
+import { Post } from "@/types";
 
 export function getPostDataById(id: number): Post | undefined {
   return PostData.find((post) => post.id === id);

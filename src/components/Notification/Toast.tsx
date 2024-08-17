@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-interface ToastProps {
-  type: 'success' | 'error';
-  message: string;
-  onClose: () => void;
-}
+import { ToastProps } from '@/types';
 
 const Toast: React.FC<ToastProps> = ({ type, message, onClose }) => {
   const [isVisible, setIsVisible] = useState(true);

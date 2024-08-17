@@ -1,11 +1,6 @@
 import React from 'react';
 import { Button } from '@nextui-org/react';
-
-interface GradientButtonProps {
-  title: string;
-  onClick?: () => void;
-  ariaLabel?: string;
-}
+import { GradientButtonProps } from '@/types';
 
 const GradientButton: React.FC<GradientButtonProps> = ({
   title,

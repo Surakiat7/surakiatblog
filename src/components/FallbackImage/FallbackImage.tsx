@@ -1,12 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-
-type FallbackImageProps = {
-  src: string;
-  alt: string;
-  fallbackSrc: string;
-  [key: string]: any;
-};
+import { FallbackImageProps } from '@/types';
 
 const FallbackImage: React.FC<FallbackImageProps> = ({
   src,
