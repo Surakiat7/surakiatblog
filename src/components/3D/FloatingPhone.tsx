@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { FiBatteryCharging, FiWifi } from "react-icons/fi";
-import Image from "next/image";
-import { useTheme } from "@/contexts/ThemeContext";
+import { motion } from 'framer-motion';
+import { FiBatteryCharging, FiWifi } from 'react-icons/fi';
+import Image from 'next/image';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const Phone3D: React.FC = () => {
   return (
@@ -15,23 +15,23 @@ const FloatingPhone: React.FC = () => {
   return (
     <div
       style={{
-        transformStyle: "preserve-3d",
-        transform: "rotateY(-30deg) rotateX(15deg)",
+        transformStyle: 'preserve-3d',
+        transform: 'rotateY(-30deg) rotateX(15deg)',
       }}
       className="rounded-[24px] bg-gradient-to-br from-[#4EDFE7] to-[#00597B]"
     >
       <motion.div
         initial={{
-          transform: "translateZ(8px) translateY(-2px)",
+          transform: 'translateZ(8px) translateY(-2px)',
         }}
         animate={{
-          transform: "translateZ(32px) translateY(-8px)",
+          transform: 'translateZ(32px) translateY(-8px)',
         }}
         transition={{
           repeat: Infinity,
-          repeatType: "mirror",
+          repeatType: 'mirror',
           duration: 2,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
         className="relative h-[480px] sm:h-96 sm:w-56 w-[260px] rounded-[24px] border-2 border-b-4 border-r-4 border-white border-l-neutral-200 border-t-neutral-200 bg-neutral-900 p-1 pl-[3px] pt-[3px]"
       >
@@ -57,11 +57,11 @@ const HeaderBar: React.FC = () => {
 const Screen: React.FC = () => {
   const { theme } = useTheme();
   const logoSrc =
-    theme === "light"
+    theme === 'light'
       ? `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-DarkBG.avif`
       : `${process.env.NEXT_PUBLIC_IMGIX_DOMAIN}/Surakiat-WhiteBG.avif`;
   const ColorClass =
-    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-950 text-zinc-50";
+    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-950 text-zinc-50';
 
   return (
     <div

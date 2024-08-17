@@ -1,11 +1,11 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { FiArrowRight, FiChevronDown } from "react-icons/fi";
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import { Image } from "@nextui-org/react";
-import { useTheme } from "@/contexts/ThemeContext";
-import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
-import _ from "lodash";
+import React, { ReactNode, useEffect, useState } from 'react';
+import { FiArrowRight, FiChevronDown } from 'react-icons/fi';
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import { Image } from '@nextui-org/react';
+import { useTheme } from '@/contexts/ThemeContext';
+import { PostData, Post } from '@/app/(routes)/blog/blogpostmockdata';
+import _ from 'lodash';
 
 interface ShiftingDropDownMenuProps {
   onScrollTo: (ref: React.RefObject<HTMLElement>) => void;
@@ -49,13 +49,13 @@ const Tabs: React.FC<ShiftingDropDownMenuProps> = ({
   contactRef,
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
-  const [dir, setDir] = useState<null | "l" | "r">(null);
+  const [dir, setDir] = useState<null | 'l' | 'r'>(null);
   const hasComponent =
     selected !== null && !!TABS.find((t) => t.id === selected)?.Component;
 
   const handleSetSelected = (val: number | null) => {
-    if (typeof selected === "number" && typeof val === "number") {
-      setDir(selected > val ? "r" : "l");
+    if (typeof selected === 'number' && typeof val === 'number') {
+      setDir(selected > val ? 'r' : 'l');
     } else if (val === null) {
       setDir(null);
     }
@@ -116,28 +116,28 @@ const Tab: React.FC<TabProps> = ({
   const { theme } = useTheme();
   const tabData = _.find(TABS, { id: tab });
   const hasComponent = !!tabData?.Component;
-  const textColorClass = theme === "light" ? "text-slate-800" : "text-white";
+  const textColorClass = theme === 'light' ? 'text-slate-800' : 'text-white';
   const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-800 text-zinc-50";
+    theme === 'light'
+      ? 'bg-zinc-200 text-zinc-950'
+      : 'bg-zinc-800 text-zinc-50';
 
   const handleClick = () => {
     if (!hasComponent) {
       switch (tabData?.title.toLowerCase()) {
-        case "about":
+        case 'about':
           onScrollTo(aboutRef);
           break;
-        case "blog":
+        case 'blog':
           onScrollTo(blogRef);
           break;
-        case "education":
+        case 'education':
           onScrollTo(educationRef);
           break;
-        case "work experience":
+        case 'work experience':
           onScrollTo(exprienceRef);
           break;
-        case "contact":
+        case 'contact':
           onScrollTo(contactRef);
           break;
         default:
@@ -159,7 +159,7 @@ const Tab: React.FC<TabProps> = ({
       {hasComponent && (
         <FiChevronDown
           className={`transition-transform ${
-            selected === tab ? "rotate-180" : ""
+            selected === tab ? 'rotate-180' : ''
           }`}
         />
       )}
@@ -172,15 +172,15 @@ const Content = ({
   dir,
 }: {
   selected: number | null;
-  dir: null | "l" | "r";
+  dir: null | 'l' | 'r';
 }) => {
   const { theme } = useTheme();
   const tab = _.find(TABS, { id: selected });
 
   if (
     !tab ||
-    typeof tab !== "object" ||
-    !("Component" in tab) ||
+    typeof tab !== 'object' ||
+    !('Component' in tab) ||
     tab.Component === null
   ) {
     return <div />;
@@ -188,9 +188,9 @@ const Content = ({
 
   const Component = tab.Component;
   const bgColorClass =
-    theme === "light"
-      ? "border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100"
-      : "border-zinc-700 bg-gradient-to-b from-zinc-950 via-zinc-800 to-zinc-950";
+    theme === 'light'
+      ? 'border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100'
+      : 'border-zinc-700 bg-gradient-to-b from-zinc-950 via-zinc-800 to-zinc-950';
 
   return (
     <motion.div
@@ -216,10 +216,10 @@ const Content = ({
         <motion.div
           initial={{
             opacity: 0,
-            x: dir === "l" ? 100 : dir === "r" ? -100 : 0,
+            x: dir === 'l' ? 100 : dir === 'r' ? -100 : 0,
           }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
         >
           <Component />
         </motion.div>
@@ -238,9 +238,9 @@ const Nub = ({ selected }: { selected: number | null }) => {
   const { theme } = useTheme();
   const [left, setLeft] = useState(0);
   const nubColorClass =
-    theme === "light"
-      ? "border-zinc-200 bg-zinc-100"
-      : "border-zinc-700 bg-zinc-950";
+    theme === 'light'
+      ? 'border-zinc-200 bg-zinc-100'
+      : 'border-zinc-700 bg-zinc-950';
 
   useEffect(() => {
     moveNub();
@@ -249,7 +249,7 @@ const Nub = ({ selected }: { selected: number | null }) => {
   const moveNub = () => {
     if (selected) {
       const hoveredTab = document.getElementById(`shift-tab-${selected}`);
-      const overlayContent = document.getElementById("overlay-content");
+      const overlayContent = document.getElementById('overlay-content');
 
       if (!hoveredTab || !overlayContent) return;
 
@@ -265,10 +265,10 @@ const Nub = ({ selected }: { selected: number | null }) => {
   return (
     <motion.span
       style={{
-        clipPath: "polygon(0 0, 100% 0, 50% 50%, 0% 100%)",
+        clipPath: 'polygon(0 0, 100% 0, 50% 50%, 0% 100%)',
       }}
       animate={{ left }}
-      transition={{ duration: 0.25, ease: "easeInOut" }}
+      transition={{ duration: 0.25, ease: 'easeInOut' }}
       className={`absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-tl border ${nubColorClass}`}
     />
   );
@@ -281,7 +281,7 @@ const getRandomPosts = (posts: Post[], count: number): Post[] => {
 
 const Blog = () => {
   const { theme } = useTheme();
-  const textColorClass = theme === "light" ? "text-zinc-950" : "text-white";
+  const textColorClass = theme === 'light' ? 'text-zinc-950' : 'text-white';
   const [selectedPosts, setSelectedPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -310,12 +310,12 @@ const Blog = () => {
                 <Image
                   sizes="100vw"
                   height={20}
-                  width={"100%"}
+                  width={'100%'}
                   style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    borderTopLeftRadius: "1rem",
-                    borderTopRightRadius: "1rem",
+                    objectFit: 'cover',
+                    width: '100%',
+                    borderTopLeftRadius: '1rem',
+                    borderTopRightRadius: '1rem',
                   }}
                   src={post.imgUrl}
                   alt={post.title}
@@ -326,9 +326,7 @@ const Blog = () => {
               <h1 className={`font-bold text-sm ${textColorClass}`}>
                 {post.title}
               </h1>
-              <p className={`text-xs ${textColorClass}`}>
-                {post.description}
-              </p>
+              <p className={`text-xs ${textColorClass}`}>{post.description}</p>
             </Link>
           </div>
         ))}
@@ -354,9 +352,9 @@ interface TabItem {
 }
 
 const TABS: TabItem[] = [
-  { id: 1, title: "About", Component: null },
-  { id: 2, title: "Blog", Component: Blog },
-  { id: 3, title: "Education", Component: null },
-  { id: 4, title: "Work Experience", Component: null },
-  { id: 5, title: "Contact", Component: null },
+  { id: 1, title: 'About', Component: null },
+  { id: 2, title: 'Blog', Component: Blog },
+  { id: 3, title: 'Education', Component: null },
+  { id: 4, title: 'Work Experience', Component: null },
+  { id: 5, title: 'Contact', Component: null },
 ];

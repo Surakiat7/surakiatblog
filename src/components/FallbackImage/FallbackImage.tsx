@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 type FallbackImageProps = {
   src: string;
@@ -7,19 +8,17 @@ type FallbackImageProps = {
   [key: string]: any;
 };
 
-const FallbackImage: React.FC<FallbackImageProps> = ({ src, alt, fallbackSrc, ...props }) => {
+const FallbackImage: React.FC<FallbackImageProps> = ({
+  src,
+  alt,
+  fallbackSrc,
+  ...props
+}) => {
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = fallbackSrc;
   };
 
-  return (
-    <img
-      src={src}
-      alt={alt}
-      onError={handleError}
-      {...props}
-    />
-  );
+  return <Image src={src} alt={alt} onError={handleError} {...props} />;
 };
 
 export default FallbackImage;

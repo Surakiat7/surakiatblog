@@ -1,52 +1,53 @@
-import type { Config } from "tailwindcss";
-const { nextui } = require("@nextui-org/react");
+import type { Config } from 'tailwindcss';
+const { nextui } = require('@nextui-org/react');
 
 const config: Config = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       keyframes: {
         fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(25px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          '0%': { opacity: '0', transform: 'translateY(25px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideInRight: {
-          "0%": { transform: "translateX(100%)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
+          '0%': { transform: 'translateX(100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
         },
         slideOutRight: {
-          "0%": { transform: "translateX(0)", opacity: "1" },
-          "100%": { transform: "translateX(100%)", opacity: "0" },
+          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(100%)', opacity: '0' },
         },
       },
       animation: {
-        fadeInUp1: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0s forwards",
-        fadeInUp2: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards",
-        fadeInUp3: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards",
-        fadeInUp4: "fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.75s forwards",
-        slideInRight: "slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards",
-        slideOutRight: "slideOutRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+        fadeInUp1: 'fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0s forwards',
+        fadeInUp2: 'fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards',
+        fadeInUp3: 'fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards',
+        fadeInUp4: 'fadeInUp 1.25s cubic-bezier(0.4, 0, 0.2, 1) 0.75s forwards',
+        slideInRight: 'slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+        slideOutRight:
+          'slideOutRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
       },
       screens: {
-        sm: { min: "220px", max: "767px" },
-        md: { min: "768px", max: "1023px" },
-        lg: { min: "1024px", max: "1279px" },
-        xl: { min: "1280px", max: "1660px" },
-        xxl: { min: "1661px", max: "2560px" },
-        xxxl: { min: "2561px" },
+        sm: { min: '220px', max: '767px' },
+        md: { min: '768px', max: '1023px' },
+        lg: { min: '1024px', max: '1279px' },
+        xl: { min: '1280px', max: '1660px' },
+        xxl: { min: '1661px', max: '2560px' },
+        xxxl: { min: '2561px' },
       },
     },
   },
-  darkMode: "class",
+  darkMode: 'class',
   plugins: [
     nextui({
-      prefix: "nextui",
+      prefix: 'nextui',
       addCommonColors: false,
-      defaultTheme: "dark",
-      defaultExtendTheme: "dark",
+      defaultTheme: 'dark',
+      defaultExtendTheme: 'dark',
       layout: {},
       themes: {
         light: {

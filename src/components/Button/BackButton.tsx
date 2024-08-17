@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "@nextui-org/react";
-import { IoChevronBack } from "react-icons/io5";
-import { useNavigate } from "@/@core/utils/navigation";
+import React from 'react';
+import { Button } from '@nextui-org/react';
+import { IoChevronBack } from 'react-icons/io5';
+import { useNavigate } from '@/@core/utils/navigation';
 
 const BackButton: React.FC = () => {
   const navigate = useNavigate();

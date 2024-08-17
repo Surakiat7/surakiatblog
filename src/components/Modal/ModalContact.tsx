@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   Button,
@@ -6,7 +6,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 
 interface ModalNotificationProps {
   isOpen: boolean;
@@ -21,22 +21,26 @@ const ModalNotification: React.FC<ModalNotificationProps> = ({
   message,
   title,
 }) => {
-  const isSuccess = title.toLowerCase() === "success";
+  const isSuccess = title.toLowerCase() === 'success';
 
   return (
     <Modal
       backdrop="opaque"
       isOpen={isOpen}
-      placement={"center"}
+      placement={'center'}
       onClose={onClose}
       radius="lg"
       classNames={{
-        body: "py-6",
-        backdrop: "bg-[#00597B]/50 backdrop-opacity-40",
-        base: "border-[#00597B] text-white",
-        header: `border-b-[1px] ${isSuccess ? 'border-teal-500' : 'border-red-500'}`,
-        footer: `border-t-[1px] ${isSuccess ? 'border-teal-500' : 'border-red-500'}`,
-        closeButton: "hover:bg-white/5 active:bg-white/10",
+        body: 'py-6',
+        backdrop: 'bg-[#00597B]/50 backdrop-opacity-40',
+        base: 'border-[#00597B] text-white',
+        header: `border-b-[1px] ${
+          isSuccess ? 'border-teal-500' : 'border-red-500'
+        }`,
+        footer: `border-t-[1px] ${
+          isSuccess ? 'border-teal-500' : 'border-red-500'
+        }`,
+        closeButton: 'hover:bg-white/5 active:bg-white/10',
       }}
     >
       <ModalContent>
@@ -46,7 +50,7 @@ const ModalNotification: React.FC<ModalNotificationProps> = ({
               <div className="shrink-0">
                 <svg
                   className={`shrink-0 size-8 ${
-                    isSuccess ? "text-teal-500" : "text-red-500"
+                    isSuccess ? 'text-teal-500' : 'text-red-500'
                   } mt-0.5`}
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

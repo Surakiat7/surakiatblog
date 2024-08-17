@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 declare global {
   namespace JSX {
@@ -8,7 +8,7 @@ declare global {
     }
     interface Window {
       gtag: (
-        command: "config" | "event",
+        command: 'config' | 'event',
         targetId: string,
         params?: { [key: string]: any }
       ) => void;

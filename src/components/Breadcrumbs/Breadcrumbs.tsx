@@ -1,14 +1,14 @@
-import React from "react";
-import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
-import Link from "next/link";
-import { useMobileScreen } from "@/hooks/UseMobileMediaQuery";
+import React from 'react';
+import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
+import Link from 'next/link';
+import { useMobileScreen } from '@/hooks/UseMobileMediaQuery';
 
 type BreadcrumbsComponentProps = {
   items: { name: string; href?: string }[];
 };
 
 const truncateText = (text: string, maxLength: number) => {
-  return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
 };
 
 const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
@@ -18,13 +18,13 @@ const BreadcrumbsComponent: React.FC<BreadcrumbsComponentProps> = ({
   const maxLength = mobileScreen ? 24 : Infinity;
 
   return (
-    <Breadcrumbs variant="solid" radius={"md"} className="breadcrumbs">
+    <Breadcrumbs variant="solid" radius={'md'} className="breadcrumbs">
       {items.map((item, index) => (
         <BreadcrumbItem
           key={index}
-          separator={index < items.length - 1 ? "/" : undefined}
+          separator={index < items.length - 1 ? '/' : undefined}
           className="breadcrumb-item"
-          aria-current={index === items.length - 1 ? "page" : undefined}
+          aria-current={index === items.length - 1 ? 'page' : undefined}
         >
           {item.href ? (
             <Link href={item.href} className="breadcrumb-link">

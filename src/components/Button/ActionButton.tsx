@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "@nextui-org/react";
+import React from 'react';
+import { Button } from '@nextui-org/react';
 
 interface GradientButtonProps {
   title: string;
@@ -7,7 +7,11 @@ interface GradientButtonProps {
   ariaLabel?: string;
 }
 
-const GradientButton: React.FC<GradientButtonProps> = ({ title, onClick, ariaLabel }) => {
+const GradientButton: React.FC<GradientButtonProps> = ({
+  title,
+  onClick,
+  ariaLabel,
+}) => {
   return (
     <Button
       radius="full"

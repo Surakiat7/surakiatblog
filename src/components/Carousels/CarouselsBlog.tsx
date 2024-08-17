@@ -1,15 +1,15 @@
-"use client";
-import React, { useState, useEffect, useRef } from "react";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import useMeasure from "react-use-measure";
-import { gsap } from "gsap";
-import { useTheme } from "@/contexts/ThemeContext";
-import { Image } from "@nextui-org/react";
-import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
-import { useNavigate } from "@/@core/utils/navigation";
-import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
-import Link from "next/link";
-import _ from "lodash";
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import useMeasure from 'react-use-measure';
+import { gsap } from 'gsap';
+import { useTheme } from '@/contexts/ThemeContext';
+import { Image } from '@nextui-org/react';
+import SkeletonBlogCard from '../Skeleton/SkeletonBlogCard';
+import { useNavigate } from '@/@core/utils/navigation';
+import { PostData, Post } from '@/app/(routes)/blog/blogpostmockdata';
+import Link from 'next/link';
+import _ from 'lodash';
 
 const CARD_WIDTH = 350;
 const MARGIN = 20;
@@ -26,16 +26,16 @@ const BlogPostCarousel = () => {
   const { theme } = useTheme();
   const carouselRef = useRef(null);
   const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-900 text-zinc-50";
+    theme === 'light'
+      ? 'bg-zinc-200 text-zinc-950'
+      : 'bg-zinc-900 text-zinc-50';
   const bgButtonColorClass =
-    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
-  const iconColor = theme === "light" ? "#09090b" : "#fafafa";
+    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-900 text-zinc-50';
+  const iconColor = theme === 'light' ? '#09090b' : '#fafafa';
   const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+    theme === 'dark'
+      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
+      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const BlogPostCarousel = () => {
     gsap.to(carouselRef.current, {
       x: newOffset,
       duration: 0.5,
-      ease: "power2.out",
+      ease: 'power2.out',
     });
   };
 
@@ -72,7 +72,7 @@ const BlogPostCarousel = () => {
     gsap.to(carouselRef.current, {
       x: newOffset,
       duration: 0.5,
-      ease: "power2.out",
+      ease: 'power2.out',
     });
   };
 
@@ -109,7 +109,7 @@ const BlogPostCarousel = () => {
                 <div className="flex items-center gap-2">
                   <button
                     className={`rounded-lg border-[1px] border-neutral-400 ${bgButtonColorClass} p-1.5 text-2xl transition-opacity ${
-                      CAN_SHIFT_LEFT ? "" : "opacity-30"
+                      CAN_SHIFT_LEFT ? '' : 'opacity-30'
                     }`}
                     disabled={!CAN_SHIFT_LEFT}
                     onClick={shiftLeft}
@@ -119,7 +119,7 @@ const BlogPostCarousel = () => {
                   </button>
                   <button
                     className={`rounded-lg border-[1px] border-neutral-400 ${bgButtonColorClass} p-1.5 text-2xl transition-opacity ${
-                      CAN_SHIFT_RIGHT ? "" : "opacity-30"
+                      CAN_SHIFT_RIGHT ? '' : 'opacity-30'
                     }`}
                     disabled={!CAN_SHIFT_RIGHT}
                     onClick={shiftRight}
@@ -159,19 +159,19 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-600";
+    theme === 'light' ? 'border-zinc-300' : 'border-zinc-600';
   const authorColorClass =
-    theme === "light"
-      ? "border-zinc-300 text-zinc-950"
-      : "border-zinc-600 text-zinc-50";
+    theme === 'light'
+      ? 'border-zinc-300 text-zinc-950'
+      : 'border-zinc-600 text-zinc-50';
 
   const handleBlogClick = (id: string) => {
-    navigate.BlogParam(id);
+    navigate.BlogId(id);
   };
   const shadowClass =
-    theme === "light"
-      ? "hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]"
-      : "hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]";
+    theme === 'light'
+      ? 'hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]'
+      : 'hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]';
 
   return (
     <div
@@ -190,7 +190,7 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
           height={200}
           loading="lazy"
           className="w-full rounded-lg object-cover"
-          style={{ height: "200px", objectFit: "cover" }}
+          style={{ height: '200px', objectFit: 'cover' }}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
@@ -201,7 +201,7 @@ const BlogPostCard = ({ id, imgUrl, author, title, description }: Post) => {
       </span>
       <h3
         className={`mt-2 text-lg font-medium transition-colors ${
-          theme === "light" ? "text-zinc-950" : "text-zinc-50"
+          theme === 'light' ? 'text-zinc-950' : 'text-zinc-50'
         } group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
       >
         {title}

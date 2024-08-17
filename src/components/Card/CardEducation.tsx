@@ -1,6 +1,6 @@
-import React from "react";
-import { Card, CardHeader, CardBody, Divider, Image } from "@nextui-org/react";
-import { useTheme } from "@/contexts/ThemeContext";
+import React from 'react';
+import { Card, CardHeader, CardBody, Divider, Image } from '@nextui-org/react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface EducationData {
   logo: string;
@@ -17,11 +17,11 @@ interface CardEducationsProps {
 const CardEducations: React.FC<CardEducationsProps> = ({ data }) => {
   const { theme } = useTheme();
   const bgColorClass =
-    theme === "light" ? "bg-zinc-50 text-zinc-950" : "bg-zinc-900 text-zinc-50";
+    theme === 'light' ? 'bg-zinc-50 text-zinc-950' : 'bg-zinc-900 text-zinc-50';
   const borderColorClass =
-    theme === "light" ? "border-[#d1d5db]" : "border-zinc-700";
-  const dividerColor = theme === "light" ? "#d1d5db" : "#4b5563";
-  
+    theme === 'light' ? 'border-[#d1d5db]' : 'border-zinc-700';
+  const dividerColor = theme === 'light' ? '#d1d5db' : '#4b5563';
+
   return (
     <div className="w-full flex sm:flex-col gap-4">
       {data.map((edu, index) => (

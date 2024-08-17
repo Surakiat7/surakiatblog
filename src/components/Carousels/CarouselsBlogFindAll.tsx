@@ -1,28 +1,28 @@
-"use client";
-import React, { useState, useEffect, useCallback } from "react";
-import { useTheme } from "@/contexts/ThemeContext";
-import { Image, Button, Spinner } from "@nextui-org/react";
-import SkeletonBlogCard from "../Skeleton/SkeletonBlogCard";
-import { useNavigate } from "@/@core/utils/navigation";
-import { PostData, Post } from "@/app/(routes)/blog/blogpostmockdata";
-import SearchButton from "../Button/SearchButton";
-import _ from "lodash";
-import NextImage from "next/image";
+'use client';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
+import { Image, Button, Spinner } from '@nextui-org/react';
+import SkeletonBlogCard from '../Skeleton/SkeletonBlogCard';
+import { useNavigate } from '@/@core/utils/navigation';
+import { PostData, Post } from '@/app/(routes)/blog/blogpostmockdata';
+import SearchButton from '../Button/SearchButton';
+import _ from 'lodash';
+import NextImage from 'next/image';
 
 const BlogPostFindAll = () => {
   const [offset, setOffset] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [filteredPosts, setFilteredPosts] = useState<Post[]>(PostData);
   const [isLoading, setIsLoading] = useState(false);
   const { theme } = useTheme();
   const bgColorClass =
-    theme === "light"
-      ? "bg-zinc-200 text-zinc-950"
-      : "bg-zinc-900 text-zinc-50";
+    theme === 'light'
+      ? 'bg-zinc-200 text-zinc-950'
+      : 'bg-zinc-900 text-zinc-50';
   const TitleLinearColor =
-    theme === "dark"
-      ? "bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text"
-      : "bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text";
+    theme === 'dark'
+      ? 'bg-gradient-to-b from-[#fff] to-[#adadad] inline-block text-transparent bg-clip-text'
+      : 'bg-gradient-to-b from-[#555] to-[#000] inline-block text-transparent bg-clip-text';
 
   const debouncedSearch = useCallback(
     _.debounce((query: string) => {
@@ -36,7 +36,7 @@ const BlogPostFindAll = () => {
   );
 
   useEffect(() => {
-    if (searchQuery === "") {
+    if (searchQuery === '') {
       setFilteredPosts(PostData);
     } else {
       setIsLoading(true);
@@ -119,18 +119,18 @@ const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
   const borderColorClass =
-    theme === "light" ? "border-zinc-300" : "border-zinc-600";
+    theme === 'light' ? 'border-zinc-300' : 'border-zinc-600';
   const authorColorClass =
-    theme === "light"
-      ? "border-zinc-300 text-zinc-950"
-      : "border-zinc-600 text-zinc-50";
+    theme === 'light'
+      ? 'border-zinc-300 text-zinc-950'
+      : 'border-zinc-600 text-zinc-50';
   const shadowClass =
-    theme === "light"
-      ? "hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]"
-      : "hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]";
+    theme === 'light'
+      ? 'hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] hover:border-[#4EDFE7]'
+      : 'hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:border-[#4EDFE7]';
 
   const handleBlogClick = (id: string) => {
-    navigate.BlogParam(id);
+    navigate.BlogId(id);
   };
 
   return (
@@ -146,7 +146,7 @@ const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
           height={200}
           priority
           className="w-full rounded-lg object-cover"
-          style={{ height: "200px", objectFit: "cover" }}
+          style={{ height: '200px', objectFit: 'cover' }}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
@@ -157,7 +157,7 @@ const BlogPost = ({ id, imgUrl, author, title, description }: Post) => {
       </span>
       <h3
         className={`mt-2 text-lg font-medium transition-colors ${
-          theme === "light" ? "text-zinc-950" : "text-zinc-50"
+          theme === 'light' ? 'text-zinc-950' : 'text-zinc-50'
         } group-hover:bg-gradient-to-r group-hover:from-[#4EDFE7] group-hover:to-[#00597B] group-hover:inline-block group-hover:text-transparent group-hover:bg-clip-text`}
       >
         {title}
