@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Navbar, NavbarContent } from '@nextui-org/react';
 import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
-import ToggleSwitchTheme from '@/components/Toggle/ThemeSwitchToggle';
+import ToggleSwitchTheme from '@/components/Toggle/SwitchTheme';
 import { useRouter } from 'next/navigation';
 import { throttle } from 'lodash';
 

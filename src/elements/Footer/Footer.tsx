@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from '@/contexts/ThemeContext';
-import NextJSLogo from './NextjsLogo';
+import NextJSLogo from '../../components/Logo/Nextjs';
 import {
   FaLinkedin,
   FaFacebookSquare,

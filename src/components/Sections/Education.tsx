@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import CardEducations from '../Card/CardEducation';
+import CardEducations from '../Card/Education';
 
 const educationData = [
   {

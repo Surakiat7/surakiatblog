@@ -5,7 +5,7 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { SendContact } from '@/api/contact';
 import { SendContactRequest, ConfettiOptions } from '@/types';
 import confetti from 'canvas-confetti';
-import ModalNotification from '../Modal/ModalContact';
+import ModalNotification from '../Modal/Contact';
 import axios from 'axios';
 import TurnstileWidget from '../../../third-parties/TurnstileWidget';
 

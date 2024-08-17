@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import NavbarElement from '@/elements/Navbar/NavbarMain';
-import { DarkGridHero } from '@/components/Sections/HeroWelcome';
+import { DarkGridHero } from '@/components/Sections/Welcome';
 import LogoHero from '@/components/Sections/LogoTechStack';
 import BlogPostCarousel from '@/components/Sections/CarouselBlogs';
 import AboutHero from '@/components/Sections/AboutIntro';

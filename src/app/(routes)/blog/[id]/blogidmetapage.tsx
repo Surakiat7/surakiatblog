@@ -10,14 +10,14 @@ import {
   Spinner,
   Snippet,
 } from '@nextui-org/react';
-import BreadcrumbsComponent from '@/components/Breadcrumbs/Breadcrumbs';
-import BackButton from '@/components/Button/BackButton';
+import BreadcrumbsComponent from '@/components/Breadcrumb/Breadcrumb';
+import BackButton from '@/components/Buttons/Back';
 import { PiEyeglassesDuotone } from 'react-icons/pi';
 import { PostData } from '../blogpostmockdata';
 import { Post } from '@/types';
 import { useTheme } from '@/contexts/ThemeContext';
 import NavbarElementContent from '@/elements/Navbar/NavbarContent';
-import FallbackImage from '@/components/FallbackImage/FallbackImage';
+import FallbackImage from '@/components/FallbackImage/ImageContent';
 import Footer from '@/elements/Footer/Footer';
 import { FaLine, FaLinkedin, FaShareAltSquare } from 'react-icons/fa';
 import { FaSquareFacebook, FaSquareXTwitter } from 'react-icons/fa6';

@@ -9,9 +9,9 @@ import {
 import { useMemo } from 'react';
 import { throttle } from 'lodash';
 import { useTheme } from '@/contexts/ThemeContext';
-import ToggleSwitchTheme from '@/components/Toggle/ThemeSwitchToggle';
+import ToggleSwitchTheme from '@/components/Toggle/SwitchTheme';
 import Image from 'next/image';
-import { ShiftingDropDownMenu } from '@/components/Dropdown/DropdownMenu';
+import { ShiftingDropDownMenu } from '@/components/Dropdown/Menu';
 import { Divider } from '@nextui-org/react';
 import { RiBloggerLine } from 'react-icons/ri';
 import { PiGraduationCap } from 'react-icons/pi';

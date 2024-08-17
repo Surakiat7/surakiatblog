@@ -1,11 +1,11 @@
 'use client';
 
-import BackButton from '@/components/Button/BackButton';
+import BackButton from '@/components/Buttons/Back';
 import NavbarElementContent from '@/elements/Navbar/NavbarContent';
 import React, { useEffect, useState } from 'react';
 import { Spinner } from '@nextui-org/react';
-import BreadcrumbsComponent from '@/components/Breadcrumbs/Breadcrumbs';
-import BlogPostFindAll from '@/components/Carousels/CarouselsBlogFindAll';
+import BreadcrumbsComponent from '@/components/Breadcrumb/Breadcrumbs';
+import BlogPostFindAll from '@/components/Carousels/BlogFindAll';
 import { useTheme } from '@/contexts/ThemeContext';
 import Footer from '@/elements/Footer/Footer';
 

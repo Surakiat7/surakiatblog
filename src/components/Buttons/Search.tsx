@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Button } from '@nextui-org/react';
-import { SearchIcon } from './SearchIcon';
+import { SearchIcon } from '../Icon/SearchIcon';
 import { SearchButtonProps } from '@/types';
 
 const SearchButton = ({ onSearch }: SearchButtonProps) => {

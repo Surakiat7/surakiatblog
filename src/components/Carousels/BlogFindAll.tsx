@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import SkeletonBlogCard from '../Skeleton/SkeletonBlogCard';
+import SkeletonBlogCard from '../Skeleton/BlogCard';
 import { useNavigate } from '@/@core/utils/navigation';
 import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
 import { Post } from '@/types';
-import SearchButton from '../Button/SearchButton';
+import SearchButton from '../Buttons/Search';
 import _ from 'lodash';
 import NextImage from 'next/image';
 

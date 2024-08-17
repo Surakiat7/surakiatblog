@@ -4,7 +4,7 @@ import useMeasure from 'react-use-measure';
 import { gsap } from 'gsap';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Image } from '@nextui-org/react';
-import SkeletonBlogCard from '../Skeleton/SkeletonBlogCard';
+import SkeletonBlogCard from '../Skeleton/BlogCard';
 import { useNavigate } from '@/@core/utils/navigation';
 import { PostData } from '@/app/(routes)/blog/blogpostmockdata';
 import { Post } from '@/types';
