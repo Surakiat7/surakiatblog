@@ -46,7 +46,7 @@ const InputSpotlightBorder: React.FC<InputSpotlightBorderProps> = ({
     setOpacity(0);
   };
 
-  const isTextarea = title === 'Message';
+  const isTextarea = title === 'Enter your message';
 
   useEffect(() => {
     if (ref.current && isTextarea) {
