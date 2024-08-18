@@ -42,7 +42,7 @@ const Footer = () => {
               className="object-cover"
             />
             <p className={`font-bold sm:hidden ${TitleLinearColor}`}>
-              SURAKIAT
+            Surakiat
             </p>
           </div>
           <div
