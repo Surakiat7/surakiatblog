@@ -38,7 +38,6 @@ export default async function Image({ params }: { params: { id: string } }) {
           justifyContent: 'center',
         }}
       >
-        <img src={imgUrl} height="100" />
       </div>
     ),
     {
