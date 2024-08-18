@@ -14,15 +14,23 @@ export const contentType = 'image/png';
 export default async function Image({ params }: { params: { id: string } }) {
   const post = getPostDataById(parseInt(params.id));
   const title = post ? post.title : 'Blog Post';
-  const imgUrl = post ? post.imgUrl : '';
+  let imgUrl = post ? post.imgUrl : '';
 
-  console.log("post data", post);
-  
+  // แปลง AVIF เป็น PNG และปรับขนาดภาพ
+  if (imgUrl) {
+    imgUrl = `${imgUrl}?fm=png&w=1200&h=630&fit=crop&crop=entropy`;
+  }
+
+  console.log('post data', post);
+  console.log('imgUrl data', imgUrl);
+
   return new ImageResponse(
     (
       <div
         style={{
-          background: `url(${imgUrl}) no-repeat center center/cover`,
+          backgroundImage: `url(${imgUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -32,30 +40,13 @@ export default async function Image({ params }: { params: { id: string } }) {
           fontFamily: 'Arial, sans-serif',
         }}
       >
-        <div
-          style={{
-            fontSize: 60,
-            fontWeight: 'bold',
-            color: '#333',
-            textAlign: 'center',
-            padding: '0 20px',
-          }}
-        >
-          {title}
-        </div>
-        <div
-          style={{
-            fontSize: 30,
-            color: '#666',
-            marginTop: 20,
-          }}
-        >
-          @Surakiat
-        </div>
       </div>
     ),
     {
       ...size,
+      headers: {
+        'Cache-Control': 'no-store, max-age=0',
+      },
     }
   );
 }
