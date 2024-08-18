@@ -57,11 +57,11 @@ export async function generateMetadata(
       authors: ['Surakiat'],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: 'summary',
       title: title,
       description: description,
       creator: '@Surakiat',
-      site: '@surakiat',
+      site: 'surakiat.dev',
     },
     alternates: {
       canonical: canonicalUrl,
