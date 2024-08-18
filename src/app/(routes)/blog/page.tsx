@@ -1,6 +1,5 @@
 import React from 'react';
 import BlogPost from './blogmetapage';
-import Head from 'next/head';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -51,13 +50,6 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <Head>
-        <meta property="article:section" content="blog" />
-        <meta
-          name="keywords"
-          content="blog, frontend development, tips, techniques, methods, blog post"
-        />
-      </Head>
       <BlogPost />
     </>
   );

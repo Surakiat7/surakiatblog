@@ -40,6 +40,7 @@ const getCssClasses = (theme: 'light' | 'dark') => {
       ? 'border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100'
       : 'border-zinc-700 bg-gradient-to-b from-zinc-950 via-zinc-800 to-zinc-950',
     bgDropDownMenuColorClass: isLight ? 'bg-zinc-200 text-zinc-950' : 'bg-zinc-800 text-zinc-50',
+    bgInputFieldsColorClass: isLight ? 'bg-zinc-200 border-zinc-100' : 'bg-zinc-950 border-zinc-800',
     socialColorClass: isLight ? '#09090b' : '#fafafa',
     bgLinearDropDownMenuColorClass: isLight
       ? 'border-zinc-200 bg-gradient-to-b from-zinc-100 via-zinc-50 to-zinc-100'

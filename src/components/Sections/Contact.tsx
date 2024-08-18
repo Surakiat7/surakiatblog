@@ -8,14 +8,12 @@ import ModalNotification from '../Modal/Contact';
 import axios from 'axios';
 import TurnstileWidget from '../../../third-parties/TurnstileWidget';
 import { useThemeColors } from '@/@core/utils/themeColorClass';
+import InputSpotlightBorder from '../Input/InputSpotlightBorder';
 
 type TurnstileStatus = 'success' | 'error' | 'expired' | 'required';
 
 const Contact: React.FC = () => {
-  const {
-    bgColorClass,
-    TitleLinearColor,
-  } = useThemeColors();
+  const { bgColorClass, TitleLinearColor } = useThemeColors();
   const [title, setTitle] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
@@ -41,44 +39,55 @@ const Contact: React.FC = () => {
     setter(e.target.value);
   };
 
-  const handlePhoneOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let { value } = event.target;
-    value = value.replace(/\D/g, '').slice(0, 10);
+  const handlePhoneOnChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (event.target instanceof HTMLInputElement) {
+      let { value } = event.target;
+      value = value.replace(/\D/g, '').slice(0, 10);
 
-    if (value.length === 0) {
-      setIsPhoneError(false);
-    } else if (value.length !== 10) {
-      setIsPhoneError(true);
-    } else {
-      setIsPhoneError(false);
+      if (value.length === 0) {
+        setIsPhoneError(false);
+      } else if (value.length !== 10) {
+        setIsPhoneError(true);
+      } else {
+        setIsPhoneError(false);
+      }
+
+      if (value.length > 3 && value.length <= 6) {
+        value = `${value.slice(0, 3)}-${value.slice(3)}`;
+      } else if (value.length > 6) {
+        value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(
+          6,
+          10
+        )}`;
+      }
+
+      setDisplayPhone(value);
+      setPhone(value.replace(/-/g, ''));
     }
-
-    if (value.length > 3 && value.length <= 6) {
-      value = `${value.slice(0, 3)}-${value.slice(3)}`;
-    } else if (value.length > 6) {
-      value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6, 10)}`;
-    }
-
-    setDisplayPhone(value);
-    setPhone(value.replace(/-/g, ''));
   };
 
-  const handleEmailOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  const handleEmailOnChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (event.target instanceof HTMLInputElement) {
+      const { value } = event.target;
 
-    const isValidEmail = value
-      .toLowerCase()
-      .match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+      const isValidEmail = value
+        .toLowerCase()
+        .match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
 
-    if (value === '') {
-      setIsEmailError(false);
-    } else if (isValidEmail) {
-      setIsEmailError(false);
-    } else {
-      setIsEmailError(true);
+      if (value === '') {
+        setIsEmailError(false);
+      } else if (isValidEmail) {
+        setIsEmailError(false);
+      } else {
+        setIsEmailError(true);
+      }
+
+      setEmail(value);
     }
-
-    setEmail(value);
   };
 
   const isButtonDisabled =
@@ -207,11 +216,8 @@ const Contact: React.FC = () => {
             <label className="text-base font-medium">
               Subject of Contact<span className="text-[#FD7573]"> *</span>
             </label>
-            <Input
-              type="text"
-              label="Subject of Contact"
-              variant="flat"
-              placeholder="Enter your subject of contact"
+            <InputSpotlightBorder
+              title="Enter your title"
               value={title}
               onChange={(e) => handleInputChange(e, setTitle)}
             />
@@ -221,28 +227,20 @@ const Contact: React.FC = () => {
               <label className="text-base font-medium">
                 Name<span className="text-[#FD7573]"> *</span>
               </label>
-              <Input
-                type="text"
-                label="Name"
-                variant="flat"
-                placeholder="Enter your name"
+              <InputSpotlightBorder
+                title="Enter your name"
                 value={name}
                 onChange={(e) => handleInputChange(e, setName)}
-                className="w-full"
               />
             </div>
             <div className="flex flex-col w-full gap-1">
               <label className="text-base font-medium">
                 Surname<span className="text-[#FD7573]"> *</span>
               </label>
-              <Input
-                type="text"
-                label="Surname"
-                variant="flat"
-                placeholder="Enter your surname"
+              <InputSpotlightBorder
+                title="Enter your surname"
                 value={surname}
                 onChange={(e) => handleInputChange(e, setSurname)}
-                className="w-full"
               />
             </div>
           </div>
@@ -251,14 +249,10 @@ const Contact: React.FC = () => {
               <label className="text-base font-medium">
                 PhoneNumber<span className="text-[#FD7573]"> *</span>
               </label>
-              <Input
-                type="text"
-                label="PhoneNumber"
-                variant="flat"
-                placeholder="Enter your phone number"
+              <InputSpotlightBorder
+                title="Enter your phone"
                 value={displayPhone}
                 onChange={handlePhoneOnChange}
-                className="w-full"
               />
               {isPhoneError && (
                 <p className="text-red-500 text-sm">
@@ -270,14 +264,10 @@ const Contact: React.FC = () => {
               <label className="text-base font-medium">
                 Email<span className="text-[#FD7573]"> *</span>
               </label>
-              <Input
-                type="email"
-                label="Email"
-                variant="flat"
-                placeholder="Enter your email"
+              <InputSpotlightBorder
+                title="Enter your email"
                 value={email}
                 onChange={handleEmailOnChange}
-                className="w-full"
               />
               {isEmailError && (
                 <p className="text-red-500 text-sm">
@@ -290,14 +280,10 @@ const Contact: React.FC = () => {
             <label className="text-base font-medium">
               Message<span className="text-[#FD7573]"> *</span>
             </label>
-            <Textarea
-              type="text"
-              label="Message"
-              variant="flat"
-              placeholder="Please type your message here"
+            <InputSpotlightBorder
+              title="Enter your message"
               value={message}
               onChange={(e) => handleInputChange(e, setMessage)}
-              className="w-full"
             />
           </div>
           {/* Start Turnstile widget */}

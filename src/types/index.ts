@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, ChangeEvent } from 'react';
 
 export type BreadcrumbsComponentProps = {
   items: { name: string; href?: string }[];
@@ -25,6 +25,12 @@ type Theme = 'light' | 'dark';
 export interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
+}
+
+export interface InputSpotlightBorderProps {
+  title: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 export interface SliderToggleProps {

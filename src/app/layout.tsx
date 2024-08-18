@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { poppins } from '../@core/styles/fonts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Provider } from './provider';
+import { Loading } from '@/components/Loading/loading';
 
 export const metadata: Metadata = {
   title: 'Surakiat',
@@ -65,7 +66,9 @@ export default function RootLayout({
       </Head>
       <body>
         <ThemeProvider>
-          <Provider>{children}</Provider>
+          <Loading>
+            <Provider>{children}</Provider>
+          </Loading>
         </ThemeProvider>
         <Script
           id="gtm-script"
