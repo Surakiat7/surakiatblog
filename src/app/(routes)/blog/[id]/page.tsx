@@ -42,6 +42,7 @@ export async function generateMetadata(
   const publishedTime = post?.createdAt ? formatDateToISO(post.createdAt) : '';
 
   return {
+    metadataBase: new URL(BASE_URL),
     title: title,
     description: description,
     keywords: generateKeywords(title),

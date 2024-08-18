@@ -14,12 +14,15 @@ export const contentType = 'image/png';
 export default async function Image({ params }: { params: { id: string } }) {
   const post = getPostDataById(parseInt(params.id));
   const title = post ? post.title : 'Blog Post';
+  const imgUrl = post ? post.imgUrl : '';
 
+  console.log("post data", post);
+  
   return new ImageResponse(
     (
       <div
         style={{
-          background: 'linear-gradient(to bottom, #f0f0f0, #e0e0e0)',
+          background: `url(${imgUrl}) no-repeat center center/cover`,
           width: '100%',
           height: '100%',
           display: 'flex',
