@@ -1,4 +1,4 @@
-import { Input, Textarea, Button } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import Phone3D from '../3D/FloatingPhone';
 import { useState, ChangeEvent, useEffect } from 'react';
 import { SendContact } from '@/api/contact';
