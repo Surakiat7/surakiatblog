@@ -5,7 +5,6 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import Script from 'next/script';
 import Head from 'next/head';
 import { poppins } from '../@core/styles/fonts';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Provider } from './provider';
 import { Loading } from '@/components/Loading/loading';
 
@@ -83,7 +82,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <SpeedInsights />
       </body>
     </html>
   );
